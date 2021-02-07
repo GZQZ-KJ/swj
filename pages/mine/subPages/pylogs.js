@@ -1,0 +1,197 @@
+import React, { Component } from "react"
+import {
+  View,
+  Text,
+  Image,
+  StyleSheet,
+  StatusBar,
+  TouchableOpacity,
+  ScrollView,
+} from 'react-native'
+import { USER_ACCOUNTLOG } from '../../../utils/api/pathMap'
+import axios from '../../../utils/api/request'
+import { inject, observer } from 'mobx-react'
+import Toast from "../../../utils/api/Toast"
+@inject('rootStore')
+@observer
+/**
+ * 账户记录
+ */
+export default class pylogs extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      token: this.props.rootStore.token,
+      data: [],
+      total: null, //数据总量
+      page: 0,  //当前页
+      showNone: false,
+    }
+  }
+  getMore = (e) => {
+    var { data, total, showNone } = this.state
+    var offsetY = e.nativeEvent.contentOffset.y; //滑动距离
+    var contentSizeHeight = e.nativeEvent.contentSize.height; //scrollView contentSize高度
+    var oriageScrollHeight = e.nativeEvent.layoutMeasurement.height; //scrollView高度
+    if (offsetY + oriageScrollHeight + 20 >= contentSizeHeight) {
+      if (showNone) return
+      if (data.length === total) {
+        this.setState({
+          showNone: true
+        })
+        return
+      } else {
+        this.getData()
+      }
+    }
+  }
+  getData = async () => {
+    const { page } = this.state
+    var current_page = page + 1
+    // if(current_page > last_page) return
+    var url = USER_ACCOUNTLOG + `?page=${current_page}`
+    await axios.get(url, {
+      headers: {
+        "Content-Type": "application/json",
+        "token": this.state.token
+      }
+    })
+      .then(r => {
+        if (r.data.code === 1) {
+          console.log(r.data.result)
+          if (this.state.data.length === 0) {
+            this.setState({
+              data: r.data.result.list,
+              page: r.data.result.page.current_page,
+              total: r.data.result.page.total
+            })
+          } else {
+            this.setState({
+              data: [...this.state.data, ...r.data.result.list],
+              current_page: r.data.result.page.current_page,
+            })
+          }
+        }else {
+          Toast.message(r.data.message, 2000, 'center')
+        }
+      })
+      .catch(e => console.log(e))
+  }
+  componentDidMount() {
+    this.getData()
+  }
+
+  render() {
+    console.log(this.state.data.length, this.state.total)
+    return (
+      <>
+        <StatusBar backgroundColor="#fff"></StatusBar>
+        <View style={styles.arroWrap}>
+          <TouchableOpacity
+          style={{ width: 60, height: 60, alignItems: 'center', justifyContent: 'center' }} 
+          onPress={() => {
+            this.props.navigation.goBack()
+          }}>
+            <Image style={styles.arrow} source={require('../../../assets/icons/backx.png')}></Image>
+          </TouchableOpacity>
+          <Text style={styles.title}>账户记录</Text>
+        </View>
+        {
+          this.state.data.length < 1 ?
+            <>
+              <Image style={{ width: 206.22, height: 217.11, alignSelf: 'center', top: 53 }} source={require('../../../assets/icons/default/noPaylog.png')}></Image>
+              <Text style={{ color: '#8D9099', marginTop: 58, alignSelf: 'center', fontWeight: '400', fontSize: 15 }}>暂无账户记录</Text>
+            </>
+            : <>
+              <ScrollView
+                style={styles.container}
+                showsVerticalScrollIndicator={true}
+                onMomentumScrollEnd={this.getMore}
+                scrollsToTop={true}>
+                {
+                  this.state.data.map((v, i) => {
+                    var reg = /\-/g
+                    const bol = reg.test(v.balance_changed)
+                    return (
+                      <View style={styles.item} key={i}>
+                        <View style={styles.lt}>
+                          <Text style={styles.txt}>{v.source_str}</Text>
+                          <Text style={[styles.common, styles.lftime]}>{v.transfer_time}</Text>
+                        </View>
+                        <View style={styles.rt}>
+                          <Text style={[styles.txt, styles.rtnum, [!bol ? { color: '#FE5564' } : { color: '#2B2D33' }],]}>{v.balance_changed}</Text>
+                          <Text style={[styles.common, styles.rtnote]}>余额: {v.after_balance}</Text>
+                        </View>
+                      </View>
+                    )
+                  })
+                }
+              </ScrollView>
+            </>
+        }
+
+        {
+          this.state.showNone ? <>
+            <View style={{ paddingLeft: 60, paddingBottom: 12, paddingTop: 12, backgroundColor: "#fff" }}>
+              <Text>没有更多了.....</Text>
+            </View>
+          </> : <></>
+        }
+      </>
+    )
+  }
+}
+
+
+const styles = StyleSheet.create({
+  arroWrap: {
+    height: 44,
+    alignItems: 'center',
+    flexDirection: 'row',
+    backgroundColor: '#fff'
+  },
+  arrow: {
+    width: 11.82,
+    height: 22,
+  },
+  title: {
+    color: '#2B2D33',
+    fontSize: 18,
+    fontWeight: "500",
+    fontFamily: 'PingFang SC',
+    marginLeft:100
+  },
+  container: {
+    flex: 1,
+  },
+  item: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    paddingTop: 10,
+    paddingBottom: 9,
+    paddingLeft: 16,
+    paddingRight: 16,
+    marginBottom: 4,
+    backgroundColor: '#FFFFFF'
+  },
+  lt: {
+
+  },
+  txt: {
+    height: 21,
+    lineHeight: 21,
+    fontSize: 15,
+    fontWeight: '600',
+    color: '#2B2D33'
+  },
+  common: {
+    marginTop: 4,
+    height: 16,
+    lineHeight: 16,
+    fontSize: 11,
+    color: '#5A5D66'
+  },
+  rtnum: {
+    textAlign: 'right'
+  }
+})
