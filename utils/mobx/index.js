@@ -1,6 +1,6 @@
 import { observable, action, makeObservable } from "mobx";
 import axios from '../api/request'
-import { PRODUCT_INDEX, ORDERS_LIST } from '../api/pathMap'
+import { PRODUCT_INDEX, ORDERS_LIST,USER_INDEX } from '../api/pathMap'
 class RootStore {
     constructor() {
         makeObservable(this)
@@ -49,6 +49,24 @@ class RootStore {
     @action setNss(nss, lockNss) {
         this.nss = nss;
         this.lockNss = lockNss;
+    }
+
+    @action async axiosNss() {
+    console.log('[远程NSS进来了，请求前]')
+        await axios.get(USER_INDEX, {
+            headers: {
+              "Content-Type": "application/json",
+              "token": rootStore.token
+            }
+          }).then(r => {
+            if(r.data.code === 1) {
+              console.log('[远程NSs我的]',r.data.result)
+            this.nss = r.data.result.nss_balance,
+            this.lockNss = r.data.result.locked_nss_balance
+            }else {
+              Toast.message(r.data.message,2000,'center')
+            }
+          }).catch(e => console.log('[远程我的]', e))
     }
 
     @action setActiveCDN(activeCDN) {
@@ -108,6 +126,7 @@ class RootStore {
         })
             .catch(e => console.log(e))
     }
+
     //滚动条添加数据
     @action setProdectScroll(arr) {
         this.productList = [...this.productList, ...arr]

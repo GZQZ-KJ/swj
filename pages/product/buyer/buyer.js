@@ -74,6 +74,7 @@ export default class home extends Component {
             }
         }).then(r => {
             if (r.data.code === 1) {
+                console.log('[锁定后的数据]',r.data.result)
                 this.props.rootStore.deleteProduct(this.props.route.params.id)
                 this.props.rootStore.productStorage(this.props.route.params.id)
                 clearInterval(this.time)
@@ -110,6 +111,7 @@ export default class home extends Component {
             console.log('[产品付款成功]', r.data.result)
             if (r.data.code === 1) {
                 this.props.rootStore.deleteProduct(this.props.route.params.id)
+                this.props.rootStore.axiosNss()
                 this.setState({
                     dataPay: r.data.result,
                     showBtn: false,
@@ -280,7 +282,7 @@ export default class home extends Component {
         const result = this.controlHeadMsg(num)
         return (
             <View style={{ flex: 1 }}>
-                <StatusBar backgroundColor="#fff"></StatusBar>
+               <StatusBar backgroundColor="#fff" barStyle={'dark-content'}></StatusBar>
                 <View style={styles.arroWrap}>
                     <TouchableOpacity 
           style={{ width: 60, height: 60, alignItems: 'center', justifyContent: 'center' }} 

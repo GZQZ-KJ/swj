@@ -16,12 +16,13 @@ export default class arbiPerson extends Component {
             statusStr,
             userName,
             soOrder,
-            value
+            value,
+            sumCount,
+            price
         } = this.props
         return (
             <View style={styles.wrapper}>
                 <View style={styles.head}>
-                    <>
                         <View style={styles.myHead}>
                             {
                                 !!avaterUrl ?
@@ -34,8 +35,7 @@ export default class arbiPerson extends Component {
                             <Text style={styles.headName}>{userName}</Text>
                             <Text style={styles.orderNum}>订单编号：{soOrder}</Text>
                         </View>
-                    </>
-                    {
+                    {/* {
                         status === 2 ?
                             <View style={{ width: 48, height: 18, backgroundColor: '#FE5564', borderRadius: 9, alignItems: 'center', justifyContent: 'center' }}>
                                 <Text style={{ fontWeight: '400', fontSize: 11, color: '#fff' }}>{statusStr}</Text>
@@ -43,7 +43,7 @@ export default class arbiPerson extends Component {
                             <View style={{ width: 48, height: 18, backgroundColor: '#3D72E4', borderRadius: 9, alignItems: 'center', justifyContent: 'center' }}>
                                 <Text style={{ fontWeight: '400', fontSize: 11, color: '#fff' }}>{statusStr}</Text>
                             </View>
-                    }
+                    } */}
                 </View>
                 <View style={styles.orderDetailWrap}>
                     <View>
@@ -52,8 +52,8 @@ export default class arbiPerson extends Component {
 
                     </View>
                     <View style={styles.allMoney}>
-                        <Text style={styles.youMoney}>￥:17.782512</Text>
-                        <Text style={styles.money}>总价:117364.781512</Text>
+                        <Text style={styles.youMoney}>￥:{price}</Text>
+                        <Text style={styles.money}>总价:{sumCount}</Text>
                     </View>
 
                 </View>
@@ -85,7 +85,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
         marginLeft: 12,
-        justifyContent: 'space-between'
+        // justifyContent: 'space-between'
     },
     myHead: {
         width: 51,

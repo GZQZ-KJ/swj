@@ -67,14 +67,16 @@ const styles = StyleSheet.create({
     height: 25,
     lineHeight: 25,
     fontSize: 18,
-    color: '#3D72E4FF'
+    color: '#3D72E4FF',
+    fontWeight:'bold'
   },
   price: {
     marginLeft: 44,
     height: 25,
     lineHeight: 25,
     fontSize: 18,
-    color: '#FE5564FF'
+    color: '#FE5564FF',
+    fontWeight:'700'
   },
   percent: {
     marginLeft: 12,

@@ -76,6 +76,7 @@ export default class minePage extends Component {
       }
     }).then(r => {
       if(r.data.code === 1) {
+        console.log('[我的]',r.data.result)
         this.props.rootStore.setNss(r.data.result.nss_balance, r.data.result.locked_nss_balance)
       this.props.rootStore.setUserInfo( r.data.result.email,this.state.token)
       this.props.rootStore.setPNInfo(r.data.result.avater_url, this.state.phoneNum, r.data.result.user_name)
@@ -99,7 +100,7 @@ export default class minePage extends Component {
     let { rootStore } = this.props
     return (
       <View>
-        <StatusBar backgroundColor="#fff"></StatusBar>
+        <StatusBar backgroundColor="#fff" barStyle={'dark-content'}></StatusBar>
         <View style={styles.top}>
           <Text style={styles.mineTxt}>我的</Text>
           <View style={[styles.wrap, basicStyle.flexRow]}>
@@ -119,8 +120,7 @@ export default class minePage extends Component {
             </View>
             <TouchableOpacity
               style={{ height: '100%', width: 30, justifyContent: 'center', alignItems: 'flex-end' }}
-              onPress={this.goPresonallMSg
-              }
+              onPress={this.goPresonallMSg}
             >
               <Image style={styles.arrow} source={require('../../assets/icons/arrows/ck.png')}></Image>
             </TouchableOpacity>
@@ -168,17 +168,19 @@ export default class minePage extends Component {
         </View>
         <View style={{ marginBottom: 8 }}>
           <TouchableOpacity onPress={() => {
-            this.props.navigation.navigate("Service")
+            Toast.message('客服功能尚未开放')
+            // this.props.navigation.navigate("Service")
           }}>
             <ListItem list={this.state.listData[4]}></ListItem>
           </TouchableOpacity>
         </View>
         <View style={{ marginBottom: 8 }}>
-          {/* <TouchableOpacity onPress={() => {
-            this.props.navigation.navigate("SouComp")
-          }}> */}
+          <TouchableOpacity onPress={() => {
+            Toast.message('组件功能尚未开放')
+            // this.props.navigation.navigate("SouComp")
+          }}>
           <ListItem list={this.state.listData[5]}></ListItem>
-          {/* </TouchableOpacity> */}
+          </TouchableOpacity>
           <View style={{ height: 1, backgroundColor: '#F2F3F7', marginLeft: 16, marginRight: 16 }}></View>
           <TouchableOpacity onPress={() => {
             this.props.navigation.navigate("About")

@@ -101,7 +101,7 @@ const styles = StyleSheet.create({
         width: 343,
         paddingLeft: 12,
         paddingRight: 12,
-        paddingTop: 13,
+        paddingTop: 12,
         paddingBottom: 16,
         borderRadius: 8,
         shadowOffset: { width: 0, height: 1 },
@@ -109,7 +109,7 @@ const styles = StyleSheet.create({
         elevation: 2,
         shadowRadius: 2,
         marginBottom: 12,
-        marginTop: 12
+        marginTop: 8
     },
     arbPer: {
         borderBottomColor: '#F2F3F7',

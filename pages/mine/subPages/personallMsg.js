@@ -32,7 +32,7 @@ export default class setting extends Component {
       file: '',
       avater_url: '',   //头像地址
       email: this.props.rootStore.email,
-      user_name: '',    //用户名
+      user_name: this.props.rootStore.name,    //用户名
       phoneNum: this.props.rootStore.phoneNum,  //电话号码 
       token: this.props.rootStore.token,
       canChange: false, //可编辑状态
@@ -70,11 +70,13 @@ export default class setting extends Component {
         //清空本地储存的token
         AsyncStorage.setItem('usertoken', '')
         AsyncStorage.setItem('email', '')
-        AsyncStorage.setItem('bigData','')
+        AsyncStorage.setItem('bigData', '')
+        AsyncStorage.setItem('userName', '')
+
         //清空仓库数据email token
         this.props.rootStore.clearUserInfo()
         this.setState({
-          avater_url:''
+          avater_url: ''
         })
         //跳转到登录页面
         this.props.navigation.navigate("Login")
@@ -99,7 +101,7 @@ export default class setting extends Component {
       cropping: true
     }).then(image => {
       this.getHead(image)
-      console.log('设置头像路径',image.path)
+      console.log('设置头像路径', image.path)
       this.props.rootStore.setAvaUrl(image.path)
       this.setState({
         avater_url: image.path
@@ -153,11 +155,10 @@ export default class setting extends Component {
     let name = user_name
     let phone = phoneNum
     !!name ? name : name = this.props.rootStore.name
-    !!phone ? phone : phone = this.props.rootStore.phoneNum  
-    console.log(name,phone)
+    !!phone ? phone : phone = this.props.rootStore.phoneNum
+    console.log('[发送name,avater_url]',name,avater_url)
     //发送请求
     //发送头像路径 用户名 手机号
-    // user_name === '' ? user_name = this.props.rootStore.name : user_name
     await axios.put(USER_SAVE, {
       "user_name": name,
       "avater_url": avater_url,
@@ -170,13 +171,13 @@ export default class setting extends Component {
       if (r.data.code === 1) {
         this.props.rootStore.setPNInfo(avater_url, phoneNum, user_name)
         AsyncStorage.setItem('avater_url', avater_url)
+        AsyncStorage.setItem('userName', user_name)
         this.setState({
           canChange: false,
           showModal: false
         })
       } else {
         Toast.message(r.data.message, 1000, 'center')
-
       }
     }).catch(e => {
       console.log('[用户信息提交]', e)
@@ -185,8 +186,10 @@ export default class setting extends Component {
   }
   async componentDidMount() {
     let avater = await AsyncStorage.getItem('avater_url')
+    let userName = await AsyncStorage.getItem('userName') || ''
     this.setState({
-      avater_url: avater
+      avater_url: avater,
+      user_name: userName
     })
   }
 
@@ -194,7 +197,7 @@ export default class setting extends Component {
     let { rootStore } = this.props
     return (
       <>
-        <StatusBar backgroundColor="#fff"></StatusBar>
+        <StatusBar backgroundColor="#fff" barStyle={'dark-content'}></StatusBar>
         <View style={styles.arroWrap}>
           <TouchableOpacity style={{ width: 60, height: 60, alignItems: 'center', justifyContent: 'center' }} onPress={() => {
             // if (this.state.canChange) {
@@ -202,7 +205,8 @@ export default class setting extends Component {
             //     showModal: true
             //   })
             // } else {
-            this.props.navigation.goBack()
+            this.props.navigation.navigate('Tabbar')
+
             // }
           }}>
             <Image style={styles.arrow} source={require('../../../assets/icons/backx.png')}></Image>

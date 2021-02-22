@@ -7,6 +7,7 @@ import {
   StatusBar,
   TouchableOpacity,
   ScrollView,
+  RefreshControl,
 } from 'react-native'
 import { USER_ACCOUNTLOG } from '../../../utils/api/pathMap'
 import axios from '../../../utils/api/request'
@@ -26,6 +27,8 @@ export default class pylogs extends Component {
       total: null, //数据总量
       page: 0,  //当前页
       showNone: false,
+      isRefreshing: false,  //下拉刷新
+
     }
   }
   getMore = (e) => {
@@ -71,12 +74,37 @@ export default class pylogs extends Component {
               current_page: r.data.result.page.current_page,
             })
           }
-        }else {
+        } else {
           Toast.message(r.data.message, 2000, 'center')
         }
       })
       .catch(e => console.log(e))
   }
+
+  async onRefreshHandle() {
+    this.setState({
+      isRefreshing: true
+    })
+    var url = USER_ACCOUNTLOG + `?page=1`
+    await axios.get(url, {
+      headers: {
+        "Content-Type": "application/json",
+        "token": this.state.token
+      }
+    }).then(r => {
+      if (r.data.code === 1) {
+          this.setState({
+            data: r.data.result.list,
+            page: r.data.result.page.current_page,
+            total: r.data.result.page.total,
+            isRefreshing: false
+          })
+      } else {
+        Toast.message(r.data.message, 2000, 'center')
+      }
+    })
+    .catch(e => console.log(e))
+    }
   componentDidMount() {
     this.getData()
   }
@@ -85,13 +113,14 @@ export default class pylogs extends Component {
     console.log(this.state.data.length, this.state.total)
     return (
       <>
-        <StatusBar backgroundColor="#fff"></StatusBar>
+        <StatusBar backgroundColor="#fff" barStyle={'dark-content'}></StatusBar>
         <View style={styles.arroWrap}>
           <TouchableOpacity
-          style={{ width: 60, height: 60, alignItems: 'center', justifyContent: 'center' }} 
-          onPress={() => {
-            this.props.navigation.goBack()
-          }}>
+            style={{ width: 60, height: 60, alignItems: 'center', justifyContent: 'center' }}
+            onPress={() => {
+              this.props.navigation.navigate('Tabbar')
+
+            }}>
             <Image style={styles.arrow} source={require('../../../assets/icons/backx.png')}></Image>
           </TouchableOpacity>
           <Text style={styles.title}>账户记录</Text>
@@ -107,7 +136,15 @@ export default class pylogs extends Component {
                 style={styles.container}
                 showsVerticalScrollIndicator={true}
                 onMomentumScrollEnd={this.getMore}
-                scrollsToTop={true}>
+                scrollsToTop={true}
+                refreshControl={
+                  <RefreshControl
+                    refreshing={this.state.isRefreshing}
+                    onRefresh={() => this.onRefreshHandle()}
+                  />
+                }
+              >
+
                 {
                   this.state.data.map((v, i) => {
                     var reg = /\-/g
@@ -119,8 +156,8 @@ export default class pylogs extends Component {
                           <Text style={[styles.common, styles.lftime]}>{v.transfer_time}</Text>
                         </View>
                         <View style={styles.rt}>
-                          <Text style={[styles.txt, styles.rtnum, [!bol ? { color: '#FE5564' } : { color: '#2B2D33' }],]}>{v.balance_changed}</Text>
-                          <Text style={[styles.common, styles.rtnote]}>余额: {v.after_balance}</Text>
+                          <Text style={[styles.txt, styles.rtnum, [!bol ? { color: '#FE5564' } : { color: '#2B2D33' }],]}>{v.balance_changed}NSS</Text>
+                          {/* <Text style={[styles.common, styles.rtnote]}>余额: {v.after_balance}</Text> */}
                         </View>
                       </View>
                     )
@@ -159,7 +196,7 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: "500",
     fontFamily: 'PingFang SC',
-    marginLeft:100
+    marginLeft: 100
   },
   container: {
     flex: 1,

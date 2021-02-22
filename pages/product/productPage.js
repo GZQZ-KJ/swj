@@ -116,22 +116,26 @@ export default class productPage extends Component {
     var timeSort = time_Sort ? 'time_desc' : 'time_asc'
     var sumCountSort = sum_count_Sort ? 'sum_count_desc' : 'sum_count_asc'
     var priceSort = price_Sort ? 'price_desc' : 'prrice_asc'
-    var url = PRODUCT_INDEX + `?min_sum_count=${min_sum_count}&max_sum_coount=${max_sum_count}&min_price=${min_price}&max_price=${max_price}&page=${current_page}&page_size=${pageSize}&sort_code=${timeSort, sumCountSort, priceSort}`
+    var url = PRODUCT_INDEX + `?min_sum_count=${min_sum_count}&max_sum_count=${max_sum_count}&min_price=${min_price}&max_price=${max_price}&page=${current_page}&page_size=${pageSize}&sort_code=${timeSort, sumCountSort, priceSort}`
     //发送请求
-    console.log('[条件筛选前]', timeSort, sumCountSort, priceSort, url)
-
+    console.log('[价格筛选 请求前]','最小总价',min_sum_count,'最大总价',max_sum_count,'最小单价',min_price,'最大单价',max_price)
     await axios.get(url, {
       headers: {
         "token": token
       }
     }).then(r => {
+      console.log('[请求回来的数据]',r.data.result.list)
       if (r.data.code === 1) {
-        console.log('[筛选价格 和 排序]', r.data.result.list)
+        this.props.rootStore.setProductList(r.data.result.list)
         this.setState({
           data: r.data.result.list,
           page: r.data.result.page.current_page,
           total: r.data.result.page.total,
           modalVisible: false,
+          min_sum_count:'',
+          max_sum_count:'',
+          min_price:'',
+          max_price:'',
         })
       } else {
         Toast.message(r.data.message, 2000, 'center')
@@ -141,9 +145,9 @@ export default class productPage extends Component {
   //滚动条到底 的请求
   getMore = (e) => {
     let { data, total, control } = this.state
-    // this.setState({
-    //   isScroll: true
-    // })
+    this.setState({
+      isScroll: true
+    })
     if (control) return
     var offsetY = e.nativeEvent.contentOffset.y; //滑动距离
     var contentSizeHeight = e.nativeEvent.contentSize.height; //scrollView contentSize高度
@@ -188,11 +192,12 @@ export default class productPage extends Component {
       .then(r => {
         if (data.length === 0) {
           //产品列表存到mobx中
+          console.log(r.data.result.list)
           this.props.rootStore.setProductList(r.data.result.list)
           this.setState({
             data: r.data.result.list,
             page: r.data.result.page.current_page,
-            total: r.data.result.page.total
+            total: r.data.result.page.total,
           })
           return
         }
@@ -246,7 +251,7 @@ export default class productPage extends Component {
     let { rootStore } = this.props
     return (
       <>
-        <StatusBar backgroundColor="#fff"></StatusBar>
+        <StatusBar backgroundColor="#fff" barStyle={'dark-content'}></StatusBar>
         <View style={styles.topBox}>
           <TopComp showState={this._onShow} show={this.state.show}></TopComp>
           <Modal

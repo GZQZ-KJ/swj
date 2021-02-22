@@ -73,23 +73,22 @@ export default class orderPage extends Component {
   }
   //获取挂卖列表<右>
   getProductList = async (status = 0) => {
+    console.log('右边的Status', status)
     let { page, pageSize } = this.state
     page = 1
     pageSize = 10
     let url = PRODUCT_SALELIST + `?status=${status}&page=${page}&page_size=${pageSize}`
-    console.log('[卖家url]', url, this.state.activeTop)
     await axios.get(url, {
       headers: {
         "token": this.state.token
       }
     }).then(r => {
-      console.log('[列表]',r.data.result)
       if (r.data.code === 1) {
         let result = r.data.result
+        console.log('【右边列表】',r.data.result)
         this.props.rootStore.setOrderList(result.list)
         this.setState({
-    //       dataList: result.list,
-    //       // active: status,
+          active: status,
           page: result.page.current_page,
           total: result.page.total,
           control: false,
@@ -135,14 +134,13 @@ export default class orderPage extends Component {
     page = 1
     pageSize = 10
     let url = ORDERS_LIST + `?status=${status}&page=${page}&page_size=${pageSize}`
-    console.log(url, this.state.activeTop)
     await axios.get(url, {
       headers: {
         "token": this.state.token
       }
     }).then(r => {
       if (r.data.code === 1) {
-        console.log(r.data.result)
+        console.log('【左边列表】',r.data.result)
         let result = r.data.result
         this.props.rootStore.setOrderList(result.list)
         this.setState({
@@ -207,7 +205,7 @@ export default class orderPage extends Component {
 
   }
 
-  //选择头部导航切换样式 && 请求
+  //选择头部导航切换样式 && 请求 二级导航
   _selected = async (status) => {
     this.setState({
       active: status
@@ -256,7 +254,36 @@ export default class orderPage extends Component {
           activeTop={this.state.activeTop}
           activeCss={this.state.activeCss}></TopHeadChoose>
         <View style={[styles.navBar, basicStyle.flexRow]}>
-          <ScrollView showsHorizontalScrollIndicator={false} horizontal={true} style={{ flexDirection: 'row' }}>
+          {
+            this.state.activeTop === 1 ? 
+            <View style={{ flexDirection: 'row',justifyContent:'space-between'}}>
+            {this.state.tag.map((v, i) => {
+              return (
+                <TouchableOpacity style={styles.box1} key={i} onPress={() => {
+                  if (v.tag_status === this.state.active) return
+                  if (this.state.activeTop === 1) {
+                    if (i === 3) {
+                      i = 4
+                    } else if (i === 4) {
+                      i = 6
+                    }
+                    this._selected(i)
+                  } else {
+                    if (i === 5) {
+                      i = 6
+                    }
+                    this._selected(i)
+                  }
+                }}>
+                  <Text style={v.tag_status === this.state.active ? styles.itemO : styles.item} >{v.tag_name}</Text>
+                  {v.tag_status === this.state.active ? (<View style={styles.underscore} />) : null}
+                </TouchableOpacity>
+              )
+            })
+            }
+          </View> 
+            :
+          <ScrollView showsHorizontalScrollIndicator={false} horizontal={true} style={{ flexDirection: 'row'}}>
             {this.state.tag.map((v, i) => {
               return (
                 <TouchableOpacity style={styles.box} key={i} onPress={() => {
@@ -281,7 +308,9 @@ export default class orderPage extends Component {
               )
             })
             }
-          </ScrollView>
+          </ScrollView> 
+          }
+          
         </View>
         {
           rootStore.orderList.length < 1 ?
@@ -361,6 +390,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     height: 44,
+    backgroundColor:'#FFFFFF'
   },
   contol: {
     position: 'relative',
@@ -411,12 +441,17 @@ const styles = StyleSheet.create({
     color: '#FFFFFF'
   },
   navBar: {
-    justifyContent: 'space-around',
-    backgroundColor: '#FFFFFF'
+    justifyContent:'space-between',
+    backgroundColor: '#fff',
+    marginBottom:8
   },
   box: {
     alignItems: 'center',
-    width: 70
+    width: 70,
+  },
+  box1:{
+    alignItems: 'center',
+    width:'20%',
   },
   item: {
     marginTop: 12,

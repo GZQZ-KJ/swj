@@ -72,12 +72,13 @@ export default class bank extends Component {
   render() {
     return (
       <>
-        <StatusBar backgroundColor="#fff"></StatusBar>
+        <StatusBar backgroundColor="#fff" barStyle={'dark-content'}></StatusBar>
         <View style={styles.arroWrap}>
           <TouchableOpacity 
           style={{ width: 60, height: 60, alignItems: 'center', justifyContent: 'center' }} 
           onPress={() => {
-            this.props.navigation.goBack()
+            this.props.navigation.navigate('Tabbar')
+
           }}>
             <Image style={styles.arrow} source={require('../../../assets/icons/backx.png')}></Image>
           </TouchableOpacity>
@@ -91,7 +92,7 @@ export default class bank extends Component {
                   var reg = /^(\d{4})\d+(\d{4})$/;
                   v.account_no = v.account_no.replace(reg, "**** $2");
                   return (
-                    <>
+                    <View key={i}>
                       {
                         i === this.state.showAdd ? <>
                           <TouchableOpacity style={styles.btn} activeOpacity={.7} onPress={this._addBank}>
@@ -133,7 +134,7 @@ export default class bank extends Component {
                           </View>
                         </ImageBackground>
                       </View>
-                    </>
+                    </View>
                   )
                 })
               }

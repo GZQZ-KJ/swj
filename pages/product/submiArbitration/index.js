@@ -135,12 +135,12 @@ export default class arbitration extends Component {
         return (
             <>
 
-                <StatusBar backgroundColor="#fff"></StatusBar>
+<StatusBar backgroundColor="#fff" barStyle={'dark-content'}></StatusBar>
                 <View style={styles.arroWrap}>
                     <TouchableOpacity
           style={{ width: 60, height: 60, alignItems: 'center', justifyContent: 'center' }} 
                     onPress={() => {
-                        this.props.navigation.navigate('Tabbar')
+                        this.props.navigation.goBack()
                     }}>
                         <Image style={styles.arrow} source={require('../../../assets/icons/backx.png')}></Image>
                     </TouchableOpacity>

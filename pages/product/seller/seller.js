@@ -112,18 +112,37 @@ export default class home extends Component {
     }
     render() {
         const { data } = this.state
+        var finish = this.props.route.params.finish || ''
         return (
             <>
-                <StatusBar backgroundColor="#fff"></StatusBar>
+                <StatusBar backgroundColor="#fff" barStyle={'dark-content'}></StatusBar>
                 <View style={styles.arroWrap}>
-                    <TouchableOpacity
-          style={{ width: 60, height: 60, alignItems: 'center', justifyContent: 'center' }} 
-                    onPress={() => {
-                        this.props.navigation.navigate("Tabbar")
-                    }}>
-                        <Image style={styles.arrow} source={require('../../../assets/icons/backx.png')}></Image>
-                    </TouchableOpacity>
-                    <Text style={styles.title}>产品详情</Text>
+                    {
+                        finish !== '' ? <></> : 
+                        <>
+                        <TouchableOpacity
+                            style={{ width: 60, height: 60, alignItems: 'center', justifyContent: 'center' }}
+                            onPress={() => {
+                                this.props.navigation.navigate("Tabbar")
+                            }}> <Image style={styles.arrow} source={require('../../../assets/icons/backx.png')}></Image>
+                            </TouchableOpacity>
+                            <Text style={styles.title}>产品详情</Text>
+                            </>
+                    }
+                    {
+                        finish !== '' ? 
+                        <View style={styles.finishst}>
+                       <Text style={styles.titlest}>产品详情</Text> 
+                        <TouchableOpacity
+                        style={{ width: 60, height: 60, alignItems: 'center', justifyContent: 'center' }}
+                        onPress={() => {
+                            this.props.navigation.navigate("Tabbar")
+                        }}> 
+                        <Text>完成</Text>
+                        </TouchableOpacity>
+                        </View>
+                        : <></>
+                    }
                 </View>
                 {
                     this.state.changeDetail ?
@@ -234,6 +253,14 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         backgroundColor: '#fff'
     },
+    finishst:{
+        height:'100%',
+        flexDirection: 'row',
+        alignItems: 'center',
+        backgroundColor: '#fff',
+        width:'100%',
+       justifyContent:'flex-end'
+    },
     arrow: {
         width: 11.82,
         height: 22,
@@ -243,7 +270,12 @@ const styles = StyleSheet.create({
         color: '#2B2D33',
         fontSize: 18,
         fontWeight: "500",
-        fontFamily: 'PingFang SC'
+    },
+    titlest:{
+        marginRight: 100,
+        color: '#2B2D33',
+        fontSize: 18,
+        fontWeight: "500",
     },
     wrap: {
         paddingLeft: 16

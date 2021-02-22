@@ -9,11 +9,11 @@ import {
 import ListTime from './listTime'
 import basicStyle from '../../../components/styles/basic/index'
 import ToastTwo from '../../../components/ToastTwo'
+import Toast from '../../../utils/api/Toast'
+import axios from '../../../utils/api/request'
 import { NavigationContext } from '@react-navigation/native'
 import { PRODUCT_RECEIVE, ORDERS_PAY, ORDERS_LIST } from '../../../utils/api/pathMap'
-import axios from '../../../utils/api/request'
 import { inject, observer } from 'mobx-react'
-import Toast from '../../../utils/api/Toast'
 @inject('rootStore')
 @observer
 
@@ -23,7 +23,6 @@ export default class listitem extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            activeTop: this.props.activeTop,  //左为 1
             token: this.props.rootStore.token,
             soId: this.props.item.so_id === undefined ? '' : this.props.item.so_id,
             spId: this.props.item.sp_id === undefined ? '' : this.props.item.sp_id,
@@ -32,8 +31,7 @@ export default class listitem extends Component {
     }
     //订单列表右上的时间
     getStutasTime = (status, st) => {
-        let { activeTop } = this.state
-        // console.log('[activeTop]', activeTop)
+        let { activeTop } = this.props
         if (activeTop === 1) { //买
             switch (status) {
                 case 0:
@@ -65,10 +63,10 @@ export default class listitem extends Component {
                     return null
                     break;
                 case 1:   //挂卖中  下架倒计时
-                    // return <ListTime remark={`下架倒计时`} countTime={st.sale_expire_time !== undefined ? st.sale_expire_time : '2021-1-24 20:20:20'} />
+                    return <ListTime remark={`下架倒计时`} countTime={st.sale_expire_time !== undefined ? st.sale_expire_time : '2021-1-24 20:20:20'} />
                     break;
                 case 2:   //被锁定 
-                    // return <ListTime remark={st.remark} countTime={st.pay_expire_time !== undefined ? st.pay_expire_time : '2021-1-24 20:20:20'} />
+                    return <ListTime remark={st.remark} countTime={st.pay_expire_time !== undefined ? st.pay_expire_time : '2021-1-24 20:20:20'} />
                     break;
                 case 3:   //待确定  确认收款倒计时
                     return <ListTime remark={st.remark} countTime={st.collection_expire_time !== undefined ? st.collection_expire_time : '2021-1-24 20:20:20'} />
@@ -87,12 +85,10 @@ export default class listitem extends Component {
         }
     }
 
-
     //买家确认付款
-    onEnter = async () => {
-        let { soId } = this.state
-        var url = ORDERS_PAY.replace('{so_id}', soId)
-        console.log('[付款的id--------------------------->]',soId)
+    onEnter = async (id = this.state.soId) => {
+        var url = ORDERS_PAY.replace('{so_id}', id)
+        console.log(url, '[确认付款url]', id)
         await axios.put(url, {}, {
             headers: {
                 "token": this.state.token
@@ -102,7 +98,8 @@ export default class listitem extends Component {
                 //成功 做些什么好
                 console.log('订单列表付款了', r.data)
                 if (r.data.code === 1) {
-                    this.props.rootStore.delete1Order(soId)
+                    this.props.rootStore.delete2Order(id)
+                    this.props.rootStore.axiosNss()
                     Toast.message(r.data.message, 1000, 'center')
                 }
                 else {
@@ -114,10 +111,9 @@ export default class listitem extends Component {
     }
 
     //卖家确认收款
-    onMakeCollect = async () => {
-        let { spId } = this.state
-        var url = PRODUCT_RECEIVE.replace('{sp_id}', spId)
-        console.log('[list卖家确认收款]', spId)
+    onMakeCollect = async (id = this.state.spId) => {
+        var url = PRODUCT_RECEIVE.replace('{sp_id}', id)
+        console.log(url, '[确认收款url]')
         await axios.put(url, {}, {
             headers: {
                 "token": this.state.token
@@ -125,17 +121,19 @@ export default class listitem extends Component {
         })
             .then(r => {
                 //成功 做些什么好
+                console.log('收款结果', r.data.result)
                 if (r.data.code === 1) {
-                this.props.rootStore.delete2Order(spId)
+                    this.props.rootStore.delete1Order(id)
+                    this.props.rootStore.axiosNss()
                     Toast.message(r.data.message, 1000, 'center')
                 } else {
                     Toast.message(r.data.message, 2000, 'center')
                 }
             })
-            .catch(e => console.log('[卖家确认付款]', e))
+            .catch(e => console.log('[卖家确认收款]', e))
     }
     render() {
-        let { item, activeTop,status } = this.props
+        let { item, activeTop, status } = this.props
         return (
             <TouchableOpacity style={styles.container} onPress={() => {
                 if (activeTop === 1) {
@@ -202,19 +200,18 @@ export default class listitem extends Component {
 
 const styles = StyleSheet.create({
     container: {
-        marginTop: 9,
         marginLeft: 16,
         marginRight: 16,
         marginBottom: 12,
         borderRadius: 8,
         backgroundColor: '#FFFFFF',
-        elevation: 10,
+        elevation: 4,
         shadowOffset: {
             width: 0,
             height: 1
         },
         shadowColor: '#565A66',
-        shadowOpacity: 0.1,
+        shadowOpacity: 0.12,
         shadowRadius: 2,
     },
     content: {
@@ -267,6 +264,7 @@ const styles = StyleSheet.create({
     },
     midPri: {
         // height: 22,
+        fontWeight: '700',
         lineHeight: 22,
         fontSize: 16,
         color: '#FE5564'

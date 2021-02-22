@@ -64,7 +64,7 @@ export default class arbiPicmsg extends Component {
                             </View>
                         </View>
                     </> : buyArbitration && !buyImages.length ? <>
-                        <Text style={{ color: '#8D9099', fontSize: 14, fontWeight: '400', marginTop: 8 }}>
+                        <Text style={{ color: '#8D9099', fontSize: 14, fontWeight: '400', marginTop: 8}}>
                             买家描述
                                 </Text>
                         <Text style={{ color: '#5A5D66', fontSize: 14, fontWeight: '500', marginTop: 4 }}>
@@ -91,7 +91,8 @@ const styles = StyleSheet.create({
         marginLeft: 8,
         paddingLeft: 12,
         paddingRight: 12,
-        paddingBottom: 30
+        paddingBottom:10,
+        marginBottom:24
     },
     msgArbHead: {
         height: 44,
@@ -115,11 +116,11 @@ const styles = StyleSheet.create({
         marginRight: 8
     },
     ArbtiMsg: {
-        marginTop: 4,
+        marginTop: 8,
         width: 319,
         height: 80,
         flexDirection: 'row',
-        paddingBottom:9,
+        paddingBottom:8,
         borderBottomWidth: 1,
         borderBottomColor: '#F2F3F7',
     }

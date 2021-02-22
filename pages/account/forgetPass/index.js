@@ -108,6 +108,7 @@ export default class forgetPass extends Component {
             return
         }
         const { myemail } = this.state
+        console.log('[找回密码email]',myemail)
         var re = /^[a-zA-Z\d]+([-_\.][a-zA-Z\d]+)*@[a-zA-Z\d]+\.[a-zA-Z\d]{2,4}$/
         //匹配邮箱
         if (!re.test(myemail) || myemail === '') {
@@ -145,7 +146,12 @@ export default class forgetPass extends Component {
                 Toast.message(r.data.message, 2000, 'center')
             }
         }).catch(e => console.log('[找回密码获取验证码]', e))
-
+    }
+    async componentDidMount() {
+        let email = await AsyncStorage.getItem("email") || ''
+        this.setState({
+            myemail:email
+        })
     }
     render() {
         let { myemail, password, rePassword, btnText } = this.state
@@ -172,11 +178,15 @@ export default class forgetPass extends Component {
                             </View>
                             <TextInput
                                 selectionColor="#fff"
-
                                 style={{ ...styles.inpTex, width: 160 }}
                                 placeholder='请输入邮箱'
                                 placeholderTextColor='#ccc'
-                                onChangeText={(myemail) => this.setState({ myemail })}
+                                onChangeText={(email) => {
+                                    !!email ? email : email = myemail
+                                    console.log('[找回密码emailo]',email)
+                                    this.setState({ myemail: email })
+                                }}
+                                value={this.state.myemail}
                             />
                         </View>
                         <View style={styles.inp}>

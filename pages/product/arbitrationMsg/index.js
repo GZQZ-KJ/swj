@@ -97,7 +97,7 @@ export default class arbitration extends Component {
         if (time_list === undefined) return (<></>)
         return (
             <>
-                <StatusBar backgroundColor="#fff"></StatusBar>
+                <StatusBar backgroundColor="#fff" barStyle={'dark-content'}></StatusBar>
                 <View style={styles.arroWrap}>
                     <TouchableOpacity
           style={{ width: 60, height: 60, alignItems: 'center', justifyContent: 'center' }} 
@@ -125,6 +125,8 @@ export default class arbitration extends Component {
                                 status={status}
                                 statusStr={status_str}
                                 value={value}
+                                price={price}
+                                sumCount={sum_count}
                             />
                             {
                                 status === 1 ?
@@ -161,7 +163,7 @@ export default class arbitration extends Component {
                                 buyArbitration={buy_arbitration}
                             />
                             {
-                                status === 1 || status === 3? <></> : !!buy_images ? <></> :
+                                status === 1 || status === 3? <></> : !!buy_arbitration ? <></> :
                                     <TouchableOpacity style={styles.submitArb} onPress={this.goArbiFb}>
                                         <Text style={styles.sumbitTex}>仲裁反馈</Text>
                                     </TouchableOpacity>
@@ -180,7 +182,6 @@ const styles = StyleSheet.create({
     },
     scrollView: {
         backgroundColor: '#F8F9FA',
-        paddingBottom: 60
     },
     arroWrap: {
         height: 44,

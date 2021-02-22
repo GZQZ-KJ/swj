@@ -35,7 +35,7 @@ export default class order extends Component {
 
                 },
                 {
-                    id: 2,
+                    id: 3,
                     txt: '已结束'
                 },
             ]
@@ -71,14 +71,17 @@ export default class order extends Component {
     }
     getOrderArbitrationList = async (active = 1) => {
         let { token, page, page_size } = this.state
-        page = 0
+        page = 1
+
         let url = ORDERS_ARBITRATIONLIST + `?status=${active}&page=${page}&page_size=${page_size}`
+        console.log('[仲裁地址Url]',url)
         await axios.get(url, {
             headers: {
                 "token": token
             }
         }).then(r => {
             if (r.data.code === 1) {
+                console.log('[仲裁订单]',r.data.result.list)
                 this.setState({
                     data: r.data.result.list,
                     page: r.data.result.page.current_page,
@@ -96,12 +99,13 @@ export default class order extends Component {
     render() {
         return (
             <>
-                <StatusBar backgroundColor="#fff"></StatusBar>
+                <StatusBar backgroundColor="#fff" barStyle={'dark-content'}></StatusBar>
                 <View style={styles.arroWrap}>
                     <TouchableOpacity
                         style={{ width: 60, height: 60, alignItems: 'center', justifyContent: 'center' }}
                         onPress={() => {
-                            this.props.navigation.goBack()
+                            this.props.navigation.navigate('Tabbar')
+
                         }}>
                         <Image style={styles.arrow} source={require('../../../assets/icons/backx.png')}></Image>
                     </TouchableOpacity>

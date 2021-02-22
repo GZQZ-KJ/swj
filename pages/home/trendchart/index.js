@@ -337,7 +337,6 @@ export default class chart extends Component {
                   show: false, //是否显示分隔线
                 },
                 // scale: true,
-
               },
             ],
             series: [
@@ -370,10 +369,6 @@ export default class chart extends Component {
           },
         })
       }
-      // else {
-      //   let message = r.data.message
-      //   Toast.message(message, 5000, 'top')
-      // }
     }).catch(e => console.log('[大数据趋势图Error]', e))
 
   }

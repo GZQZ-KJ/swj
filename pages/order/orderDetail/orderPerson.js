@@ -58,13 +58,13 @@ export default class arbiPerson extends Component {
                                 activeTop === 1 && status === 2 ?
                                     <>
                                         <Text style={styles.unTime}>卖家确认倒计时:</Text>
-                                        <CountTime countTime={timeList.pay_expire_time} />
+                                        <CountTime countTime={timeList.collection_expire_time} />
                                     </> : <></>
                             }
                             {
                                 activeTop === 0 && status === 3 ?
                                     <>
-                                        <Text style={styles.unTime}>卖家确认倒计时:</Text>
+                                        <Text style={styles.unTime}>确认收款倒计时:</Text>
                                         <CountTime countTime={timeList.collection_expire_time} />
                                     </> : <></>
                             }

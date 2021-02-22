@@ -79,9 +79,10 @@ export default class scan extends Component {
     }
     render() {
         let { userId, userName, avaterUrl, email, showModal, showNextModal, resultName, resultmessage, code } = this.state
+        console.log('结果扫一扫', this.props.route.params)
         return (
             <View style={{ flex: 1 }}>
-                <StatusBar backgroundColor="#fff"></StatusBar>
+                <StatusBar backgroundColor="#fff" barStyle={'dark-content'}></StatusBar>
                 <View style={styles.arroWrap}>
                     <TouchableOpacity >
                         {/* <Image style={styles.arrow} source={require('../../../assets/icons/backx.png')}></Image> */}
@@ -121,15 +122,15 @@ export default class scan extends Component {
                                         <Text style={styles.btnToucTex}>返回</Text>
                                     </TouchableOpacity>
                                 </View>
-                            </View> : <></>
-                            // <View style={styles.btnTwrap}>
-                            //     <TouchableOpacity style={styles.btnBFriend} onPress={this.goBack}>
-                            //         <Text style={styles.btnBTex}>返回</Text>
-                            //     </TouchableOpacity>
-                            //     <TouchableOpacity style={styles.btnBeFriend} onPress={this.showToast}>
-                            //         <Text style={styles.btnBeTex} >绑定关系</Text>
-                            //     </TouchableOpacity>
-                            // </View>
+                            </View> : 
+                        <View style={styles.btnTwrap}>
+                            <TouchableOpacity style={styles.btnBFriend} onPress={this.goBack}>
+                                <Text style={styles.btnBTex}>返回</Text>
+                            </TouchableOpacity>
+                            <TouchableOpacity style={styles.btnBeFriend} onPress={this.showToast}>
+                                <Text style={styles.btnBeTex} >绑定关系</Text>
+                            </TouchableOpacity>
+                        </View>
                     }
                 </View>
                 <Modal visible={showModal} transparent={true} animationType="slide">

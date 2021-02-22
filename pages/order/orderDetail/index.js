@@ -40,7 +40,7 @@ export default class orderDetail extends Component {
     }
     //订单详情<左>
     getOrderDetail = async () => {
-        let { id, token} = this.state
+        let { id, token } = this.state
         let url = ORDERS_INFO.replace('{so_id}', id)
         await axios.get(url, {
             headers: {
@@ -103,7 +103,8 @@ export default class orderDetail extends Component {
             .then(r => {
                 //成功 做些什么好
                 if (r.data.code === 1) {
-                    this.props.rootStore.deleteOrder()
+                    this.props.rootStore.delete1Order(id)
+                    this.props.rootStore.axiosNss()
                     Toast.message(r.data.message, 2000, 'center')
                     this.props.navigation.navigate("Tabbar")
                 } else {
@@ -124,7 +125,8 @@ export default class orderDetail extends Component {
         }).then(r => {
             clearInterval(this.time)
             if (r.data.code === 1) {
-                this.props.rootStore.deleteOrder(id)
+                this.props.rootStore.delete2Order(id)
+                this.props.rootStore.axiosNss()
                 Toast.message(r.data.message, 1000, 'center')
                 this.getOrderDetail()
             }
@@ -159,7 +161,7 @@ export default class orderDetail extends Component {
         }).catch(e => console.log('[取消锁定]', e))
     }
     showMsg = () => {
-        let { status, time_list,value } = this.state.data
+        let { status, time_list, value } = this.state.data
         console.log('详情头部信息', time_list)
         if (this.state.activeTop === 1) {  //订单状态
             switch (status) {
@@ -173,7 +175,7 @@ export default class orderDetail extends Component {
                     return `${time_list.remark}`
                     break;
                 case 4:
-                    return `${time_list.remark === '您已确认到账，订单已完成' ? `卖家已确认收款，恭喜你获得${value}NSS币` :'卖家未确认，订单自动完成'}`
+                    return `${time_list.remark === '您已确认到账，订单已完成' ? `卖家已确认收款，恭喜你获得${value}NSS币` : `订单自动完成，恭喜你获得${value}NSS币`}`
                     break;
                 case 5:
                     return `${time_list.remark}`
@@ -188,7 +190,7 @@ export default class orderDetail extends Component {
                     return `${time_list.remark}`
                     break;
                 case 2:
-                    return `${time_list.remark}`
+                    return `等待买家付款`
                     break;
                 case 3:
                     return `请卖家确认收款`
@@ -200,6 +202,7 @@ export default class orderDetail extends Component {
                     return `${time_list.remark}`
                     break;
                 case 6:
+                    if (time_list.remark === null) return `超时未支付，订单自动取消`
                     return `${time_list.remark}`
                     break;
             }
@@ -222,7 +225,7 @@ export default class orderDetail extends Component {
                 let cNss = nss + value
                 let clockNss = lockNss - value
                 this.props.rootStore.setNss(cNss, clockNss)
-                this.props.rootStore.deleteOrder(this.state.id)
+                this.props.rootStore.delete1Order(this.state.id)
                 this.props.rootStore.deleteProduct(this.state.id)
 
                 Toast.message(r.data.message, 1500, 'center')
@@ -264,12 +267,12 @@ export default class orderDetail extends Component {
         if (time_list === undefined) return (<></>)
         return (
             <>
-                <StatusBar backgroundColor="#fff"></StatusBar>
+                <StatusBar backgroundColor="#fff" barStyle={'dark-content'}></StatusBar>
                 <View style={styles.arroWrap}>
                     <TouchableOpacity
                         style={{ width: 60, height: 60, alignItems: 'center', justifyContent: 'center' }}
                         onPress={() => {
-                            this.props.navigation.goBack()
+                            this.props.navigation.navigate('Tabbar')
                         }}>
                         <Image style={styles.arrow} source={require('../../../assets/icons/backx.png')}></Image>
                     </TouchableOpacity>
@@ -486,10 +489,10 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'center',
         alignItems: 'center',
-        paddingLeft: 8,
+        paddingLeft: 6,
         backgroundColor: '#fff',
         paddingBottom: 17,
-        paddingTop: 5
+        paddingTop: 4
 
     },
     cancelClo: {

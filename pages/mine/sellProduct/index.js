@@ -76,12 +76,13 @@ export default class sellProduct extends Component {
             }
         }).then(r => {
             if (r.data.code === 1) {
+                var finish = 'ismine'
                 var mobxnss = myNss - (+sellNss)
                 var mobxLockNss = mylockNss + (+sellNss)
                 this.props.rootStore.setNss(mobxnss, mobxLockNss)
                 this.props.rootStore.axiosProductList()
                 console.log('[已经执行mobx请求了]')
-                this.context.navigate('Seller', { id: r.data.result.sp_id, sellNss: sellNss })
+                this.context.navigate('Seller', { id: r.data.result.sp_id, sellNss: sellNss,finish })
                 return
             }
             else {
@@ -128,7 +129,7 @@ export default class sellProduct extends Component {
         return (
 
             <>
-                <StatusBar backgroundColor="#fff"></StatusBar>
+                <StatusBar backgroundColor="#fff" barStyle={'dark-content'}></StatusBar>
                 <View style={styles.arroWrap}>
                     <TouchableOpacity style={{ width: 60, height: 60, alignItems: 'center', justifyContent: 'center' }}  onPress={() => {
                         this.props.navigation.navigate("Tabbar")

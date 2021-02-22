@@ -87,7 +87,7 @@ export default class addBank extends Component {
   render() {
     return (
       <>
-        <StatusBar backgroundColor="#fff"></StatusBar>
+        <StatusBar backgroundColor="#fff" barStyle={'dark-content'}></StatusBar>
         <View style={styles.arroWrap}>
           <TouchableOpacity
           style={{ width: 60, height: 60, alignItems: 'center', justifyContent: 'center' }} 

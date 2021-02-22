@@ -20,7 +20,7 @@ export default class homePage extends Component {
   render() {
     return (
       <View>
-        <StatusBar backgroundColor="#ccc"></StatusBar>
+       <StatusBar backgroundColor="#fff" barStyle={'dark-content'}></StatusBar>
         <TopShow navigation={this.props.navigation}></TopShow>
           <Chart></Chart>
         {/* <MySwiper></MySwiper> */}

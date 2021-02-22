@@ -68,7 +68,6 @@ export default class login extends Component {
             this.props.rootStore.setVersion(data.result.app_version, data.result.is_update)
 
             this.setState({
-                email: '',
                 password: ''
             })
             this.props.navigation.navigate('Tabbar')
@@ -109,7 +108,6 @@ export default class login extends Component {
     forgetPass = () => {
         //跳转到找回密码页面
         this.setState({
-            email: '',
             password: '',
         })
         this.props.navigation.navigate("ForgetPass")
@@ -180,7 +178,7 @@ export default class login extends Component {
                     <Text style={styles.regGo} onPress={this.regiest}>立即注册</Text>
                 </View>
                 <View style={styles.inpWrap}>
-                    <View style={styles.inp}>
+                    <View style={{...styles.inp,marginBottom:16}}>
                         <View style={styles.inpImgWrap}>
                             <Image style={styles.inpImg} source={require('../../../assets/icons/loginjujh.png')}></Image>
                         </View>
@@ -227,7 +225,7 @@ export default class login extends Component {
                 </View>
                 <View style={styles.lastWrap}>
                     <View style={styles.lastCir}>
-                        <TouchableOpacity onPress={this.changeCircle} style={{ height: 25, width: 25, justifyContent: 'center', alignItems: 'center' }} >
+                        <TouchableOpacity onPress={this.changeCircle} style={{ height: 25, width: 25,alignItems:'flex-end',justifyContent:'center' }} >
                             {
                                 this.state.rootControl ?
                                     <Image style={styles.cirImg} source={require('../../../assets/icons/agree2.png')}></Image> :
@@ -327,7 +325,7 @@ const styles = StyleSheet.create({
         borderColor: '#fff',
         borderRadius: 8,
         alignItems: 'center',
-        marginBottom: 16,
+        // marginBottom: 16,
         paddingRight: 20
     },
     inpImgWrap: {
@@ -368,9 +366,9 @@ const styles = StyleSheet.create({
     },
     lastWrap: {
         flexDirection: 'row',
-        marginLeft: 44,
+        marginLeft: 48,
         marginTop: 24,
-        paddingLeft: 3
+        paddingLeft: 2
 
     },
     lastCir: {
@@ -378,16 +376,16 @@ const styles = StyleSheet.create({
         alignItems: 'center'
     },
     cirImg: {
-        width: 8,
-        height: 8,
-        marginRight: 4,
+        width: 12,
+        height: 12,
+        marginRight: 5,
     },
     cirTex: {
         width: 148,
         height: 16,
         fontSize: 11,
         color: '#fff',
-        marginRight: 71
+        marginRight: 67
     },
     lastpro: {
         flexDirection: 'row',
@@ -396,7 +394,7 @@ const styles = StyleSheet.create({
     proImg: {
         width: 12,
         height: 12,
-        marginRight: 2
+        marginRight: 4
     },
     proTex: {
         width: 46,

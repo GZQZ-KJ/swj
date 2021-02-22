@@ -46,6 +46,8 @@ export default class regiest extends Component {
     getCode = async () => {
         //发送验证码
         var { email } = this.state
+        console.log('[注册获取验证码]',email)
+
         if (this.state.isCountDowning) {
             return;
         }
@@ -62,7 +64,9 @@ export default class regiest extends Component {
                 "Content-Type": 'application/x-www-form-urlencoded;charset=UTF-8'
             }
         }).then(r => {
+            console.log('[注册验证码返回]',r.data.result)
             if (r.data.code === 1) {
+                
                 this.setState({
                     isCountDowning: true
                 })
@@ -98,6 +102,7 @@ export default class regiest extends Component {
     }
     enterRegiest = async () => {
         var { email, code, password } = this.state
+        console.log('[注册]',email)
         //验证邮箱
         var re = /^[a-zA-Z\d]+([-_\.][a-zA-Z\d]+)*@[a-zA-Z\d]+\.[a-zA-Z\d]{2,4}$/
         //验证密码

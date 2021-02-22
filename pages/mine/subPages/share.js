@@ -33,6 +33,7 @@ export default class myShare extends Component {
       rtc: 0,
       qrcode: '',
       showCode: false,
+      result: {}
     }
   }
   _getQrcode = async () => {
@@ -64,8 +65,7 @@ export default class myShare extends Component {
       if (r.data.code === 1) {
         console.log(r.data.result)
         this.setState({
-          count: r.data.reuslt.child_count,
-          rtc: r.data.result.share_income_sum
+          result: r.data.result
         })
       }
       else {
@@ -81,12 +81,12 @@ export default class myShare extends Component {
   render() {
     return (
       <>
-        <StatusBar backgroundColor="#fff"></StatusBar>
+        <StatusBar backgroundColor="#fff" barStyle={'dark-content'}></StatusBar>
         <View style={styles.arroWrap}>
           <TouchableOpacity
-            style={{ width: 60, height: 60, alignItems: 'center', justifyContent: 'center', marginRight: 100}}
+            style={{ width: 60, height: 60, alignItems: 'center', justifyContent: 'center', marginRight: 100 }}
             onPress={() => {
-              this.props.navigation.goBack()
+              this.props.navigation.navigate('Tabbar')
             }}>
             <Image style={styles.arrow} source={require('../../../assets/icons/backx.png')}></Image>
           </TouchableOpacity>
@@ -122,11 +122,11 @@ export default class myShare extends Component {
                 <View style={styles.contents}>
                   <View style={styles.box}>
                     <View style={styles.lf}>
-                      <Text style={styles.count}>{this.state.count ? this.state.count : 0}</Text>
+                      <Text style={styles.count}>{this.state.result.child_count ? this.state.result.child_count : 0}</Text>
                       <Text style={styles.note}>推广人数</Text>
                     </View>
                     <View style={styles.rt}>
-                      <Text style={{...styles.count,color:'#FE5564'}}>{this.state.rtc ? this.state.rtc : 0}</Text>
+                      <Text style={{ ...styles.count, color: '#FE5564' }}>{this.state.result.share_income_sum ? this.state.result.share_income_sum : 0}</Text>
                       <Text style={styles.note}>已获得NSS</Text>
                     </View>
                   </View>
@@ -237,7 +237,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     paddingTop: 12,
     paddingBottom: 12,
-    justifyContent:'space-around'
+    justifyContent: 'space-around'
   },
   lf: {
     justifyContent: 'center',
