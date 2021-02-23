@@ -12,7 +12,7 @@ import {
     Keyboard
 } from 'react-native'
 import ImagePicker from 'react-native-image-crop-picker'
-
+import { pxToPt } from "../../../utils/styleKits";
 import Toast from '../../../utils/api/Toast'
 import AsyncStorage from '@react-native-community/async-storage'
 import axios from '../../../utils/api/request'
@@ -138,7 +138,7 @@ export default class arbitration extends Component {
 <StatusBar backgroundColor="#fff" barStyle={'dark-content'}></StatusBar>
                 <View style={styles.arroWrap}>
                     <TouchableOpacity
-          style={{ width: 60, height: 60, alignItems: 'center', justifyContent: 'center' }} 
+          style={{ width: pxToPt(60), height:pxToPt(60), alignItems: 'center', justifyContent: 'center' }} 
                     onPress={() => {
                         this.props.navigation.goBack()
                     }}>
@@ -147,10 +147,10 @@ export default class arbitration extends Component {
                     {
                         activeTop === 0 ?
                             //卖家
-                            <Text style={{ ...styles.title, marginLeft: 100 }}>未到账，提出仲裁</Text> :
+                            <Text style={{ ...styles.title, marginLeft: pxToPt(100) }}>未到账，提出仲裁</Text> :
 
                             //买
-                            <Text style={{ ...styles.title, marginLeft: 140 }}>仲裁反馈</Text>
+                            <Text style={{ ...styles.title, marginLeft: pxToPt(140) }}>仲裁反馈</Text>
                     }
                 </View>
                 <View style={styles.wrapper}>
@@ -159,16 +159,16 @@ export default class arbitration extends Component {
                         {
                             activeTop === 0 ?
                                 // 卖家
-                                <Text style={{ ...styles.ft, marginTop: 32 }}>您正在对订单{orderNum}提出仲裁，请简要阐述缘由</Text> :
+                                <Text style={{ ...styles.ft, marginTop: pxToPt(32) }}>您正在对订单{orderNum}提出仲裁，请简要阐述缘由</Text> :
 
                                 // 买家
-                                <Text style={{ ...styles.ft, marginTop: 32 }}>请简要阐述缘由</Text>
+                                <Text style={{ ...styles.ft, marginTop: pxToPt(32) }}>请简要阐述缘由</Text>
                         }
                         {/* </View> */}
 
                         <View style={styles.inpText}>
                             <TextInput
-                                style={{ padding: 32, height: 140 }}
+                                style={{ padding: pxToPt(32), height: pxToPt(140) }}
                                 maxLength={50}
                                 numberOfLines={2}
                                 placeholder='请输入缘由，字数控制在15~50个汉字'
@@ -188,9 +188,9 @@ export default class arbitration extends Component {
                         {
                             arbitrationImages.length > 0 ?
                                 <View style={styles.showMyimg}>
-                                    <Image style={{ width: 110, height: 70 }} source={{ uri: arbitrationImages[0] }}></Image>
-                                    <Image style={{ width: 110, height: 70 }} source={{ uri: arbitrationImages[1] }}></Image>
-                                    <Image style={{ width: 110, height: 70 }} source={{ uri: arbitrationImages[2] }}></Image>
+                                    <Image style={{ width: pxToPt(110), height:pxToPt(70) }} source={{ uri: arbitrationImages[0] }}></Image>
+                                    <Image style={{ width: pxToPt(110), height: pxToPt(70) }} source={{ uri: arbitrationImages[1] }}></Image>
+                                    <Image style={{ width:pxToPt(110), height: pxToPt(70)}} source={{ uri: arbitrationImages[2] }}></Image>
                                 </View>
                                 : <></>
                         }
@@ -268,21 +268,21 @@ export default class arbitration extends Component {
 
 const styles = StyleSheet.create({
     arroWrap: {
-        height: 44,
+        height: pxToPt(44),
         alignItems: 'center',
         flexDirection: 'row',
         backgroundColor: '#fff'
     },
     arrow: {
-        width: 11.82,
-        height: 22,
+        width: pxToPt(11.82),
+        height: pxToPt(22),
     },
     title: {
         color: '#2B2D33',
-        fontSize: 18,
+        fontSize: pxToPt(18),
         fontWeight: "500",
         fontFamily: 'PingFang SC',
-        marginLeft:100
+        marginLeft:pxToPt(100)
     },
     wrapper: {
         // marginLeft: 20,
@@ -291,53 +291,53 @@ const styles = StyleSheet.create({
         alignItems: 'center'
     },
     nowrap: {
-        marginTop: 32,
-        height: 46,
-        width: 229,
+        marginTop: pxToPt(32),
+        height: pxToPt(46),
+        width: pxToPt(229),
     },
     ft: {
         fontFamily: 'PingFang SC',
         fontWeight: '400',
         color: '#2B2D33',
-        fontSize: 16,
-        width: 343,
+        fontSize: pxToPt(16),
+        width: pxToPt(343),
     },
     fxt: {
         fontFamily: 'PingFang SC',
         fontWeight: '400',
         color: '#8D9099',
-        fontSize: 11,
-        marginTop: 4
+        fontSize: pxToPt(11),
+        marginTop: pxToPt(4)
     },
     inpText: {
-        width: 343,
-        height: 164,
-        borderRadius: 8,
+        width: pxToPt(343),
+        height: pxToPt(164),
+        borderRadius: pxToPt(8),
         backgroundColor: '#fff',
         shadowOffset: { width: 0, height: 2 },
         shadowColor: '#565A66',
-        shadowOpacity: 12,
-        shadowRadius: 2,
+        shadowOpacity: 0.12,
+        shadowRadius: pxToPt(2),
         elevation: 2,
-        marginTop: 16
+        marginTop: pxToPt(16)
     },
     upLoadImg: {
-        width: 343,
-        height: 144,
-        borderRadius: 8,
+        width: pxToPt(343),
+        height: pxToPt(144),
+        borderRadius: pxToPt(8),
         backgroundColor: '#fff',
         shadowOffset: { width: 0, height: 2 },
         shadowColor: '#565A66',
-        shadowOpacity: 12,
-        shadowRadius: 2,
+        shadowOpacity: 0.12,
+        shadowRadius: pxToPt(2),
         elevation: 2,
-        marginTop: 16,
+        marginTop: pxToPt(16),
         justifyContent: 'center',
         alignItems: 'center'
     },
     showMyimg: {
-        width: 343,
-        height: 70,
+        width: pxToPt(343),
+        height: pxToPt(70),
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',
@@ -349,9 +349,9 @@ const styles = StyleSheet.create({
         resizeMode: 'stretch'
     },
     ArbtiMsg: {
-        marginTop: 4,
-        width: 319,
-        height: 70,
+        marginTop: pxToPt(4),
+        width: pxToPt(319),
+        height: pxToPt(70),
         flexDirection: 'row',
         justifyContent: 'space-between',
     },
@@ -360,29 +360,28 @@ const styles = StyleSheet.create({
     centeredView: {
         flex: 1,
         alignItems: "center",
-        marginTop: 22
+        marginTop: pxToPt(22)
     },
     modalView: {
-        width: 319,
-        height: 166,
-        margin: 20,
-        marginTop: 156,
+        width: pxToPt(319),
+        height: pxToPt(166),
+        margin: pxToPt(20),
+        marginTop: pxToPt(156),
         backgroundColor: "#2B2D33",
-        borderRadius: 32,
-        paddingLeft: 20,
-        paddingRight: 20,
-        paddingTop: 32,
-        paddingBottom: 32,
+        borderRadius: pxToPt(32),
+        paddingLeft: pxToPt(20),
+        paddingRight: pxToPt(20),
+        paddingTop: pxToPt(32),
+        paddingBottom: pxToPt(32),
         alignItems: "center",
 
     },
     openButton: {
-        marginTop: 50,
-        height: 44,
-        width: 343,
-        borderRadius: 8,
-        padding: 10,
-        elevation: 2,
+        marginTop: pxToPt(50),
+        height: pxToPt(44),
+        width: pxToPt(343),
+        borderRadius: pxToPt(8),
+        padding: pxToPt(10),
         alignItems: 'center'
     },
     textStyle: {
@@ -391,15 +390,15 @@ const styles = StyleSheet.create({
         textAlign: "center"
     },
     modalText: {
-        marginBottom: 28,
-        fontSize: 15,
+        marginBottom:pxToPt(28),
+        fontSize: pxToPt(15),
         color: '#fff',
         fontWeight: '500'
     },
     enterButton: {
-        width: 88,
-        height: 30,
-        borderRadius: 15,
+        width: pxToPt(88),
+        height:pxToPt(30),
+        borderRadius: pxToPt(15),
         backgroundColor: "#fff",
         justifyContent: 'center',
         alignItems: 'center'

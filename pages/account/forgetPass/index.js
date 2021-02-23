@@ -11,6 +11,7 @@ import {
 } from 'react-native'
 import Toast from '../../../utils/api/Toast'
 import axios from '../../../utils/api/request'
+import {pxToPt} from '../../../utils/styleKits'
 import AsyncStorage from '@react-native-community/async-storage'
 import { NavigationContext } from '@react-navigation/native'
 
@@ -159,10 +160,10 @@ export default class forgetPass extends Component {
         return (
             <View style={styles.container}>
                     <StatusBar backgroundColor="#3D72E4" ></StatusBar>
-                    <TouchableOpacity style={{ width: 60, height: 60, alignItems: 'center',justifyContent: 'center' }} onPress={this.goBack}>
+                    <TouchableOpacity style={{ width: pxToPt(60), height: pxToPt(60), alignItems: 'center',justifyContent: 'center' }} onPress={this.goBack}>
                     <Image style={styles.arrow} onPress={this.goBack} source={require('../../../assets/icons/backo.png')}></Image>
                 </TouchableOpacity>
-                <View style={{paddingLeft:8}}>
+                <View>
                     <View style={styles.texWrap}>
                         <Text style={styles.tex}>找回密码</Text>
                     </View>
@@ -178,7 +179,7 @@ export default class forgetPass extends Component {
                             </View>
                             <TextInput
                                 selectionColor="#fff"
-                                style={{ ...styles.inpTex, width: 190 }}
+                                style={{ ...styles.inpTex, width: pxToPt(190) }}
                                 placeholder='请输入邮箱'
                                 placeholderTextColor='#ccc'
                                 onChangeText={(email) => {
@@ -293,45 +294,45 @@ const styles = StyleSheet.create({
     },
 
     arroWrap: {
-        height: 44,
+        height: pxToPt(44),
         justifyContent: 'center'
     },
     arrow: {
-        width: 11.82,
-        height: 22
+        width:pxToPt(11.82),
+        height: pxToPt(22)
     },
 
     texWrap: {
-        marginTop: 50,
-        marginLeft: 40,
-        height: 48
+        marginTop: pxToPt(50),
+        marginLeft: pxToPt(40),
+        height: pxToPt(48)
     },
     tex: {
         color: '#fff',
         fontWeight: 'bold',
-        fontSize: 34
+        fontSize:pxToPt(34)
     },
     regWrap: {
         flexDirection: 'row',
-        marginLeft: 40,
-        marginTop: 12,
-        width: 180,
-        height: 22,
+        marginLeft: pxToPt(40),
+        marginTop: pxToPt(12),
+        width: pxToPt(180),
+        height: pxToPt(22),
     },
     reg: {
         color: '#FFF5FA',
-        fontSize: 16,
+        fontSize: pxToPt(16),
     },
     inpWrap: {
-        marginTop: 53,
-        marginLeft: 36,
-        height: 202,
-        width: 303,
-        borderWidth: 1,
+        marginTop: pxToPt(53),
+        marginLeft: pxToPt(36),
+        height: pxToPt(202),
+        width: pxToPt(303),
+        borderWidth: pxToPt(1),
         borderColor: '#fff',
-        borderRadius: 12,
-        paddingLeft: 20,
-        paddingRight: 20,
+        borderRadius: pxToPt(12),
+        paddingLeft: pxToPt(20),
+        paddingRight: pxToPt(20),
     },
 
     inp: {
@@ -339,55 +340,55 @@ const styles = StyleSheet.create({
         borderBottomWidth: 1,
         borderColor: '#fff',
         alignItems: 'center',
-        height:46
+        height:pxToPt(46)
         
     },
     inpImg: {
-        width: 22,
-        height: 22,
+        width: pxToPt(22),
+        height:pxToPt(22),
     },
     inpTexWrap: {
-        marginLeft: 12,
-        borderLeftWidth: 1,
+        marginLeft:pxToPt(12),
+        borderLeftWidth: pxToPt(1),
         borderLeftColor: '#FFFEFF',
-        height: 12,
+        height: pxToPt(12),
     },
     inpTex: {
-        paddingLeft: 5,
-        width: 135,
+        paddingLeft:pxToPt(5),
+        width: pxToPt(135),
         overflow: 'hidden',
-        fontSize: 15,
+        fontSize: pxToPt(15),
         color: '#fff'
     },
     loginGo: {
-        width: 303,
-        height: 48,
-        marginLeft: 36,
+        width: pxToPt(303),
+        height: pxToPt(48),
+        marginLeft: pxToPt(36),
         justifyContent: 'center',
         alignItems: 'center',
-        borderRadius: 8,
-        marginTop: 72,
+        borderRadius: pxToPt(8),
+        marginTop: pxToPt(72),
     },
     loginTex: {
         color: '#3D72E4',
-        fontSize: 18,
+        fontSize: pxToPt(18),
     },
     inpImgLast: {
-        width: 14,
-        height: 6,
-        marginLeft: 74
+        width: pxToPt(14),
+        height: pxToPt(6),
+        marginLeft:pxToPt(74)
     },
     inpBtn: {
         backgroundColor: '#FFF',
-        width: 87,
-        height: 32,
-        borderRadius: 8,
+        width: pxToPt(87),
+        height: pxToPt(32),
+        borderRadius: pxToPt(8),
         justifyContent: 'center',
         alignItems: 'center',
-        marginLeft: 10,
+        marginLeft: pxToPt(10),
 
     },
     btnTex: {
-        fontSize: 12,
+        fontSize: pxToPt(12),
     }
 });

@@ -14,6 +14,7 @@ import {
 } from 'react-native'
 import Toast from '../../../utils/api/Toast'
 import axios from '../../../utils/api/request'
+import { pxToPt } from "../../../utils/styleKits";
 import { NavigationContext } from '@react-navigation/native'
 import { PRODUCT_GETPRICE, BANKS_GETMYBANKS, PRODUCT_SALEPRODUCT } from '../../../utils/api/pathMap'
 import { inject, observer } from 'mobx-react'
@@ -131,7 +132,7 @@ export default class sellProduct extends Component {
             <>
                 <StatusBar backgroundColor="#fff" barStyle={'dark-content'}></StatusBar>
                 <View style={styles.arroWrap}>
-                    <TouchableOpacity style={{ width: 60, height: 60, alignItems: 'center', justifyContent: 'center' }}  onPress={() => {
+                    <TouchableOpacity style={{ width: pxToPt(60), height: pxToPt(60), alignItems: 'center', justifyContent: 'center' }}  onPress={() => {
                         this.props.navigation.navigate("Tabbar")
                     }}>
                         <Image style={styles.arrow} source={require('../../../assets/icons/backx.png')}></Image>
@@ -150,7 +151,7 @@ export default class sellProduct extends Component {
                                 <TextInput
                                     placeholder="0"
                                     keyboardType='numeric'
-                                    style={{ paddingTop: 0, borderBottomWidth: 1, borderBottomColor: '#0075D7', width: 64, height: 30 }}
+                                    style={{ paddingTop: pxToPt(0), borderBottomWidth: pxToPt(1), borderBottomColor: '#0075D7', width: pxToPt(64), height: pxToPt(30) }}
                                     onChangeText={(sellNss) => {
                                         if (sellNss.includes('.')) {
                                             // var subNss = sellNss.substring(0, sellNss.indexOf('.'))
@@ -165,7 +166,7 @@ export default class sellProduct extends Component {
                                 ></TextInput>
                             </View>
                         </View>
-                        <View style={{ marginBottom: 40, flexDirection: 'row', justifyContent: 'space-between' }}>
+                        <View style={{ marginBottom: pxToPt(40), flexDirection: 'row', justifyContent: 'space-between' }}>
                             <Text style={styles.sellAllMoney}>总价: {total}</Text>
                             <Text style={styles.nowMoney}>当前可交易NSS为 {rootStore.nss}</Text>
                         </View>
@@ -175,13 +176,13 @@ export default class sellProduct extends Component {
                             }>
                                 {
                                     !!this.state.bankName ?
-                                        <Text style={{ color: '#2B2D33', fontSize: 16, fontWeight: '500' }}>{this.state.bankName}</Text> :
-                                        <Text style={{ color: '#2B2D33', fontSize: 16, fontWeight: '500' }}>请选择收款银行卡</Text>
+                                        <Text style={{ color: '#2B2D33', fontSize: pxToPt(16), fontWeight: '500' }}>{this.state.bankName}</Text> :
+                                        <Text style={{ color: '#2B2D33', fontSize: pxToPt(16), fontWeight: '500' }}>请选择收款银行卡</Text>
                                 }
                                 {
                                     !!this.state.bankNum ?
-                                        <Text style={{ color: '#2B2D33', fontSize: 16, fontWeight: '500' }}>{this.state.bankNum}</Text> :
-                                        <Image style={{ height: 8.49, width: 4.95 }} source={require('../../../assets/icons/xuanzeka.png')}></Image>
+                                        <Text style={{ color: '#2B2D33', fontSize: pxToPt(16), fontWeight: '500' }}>{this.state.bankNum}</Text> :
+                                        <Image style={{ height:pxToPt(8.49), width: pxToPt(4.95)}} source={require('../../../assets/icons/xuanzeka.png')}></Image>
                                 }
                             </TouchableOpacity>
                         }
@@ -195,12 +196,12 @@ export default class sellProduct extends Component {
                     {
                         bankId === '' || total === '0' || myNss < 0 ?
                             <View style={{ ...styles.release, opacity: .7 }} >
-                                <Text style={{ color: '#fff', fontSize: 15, fontWeight: '500' }}>发布</Text>
+                                <Text style={{ color: '#fff', fontSize: pxToPt(15), fontWeight: '500' }}>发布</Text>
                             </View> :
                             <TouchableOpacity style={styles.release} onPress={
                                 this.goProSeller
                             }>
-                                <Text style={{ color: '#fff', fontSize: 15, fontWeight: '500' }}>发布</Text>
+                                <Text style={{ color: '#fff', fontSize: pxToPt(15), fontWeight: '500' }}>发布</Text>
                             </TouchableOpacity>
                     }
 
@@ -208,7 +209,7 @@ export default class sellProduct extends Component {
                 <Modal visible={this.state.showMyBanks} animationType={'slide'} >
                     <View style={styles.arroWrap}>
                         <TouchableOpacity
-                        style={{ width: 60, height: 60, alignItems: 'center', justifyContent: 'center' }} 
+                        style={{ width: pxToPt(60), height: pxToPt(60), alignItems: 'center', justifyContent: 'center' }} 
                         onPress={() => {
                             this.setState({
                                 showMyBanks: false,
@@ -219,7 +220,7 @@ export default class sellProduct extends Component {
                         <Text style={styles.banktitle}>选择银行卡</Text>
                     </View>
                     <SafeAreaView style={{ flex: 1, alignItems: 'center' }}>
-                        <ScrollView showsVerticalScrollIndicator={false} style={{ paddingBottom: 120, backgroundColor: '#fff' }}>
+                        <ScrollView showsVerticalScrollIndicator={false} style={{ paddingBottom: pxToPt(120), backgroundColor: '#fff' }}>
                             {
                                 this.state.myBanks.map((v, i) => {
                                     var reg = /^(\d{4})\d+(\d{4})$/;
@@ -236,7 +237,7 @@ export default class sellProduct extends Component {
                                             <ImageBackground source={{ uri: v.background_url }} style={styles.bankBC}>
                                                 <View style={{ flexDirection: "row" }}>
                                                     <View style={styles.bankicon}>
-                                                        <Image source={{ uri: v.icon }} style={{ width: 28, height: 28 }}></Image>
+                                                        <Image source={{ uri: v.icon }} style={{ width: pxToPt(28), height: pxToPt(28) }}></Image>
                                                     </View>
                                                     <Text style={styles.bankTitle}>{v.full_name}</Text>
                                                 </View>
@@ -249,7 +250,7 @@ export default class sellProduct extends Component {
                                 })
                             }
                             <TouchableOpacity style={styles.btn} activeOpacity={.7} onPress={this._addBank}>
-                                <Image style={{ height: 14, width: 14 }} source={require('../../../assets/icons/add.png')}></Image>
+                                <Image style={{ height: pxToPt(14), width: pxToPt(14) }} source={require('../../../assets/icons/add.png')}></Image>
                                 <Text style={styles.txt}>添加银行卡</Text>
                             </TouchableOpacity>
                         </ScrollView>
@@ -261,26 +262,26 @@ export default class sellProduct extends Component {
 }
 const styles = StyleSheet.create({
     arroWrap: {
-        height: 44,
+        height:pxToPt(44),
         alignItems: 'center',
         flexDirection: 'row',
         backgroundColor: '#fff'
     },
     arrow: {
-        width: 11.82,
-        height: 22,
+        width: pxToPt(11.82),
+        height:pxToPt(22),
     },
     title: {
-        marginLeft: 100,
+        marginLeft: pxToPt(100),
         color: '#2B2D33',
-        fontSize: 18,
+        fontSize: pxToPt(18),
         fontWeight: "500",
         fontFamily: 'PingFang SC'
     },
     banktitle:{
-        marginLeft: 90,
+        marginLeft: pxToPt(90),
         color: '#2B2D33',
-        fontSize: 18,
+        fontSize: pxToPt(18),
         fontWeight: "500",
         fontFamily: 'PingFang SC'
     },
@@ -290,138 +291,138 @@ const styles = StyleSheet.create({
         backgroundColor: '#F8F9FA',
     },
     wrapper: {
-        marginTop: 28,
-        width: 343,
-        paddingTop: 42,
-        paddingBottom: 38,
-        paddingLeft: 12,
-        paddingRight: 12,
+        marginTop: pxToPt(28),
+        width: pxToPt(343),
+        paddingTop: pxToPt(42),
+        paddingBottom: pxToPt(38),
+        paddingLeft: pxToPt(12),
+        paddingRight: pxToPt(12),
         backgroundColor: '#fff',
-        elevation: 2,
+        elevation: pxToPt(2),
         shadowColor: '#565A66',
-        shadowOpacity: 1,
+        shadowOpacity: pxToPt(1),
         shadowOffset: {
-            width: 0,
-            height: 1
+            width: pxToPt(0),
+            height: pxToPt(1)
         },
-        borderRadius: 12,
-        marginBottom: 48
+        borderRadius: pxToPt(12),
+        marginBottom: pxToPt(48)
     },
     sellTex: {
-        fontSize: 16,
+        fontSize: pxToPt(16),
         color: '#2B2D33',
         fontWeight: '500'
     },
     sellNum: {
         // marginTop: 24,
-        marginBottom: 8,
+        marginBottom: pxToPt(8),
         flexDirection: 'row',
         justifyContent: 'space-between'
     },
     sellMoney: {
         color: '#FF5B42',
         fontWeight: 'bold',
-        fontSize: 18,
-        paddingTop: 24
+        fontSize: pxToPt(18),
+        paddingTop: pxToPt(24)
     },
     sellInput: {
         flexDirection: 'row',
         justifyContent: 'center',
         alignItems: 'flex-start',
-        paddingTop: 24
+        paddingTop: pxToPt(24)
     },
     sellAllMoney: {
         color: '#5A5D66',
-        fontSize: 14,
+        fontSize: pxToPt(14),
         fontWeight: '400',
     },
     nowMoney: {
         color: '#8D9099',
-        fontSize: 11,
+        fontSize: pxToPt(11),
         fontWeight: '400'
 
     },
     chooseBankCard: {
-        borderBottomWidth: 1,
+        borderBottomWidth:pxToPt(1),
         borderBottomColor: '#F5F5F7',
-        paddingBottom: 8,
+        paddingBottom: pxToPt(8),
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center'
     },
     tekeNote: {
-        marginTop: 40,
-        marginBottom: 12,
+        marginTop: pxToPt(40),
+        marginBottom: pxToPt(12),
         color: '#2B2D33',
         fontWeight: '500',
-        fontSize: 15
+        fontSize:pxToPt(15)
     },
     illustrate: {
         color: '#5A5D66',
-        fontSize: 14,
+        fontSize: pxToPt(14),
         fontWeight: '400'
     },
     release: {
-        width: 343,
-        height: 44,
-        borderRadius: 8,
+        width: pxToPt(343),
+        height: pxToPt(44),
+        borderRadius: pxToPt(8),
         backgroundColor: '#3D72E4',
         justifyContent: 'center',
         alignItems: 'center'
     },
     //我的卡的样式
     bankwrap: {
-        height: 121,
-        width: 346,
+        height:pxToPt(121),
+        width: pxToPt(346),
         overflow: 'hidden',
-        marginTop: 8,
-        marginBottom: 12,
-        borderRadius: 12
+        marginTop: pxToPt(8),
+        marginBottom: pxToPt(12),
+        borderRadius: pxToPt(12)
     },
     bankBC: {
-        width: 343,
-        height: 120,
+        width: pxToPt(343),
+        height: pxToPt(120),
         flexDirection: 'row',
         justifyContent: 'space-between'
     },
     bankicon: {
         justifyContent: 'center',
         alignItems: 'center',
-        marginTop: 20,
-        marginLeft: 10,
-        width: 40, height: 40,
+        marginTop: pxToPt(20),
+        marginLeft: pxToPt(10),
+        width: pxToPt(40), height: pxToPt(40),
         backgroundColor: '#fff',
-        borderRadius: 20
+        borderRadius:pxToPt(20)
     },
     bankTitle: {
-        marginTop: 29,
-        marginLeft: 8,
-        fontSize: 16,
+        marginTop: pxToPt(29),
+        marginLeft: pxToPt(8),
+        fontSize: pxToPt(16),
         fontWeight: "500",
         color: '#F5F5F7'
     },
     bankNum: {
         color: '#F5F5F7',
-        paddingRight: 12,
-        fontSize: 14,
+        paddingRight: pxToPt(12),
+        fontSize: pxToPt(14),
         fontWeight: '400',
-        marginTop: 31,
-        marginBottom: 50
+        marginTop: pxToPt(31),
+        marginBottom: pxToPt(50)
 
     },
     btn: {
         justifyContent: 'center',
         flexDirection: 'row',
         alignItems: 'center',
-        marginTop: 8,
-        width: 343,
-        height: 44,
-        borderRadius: 8,
+        marginTop:pxToPt(8),
+        width: pxToPt(343),
+        height: pxToPt(44),
+        borderRadius: pxToPt(8),
         backgroundColor: '#3D72E4',
-        marginBottom: 100,
+        marginBottom: pxToPt(100),
     },
     txt: {
-        marginLeft: 4,
+        marginLeft: pxToPt(4),
         color: '#FFFFFF'
     },
 })

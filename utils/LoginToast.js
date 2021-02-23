@@ -6,7 +6,7 @@ import {
     StatusBar,
     TouchableOpacity
 } from 'react-native'
-
+import { pxToPt } from "./styleKits";
 /**
  * 登录页面弹窗
  */
@@ -51,9 +51,9 @@ const styles = StyleSheet.create({
         backgroundColor: 'rgba(0,0,0,.4)',
     },
     wrapper: {
-        width: 319,
-        height: 183,
-        borderRadius: 32,
+        width: pxToPt(319),
+        height: pxToPt(183),
+        borderRadius: pxToPt(32),
         backgroundColor: '#2B2D33',
         alignItems: 'flex-start',
     },
@@ -61,17 +61,17 @@ const styles = StyleSheet.create({
         fontFamily: 'PingFang SC',
         fontWeight: '500',
         color: '#fff',
-        fontSize: 18,
-        paddingTop: 20,
-        paddingRight: 20,
-        paddingLeft: 20
+        fontSize: pxToPt(18),
+        paddingTop: pxToPt(20),
+        paddingRight: pxToPt(20),
+        paddingLeft: pxToPt(20)
     },
     numTex: {
         fontFamily: 'PingFang SC',
-        fontSize: 18,
+        fontSize: pxToPt(18),
         fontWeight: '400',
         color: '#fff',
-        marginTop: 8,
-        paddingLeft: 20
+        marginTop: pxToPt(8),
+        paddingLeft: pxToPt(20)
     }
 })

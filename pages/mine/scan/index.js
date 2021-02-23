@@ -9,6 +9,7 @@ import {
     Modal
 } from 'react-native'
 import axios from '../../../utils/api/request'
+import { pxToPt } from "../../../utils/styleKits";
 import { SHARE_BIND } from '../../../utils/api/pathMap'
 import { inject, observer } from 'mobx-react'
 import Toast from '../../../utils/api/Toast'
@@ -134,16 +135,16 @@ export default class scan extends Component {
                     }
                 </View>
                 <Modal visible={showModal} transparent={true} animationType="slide">
-                    <View style={{ flex: 1, marginTop: 193, alignItems: 'center' }}>
+                    <View style={{ flex: 1, marginTop: pxToPt(193), alignItems: 'center' }}>
                         <View style={{
-                            width: 319,
-                            height: 166,
+                            width: pxToPt(319),
+                            height: pxToPt(166),
                             backgroundColor: '#2B2D33',
-                            borderRadius: 32,
-                            paddingTop: 32,
-                            paddingLeft: 20,
-                            paddingRight: 20,
-                            paddingBottom: 32
+                            borderRadius: pxToPt(32),
+                            paddingTop: pxToPt(32),
+                            paddingLeft: pxToPt(20),
+                            paddingRight:pxToPt(20),
+                            paddingBottom:pxToPt(32)
                         }}>
                             {
                                 code === 0 ? <>
@@ -153,10 +154,10 @@ export default class scan extends Component {
                                 </> :
                                     showModal && !showNextModal ?
                                         <>
-                                            <Text style={{ height: 21, color: '#fff', fontSize: 15, fontWeight: '500', marginBottom: 8 }}>请确认是否与{userName}绑定关系。</Text>
-                                            <View style={{ flexDirection: 'row', height: 16, alignItems: 'center', marginBottom: 27 }}>
-                                                <Image style={{ width: 6, height: 6, marginRight: 5 }} source={require('../../../assets/icons/jujiao2.png')}></Image>
-                                                <Text style={{ color: "#fff", fontSize: 11, fontWeight: '500' }}>你只能与一个邀请人绑定关系哦！</Text>
+                                            <Text style={{ height: pxToPt(21), color: '#fff', fontSize: pxToPt(15), fontWeight: '500', marginBottom: pxToPt(8) }}>请确认是否与{userName}绑定关系。</Text>
+                                            <View style={{ flexDirection: 'row', height: pxToPt(16), alignItems: 'center', marginBottom: pxToPt(27) }}>
+                                                <Image style={{ width: pxToPt(6), height:pxToPt(6), marginRight: pxToPt(5) }} source={require('../../../assets/icons/jujiao2.png')}></Image>
+                                                <Text style={{ color: "#fff", fontSize: pxToPt(11), fontWeight: '500' }}>你只能与一个邀请人绑定关系哦！</Text>
                                             </View>
                                             <View style={{ flexDirection: 'row', justifyContent: 'space-around' }}>
                                                 <TouchableOpacity
@@ -165,15 +166,15 @@ export default class scan extends Component {
                                                             showModal: false
                                                         })
                                                     }}
-                                                    style={{ height: 30, width: 88, borderColor: '#FFFFFF', borderWidth: 1, borderRadius: 15, justifyContent: 'center', alignItems: 'center' }}
+                                                    style={{ height: pxToPt(30), width: pxToPt(88), borderColor: '#FFFFFF', borderWidth: pxToPt(1), borderRadius: pxToPt(15), justifyContent: 'center', alignItems: 'center' }}
                                                 >
-                                                    <Text style={{ fontSize: 14, color: '#fff', fontWeight: '400' }}>否</Text>
+                                                    <Text style={{ fontSize: pxToPt(14), color: '#fff', fontWeight: '400' }}>否</Text>
                                                 </TouchableOpacity>
                                                 <TouchableOpacity
                                                     onPress={this.enterYes}
-                                                    style={{ height: 30, width: 88, borderColor: '#FFFFFF', borderWidth: 1, borderRadius: 15, justifyContent: 'center', alignItems: 'center', backgroundColor: '#fff' }}
+                                                    style={{ height: pxToPt(30), width: pxToPt(88), borderColor: '#FFFFFF', borderWidth:pxToPt(1), borderRadius: pxToPt(15), justifyContent: 'center', alignItems: 'center', backgroundColor: '#fff' }}
                                                 >
-                                                    <Text style={{ fontSize: 14, color: '#3D72E4', fontWeight: '400' }}>是</Text>
+                                                    <Text style={{ fontSize: pxToPt(14), color: '#3D72E4', fontWeight: '400' }}>是</Text>
 
                                                 </TouchableOpacity>
                                             </View>
@@ -181,12 +182,12 @@ export default class scan extends Component {
                                         :
                                         showNextModal ?
                                             <>
-                                                <Text style={{ height: 21, color: '#fff', fontSize: 15, fontWeight: '500', marginBottom: 8 }}>您与{resultName}{resultmessage}</Text>
+                                                <Text style={{ height: pxToPt(21), color: '#fff', fontSize:pxToPt(15), fontWeight: '500', marginBottom: pxToPt(8)}}>您与{resultName}{resultmessage}</Text>
                                                 <TouchableOpacity
                                                     onPress={this.resultClick}
-                                                    style={{ height: 30, width: 88, alignSelf: 'center', borderColor: '#FFFFFF', borderWidth: 1, borderRadius: 15, justifyContent: 'center', alignItems: 'center', backgroundColor: '#fff', marginTop: 51 }}
+                                                    style={{ height: pxToPt(30), width: pxToPt(88), alignSelf: 'center', borderColor: '#FFFFFF', borderWidth: pxToPt(1), borderRadius: pxToPt(15), justifyContent: 'center', alignItems: 'center', backgroundColor: '#fff', marginTop:pxToPt(51) }}
                                                 >
-                                                    <Text style={{ fontSize: 14, color: '#3D72E4', fontWeight: '400' }}>确定</Text>
+                                                    <Text style={{ fontSize: pxToPt(14), color: '#3D72E4', fontWeight: '400' }}>确定</Text>
 
                                                 </TouchableOpacity>
                                             </>
@@ -206,20 +207,20 @@ export default class scan extends Component {
 
 const styles = StyleSheet.create({
     arroWrap: {
-        height: 44,
+        height: pxToPt(44),
         alignItems: 'center',
         flexDirection: 'row',
-        paddingLeft: 16,
+        paddingLeft: pxToPt(16),
         backgroundColor: '#fff'
     },
     arrow: {
-        width: 11.82,
-        height: 22,
+        width: pxToPt(11.82),
+        height: pxToPt(22),
     },
     title: {
-        marginLeft: 148,
+        marginLeft: pxToPt(148),
         color: '#2B2D33',
-        fontSize: 18,
+        fontSize: pxToPt(18),
         fontWeight: "500",
         fontFamily: 'PingFang SC'
     },
@@ -229,17 +230,17 @@ const styles = StyleSheet.create({
         flex: 1
     },
     wrapper: {
-        marginTop: 80,
-        width: 343,
-        height: 84,
+        marginTop: pxToPt(80),
+        width: pxToPt(343),
+        height: pxToPt(84),
         backgroundColor: '#fff',
-        borderRadius: 20,
-        elevation: 2,
+        borderRadius: pxToPt(20),
+        elevation: pxToPt(2),
         shadowColor: '#565A66',
         shadowOpacity: 1,
         shadowOffset: {
-            width: 0,
-            height: 1
+            width: pxToPt(0),
+            height: pxToPt(1)
         },
     },
     friendWrap: {
@@ -247,43 +248,43 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     headIcon: {
-        width: 60,
-        height: 60,
-        marginTop: 12,
-        marginLeft: 12,
-        borderRadius: 30
+        width: pxToPt(60),
+        height: pxToPt(60),
+        marginTop: pxToPt(12),
+        marginLeft: pxToPt(12),
+        borderRadius: pxToPt(30)
     },
     texWrap: {
-        marginLeft: 12,
-        marginTop: 12
+        marginLeft: pxToPt(12),
+        marginTop: pxToPt(12)
     },
     texName: {
-        fontSize: 18,
+        fontSize: pxToPt(18),
         color: '#2B2D33',
         fontFamily: 'PingFang SC',
         fontWeight: '500',
-        marginBottom: 4
+        marginBottom: pxToPt(4)
     },
     texEmail: {
         fontFamily: "PingFang SC",
         fontWeight: '400',
         color: "#8D9099",
-        fontSize: 11,
+        fontSize: pxToPt(11),
     },
     btnWrap: {
-        marginTop: 350,
+        marginTop: pxToPt(350),
     },
     btnTex: {
         textAlign: 'right',
-        marginTop: 50
+        marginTop: pxToPt(50)
     },
     btnTouc: {
-        height: 44,
+        height: pxToPt(44),
         backgroundColor: '#fff',
         justifyContent: 'center',
         alignItems: 'center',
-        borderRadius: 20,
-        borderWidth: 1,
+        borderRadius: pxToPt(20),
+        borderWidth: pxToPt(1),
         borderColor: '#3D72E4'
     },
     btnToucTex: {
@@ -291,28 +292,28 @@ const styles = StyleSheet.create({
 
     },
     btnTwrap: {
-        height: 44,
-        width: 343,
+        height: pxToPt(44),
+        width: pxToPt(343),
         flexDirection: 'row',
-        marginTop: 400,
+        marginTop:pxToPt(400),
         justifyContent: 'space-around',
         alignItems: 'center'
     },
     btnBeFriend: {
-        width: 188,
-        borderWidth: 1,
+        width: pxToPt(188),
+        borderWidth:pxToPt(1),
         borderColor: '#3D72E4',
-        borderRadius: 8,
+        borderRadius: pxToPt(8),
         height: '100%',
         justifyContent: 'center',
         alignItems: 'center',
         backgroundColor: '#fff'
     },
     btnBFriend: {
-        width: 143,
-        borderWidth: 1,
+        width: pxToPt(143),
+        borderWidth: pxToPt(1),
         borderColor: '#FE5564',
-        borderRadius: 8,
+        borderRadius: pxToPt(8),
         height: '100%',
         justifyContent: 'center',
         alignItems: 'center',

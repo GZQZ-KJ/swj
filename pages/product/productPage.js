@@ -17,7 +17,7 @@ import {
 } from 'react-native';
 
 
-
+import { pxToPt } from "../../utils/styleKits";
 import TopComp from './topComp/index'
 import ProItem from '../../components/product/proItem'
 import basicStyle from '../../components/styles/basic/index'
@@ -322,11 +322,11 @@ export default class productPage extends Component {
                             this.state.time_Sort ?
                               <>
                                 <Text style={styles.rttxt}>从高到低</Text>
-                                <Image source={require('../../assets/icons/pro/pro1.png')}></Image>
+                                <Image style={{width:pxToPt(14.78),height:pxToPt(18)}} source={require('../../assets/icons/pro/pro1.png')}></Image>
                               </> :
                               <>
                                 <Text style={styles.rttxt}>从低到高</Text>
-                                <Image source={require('../../assets/icons/pro/pro.png')}></Image>
+                                <Image style={{width:pxToPt(14.78),height:pxToPt(18)}} source={require('../../assets/icons/pro/pro.png')}></Image>
                               </>
                           }
                         </TouchableOpacity>
@@ -345,11 +345,11 @@ export default class productPage extends Component {
                             this.state.sum_count_Sort ?
                               <>
                                 <Text style={styles.rttxt}>从高到低</Text>
-                                <Image source={require('../../assets/icons/pro/pro1.png')}></Image>
+                                <Image style={{width:pxToPt(14.78),height:pxToPt(18)}} source={require('../../assets/icons/pro/pro1.png')}></Image>
                               </> :
                               <>
                                 <Text style={styles.rttxt}>从低到高</Text>
-                                <Image source={require('../../assets/icons/pro/pro.png')}></Image>
+                                <Image style={{width:pxToPt(14.78),height:pxToPt(18)}} source={require('../../assets/icons/pro/pro.png')}></Image>
                               </>
                           }
                         </TouchableOpacity>
@@ -368,11 +368,11 @@ export default class productPage extends Component {
                             this.state.price_Sort ?
                               <>
                                 <Text style={styles.rttxt}>从高到低</Text>
-                                <Image source={require('../../assets/icons/pro/pro1.png')}></Image>
+                                <Image style={{width:pxToPt(14.78),height:pxToPt(18)}} source={require('../../assets/icons/pro/pro1.png')}></Image>
                               </> :
                               <>
                                 <Text style={styles.rttxt}>从低到高</Text>
-                                <Image source={require('../../assets/icons/pro/pro.png')}></Image>
+                                <Image style={{width:pxToPt(14.78),height:pxToPt(18)}} source={require('../../assets/icons/pro/pro.png')}></Image>
                               </>
                           }
 
@@ -395,11 +395,11 @@ export default class productPage extends Component {
           {
             rootStore.productList.length < 1 ?
               <>
-                <Image style={{ width: 206.22, height: 217.11, alignSelf: 'center', top: 53 }} source={require('../../assets/icons/default/noProduct.png')}></Image>
-                <Text style={{ color: '#8D9099', marginTop: 58, alignSelf: 'center', fontWeight: '400', fontSize: 15 }}>暂无产品</Text>
+                <Image style={{ width: pxToPt(206.22), height:pxToPt(217.11), alignSelf: 'center', top: pxToPt(53) }} source={require('../../assets/icons/default/noProduct.png')}></Image>
+                <Text style={{ color: '#8D9099', marginTop:pxToPt(58), alignSelf: 'center', fontWeight: '400', fontSize: pxToPt(15) }}>暂无产品</Text>
               </>
               :
-              <SafeAreaView style={{ paddingBottom: 90 }}>
+              <SafeAreaView style={{ paddingBottom: pxToPt(90) }}>
                 <ScrollView
                   refreshControl={
                     <RefreshControl
@@ -428,7 +428,7 @@ export default class productPage extends Component {
                   }
                   {
                     this.state.control ?
-                      <View style={{ height: 44, width: '100%', justifyContent: 'center', alignItems: 'center' }}><Text style={{ fontSize: 12, color: '#000' }}>---人家是有底线的---</Text></View> : <></>
+                      <View style={{ height: pxToPt(44), width: '100%', justifyContent: 'center', alignItems: 'center' }}><Text style={{ fontSize: pxToPt(12), color: '#000' }}>---人家是有底线的---</Text></View> : <></>
                   }
                 </ScrollView>
               </SafeAreaView>
@@ -445,42 +445,42 @@ const styles = StyleSheet.create({
     backgroundColor: '#FFFFFF'
   },
   priceTxt: {
-    marginTop: 11,
-    marginLeft: 16,
-    marginBottom: 11,
+    marginTop: pxToPt(11),
+    marginLeft: pxToPt(16),
+    marginBottom: pxToPt(11),
     color: '#2B2D33',
-    fontSize: 16
+    fontSize: pxToPt(16)
   },
   inpRow: {
     justifyContent: 'space-around',
     alignItems: 'center',
-    marginTop: 8,
-    marginLeft: 16,
-    marginBottom: 12
+    marginTop: pxToPt(8),
+    marginLeft: pxToPt(16),
+    marginBottom: pxToPt(12)
   },
   floorInput: {
-    width: 106,
-    height: 32,
-    paddingTop: 6,
-    paddingBottom: 6,
-    paddingLeft: 19,
-    paddingRight: 18,
-    borderRadius: 32,
-    fontSize: 14,
+    width: pxToPt(106),
+    height: pxToPt(32),
+    paddingTop: pxToPt(6),
+    paddingBottom: pxToPt(6),
+    paddingLeft: pxToPt(19),
+    paddingRight: pxToPt(18),
+    borderRadius: pxToPt(32),
+    fontSize: pxToPt(14),
     backgroundColor: '#F5F5F7',
     color: '#5A5D66'
   },
   line: {
-    width: 64,
-    height: 2,
+    width: pxToPt(64),
+    height: pxToPt(2),
     backgroundColor: '#EBECED'
   },
   choose: {
     justifyContent: 'space-around',
-    borderTopWidth: 1,
+    borderTopWidth: pxToPt(1),
     borderTopColor: '#EBECED',
-    paddingTop: 9,
-    paddingBottom: 8,
+    paddingTop: pxToPt(9),
+    paddingBottom: pxToPt(8),
     backgroundColor: '#FFFFFF'
   },
   modalBox: {
@@ -488,12 +488,12 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(0, 0, 0, .6)'
   },
   cancel: {
-    height: 30,
-    width: 30
+    height: pxToPt(30),
+    width: pxToPt(30)
   },
   check: {
-    height: 24,
-    width: 30
+    height: pxToPt(24),
+    width: pxToPt(30)
   },
 
   box: {
@@ -502,27 +502,27 @@ const styles = StyleSheet.create({
   sortBox: {
     justifyContent: 'space-between',
     flexDirection: 'row',
-    marginLeft: 16,
-    marginRight: 13,
-    borderBottomWidth: 1,
+    marginLeft: pxToPt(16),
+    marginRight:pxToPt(13),
+    borderBottomWidth:pxToPt(1),
     borderBottomColor: '#F5F5F7'
   },
   lftxt: {
-    height: 22,
-    marginTop: 13,
-    marginBottom: 13,
+    height: pxToPt(22),
+    marginTop: pxToPt(13),
+    marginBottom: pxToPt(13),
     color: '#2B2D33',
-    fontSize: 16,
+    fontSize: pxToPt(16),
   },
   rt: {
     flexDirection: 'row',
-    marginTop: 14,
-    marginBottom: 14,
+    marginTop: pxToPt(14),
+    marginBottom: pxToPt(14),
   },
   rttxt: {
-    height: 18,
-    marginRight: 4,
-    fontSize: 14,
+    height: pxToPt(18),
+    marginRight: pxToPt(4),
+    fontSize: pxToPt(14),
     color: '#5A5D66'
   },
 

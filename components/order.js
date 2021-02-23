@@ -6,7 +6,7 @@ import {
   Text
 } from 'react-native';
 import basicStyle from "./styles/basic/index.js"
-
+import { pxToPt } from "../utils/styleKits";
 const ProItem = () =>{
   return (
     <View style={styles.container}>
@@ -30,58 +30,58 @@ const ProItem = () =>{
 }
 const styles= StyleSheet.create({
     container:{
-    marginTop: 8,
-    marginLeft: 16,
-    marginRight: 16,
-    marginBottom: 4,
+    marginTop: pxToPt(8),
+    marginLeft: pxToPt(16),
+    marginRight: pxToPt(16),
+    marginBottom: pxToPt(4),
     backgroundColor: '#FFFFFF',
   },
   upper:{
-    marginLeft: 12,
-    marginRight: 12,
-    paddingTop: 12,
-    paddingBottom: 11,
-    borderBottomWidth: 1,
+    marginLeft:pxToPt(12),
+    marginRight: pxToPt(12),
+    paddingTop: pxToPt(12),
+    paddingBottom:pxToPt(11),
+    borderBottomWidth: pxToPt(1),
     borderBottomColor: '#F2F3F7',
     alignItems: 'center'
   },
   info:{
-    marginLeft: 8
+    marginLeft: pxToPt(8)
   },
   name:{
-    height: 21,
-    fontSize: 15,
+    height: pxToPt(21),
+    fontSize: pxToPt(15),
     color: '#2B2D33',
     fontFamily: 'PingFang SC'
   },
   outTime:{
-    height: 17,
-    fontSize: 12,
+    height: pxToPt(17),
+    fontSize: pxToPt(12),
     color: '#8D9099'
   },
   price:{ 
-    height: 22,
-    marginLeft: 74,
-    fontSize: 16,
+    height:pxToPt(22),
+    marginLeft: pxToPt(74),
+    fontSize: pxToPt(16),
     color: '#FE5564'
   },
   next:{
     justifyContent: 'space-between',
-    marginLeft: 12,
-    marginRight: 12,
-    paddingTop: 11,
-    paddingBottom: 12,  
+    marginLeft: pxToPt(12),
+    marginRight: pxToPt(12),
+    paddingTop: pxToPt(11),
+    paddingBottom: pxToPt(12),  
   },
   num:{
-    height: 21,
-    fontSize: 15,
+    height: pxToPt(21),
+    fontSize: pxToPt(15),
     color: '#2B2D33'
   },
   totalPrice:{
-    height: 20,
-    fontSize: 14,
+    height: pxToPt(20),
+    fontSize: pxToPt(14),
     color: '#2B2D33',
-	  marginLeft: 203
+	  marginLeft: pxToPt(203)
 	
   }
 })

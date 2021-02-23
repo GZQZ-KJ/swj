@@ -16,8 +16,10 @@ import { TouchableOpacity } from 'react-native-gesture-handler';
 import basicStyle from '../../components/styles/basic/index'
 import { USER_INDEX } from '../../utils/api/pathMap'
 import axios from '../../utils/api/request'
+import { pxToPt } from "../../utils/styleKits";
 import { inject, observer } from 'mobx-react'
 import Toast from '../../utils/api/Toast';
+import AsyncStorage from '@react-native-community/async-storage'
 @inject('rootStore')
 @observer
 /**
@@ -77,6 +79,7 @@ export default class minePage extends Component {
     }).then(r => {
       if(r.data.code === 1) {
         console.log('[我的]',r.data.result)
+        AsyncStorage.setItem('userName',r.data.result.user_name)
         this.props.rootStore.setNss(r.data.result.nss_balance, r.data.result.locked_nss_balance)
       this.props.rootStore.setUserInfo( r.data.result.email,this.state.token)
       this.props.rootStore.setPNInfo(r.data.result.avater_url, this.state.phoneNum, r.data.result.user_name)
@@ -105,7 +108,7 @@ export default class minePage extends Component {
           <Text style={styles.mineTxt}>我的</Text>
           <View style={[styles.wrap, basicStyle.flexRow]}>
             <View style={[styles.userInfo, basicStyle.flexRow]}>
-              <View style={{ width: 60, height: 60, borderRadius: 30 }}>
+              <View style={{ width: pxToPt(60), height: pxToPt(60), borderRadius: pxToPt(30) }}>
                 {
                  rootStore.avaUrl !== null && rootStore.avaUrl.length > 0 ?
                     <Image style={styles.avatar} source={{ uri: rootStore.avaUrl }}></Image>
@@ -119,7 +122,7 @@ export default class minePage extends Component {
               </View>
             </View>
             <TouchableOpacity
-              style={{ height: '100%', width: 30, justifyContent: 'center', alignItems: 'flex-end' }}
+              style={{ height: '100%', width: pxToPt(30), justifyContent: 'center', alignItems: 'flex-end' }}
               onPress={this.goPresonallMSg}
             >
               <Image style={styles.arrow} source={require('../../assets/icons/arrows/ck.png')}></Image>
@@ -137,36 +140,36 @@ export default class minePage extends Component {
           <TouchableOpacity style={styles.btn} onPress={() => {
             this.props.navigation.navigate("SellProduct")
           }}>
-            <Text style={{ color: '#fff', fontSize: 12 }}>挂卖产品</Text>
+            <Text style={{ color: '#fff', fontSize: pxToPt(12) }}>挂卖产品</Text>
           </TouchableOpacity>
         </View>
-        <View style={{ marginBottom: 8 }}>
+        <View style={{ marginBottom: pxToPt(8) }}>
           <TouchableOpacity onPress={() => {
             this.props.navigation.navigate("Banks")
           }}>
             <ListItem list={this.state.listData[0]}></ListItem>
           </TouchableOpacity>
-          <View style={{ height: 1, backgroundColor: '#F2F3F7', marginLeft: 16, marginRight: 16 }}></View>
+          <View style={{ height: pxToPt(1), backgroundColor: '#F2F3F7', marginLeft: pxToPt(16), marginRight: pxToPt(16) }}></View>
           <TouchableOpacity onPress={() => {
             this.props.navigation.navigate("Share")
           }}>
             <ListItem list={this.state.listData[1]}></ListItem>
           </TouchableOpacity>
         </View>
-        <View style={{ marginBottom: 8 }}>
+        <View style={{ marginBottom: pxToPt(8) }}>
           <TouchableOpacity onPress={() => {
             this.props.navigation.navigate("Paylogs")
           }}>
             <ListItem list={this.state.listData[2]}></ListItem>
           </TouchableOpacity>
-          <View style={{ height: 1, backgroundColor: '#F2F3F7', marginLeft: 16, marginRight: 16 }}></View>
+          <View style={{ height: pxToPt(1), backgroundColor: '#F2F3F7', marginLeft: pxToPt(16), marginRight: pxToPt(16) }}></View>
           <TouchableOpacity onPress={() => {
             this.props.navigation.navigate("Order")
           }}>
             <ListItem list={this.state.listData[3]}></ListItem>
           </TouchableOpacity>
         </View>
-        <View style={{ marginBottom: 8 }}>
+        <View style={{ marginBottom: pxToPt(8) }}>
           <TouchableOpacity onPress={() => {
             Toast.message('客服功能尚未开放')
             // this.props.navigation.navigate("Service")
@@ -174,23 +177,23 @@ export default class minePage extends Component {
             <ListItem list={this.state.listData[4]}></ListItem>
           </TouchableOpacity>
         </View>
-        <View style={{ marginBottom: 8 }}>
+        <View style={{ marginBottom:pxToPt(8) }}>
           <TouchableOpacity onPress={() => {
             Toast.message('组件功能尚未开放')
             // this.props.navigation.navigate("SouComp")
           }}>
           <ListItem list={this.state.listData[5]}></ListItem>
           </TouchableOpacity>
-          <View style={{ height: 1, backgroundColor: '#F2F3F7', marginLeft: 16, marginRight: 16 }}></View>
+          <View style={{ height: pxToPt(1), backgroundColor: '#F2F3F7', marginLeft: pxToPt(16), marginRight: pxToPt(16) }}></View>
           <TouchableOpacity onPress={() => {
             this.props.navigation.navigate("About")
           }}>
             {
-              !!this.props.isUpdate ? <View style={{ width: 6, height: 6, borderRadius: 3, backgroundColor: '#FE5564', zIndex: 222, position: 'absolute', right: 30, top: 15 }}></View> : <></>
+              !!this.props.isUpdate ? <View style={{ width: pxToPt(6), height: pxToPt(6), borderRadius: pxToPt(3), backgroundColor: '#FE5564', zIndex: 222, position: 'absolute', right: pxToPt(30), top: pxToPt(15) }}></View> : <></>
             }
             <ListItem list={this.state.listData[6]} isUpdate={this.state.isUpdate}></ListItem>
           </TouchableOpacity>
-          <View style={{ height: 1, backgroundColor: '#F2F3F7', marginLeft: 16, marginRight: 16 }}></View>
+          <View style={{ height: pxToPt(1), backgroundColor: '#F2F3F7', marginLeft: pxToPt(16), marginRight: pxToPt(16) }}></View>
           <TouchableOpacity onPress={() => {
             this.props.navigation.navigate("Setting")
           }}>
@@ -231,49 +234,49 @@ class ListItem extends Component {
 
 const styles = StyleSheet.create({
   top: {
-    height: 128,
+    height: pxToPt(128),
     backgroundColor: '#FFFFFF'
   },
   mineTxt: {
-    marginTop: 10,
+    marginTop: pxToPt(10),
     alignSelf: "center",
-    height: 25,
+    height: pxToPt(25),
     color: '#2B2D33',
-    fontSize: 18
+    fontSize: pxToPt(18)
   },
   wrap: {
     justifyContent: 'space-between',
     alignItems: 'center',
-    height: 60,
-    marginLeft: 16,
-    marginRight: 16,
-    marginTop: 21,
+    height:pxToPt(60),
+    marginLeft: pxToPt(16),
+    marginRight: pxToPt(16),
+    marginTop: pxToPt(21),
   },
   avatar: {
-    height: 60,
-    width: 60,
-    borderRadius: 30
+    height: pxToPt(60),
+    width: pxToPt(60),
+    borderRadius: pxToPt(30)
   },
   details: {
-    marginLeft: 12
+    marginLeft: pxToPt(12)
   },
   name: {
-    marginTop: 8,
-    height: 25,
-    fontSize: 18,
+    marginTop: pxToPt(8),
+    height:pxToPt(25),
+    fontSize: pxToPt(18),
     color: '#2B2D33'
   },
   email: {
-    height: 16,
-    fontSize: 11,
+    height: pxToPt(16),
+    fontSize: pxToPt(11),
     color: '#8D9099'
   },
 
   sellWrap: {
-    marginTop: 8,
-    marginBottom: 8,
-    paddingRight: 16,
-    paddingLeft: 7,
+    marginTop: pxToPt(8),
+    marginBottom: pxToPt(8),
+    paddingRight: pxToPt(16),
+    paddingLeft: pxToPt(7),
     justifyContent: 'space-between',
     alignItems: 'center',
     backgroundColor: '#FFFFFF'
@@ -282,19 +285,19 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   num: {
-    height: 25,
-    fontSize: 18,
+    height: pxToPt(25),
+    fontSize:pxToPt(18),
     color: '#3D72E4'
   },
   lockNum: {
-    fontSize: 11,
+    fontSize: pxToPt(11),
     fontWeight: '400',
     color: '#8D9099'
   },
   btn: {
-    height: 32,
-    width: 80,
-    borderRadius: 8,
+    height: pxToPt(32),
+    width:pxToPt(80),
+    borderRadius:pxToPt(8),
     overflow: 'hidden',
     justifyContent: 'center',
     alignItems: 'center',
@@ -306,19 +309,19 @@ const styles = StyleSheet.create({
   itBox: {
     justifyContent: 'space-between',
     alignItems: 'center',
-    marginLeft: 16,
-    marginRight: 16,
-    paddingTop: 10,
-    paddingBottom: 10
+    marginLeft: pxToPt(16),
+    marginRight: pxToPt(16),
+    paddingTop: pxToPt(10),
+    paddingBottom: pxToPt(10)
   },
   itTitle: {
-    marginLeft: 12,
-    height: 20,
+    marginLeft: pxToPt(12),
+    height: pxToPt(20),
     color: '#2B2D33'
   },
   arrow: {
-    width: 4.95,
-    height: 8.49
+    width: pxToPt(4.95),
+    height: pxToPt(8.49)
   }
 
 })

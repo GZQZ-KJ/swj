@@ -9,8 +9,7 @@ import {
   SafeAreaView,
   ScrollView
 } from 'react-native'
-
-import { Dimensions } from 'react-native';
+import { pxToPt } from "../../../utils/styleKits";
 
 /**
  * 联系客服
@@ -25,7 +24,7 @@ export default class service extends Component {
         <StatusBar backgroundColor="#fff" barStyle={'dark-content'}></StatusBar>
         <View style={styles.arroWrap}>
           <TouchableOpacity 
-          style={{ width: 60, height: 60, alignItems: 'center', justifyContent: 'center' }} 
+          style={{ width:pxToPt(60), height: pxToPt(60), alignItems: 'center', justifyContent: 'center' }} 
           onPress={() => {
             this.props.navigation.navigate('Tabbar')
 

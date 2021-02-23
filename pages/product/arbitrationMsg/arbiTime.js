@@ -4,6 +4,7 @@ import {
     Text,
     StyleSheet
 } from 'react-native'
+import { pxToPt } from "../../../utils/styleKits";
 export default class arbiTime extends Component {
     render() {
         let {timeList} = this.props
@@ -48,23 +49,23 @@ export default class arbiTime extends Component {
 
 const styles = StyleSheet.create({
     cTime: {
-        width: 343,
+        width: pxToPt(343),
         backgroundColor: '#fff',
         shadowOffset: { width: 0, height: 1 },
         shadowColor: '#565A66',
-        shadowOpacity: 12,
+        shadowOpacity: 0.12,
         elevation: 2,
-        shadowRadius: 2,
-        borderRadius: 8,
-        marginTop: 12,
-        marginLeft: 8,
-        paddingBottom:20,
-        marginBottom:12
+        shadowRadius: pxToPt(2),
+        borderRadius:pxToPt(8),
+        marginTop: pxToPt(12),
+        marginLeft: pxToPt(8),
+        paddingBottom:pxToPt(20),
+        marginBottom:pxToPt(12)
     },
     fbT: {
-        paddingTop: 16,
-        paddingLeft: 12,
+        paddingTop: pxToPt(16),
+        paddingLeft: pxToPt(12),
         color: '#5A5D66',
-        fontSize: 14
+        fontSize: pxToPt(14)
     },
 })

@@ -7,6 +7,7 @@ import {
 } from 'react-native';
 import basicStyle from '../../../components/styles/basic/index';
 import axios from '../../../utils/api/request'
+import {pxToPt} from '../../../utils/styleKits'
 import { HOME_GETBROADCAST } from '../../../utils/api/pathMap'
 import { inject, observer } from 'mobx-react'
 @inject('rootStore')
@@ -102,62 +103,62 @@ class Item extends Component {
 
 const styles = StyleSheet.create({
   box: {
-    marginTop: 8,
-    marginLeft: 16,
-    marginRight: 16,
-    borderRadius: 20,
+    marginTop: pxToPt(8),
+    marginLeft: pxToPt(16),
+    marginRight: pxToPt(16),
+    borderRadius: pxToPt(20),
     backgroundColor: '#FFFFFF'
   },
   title: {
-    marginTop: 11,
-    marginBottom: 10,
-    marginLeft: 26,
-    height: 22,
-    lineHeight: 22,
-    fontSize: 16,
+    marginTop: pxToPt(11),
+    marginBottom: pxToPt(10),
+    marginLeft: pxToPt(26),
+    height:pxToPt(22),
+    lineHeight: pxToPt(22),
+    fontSize: pxToPt(16),
     fontWeight: '800',
     fontFamily: 'System',
     color: '#2B2D33FF'
   },
   line: {
-    marginLeft: 12,
-    marginRight: 12,
-    height: 1,
+    marginLeft: pxToPt(12),
+    marginRight: pxToPt(12),
+    height: pxToPt(1),
     backgroundColor: '#F8F9FAFF'
   },
   itemWrap: {
-    marginTop: 8,
-    marginBottom: 8,
-    marginLeft: 12,
-    marginRight: 12,
+    marginTop: pxToPt(8),
+    marginBottom: pxToPt(8),
+    marginLeft: pxToPt(12),
+    marginRight: pxToPt(12),
     justifyContent: 'space-between',
   },
   wraplf: {
     alignItems: 'center'
   },
   list: {
-    marginTop: 8,
-    marginBottom: 8
+    marginTop: pxToPt(8),
+    marginBottom:pxToPt(8)
   },
   img: {
-    height: 32,
-    width: 32,
-    borderRadius:16
+    height: pxToPt(32),
+    width: pxToPt(32),
+    borderRadius:pxToPt(16)
   },
   wraprt: {
     alignItems: 'center'
   },
   txt: {
-    height: 20,
-    lineHeight: 20,
-    fontSize: 14,
+    height: pxToPt(20),
+    lineHeight: pxToPt(20),
+    fontSize: pxToPt(14),
     color: '#5A5D66FF'
   },
   txtmsg: {
-    marginLeft: 8
+    marginLeft: pxToPt(8)
   },
   txtstate: {
-    marginRight: 4
+    marginRight: pxToPt(4)
   },
 })
 

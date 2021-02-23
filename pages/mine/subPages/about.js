@@ -8,6 +8,7 @@ import {
     StatusBar
 } from 'react-native'
 import AsyncStorage from '@react-native-community/async-storage'
+import { pxToPt } from "../../../utils/styleKits";
 import { inject, observer } from 'mobx-react'
 @inject('rootStore')
 @observer
@@ -36,7 +37,7 @@ export default class about extends Component {
                 <StatusBar backgroundColor="#fff" barStyle={'dark-content'}></StatusBar>
                 <View style={styles.arroWrap}>
                     <TouchableOpacity
-                    style={{ width: 60, height: 60, alignItems: 'center', justifyContent: 'center' }} 
+                    style={{ width: pxToPt(60), height: pxToPt(60), alignItems: 'center', justifyContent: 'center' }} 
                     onPress={() => {
                         this.props.navigation.navigate('Tabbar')
                     }}>
@@ -46,11 +47,11 @@ export default class about extends Component {
                 </View>
                 <View style={styles.container}>
                     <View style={styles.wrapper}>
-                        <Text style={{ marginBottom: 8 }}>
+                        <Text style={{ marginBottom:pxToPt(8) }}>
                             目前版本：
                             <Text style={styles.ver}>V{this.state.version}</Text>
                         </Text>
-                        <Text style={{ marginBottom: 8 }}>
+                        <Text style={{ marginBottom:pxToPt(8) }}>
                             最新版本：
                             <Text style={styles.ver}>V{this.props.rootStore.appVersion}</Text>
                         </Text>
@@ -58,10 +59,10 @@ export default class about extends Component {
                         <Text style={styles.msg}>{this.state.msg}</Text>
                     </View>
                     {
-                        !!this.state.isUpdate ? <View style={{ top: 286, width: '100%', justifyContent: 'center', alignItems: 'center' }}>
+                        !!this.state.isUpdate ? <View style={{ top: pxToPt(286), width: '100%', justifyContent: 'center', alignItems: 'center' }}>
                             <TouchableOpacity
                             onPress={this.upDate}
-                                style={{ height: 44, width: 343, backgroundColor: '#3D72E4', borderRadius: 8, justifyContent: 'center', alignItems: 'center' }}>
+                                style={{ height: pxToPt(44), width: pxToPt(343), backgroundColor: '#3D72E4', borderRadius: 8, justifyContent: 'center', alignItems: 'center' }}>
                                 <Text style={{ color: '#fff' }}>更新App</Text>
                             </TouchableOpacity>
                         </View> : <></>
@@ -74,21 +75,21 @@ export default class about extends Component {
 
 const styles = StyleSheet.create({
     arroWrap: {
-        height: 44,
+        height: pxToPt(44),
         alignItems: 'center',
         flexDirection: 'row',
         backgroundColor: '#fff'
     },
     arrow: {
-        width: 11.82,
-        height: 22,
+        width: pxToPt(11.82),
+        height: pxToPt(22),
     },
     title: {
         color: '#2B2D33',
-        fontSize: 18,
+        fontSize: pxToPt(18),
         fontWeight: "500",
         fontFamily: 'PingFang SC',
-        marginLeft:120
+        marginLeft:pxToPt(120)
     },
     container: {
         flex: 1,
@@ -96,26 +97,26 @@ const styles = StyleSheet.create({
         alignItems: 'center'
     },
     wrapper: {
-        width: 343,
+        width:pxToPt(343),
         backgroundColor: '#fff',
-        borderRadius: 20,
-        shadowOffset: { width: 0, height: 2 },
+        borderRadius: pxToPt(20),
+        shadowOffset: { width: pxToPt(0), height: pxToPt(2) },
         shadowColor: '#565A66',
-        shadowOpacity: 12,
-        elevation: 2,
-        shadowRadius: 2,
-        padding: 20,
-        marginTop: 16
+        shadowOpacity: 0.12,
+        elevation: pxToPt(2),
+        shadowRadius: pxToPt(2),
+        padding: pxToPt(20),
+        marginTop: pxToPt(16)
     },
     ver: {
-        fontSize: 17,
+        fontSize: pxToPt(17),
         fontWeight: '500',
         color: '#3D72E4',
     },
     int: {
-        fontSize: 14,
+        fontSize: pxToPt(14),
         color: '#000',
         fontWeight: '400',
-        marginBottom: 8
+        marginBottom: pxToPt(8)
     }
 })

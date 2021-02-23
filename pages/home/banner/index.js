@@ -6,6 +6,7 @@ import {
   StyleSheet
 } from 'react-native';
 import Swiper from 'react-native-swiper'
+
 /**
  * 首页轮播图
  */

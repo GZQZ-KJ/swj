@@ -5,7 +5,8 @@ import {
     Image,
     StyleSheet,
 } from 'react-native'
-import { index } from 'react-native-secharts/main/dist/tmp/templates'
+import { pxToPt } from "./styleKits";
+
 /**
  *  图片弹窗
  */
@@ -51,25 +52,25 @@ const styles = StyleSheet.create({
 
     },
     wrapper: {
-        width: 280,
-        height: 120,
+        width: pxToPt(280),
+        height: pxToPt(120),
         backgroundColor: '#2B2D33',
-        borderRadius: 32,
+        borderRadius: pxToPt(32),
         alignItems: 'center',
     },
     imgWrap: {
-        marginTop: 25,
-        width: 65.39,
-        height: 32.82,
+        marginTop: pxToPt(25),
+        width: pxToPt(65.39),
+        height: pxToPt(32.82),
     },
     tImg: {
         width: '100%',
         height: '100%'
     },
     tText: {
-        marginTop: 14,
+        marginTop: pxToPt(14),
         fontSize: '500',
         color: '#3D72E4',
-        fontSize: 14
+        fontSize: pxToPt(14)
     }
 })

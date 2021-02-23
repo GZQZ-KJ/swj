@@ -11,6 +11,7 @@ import {
 } from 'react-native'
 import { USER_ACCOUNTLOG } from '../../../utils/api/pathMap'
 import axios from '../../../utils/api/request'
+import { pxToPt } from "../../../utils/styleKits";
 import { inject, observer } from 'mobx-react'
 import Toast from "../../../utils/api/Toast"
 @inject('rootStore')
@@ -116,7 +117,7 @@ export default class pylogs extends Component {
         <StatusBar backgroundColor="#fff" barStyle={'dark-content'}></StatusBar>
         <View style={styles.arroWrap}>
           <TouchableOpacity
-            style={{ width: 60, height: 60, alignItems: 'center', justifyContent: 'center' }}
+            style={{ width: pxToPt(60), height: pxToPt(60), alignItems: 'center', justifyContent: 'center' }}
             onPress={() => {
               this.props.navigation.navigate('Tabbar')
 
@@ -128,8 +129,8 @@ export default class pylogs extends Component {
         {
           this.state.data.length < 1 ?
             <>
-              <Image style={{ width: 206.22, height: 217.11, alignSelf: 'center', top: 53 }} source={require('../../../assets/icons/default/noPaylog.png')}></Image>
-              <Text style={{ color: '#8D9099', marginTop: 58, alignSelf: 'center', fontWeight: '400', fontSize: 15 }}>暂无账户记录</Text>
+              <Image style={{ width: pxToPt(206.22), height: pxToPt(217.11), alignSelf: 'center', top: pxToPt(53) }} source={require('../../../assets/icons/default/noPaylog.png')}></Image>
+              <Text style={{ color: '#8D9099', marginTop: pxToPt(58), alignSelf: 'center', fontWeight: '400', fontSize: pxToPt(15) }}>暂无账户记录</Text>
             </>
             : <>
               <ScrollView
@@ -169,7 +170,7 @@ export default class pylogs extends Component {
 
         {
           this.state.showNone ? <>
-            <View style={{ paddingLeft: 60, paddingBottom: 12, paddingTop: 12, backgroundColor: "#fff" }}>
+            <View style={{ paddingLeft:pxToPt(60), paddingBottom:pxToPt(12), paddingTop: pxToPt(12), backgroundColor: "#fff" }}>
               <Text>没有更多了.....</Text>
             </View>
           </> : <></>
@@ -182,21 +183,21 @@ export default class pylogs extends Component {
 
 const styles = StyleSheet.create({
   arroWrap: {
-    height: 44,
+    height: pxToPt(44),
     alignItems: 'center',
     flexDirection: 'row',
     backgroundColor: '#fff'
   },
   arrow: {
-    width: 11.82,
-    height: 22,
+    width: pxToPt(11.82),
+    height:pxToPt(22),
   },
   title: {
     color: '#2B2D33',
-    fontSize: 18,
+    fontSize: pxToPt(18),
     fontWeight: "500",
     fontFamily: 'PingFang SC',
-    marginLeft: 100
+    marginLeft: pxToPt(100)
   },
   container: {
     flex: 1,
@@ -204,28 +205,28 @@ const styles = StyleSheet.create({
   item: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    paddingTop: 10,
-    paddingBottom: 9,
-    paddingLeft: 16,
-    paddingRight: 16,
-    marginBottom: 4,
+    paddingTop: pxToPt(10),
+    paddingBottom: pxToPt(9),
+    paddingLeft: pxToPt(16),
+    paddingRight: pxToPt(16),
+    marginBottom: pxToPt(4),
     backgroundColor: '#FFFFFF'
   },
   lt: {
 
   },
   txt: {
-    height: 21,
-    lineHeight: 21,
-    fontSize: 15,
+    height: pxToPt(21),
+    lineHeight: pxToPt(21),
+    fontSize: pxToPt(15),
     fontWeight: '600',
     color: '#2B2D33'
   },
   common: {
-    marginTop: 4,
-    height: 16,
-    lineHeight: 16,
-    fontSize: 11,
+    marginTop: pxToPt(4),
+    height: pxToPt(16),
+    lineHeight: pxToPt(16),
+    fontSize: pxToPt(11),
     color: '#5A5D66'
   },
   rtnum: {

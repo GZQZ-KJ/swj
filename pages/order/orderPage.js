@@ -18,6 +18,7 @@ import ListItem from './ListItem/listitem'
 import { ORDERS_TAG, PRODUCT_TAG, ORDERS_LIST, PRODUCT_SALELIST, PRODUCT_RECEIVE, ORDERS_PAY } from '../../utils/api/pathMap'
 import axios from '../../utils/api/request'
 import Toast from '../../utils/api/Toast'
+import { pxToPt } from "../../utils/styleKits";
 import { inject, observer } from 'mobx-react'
 @inject('rootStore')
 @observer
@@ -51,7 +52,7 @@ export default class orderPage extends Component {
     this.setState({
       active: 0,
       activeTop: 0,
-      activeCss: { marginLeft: 110 },
+      activeCss: { marginLeft: pxToPt(110)},
     })
     this._selectRt2()
   }
@@ -315,11 +316,11 @@ export default class orderPage extends Component {
         {
           rootStore.orderList.length < 1 ?
             <>
-              <Image style={{ width: 206.22, height: 217.11, alignSelf: 'center', top: 53 }} source={require('../../assets/icons/default/noProduct.png')}></Image>
-              <Text style={{ color: '#8D9099', marginTop: 58, alignSelf: 'center', fontWeight: '400', fontSize: 15 }}>暂无订单</Text>
+              <Image style={{ width: pxToPt(206.22), height: pxToPt(217.11), alignSelf: 'center', top: pxToPt(53) }} source={require('../../assets/icons/default/noProduct.png')}></Image>
+              <Text style={{ color: '#8D9099', marginTop: pxToPt(58), alignSelf: 'center', fontWeight: '400', fontSize: pxToPt(15) }}>暂无订单</Text>
             </>
             :
-            <SafeAreaView style={{ paddingBottom: 90 }}>
+            <SafeAreaView style={{ paddingBottom: pxToPt(90) }}>
               <ScrollView
                 refreshControl={
                   <RefreshControl
@@ -389,26 +390,26 @@ const styles = StyleSheet.create({
   ordTop: {
     justifyContent: 'center',
     alignItems: 'center',
-    height: 44,
+    height: pxToPt(44),
     backgroundColor:'#FFFFFF'
   },
   contol: {
     position: 'relative',
     alignItems: 'center',
-    height: 32,
-    width: 229,
-    borderRadius: 9,
+    height: pxToPt(32),
+    width: pxToPt(229),
+    borderRadius: pxToPt(9),
     backgroundColor: '#7676801F',
   },
   ctrlf: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    borderRadius: 9
+    borderRadius: pxToPt(9)
   },
   txtlf: {
-    height: 18,
-    fontSize: 13,
+    height: pxToPt(18),
+    fontSize: pxToPt(13),
     color: '#2B2D33'
   },
   ctrrt: {
@@ -418,60 +419,60 @@ const styles = StyleSheet.create({
 
   },
   txtrt: {
-    height: 18,
-    fontSize: 13,
+    height: pxToPt(18),
+    fontSize: pxToPt(13),
     color: '#2B2D33'
   },
   active: {
     position: 'absolute',
     justifyContent: 'center',
     alignItems: 'center',
-    height: 28,
-    width: 117,
-    borderRadius: 7,
+    height: pxToPt(28),
+    width: pxToPt(117),
+    borderRadius: pxToPt(7),
     backgroundColor: '#3D72E4FF',
-    elevation: 8,
+    elevation: pxToPt(8),
     shadowColor: '#1f000000',
-    shadowOffset: { width: 0, height: 3 },
-    shadowOpacity: 1
+    shadowOffset: { width:pxToPt(0), height: pxToPt(3) },
+    shadowOpacity: pxToPt(1)
   },
   acttxt: {
-    height: 20,
-    fontSize: 14,
+    height: pxToPt(20),
+    fontSize: pxToPt(14),
     color: '#FFFFFF'
   },
   navBar: {
     justifyContent:'space-between',
     backgroundColor: '#fff',
-    marginBottom:8
+    marginBottom:pxToPt(8)
   },
   box: {
     alignItems: 'center',
-    width: 70,
+    width: pxToPt(70),
   },
   box1:{
     alignItems: 'center',
     width:'20%',
   },
   item: {
-    marginTop: 12,
-    marginBottom: 11,
-    height: 21,
-    fontSize: 15,
+    marginTop:pxToPt(12),
+    marginBottom: pxToPt(11),
+    height:pxToPt(21),
+    fontSize: pxToPt(15),
     color: '#8D9099'
   },
   itemO: {
-    marginTop: 12,
-    marginBottom: 11,
-    height: 21,
-    fontSize: 15,
+    marginTop: pxToPt(12),
+    marginBottom:pxToPt(11),
+    height: pxToPt(21),
+    fontSize: pxToPt(15),
     color: '#3D72E4'
   },
   underscore: {
     position: 'absolute',
-    marginTop: 37,
-    width: 12,
-    height: 1,
+    marginTop: pxToPt(37),
+    width: pxToPt(12),
+    height: pxToPt(1),
     backgroundColor: '#3D72E4FF'
   },
 })

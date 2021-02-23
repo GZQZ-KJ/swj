@@ -7,6 +7,7 @@ import {
 } from 'react-native'
 import { Toast } from 'teaset'
 import Clipboard from '@react-native-community/clipboard'
+import { pxToPt } from "../../../utils/styleKits";
 export default class arbiDetail extends Component {
     constructor(props) {
         super(props)
@@ -34,7 +35,7 @@ export default class arbiDetail extends Component {
                 <View style={styles.msgBody}>
                     <Text style={styles.msgContent}>卡号</Text>
                     <View style={{ flexDirection: 'row' }}>
-                        <Text style={{ color: '#3D72E4', paddingRight: 8 }}>{bankAccountNo}</Text>
+                        <Text style={{ color: '#3D72E4', paddingRight: pxToPt(8) }}>{bankAccountNo}</Text>
                         <View style={styles.copyWrap} >
                             <TouchableOpacity onPress={this.copyBankNum} >
                                 <Text style={styles.copyTex} >复制</Text>
@@ -57,23 +58,23 @@ export default class arbiDetail extends Component {
 
 const styles = StyleSheet.create({
     msgDetail: {
-        width: 343,
-        height: 220,
+        width: pxToPt(343),
+        height: pxToPt(220),
         backgroundColor: '#fff',
-        shadowOffset: { width: 0, height: 1 },
+        shadowOffset: { width: pxToPt(0), height: pxToPt(1) },
         shadowColor: '#565A66',
-        shadowOpacity: 12,
-        shadowRadius: 2,
-        elevation: 2,
-        borderRadius: 8,
+        shadowOpacity: pxToPt(12),
+        shadowRadius: pxToPt(2),
+        elevation: pxToPt(2),
+        borderRadius: pxToPt(8),
         overflow: 'hidden',
         alignItems: 'center',
-        marginLeft: 8,
-        marginBottom: 12
+        marginLeft: pxToPt(8),
+        marginBottom: pxToPt(12)
     },
     msgHead: {
-        height: 44,
-        width: 343,
+        height: pxToPt(44),
+        width: pxToPt(343),
         backgroundColor: '#fff',
         alignItems: 'center',
         justifyContent: 'center'
@@ -82,43 +83,43 @@ const styles = StyleSheet.create({
         fontFamily: 'PingFang SC',
         fontWeight: '500',
         color: '#2B2D33',
-        fontSize: 16,
+        fontSize: pxToPt(16),
     },
     msgBody: {
-        height: 43,
-        width: 319,
+        height: pxToPt(43),
+        width: pxToPt(319),
         flexDirection: 'row',
         backgroundColor: '#fff',
         alignItems: 'center',
         justifyContent: 'space-between',
-        borderBottomWidth: 1,
+        borderBottomWidth: pxToPt(1),
         borderBottomColor: '#F2F3F7',
     },
     msgContent: {
         fontFamily: "PingFang SC",
         fontWeight: '400',
         color: '#8D9099',
-        fontSize: 14
+        fontSize: pxToPt(14)
     },
     msgTex: {
         fontFamily: 'PingFang SC',
         fontWeight: '400',
         color: '#5A5D66',
-        fontSize: 14
+        fontSize: pxToPt(14)
     },
     copyWrap: {
-        width: 36,
-        height: 18,
+        width: pxToPt(36),
+        height: pxToPt(18),
         borderColor: '#3D72E4',
-        borderRadius: 15,
-        borderWidth: 1,
+        borderRadius:pxToPt(15),
+        borderWidth: pxToPt(1),
         backgroundColor: '#fff',
         alignItems: 'center',
         justifyContent: 'center'
     },
     copyTex: {
         color: '#3D72E4',
-        fontSize: 11,
+        fontSize: pxToPt(11),
         fontWeight: '500',
         fontFamily: 'PingFang SC'
     },
@@ -126,11 +127,11 @@ const styles = StyleSheet.create({
         fontFamily: 'PingFang SC',
         fontWeight: '500',
         color: '#FE5564',
-        fontSize: 14
+        fontSize:pxToPt(14)
     },
     msgFoot: {
-        height: 44,
-        width: 319,
+        height: pxToPt(44),
+        width: pxToPt(319),
         flexDirection: 'row',
         backgroundColor: '#fff',
         alignItems: 'center',

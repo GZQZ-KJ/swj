@@ -5,6 +5,7 @@ import {
     StyleSheet,
     Image
 } from 'react-native'
+import { pxToPt } from "../../../utils/styleKits";
 export default class arbiPicmsg extends Component {
     constructor(props) {
         super(props)
@@ -22,17 +23,17 @@ export default class arbiPicmsg extends Component {
                 <View style={styles.msgArbHead}>
                     <Text style={styles.msgArbTitle}>仲裁信息</Text>
                 </View>
-                <Text style={{ color: '#8D9099', fontSize: 14, fontWeight: '400', marginTop: 8 }}>
+                <Text style={{ color: '#8D9099', fontSize: pxToPt(14), fontWeight: '400', marginTop: pxToPt(8) }}>
                     卖家描述
                                 </Text>
-                <Text style={{ color: '#5A5D66', fontSize: 14, fontWeight: '500', marginTop: 4 }}>
+                <Text style={{ color: '#5A5D66', fontSize: pxToPt(14), fontWeight: '500', marginTop: pxToPt(4) }}>
                     {saleArbitration}
                 </Text>
-                <Text style={{ color: '#8D9099', fontSize: 14, fontWeight: '400', marginTop: 12 }}>
+                <Text style={{ color: '#8D9099', fontSize: pxToPt(14), fontWeight: '400', marginTop: pxToPt(12) }}>
                     图片
                                 </Text>
                 <View style={styles.ArbtiMsg}>
-                    <View style={{ width: 101, height: 70, flexDirection: 'row' }} >
+                    <View style={{ width: pxToPt(101), height: pxToPt(70), flexDirection: 'row' }} >
                         {
                             saleImages.length > 0 ?
                                 saleImages.map((v, i) => {
@@ -44,18 +45,18 @@ export default class arbiPicmsg extends Component {
                 </View>
                 {
                     buyArbitration && buyImages ? <>
-                        <Text style={{ color: '#8D9099', fontSize: 14, fontWeight: '400', marginTop: 8 }}>
+                        <Text style={{ color: '#8D9099', fontSize: pxToPt(14), fontWeight: '400', marginTop: pxToPt(8) }}>
                             买家描述
                                 </Text>
-                        <Text style={{ color: '#5A5D66', fontSize: 14, fontWeight: '500', marginTop: 4 }}>
+                        <Text style={{ color: '#5A5D66', fontSize: pxToPt(14), fontWeight: '500', marginTop:pxToPt(4) }}>
                             {buyArbitration}
                         </Text>
 
-                        <Text style={{ color: '#8D9099', fontSize: 14, fontWeight: '400', marginTop: 12 }}>
+                        <Text style={{ color: '#8D9099', fontSize: pxToPt(14), fontWeight: '400', marginTop: pxToPt(12) }}>
                             图片
                                 </Text>
                         <View style={styles.ArbtiMsg}>
-                            <View style={{ width: 101, height: 70, flexDirection: 'row' }}>
+                            <View style={{ width: pxToPt(101), height: pxToPt(70), flexDirection: 'row' }}>
                                 {
                                     buyImages.map((v, i) => {
                                         return (<Image style={styles.showImg} key={i} source={{ uri: v }}></Image>)
@@ -64,10 +65,10 @@ export default class arbiPicmsg extends Component {
                             </View>
                         </View>
                     </> : buyArbitration && !buyImages.length ? <>
-                        <Text style={{ color: '#8D9099', fontSize: 14, fontWeight: '400', marginTop: 8}}>
+                        <Text style={{ color: '#8D9099', fontSize: pxToPt(14), fontWeight: '400', marginTop: pxToPt(8)}}>
                             买家描述
                                 </Text>
-                        <Text style={{ color: '#5A5D66', fontSize: 14, fontWeight: '500', marginTop: 4 }}>
+                        <Text style={{ color: '#5A5D66', fontSize: pxToPt(14), fontWeight: '500', marginTop: pxToPt(4) }}>
                             {buyArbitration}
                         </Text></> : <></>
                 }
@@ -78,50 +79,50 @@ export default class arbiPicmsg extends Component {
 
 const styles = StyleSheet.create({
     msgArbitration: {
-        width: 343,
+        width: pxToPt(343),
         // height: 239,
         backgroundColor: '#fff',
         shadowOffset: { width: 0, height: 1 },
         shadowColor: '#565A66',
         shadowOpacity: 12,
-        shadowRadius: 2,
+        shadowRadius: pxToPt(2),
         elevation: 2,
-        borderRadius: 8,
+        borderRadius: pxToPt(8),
         overflow: 'hidden',
-        marginLeft: 8,
-        paddingLeft: 12,
-        paddingRight: 12,
-        paddingBottom:10,
-        marginBottom:24
+        marginLeft: pxToPt(8),
+        paddingLeft: pxToPt(12),
+        paddingRight: pxToPt(12),
+        paddingBottom:pxToPt(10),
+        marginBottom:pxToPt(24)
     },
     msgArbHead: {
-        height: 44,
-        width: 319,
+        height: pxToPt(44),
+        width: pxToPt(319),
         backgroundColor: '#fff',
         alignItems: 'center',
         justifyContent: 'center',
-        borderBottomWidth: 1,
+        borderBottomWidth: pxToPt(1),
         borderColor: '#F5F5F7'
     },
     msgArbTitle: {
         fontFamily: 'PingFang SC',
         fontWeight: '500',
         color: '#2B2D33',
-        fontSize: 16
+        fontSize: pxToPt(16)
     },
     showImg: {
-        width: 100,
+        width: pxToPt(100),
         height: '100%',
         resizeMode: 'stretch',
-        marginRight: 8
+        marginRight:pxToPt(8)
     },
     ArbtiMsg: {
-        marginTop: 8,
-        width: 319,
-        height: 80,
+        marginTop:pxToPt(8),
+        width: pxToPt(319),
+        height: pxToPt(80),
         flexDirection: 'row',
-        paddingBottom:8,
-        borderBottomWidth: 1,
+        paddingBottom:pxToPt(8),
+        borderBottomWidth: pxToPt(1),
         borderBottomColor: '#F2F3F7',
     }
 })

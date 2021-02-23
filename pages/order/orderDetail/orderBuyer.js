@@ -5,6 +5,7 @@ import {
     Image,
     StyleSheet,
 } from 'react-native'
+import { pxToPt } from "../../../utils/styleKits";
 export default class arbibuyer extends Component {
     constructor(props) {
         super(props)
@@ -34,43 +35,43 @@ export default class arbibuyer extends Component {
 
 const styles = StyleSheet.create({
     buyerInfo: {
-        width: 343,
-        height: 84,
-        borderRadius: 8,
+        width: pxToPt(343),
+        height: pxToPt(84),
+        borderRadius: pxToPt(8),
         backgroundColor: '#fff',
         shadowColor: '#565A66',
-        shadowOffset: { width: 0, height: 1 },
-        elevation: 2,
-        paddingLeft: 12,
-        paddingRight: 12,
+        shadowOffset: { width: pxToPt(0), height: pxToPt(1) },
+        elevation: pxToPt(2),
+        paddingLeft: pxToPt(12),
+        paddingRight:pxToPt(12),
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',
-        marginLeft: 6,
-        marginBottom:12,
+        marginLeft: pxToPt(6),
+        marginBottom:pxToPt(12),
     },
     headImg: {
-        width: 52,
-        height: 52,
-        borderRadius: 26,
-        marginRight: 12
+        width: pxToPt(52),
+        height: pxToPt(52),
+        borderRadius:pxToPt(26),
+        marginRight: pxToPt(12)
     },
     buyerName: {
         color: '#2B2D33',
-        fontSize: 16,
+        fontSize: pxToPt(16),
         fontWeight: '500'
     },
     buyerwrap: {
-        height: 18,
-        width: 40,
+        height: pxToPt(18),
+        width: pxToPt(40),
         backgroundColor: "#3D72E4",
-        borderRadius: 9,
+        borderRadius: pxToPt(8),
         justifyContent: 'center',
         alignItems: 'center'
     },
     buyerfont: {
         color: '#fff',
-        fontSize: 11,
+        fontSize:pxToPt(11),
         fontWeight: '400'
     }
 })

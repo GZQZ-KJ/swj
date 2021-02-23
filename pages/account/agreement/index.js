@@ -9,6 +9,7 @@ import {
     SafeAreaView,
     ScrollView
 } from 'react-native'
+import { pxToPt } from '../../../utils/styleKits'
 export default class agreement extends Component {
     constructor(props) {
         super(props)
@@ -18,7 +19,7 @@ export default class agreement extends Component {
             <>
                 <StatusBar backgroundColor="#3D72E4"></StatusBar>
                 <View style={styles.arroWrap}>
-                    <TouchableOpacity style={{ width: 60, height: 60, alignItems: 'center', justifyContent: 'center' }} onPress={() => {
+                    <TouchableOpacity style={{ width: pxToPt(60), height:pxToPt(60), alignItems: 'center', justifyContent: 'center' }} onPress={() => {
                         this.props.navigation.goBack()
                     }}>
                         <Image style={styles.arrow} source={require('../../../assets/icons/backo.png')}></Image>
@@ -29,7 +30,7 @@ export default class agreement extends Component {
                     <ScrollView style={styles.scrollView}>
                         <Text style={styles.tex}>系为用户提供数字资产交易和相关服务的手机端信息服务《NSSapp》（以下简称“《NSSapp》”）。《NSSapp》依据本协议（定义见下文）的规定为在《NSSapp》进行注册的用户（以下简称“用户”）提供服务，本协议在用户和《NSSapp》之间具有法律约束力。《NSSapp》在此特别提醒用户认真阅读并充分理解本协议项下的各条款，特别是本协议中涉及免除或限制《NSSapp》责任的条款，以及排除或限制用户权利的条款。用户应当审慎阅读，并选择接受或不接受本协议。除非用户接受本协议项下的所有条款，否则用户无权使用《NSSapp》基于本协议所提供的服务。若用户不同意本协议的内容，或拒绝承认《NSSapp》随时对本协议进行单方修改的权利，则用户应当立即停止使用并不再访问本《NSSapp》。用户一经注册成为用户或使用《NSSapp》服务即视为对本协议全部条款（包括本公司对本协议随时做出的任何修改）充分理解并完全接受。</Text>
                         <Text style={styles.tex}>为了本协议表述之方便，本《NSSapp》在本协议中合称使用“我们”或其他第一人称称呼；访问《NSSapp》的自然人或其他主体均成为“您”或其他第二人称；我们和您在本协议中何成为“双方”，我们或您称为“一方”。</Text>
-                        <Text style={[styles.tex,styles.ltex]}>第一章 定义和解释</Text>
+                        <Text style={[styles.tex, styles.ltex]}>第一章 定义和解释</Text>
                         <Text style={styles.tex}>第一条 在本协议中，除非本协议项下条款另有约定，以下词汇或者表述应当具有下述意义：</Text>
                         <Text style={styles.tex}>(一) 本协议 应当包括本服务协议、隐私条款、反洗钱反恐怖融资规则和法律声明以及其他在《NSSapp》上已经发布或将来可能发布的各类规则、附件、声明、说明或指引等构成。</Text>
                         <Text style={styles.tex}>(二) 不可抗力：包括信息网络设备维护、信息网络连接故障、电脑、通讯或其他系统的故障、电力故障、天气原因、意外事故、罢工、劳动争议、暴乱、起义、骚乱、生产力或生产资料不足、火灾、洪水、风暴、爆炸、战争或其他合作方原因、数字资产市场崩溃、政府行为、司法或行政机关的命令、其他不在《NSSapp》可控范围内或《NSSapp》无能力控制的情形。</Text>
@@ -42,12 +43,12 @@ export default class agreement extends Component {
                         <Text style={styles.tex}>(一) 反洗钱和反恐怖融资规则；</Text>
                         <Text style={styles.tex}>(二) 其他协议、规则和指引。</Text>
                         <Text style={styles.tex}>第六条 用户可以选择使用《NSSapp》的不同语言版本，若存在《NSSapp》的不同语言版本之内容不一致或者相冲突，或遗漏内容之情形，《NSSapp》的中文文本应当优先适用。</Text>
-                        <Text style={[styles.tex,styles.ltex]}>第二章 《NSSapp》基本条款</Text>
+                        <Text style={[styles.tex, styles.ltex]}>第二章 《NSSapp》基本条款</Text>
                         <Text style={styles.tex}>第七条 《NSSapp》中禁止购买方在未打款时，点击已打款，否则会进行封号处理，返还所有货币</Text>
                         <Text style={styles.tex}>第八条 为了保障您的权益，您在自愿注册使用《NSSapp》服务前，必须仔细阅读并充分理解知悉本服务协议所有条款。一经注册或使用《NSSapp》服务即视为对本协议和《NSSapp》对本协议随时做出的任何修改的充分理解和接受；如有违反而导致任何法律后果，您将自己独立承担相应的法律责任。</Text>
                         <Text style={styles.tex}>第九条 在本协议履行过程中，《NSSapp》可根据情况对本协议进行修改。一旦本协议的内容发生变动，《NSSapp》将公布最新的服务协议，不再向用户作个别通知。如果用户不同意《NSSapp》对本协议所做的修改，用户有权停止使用《NSSapp》服务。如果用户继续使用《NSSapp》服务，则视为用户接受《NSSapp》对本协议所做的修改，并应遵照修改后的协议执行。</Text>
                         <Text style={styles.tex}>第十条 《NSSapp》对于用户的通知及任何其他的协议、告示或其他关于用户使用用户账户及服务的通知，用户同意《NSSapp》可通过《NSSapp》公告、站内信、电子邮件、手机短信、无线通讯装置等电子方式或邮寄等物理方式进行，该等通知于发送之日视为已送达收件人 （如以邮寄方式向用户发出通知的，则在该等通知按照用户在《NSSapp》留存的联系地址交邮后的第三个自然日即视为送达）。因不可归责于《NSSapp》的原因（包括电子邮件地址、手机号码、联系地址等不准确或无效、信息传输故障等）导致用户未在前述通知视为送达之日收到该等通知的，《NSSapp》不承担任何责任。</Text>
-                        <Text style={[styles.tex,styles.ltex]}>第三章 注册用户</Text>
+                        <Text style={[styles.tex, styles.ltex]}>第三章 注册用户</Text>
                         <Text style={styles.tex}>第十一条 在使用NSS交易服务前，用户必须先在APP上进行注册。</Text>
                         <Text style={styles.tex}>第十二条 注册《NSSapp》个人用户的用户应当是年满十八岁或根据其所在国法律规定具有完全民事权利和民事行为能力，能够独立承担民事责任的自然人</Text>
                         <Text style={styles.tex}>第十三条 注册《NSSapp》的用户必须遵守软件的相关协议</Text>
@@ -70,7 +71,7 @@ export default class agreement extends Component {
                         <Text style={styles.tex}>第二十一条 《NSSapp》发现用户不适合进行高风险投资情形时，有权终止或终止用户对用户账户之使用。</Text>
                         <Text style={styles.tex}>第二十二条 无论本协议其他条款如何规定，《NSSapp》对用户是否能够通过《NSSapp》用户认证，以及是否注销已认证用户之资格具有自由裁量权。《NSSapp》有权拒绝或注销任何用户的注册，且没有义务告知用户拒绝注册之理由，《NSSapp》不承担任何因《NSSapp》拒绝用户注册而导致用户所遭受的直接或间接的损失，且保留追究用户责任的权利。</Text>
                         <Text style={styles.tex}>第二十三条 用户系自愿注册成为《NSSapp》用户，《NSSapp》没有强迫、诱导、欺骗或者通过其他不公平的手段对用户施加影响。</Text>
-                        <Text style={[styles.tex,styles.ltex]}>第四章 注册《NSSapp》服务的内容</Text>
+                        <Text style={[styles.tex, styles.ltex]}>第四章 注册《NSSapp》服务的内容</Text>
                         <Text style={styles.tex}>第二十四条 《NSSapp》对完成注册的用户提供以下服务：</Text>
                         <Text style={styles.tex}>(一) 提供数字资产各项目方所公开的相关信息；</Text>
                         <Text style={styles.tex}>(二) 数字资产各项目的实时行情及交易信息；</Text>
@@ -101,7 +102,7 @@ export default class agreement extends Component {
                         <Text style={styles.tex}>(三) 数字资产交易规则发生变更；</Text>
                         <Text style={styles.tex}>(四) 其他合理理由。</Text>
                         <Text style={styles.tex}>第三十一条《NSSapp》基于本协议第三十条修改、暂停或永久停止对用户开放的《NSSapp》之部分或全部服务的，生效日以《NSSapp》公告为准。</Text>
-                        <Text style={[styles.tex,styles.ltex]}>第五章 账户安全及管理</Text>
+                        <Text style={[styles.tex, styles.ltex]}>第五章 账户安全及管理</Text>
                         <Text style={styles.tex}>第三十二条 用户了解并同意，确保用户账户及密码的机密安全是用户的责任。用户将对利用该用户账户及密码所进行的一切行动及言论，负完全的责任，并同意以下事项：</Text>
                         <Text style={styles.tex}>(一) 用户应根据《NSSapp》的相关规则以及《NSSapp》的相关提示创建密码（密码包括但不限于登陆密码、资金密码、注册账户时绑定的手机号码以及手机接收的手机验证码、谷歌验证等，具体形式可能发生变化，下同），应避免选择过于明显的单词或日期，比如用户的姓名、昵称或者生日等；</Text>
                         <Text style={styles.tex}>(二) 用户不对其他任何人泄露账户或密码，亦不可使用其他任何人的账户或密码。因黑客、病毒或用户的保管疏忽等非《NSSapp》原因导致用户的用户账户遭他人非法使用的，《NSSapp》不承担任何责任；</Text>
@@ -122,7 +123,7 @@ export default class agreement extends Component {
                         <Text style={styles.tex}>第三十五条用户决定不再使用用户账户时，应首先清偿所有应付款项（包括服务费、管理费等），再将用户账户中的可用数字资产（如有）在可提取范围全部提取，并向《NSSapp》申请冻结该用户账户，经《NSSapp》审核同意后可正式注销用户账户。</Text>
                         <Text style={styles.tex}>第三十六条 用户同意，如其用户账户未完成身份认证且已经连续一年未登陆，《NSSapp》无需进行事先通知即有权终止提供用户账户服务，并可能立即暂停、关闭或删除用户账户及该用户账户中所有相关资料及档案。</Text>
                         <Text style={styles.tex}>第三十七条 用户同意，用户账户的暂停、中断或终止不代表用户责任的终止，用户仍应对使用《NSSapp》服务期间的行为承担可能的违约或损害赔偿责任，同时《NSSapp》仍可保有用户的相关信息。</Text>
-                        <Text style={[styles.tex,styles.ltex]}>第六章 用户的保证及承诺</Text>
+                        <Text style={[styles.tex, styles.ltex]}>第六章 用户的保证及承诺</Text>
                         <Text style={styles.tex}>第三十八条 用户承诺绝不为任何非法目的或以任何非法方式使用《NSSapp》服务，并承诺遵守其所在国的相关法律、法规及一切使用互联网之国际惯例，遵守所有与《NSSapp》服务有关的网络协议、规则和程序。</Text>
                         <Text style={styles.tex}>第三十九条 用户同意并保证不得利用《NSSapp》服务从事侵害他人权益或违法之行为，若有违反者应负所有法律责任。 上述行为包括：</Text>
                         <Text style={styles.tex}>(一) 冒用他人名义使用《NSSapp》服务；</Text>
@@ -142,13 +143,13 @@ export default class agreement extends Component {
                         <Text style={styles.tex}>第四十四条 用户同意对其《NSSapp》注册账号下发生的所有活动（包括信息披露、发布信息、点击同意各类协议、上传提交各类文件、点击同意续签各类协议或点击同意数字货币交易等）承担责任，且如在上述活动进程中，若用户未遵从本协议条款或《NSSapp》公布的交易规则中的操作指示的，《NSSapp》不承担任何责任。</Text>
                         <Text style={styles.tex}>第四十五条 用户同意，《NSSapp》有权在提供《NSSapp》服务过程中以各种方式投放各种商业性广告或其他任何类型的商业信息（包括在《NSSapp》的任何页面上投放广告），并且，用户同意接受《NSSapp》通过电子邮件或其他方式向用户发送商业促销或其他相关商业信息。</Text>
                         <Text style={styles.tex}>第四十六条 用户同意，若用户因数字资产交易与项目方或其他第三方产生纠纷的，不得通过司法或行政以外的途径要求《NSSapp》提供相关资料。</Text>
-                        <Text style={[styles.tex,styles.ltex]}>第七章 服务中断或故障</Text>
+                        <Text style={[styles.tex, styles.ltex]}>第七章 服务中断或故障</Text>
                         <Text style={styles.tex}>第四十七条 用户同意，基于互联网的特殊性，《NSSapp》不担保服务不会中断，也不担保服务的及时性和/或安全性。系统因相关状况无法正常运作，使用户无法使用任何《NSSapp》服务或使用任何《NSSapp》服务时受到任何影响时，《NSSapp》对用户或第三方不负任何责任，前述状况包括：</Text>
                         <Text style={styles.tex}>(一) 《NSSapp》系统停机维护期间。</Text>
                         <Text style={styles.tex}>(二) 电信设备出现故障不能进行数据传输的。</Text>
                         <Text style={styles.tex}>(三) 由于黑客攻击、网络供应商技术调整或故障、网站升级的问题等原因而造成的《NSSapp》服务中断或延迟。</Text>
                         <Text style={styles.tex}>(四) 因台风、地震、海啸、洪水、停电、战争、恐怖袭击等不可抗力之因素，造成《NSSapp》系统障碍不能执行业务的。</Text>
-                        <Text style={[styles.tex,styles.ltex]}>第八章 责任范围及限制</Text>
+                        <Text style={[styles.tex, styles.ltex]}>第八章 责任范围及限制</Text>
                         <Text style={styles.tex}>第四十八条 《NSSapp》未对任何《NSSapp》服务提供任何形式的保证，包括以下事项：</Text>
                         <Text style={styles.tex}>(一) 《NSSapp》服务将符合用户的需求。</Text>
                         <Text style={styles.tex}>(二) 《NSSapp》服务将不受干扰、及时提供或免于出错。</Text>
@@ -177,7 +178,7 @@ export default class agreement extends Component {
                         <Text style={styles.tex}>第五十七条 《NSSapp》和用户均承认普通法对违约或可能违约情况的救济措施可能不足以弥补守约方遭受的全部或部分损失，故双方同意，协议一方有权在协议另一方违约或可能违约情况下寻求禁令救济以及普通法或衡平法允许的其他所有的补救措施。</Text>
                         <Text style={styles.tex}>第五十八条 《NSSapp》在本协议中做出的保证和承诺是《NSSapp》就其依据本协议提供服务的唯一保证和陈述（以下简称“协议保证”），取代任何其他途径和方式产生的保证和承诺（以下简称“非协议保证”），无论非协议保证是以书面或口头，明示或暗示的形式做出。所有协议保证仅仅由《NSSapp》做出，对《NSSapp》自身具有约束力，其效力不能约束任何第三方。</Text>
                         <Text style={styles.tex}>第五十九条 用户知悉并同意，《NSSapp》并不放弃本协议中未提及的，在法律适用的最大范围内《NSSapp》所享有的限制、免除或抵销《NSSapp》损害赔偿责任的任何权利。</Text>
-                        <Text style={[styles.tex,styles.ltex]}>第九章 风险提示</Text>
+                        <Text style={[styles.tex, styles.ltex]}>第九章 风险提示</Text>
                         <Text style={styles.tex}>第六十条 用户了解并认可，任何通过《NSSapp》进行的交易并不能避免以下风险的产生，《NSSapp》不能也没有义务为如下风险负责：</Text>
                         <Text style={styles.tex}>(一) 宏观经济风险：因宏观经济形势变化，可能引起价格等方面的异常波动，用户有可能遭受损失；</Text>
                         <Text style={styles.tex}>(二) 政策风险：有关法律、法规及相关政策、规则发生变化，可能引起价格等方面异常波动，用户有可能遭受损失；</Text>
@@ -198,17 +199,17 @@ export default class agreement extends Component {
                         <Text style={styles.tex}>(二) 因用户向《NSSapp》发送的指令信息不明确、或存在歧义、不完整等导致的任何损失或责任；</Text>
                         <Text style={styles.tex}>(三) 用户账户内数字资产余额不足导致的任何损失或责任；</Text>
                         <Text style={styles.tex}>(四) 其他因用户原因导致的任何损失或责任。</Text>
-                        <Text style={[styles.tex,styles.ltex]}>第十章 服务费用及其他费用</Text>
+                        <Text style={[styles.tex, styles.ltex]}>第十章 服务费用及其他费用</Text>
                         <Text style={styles.tex}>第六十九条 当用户使用《NSSapp》服务时，《NSSapp》可能向用户收取相关《NSSapp》服务费用。各项《NSSapp》服务费用详见用户使用《NSSapp》服务时，《NSSapp》上所列之收费说明及收费标准。《NSSapp》保留单方面制定及调整《NSSapp》服务费用收费标准的权利。</Text>
                         <Text style={styles.tex}>第七十条 用户在使用《NSSapp》服务过程中可能需要向第三方支付一定的第三方服务费用，具体收费标准详见第三方网站相关页面，或《NSSapp》的提示及收费标准。用户同意将根据上述收费标准自行或委托《NSSapp》或《NSSapp》指定的第三方代为向第三方支付该等服务费。</Text>
-                        <Text style={[styles.tex,styles.ltex]}>第十一章 协议之终止</Text>
+                        <Text style={[styles.tex, styles.ltex]}>第十一章 协议之终止</Text>
                         <Text style={styles.tex}>第七十一条 用户有权在任何时候依据本协议条款之规定向《NSSapp》申请注销《NSSapp》账号，依据本协议第三十五条注销账号的，自《NSSapp》批准用户注销账号之日起协议终止。</Text>
                         <Text style={styles.tex}>第七十二条 依据本协议第三十五条、三十六条注销账号的，自《NSSapp》注销用户账号之日起协议终止。</Text>
                         <Text style={styles.tex}>第七十三条 用户死亡或被宣告死亡的，其在本协议项下的各项权利义务由其继承人承担。若用户丧失全部或部分民事权利能力或民事行为能力，《NSSapp》或其授权的主体有权根据有效法律文书（包括生效的法院判决等）或其法定监护人的指示处置与用户账户相关的款项。若继承人或法定监护人决定继续履行本协议的，则本协议依然有效；反之，则继承人或法定监护人需要依据本协议第三十五条向《NSSapp》申请注销账号，自《NSSapp》批准用户注销账号之日起协议终止。</Text>
                         <Text style={styles.tex}>第七十四条 《NSSapp》有权依据本协议约定终止《NSSapp》全部服务，本协议于《NSSapp》全部服务终止之日终止，清退流程根据《NSSapp》公告的具体规定进行操作。</Text>
                         <Text style={styles.tex}>第七十五条 本协议终止后，用户无权要求《NSSapp》继续向其提供任何服务或履行任何其他义务，包括但不限于要求《NSSapp》为用户保留或向用户披露其原本网站账号中的任何信息， 向用户或第三方转发任何其未曾阅读或发送过的信息等。</Text>
                         <Text style={styles.tex}>第七十六条 本协议的终止不影响守约方向违约方主张其他协议终止前违约方之违约责任，也不影响本协议规定之后合同义务之履行。</Text>
-                        <Text style={[styles.tex,styles.ltex]}>第十二章 个人信息之保护和授权条款</Text>
+                        <Text style={[styles.tex, styles.ltex]}>第十二章 个人信息之保护和授权条款</Text>
                         <Text style={styles.tex}>第七十七条 本协议第十二章中之个人信息应当包括以下信息：</Text>
                         <Text style={styles.tex}>(一) 在用户注册《NSSapp》账号或者使用账户时，用户根据本《NSSapp》要求提供的个人注册信息，包括但不限于电话号码、邮箱信息、身份证件信息；</Text>
                         <Text style={styles.tex}>(二) 在用户使用《NSSapp》时，或访问《NSSapp》时，《NSSapp》自动接收并记录的用户浏览器上的服务器数值，包括但不限于IP地址等数据及用户要求取用的网页记录；</Text>
@@ -236,13 +237,13 @@ export default class agreement extends Component {
                         <Text style={styles.tex}>第八十三条 授权《NSSapp》，除法律另有规定之外，基于为用户提供更优质服务和产品的目的，向《NSSapp》因服务必要开展合作的伙伴提供、查询、收集用户的信息。</Text>
                         <Text style={styles.tex}>第八十四条 为确保用户信息的安全，《NSSapp》及其合作伙伴对上述信息负有保密义务，并采取各种措施保证信息安全。</Text>
                         <Text style={styles.tex}>第八十五条 本协议第十二章项下之条款自本协议签署时生效，具有独立法律效力，不受合同成立与否及效力状态变化的影响。</Text>
-                        <Text style={[styles.tex,styles.ltex]}>第十三章 知识产权的保护</Text>
+                        <Text style={[styles.tex, styles.ltex]}>第十三章 知识产权的保护</Text>
                         <Text style={styles.tex}>第八十六条《NSSapp》上所有内容，包括著作、图片、档案、资讯、资料、《NSSapp》架构、《NSSapp》画面的安排、《NSSapp》设计，文字和图表，软件编译，相关源代码和软件等均由《NSSapp》或其他权利人依法拥有其知识产权，包括商标权、专利权、著作权、商业秘密等。</Text>
                         <Text style={styles.tex}>第八十七条 非经《NSSapp》或其他权利人书面同意，任何人不得擅自使用、修改、复制、公开传播、改变、散布、发行或公开发表《NSSapp》程序或内容。</Text>
                         <Text style={styles.tex}>第八十八条 用户未经《NSSapp》的明确书面同意不许下载（除了页面缓存）或修改《NSSapp》或其任何部分。用户不得对《NSSapp》或其内容进行转售或商业利用；不得收集和利用产品目录、说明和价格；不得对《NSSapp》或其内容进行任何衍生利用；不得为其他商业利益而下载或拷贝账户信息或使用任何数据采集、Robots或类似的数据收集和摘录工具。未经《NSSapp》的书面许可，严禁对《NSSapp》的内容进行系统获取以直接或间接创建或编辑文集、汇编、数据库或人名地址录（无论是否通过Robots、Spiders、自动仪器或手工操作）。另外，严禁为任何未经本使用条件明确允许的目的而使用《NSSapp》上的内容和材料。</Text>
                         <Text style={styles.tex}>第八十九条 未经《NSSapp》明确书面同意，不得以任何商业目的对《NSSapp》网站或其任何部分进行复制、复印、仿造、出售、转售、访问、或以其他方式加以利用。未经《NSSapp》明确书面同意，用户不得用任何技巧把《NSSapp》或其关联公司的商标、标识或其他专有信息（包括图像、文字、网页设计或形式）据为己有。未经《NSSapp》明确书面同意，用户不得以Meta Tags或任何其他"隐藏文本"方式使用《NSSapp》或其关联公司的名字和商标。任何未经授权的使用都会终止《NSSapp》所授予的允许或许可。</Text>
                         <Text style={styles.tex}>第九十条 用户登陆《NSSapp》或使用《NSSapp》提供的任何服务均不视为《NSSapp》向用户转让任何知识产权。尊重知识产权是用户应尽的义务，如有违反，用户应对《NSSapp》承担损害赔偿等法律责任。</Text>
-                        <Text style={[styles.tex,styles.ltex]}>第十四章 一般条款</Text>
+                        <Text style={[styles.tex, styles.ltex]}>第十四章 一般条款</Text>
                         <Text style={styles.tex}>第九十一条本协议是由用户与《NSSapp》共同签订的，适用于用户在《NSSapp》的全部活动。本协议内容包括协议正文条款及已经发布的或将来可能发布的各类规则，所有条款和规则为协议不可分割的一部分，与本协议正文具有同等法律效力。</Text>
                         <Text style={styles.tex}>第九十二条 如本协议中的任何条款被任何有管辖权的机构认定为不可执行的，无效的或非法的，并不影响本协议的其余条款的效力。</Text>
                         <Text style={styles.tex}>第九十三条 本协议中约定的权利及义务同样约束通过转让从该权利义务中获取到利益的各方的受让人，继承人，遗嘱执行人和管理员。用户不得在我们不同意的前提下将本协议项下的权利或义务转让给任何第三方，但《NSSapp》可随时将我们在本协议中的权利和义务转让给任何第三方，并于转让之日提前三十（30）天给与用户通知。</Text>
@@ -261,20 +262,20 @@ export default class agreement extends Component {
 
 const styles = StyleSheet.create({
     arroWrap: {
-        height: 44,
+        height: pxToPt(44),
         alignItems: 'center',
         flexDirection: 'row',
         // paddingLeft: 22,
-        backgroundColor:'#3D72E4'
+        backgroundColor: '#3D72E4'
     },
     arrow: {
-        width: 11.82,
-        height: 22,
+        width: pxToPt(11.82),
+        height: pxToPt(22),
     },
     title: {
-        marginLeft: 36,
+        marginLeft: pxToPt(36),
         color: '#fff',
-        fontSize: 18,
+        fontSize: pxToPt(18),
         fontWeight: "500",
         fontFamily: 'PingFang SC',
     },
@@ -283,16 +284,16 @@ const styles = StyleSheet.create({
     },
     scrollView: {
         backgroundColor: '#F8F9FA',
-        paddingLeft:10,
-        paddingRight:10,
+        paddingLeft: pxToPt(10),
+        paddingRight: pxToPt(10),
     },
     tex: {
-        fontSize: 14,
+        fontSize: pxToPt(14),
         color: '#2B2D33',
-        marginBottom:18
+        marginBottom: pxToPt(18)
     },
-    ltex:{
-        fontSize:18,
-        fontWeight:'bold'
+    ltex: {
+        fontSize: pxToPt(18),
+        fontWeight: 'bold'
     }
 })

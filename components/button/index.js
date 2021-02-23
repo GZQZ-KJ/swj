@@ -8,7 +8,7 @@
 import React, { Component } from 'react'
 
 import {View,Text,StyleSheet,TouchableOpacity} from 'react-native'
-
+import { pxToPt } from "../../utils/styleKits";
 
 export default class btn extends Component{
   constructor(props) {
@@ -31,12 +31,12 @@ const styles =StyleSheet.create({
   btn:{
     justifyContent:'center',
     alignItems: 'center',
-    height: 44,
-    borderRadius: 8
+    height: pxToPt(44),
+    borderRadius: pxToPt(8)
   },
   txt:{
-    height: 21,
-    lineHeight: 21,
-    fontSize: 15
+    height:pxToPt(21),
+    lineHeight: pxToPt(21),
+    fontSize: pxToPt(15)
   }
 })

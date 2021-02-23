@@ -12,6 +12,7 @@ import {
 } from 'react-native'
 import { BANKS_GETMYBANKS } from '../../../utils/api/pathMap'
 import axios from '../../../utils/api/request'
+import { pxToPt } from "../../../utils/styleKits";
 import { inject, observer } from 'mobx-react'
 import Toast from "../../../utils/api/Toast"
 @inject('rootStore')
@@ -75,7 +76,7 @@ export default class bank extends Component {
         <StatusBar backgroundColor="#fff" barStyle={'dark-content'}></StatusBar>
         <View style={styles.arroWrap}>
           <TouchableOpacity 
-          style={{ width: 60, height: 60, alignItems: 'center', justifyContent: 'center' }} 
+          style={{ width: pxToPt(60), height: pxToPt(60), alignItems: 'center', justifyContent: 'center' }} 
           onPress={() => {
             this.props.navigation.navigate('Tabbar')
 
@@ -96,7 +97,7 @@ export default class bank extends Component {
                       {
                         i === this.state.showAdd ? <>
                           <TouchableOpacity style={styles.btn} activeOpacity={.7} onPress={this._addBank}>
-                            <Image style={{ height: 14, width: 14 }} source={this.state.Imgs.add}></Image>
+                            <Image style={{ height: pxToPt(14), width: pxToPt(14) }} source={this.state.Imgs.add}></Image>
                             <Text style={styles.txt}>添加银行卡</Text>
                           </TouchableOpacity>
                         </> :
@@ -106,7 +107,7 @@ export default class bank extends Component {
                         <ImageBackground source={{ uri: v.background_url }} style={styles.wrapperBc}>
                           <View style={{ flexDirection: "row" }}>
                             <View style={styles.icon}>
-                              <Image source={{ uri: v.icon }} style={{ width: 28, height: 28 }}></Image>
+                              <Image source={{ uri: v.icon }} style={{ width: pxToPt(28), height: pxToPt(28) }}></Image>
                             </View>
                             <Text style={styles.bankTitle}>{v.full_name}</Text>
                           </View>
@@ -174,14 +175,14 @@ export default class bank extends Component {
               {
                 this.state.myBanks.length < 1 ?
                   <>
-                    <Image style={{ width: 206.22, height: 217.11, alignSelf: 'center', top: 53 }} source={require('../../../assets/icons/default/Nobindingbankcard.png')}></Image>
-                    <Text style={{ color: '#8D9099', marginTop: 78, alignSelf: 'center', fontWeight: '400', fontSize: 15 }}>暂无绑定银行卡</Text>
+                    <Image style={{ width: pxToPt(206.22), height:pxToPt(217.11), alignSelf: 'center', top: pxToPt(53) }} source={require('../../../assets/icons/default/Nobindingbankcard.png')}></Image>
+                    <Text style={{ color: '#8D9099', marginTop: pxToPt(78), alignSelf: 'center', fontWeight: '400', fontSize: pxToPt(15) }}>暂无绑定银行卡</Text>
                     <TouchableOpacity style={styles.nobtn} activeOpacity={.7} onPress={this._addBank}>
-                      <Image style={{ height: 14, width: 14 }} source={this.state.Imgs.add}></Image>
+                      <Image style={{ height:pxToPt(14), width: pxToPt(14) }} source={this.state.Imgs.add}></Image>
                       <Text style={styles.notxt}>添加银行卡</Text>
                     </TouchableOpacity>
                   </> : this.state.myBanks.length >= 2 ? <></> : <TouchableOpacity style={styles.btn} activeOpacity={.7} onPress={this._addBank}>
-                    <Image style={{ height: 14, width: 14 }} source={this.state.Imgs.add}></Image>
+                    <Image style={{ height: pxToPt(14), width: pxToPt(14) }} source={this.state.Imgs.add}></Image>
                     <Text style={styles.txt}>添加银行卡</Text>
                   </TouchableOpacity>
               }
@@ -196,11 +197,11 @@ export default class bank extends Component {
 class Pionts extends Component {
   render() {
     let item = Array.from({ length: 3 }, (v, i) => (
-      <View style={{ height: 3, width: 3, backgroundColor: '#F5F5F7', marginLeft: 4, borderRadius: 2 }} key={i}></View>
+      <View style={{ height: pxToPt(3), width:pxToPt(3), backgroundColor: '#F5F5F7', marginLeft:pxToPt(4), borderRadius:pxToPt(2) }} key={i}></View>
     ))
     return (
       <View
-        style={{ flexDirection: 'row', height: 30, width: 60, justifyContent: 'flex-end' }}
+        style={{ flexDirection: 'row', height: pxToPt(30), width:pxToPt(60), justifyContent: 'flex-end' }}
       >
         {item}
       </View>
@@ -210,106 +211,106 @@ class Pionts extends Component {
 
 const styles = StyleSheet.create({
   arroWrap: {
-    height: 44,
+    height: pxToPt(44),
     alignItems: 'center',
     flexDirection: 'row',
     backgroundColor: '#fff'
   },
   arrow: {
-    width: 11.82,
-    height: 22,
+    width: pxToPt(11.82),
+    height: pxToPt(22),
   },
   title: {
     color: '#2B2D33',
-    fontSize: 18,
+    fontSize: pxToPt(18),
     fontWeight: "500",
     fontFamily: 'PingFang SC',
-    marginLeft:90
+    marginLeft:pxToPt(90)
   },
   container: {
-    marginLeft: 22,
-    marginRight: 16,
+    marginLeft: pxToPt(22),
+    marginRight: pxToPt(16),
   },
   wrapper: {
-    height: 121,
-    width: 346,
+    height: pxToPt(121),
+    width: pxToPt(346),
     overflow: 'hidden',
-    marginTop: 8,
-    marginBottom: 12,
-    borderRadius: 12
+    marginTop: pxToPt(8),
+    marginBottom: pxToPt(12),
+    borderRadius:pxToPt(12)
   },
   wrapperBc: {
-    width: 343,
-    height: 120,
+    width: pxToPt(343),
+    height: pxToPt(120),
     flexDirection: 'row',
     justifyContent: 'space-between'
   },
   icon: {
     justifyContent: 'center',
     alignItems: 'center',
-    marginTop: 20,
-    marginLeft: 10,
-    width: 40, height: 40,
+    marginTop: pxToPt(20),
+    marginLeft: pxToPt(10),
+    width:pxToPt(40), height: pxToPt(40),
     backgroundColor: '#fff',
-    borderRadius: 20
+    borderRadius: pxToPt(20)
   },
   bankTitle: {
-    marginTop: 29,
-    marginLeft: 8,
-    fontSize: 16,
+    marginTop: pxToPt(29),
+    marginLeft: pxToPt(8),
+    fontSize: pxToPt(16),
     fontWeight: "500",
     color: '#F5F5F7'
   },
   bankNum: {
     color: '#F5F5F7',
-    paddingRight: 12,
-    fontSize: 14,
+    paddingRight: pxToPt(12),
+    fontSize:pxToPt(14),
     fontWeight: '400',
-    marginTop: 31,
-    marginBottom: 50
+    marginTop: pxToPt(31),
+    marginBottom: pxToPt(50)
 
   },
   showDelete: {
     flexDirection: 'row',
-    height: 30,
-    width: 60,
+    height: pxToPt(30),
+    width: pxToPt(60),
     justifyContent: 'flex-end'
   },
   btn: {
     justifyContent: 'center',
     flexDirection: 'row',
     alignItems: 'center',
-    marginTop: 8,
-    width: 343,
-    height: 44,
-    borderRadius: 8,
+    marginTop: pxToPt(8),
+    width: pxToPt(343),
+    height: pxToPt(44),
+    borderRadius: pxToPt(8),
     backgroundColor: '#3D72E4',
-    marginBottom: 100,
+    marginBottom: pxToPt(100),
   },
   nobtn: {
     justifyContent: 'center',
     flexDirection: 'row',
     alignItems: 'center',
-    marginTop: 28,
-    width: 140,
-    height: 36,
-    borderRadius: 8,
-    borderWidth: 1,
+    marginTop: pxToPt(28),
+    width: pxToPt(140),
+    height: pxToPt(36),
+    borderRadius: pxToPt(8),
+    borderWidth: pxToPt(1),
     backgroundColor: '#fff',
-    marginBottom: 100,
+    marginBottom:pxToPt(100),
     borderColor: '#3D72E4',
     alignSelf: 'center'
   },
   fontTex: {
     color: '#fff',
-    fontSize: 12
+    fontSize: pxToPt(12)
   },
   txt: {
-    marginLeft: 4,
+    marginLeft: pxToPt(4),
     color: '#FFFFFF'
   },
   notxt: {
-    marginLeft: 4,
+    marginLeft:pxToPt(4),
     color: '#3D72E4'
   }
 

@@ -10,6 +10,7 @@ import {
 } from 'react-native'
 import ArbitrationOrder from '../arbitrationOrder'
 import axios from '../../../utils/api/request'
+import { pxToPt } from "../../../utils/styleKits";
 import { ORDERS_ARBITRATIONLIST } from '../../../utils/api/pathMap'
 import { inject } from 'mobx-react'
 import Toast from '../../../utils/api/Toast'
@@ -102,7 +103,7 @@ export default class order extends Component {
                 <StatusBar backgroundColor="#fff" barStyle={'dark-content'}></StatusBar>
                 <View style={styles.arroWrap}>
                     <TouchableOpacity
-                        style={{ width: 60, height: 60, alignItems: 'center', justifyContent: 'center' }}
+                        style={{ width: pxToPt(60), height:pxToPt(60), alignItems: 'center', justifyContent: 'center' }}
                         onPress={() => {
                             this.props.navigation.navigate('Tabbar')
 
@@ -147,8 +148,8 @@ export default class order extends Component {
                     this.state.data.length < 1 ?
                         <>
 
-                            <Image style={{ width: 206.22, height: 217.11, alignSelf: 'center', top: 53 }} source={require('../../../assets/icons/default/noProduct.png')}></Image>
-                            <View style={{ marginTop: 58, alignSelf: 'center', flexDirection: 'row' }}>
+                            <Image style={{ width: pxToPt(206.22), height: pxToPt(217.11), alignSelf: 'center', top: pxToPt(53) }} source={require('../../../assets/icons/default/noProduct.png')}></Image>
+                            <View style={{ marginTop:pxToPt(58), alignSelf: 'center', flexDirection: 'row' }}>
                                 <Text style={{ color: '#8D9099', fontWeight: '400', fontSize: 15 }}>暂无</Text>
                                 <Text style={{ color: '#FE5564', fontWeight: '400', fontSize: 15 }}>仲裁订单</Text>
                             </View>
@@ -171,24 +172,24 @@ export default class order extends Component {
 
 const styles = StyleSheet.create({
     arroWrap: {
-        height: 44,
+        height:pxToPt(44),
         alignItems: 'center',
         flexDirection: 'row',
         backgroundColor: '#fff'
     },
     arrow: {
-        width: 11.82,
-        height: 22,
+        width: pxToPt(11.82),
+        height: pxToPt(22),
     },
     title: {
         color: '#2B2D33',
-        fontSize: 18,
+        fontSize: pxToPt(18),
         fontWeight: "500",
         fontFamily: 'PingFang SC',
-        marginLeft:100
+        marginLeft:pxToPt(100)
     },
     chooseHead: {
-        height: 44,
+        height: pxToPt(44),
         backgroundColor: '#fff',
         justifyContent: 'space-around',
         alignItems: 'center',

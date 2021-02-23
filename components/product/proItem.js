@@ -8,7 +8,7 @@ import {
 } from 'react-native';
 import basicStyle from '../styles/basic/index'
 import { NavigationContext } from '@react-navigation/native'
-
+import { pxToPt } from "../../utils/styleKits";
 
 /**
  * 产品列表
@@ -74,10 +74,10 @@ export default class proItem extends Component {
             <View style={[styles.info, basicStyle.flexRow]}>
               {
                 v.avater_url !== '' ?
-                  <Image style={{width:40,height:40,borderRadius:20}} source={{ uri: v.avater_url }}></Image>
+                  <Image style={{width:pxToPt(40),height:pxToPt(40),borderRadius:pxToPt(20)}} source={{ uri: v.avater_url }}></Image>
                   : <Image source={require('../../assets/icons/avatar/tou2.png')}></Image>
               }
-              <View style={{ marginLeft: 8 }}>
+              <View style={{ marginLeft: pxToPt(8)}}>
                 <Text style={styles.name}>{v.user_name}</Text>
                 <Text style={styles.outTime}>下架倒计时: {this.state.remain}</Text>
               </View>
@@ -96,23 +96,23 @@ export default class proItem extends Component {
 
 const styles = StyleSheet.create({
   container: {
-    marginTop: 8,
-    marginLeft: 16,
-    marginRight: 16,
-    marginBottom: 4,
+    marginTop: pxToPt(8),
+    marginLeft: pxToPt(16),
+    marginRight: pxToPt(16),
+    marginBottom: pxToPt(4),
     backgroundColor: '#FFFFFF',
     shadowOffset: { width: 0, height: 2 },
     shadowColor: '#565A66',
     elevation: 2,
     shadowOpacity: 0.12,
-    borderRadius: 8
+    borderRadius: pxToPt(8)
   },
   upper: {
-    marginLeft: 12,
-    marginRight: 12,
-    paddingTop: 12,
-    paddingBottom: 11,
-    borderBottomWidth: 1,
+    marginLeft: pxToPt(12),
+    marginRight: pxToPt(12),
+    paddingTop: pxToPt(12),
+    paddingBottom: pxToPt(11),
+    borderBottomWidth: pxToPt(1),
     borderBottomColor: '#F2F3F7',
     alignItems: 'center',
     justifyContent: 'space-between'
@@ -122,37 +122,37 @@ const styles = StyleSheet.create({
     marginLeft: 0
   },
   name: {
-    height: 21,
-    fontSize: 15,
+    height: pxToPt(21),
+    fontSize:pxToPt(15),
     color: '#2B2D33',
     fontFamily: 'PingFang SC'
   },
   outTime: {
-    height: 17,
-    fontSize: 12,
+    height: pxToPt(17),
+    fontSize: pxToPt(12),
     color: '#8D9099'
   },
   price: {
-    height: 22,
+    height: pxToPt(22),
     // marginLeft: 75,
-    fontSize: 16,
+    fontSize: pxToPt(16),
     color: '#FE5564'
   },
   next: {
     justifyContent: 'space-between',
-    marginLeft: 12,
-    marginRight: 12,
-    paddingTop: 11,
-    paddingBottom: 12,
+    marginLeft: pxToPt(12),
+    marginRight: pxToPt(12),
+    paddingTop: pxToPt(11),
+    paddingBottom: pxToPt(12),
   },
   num: {
-    height: 21,
-    fontSize: 15,
+    height: pxToPt(21),
+    fontSize: pxToPt(15),
     color: '#2B2D33'
   },
   totalPrice: {
-    height: 20,
-    fontSize: 14,
+    height: pxToPt(20),
+    fontSize: pxToPt(14),
     color: '#2B2D33'
   }
 })

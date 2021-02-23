@@ -11,6 +11,7 @@ import basicStyle from '../../../components/styles/basic/index'
 import ToastTwo from '../../../components/ToastTwo'
 import Toast from '../../../utils/api/Toast'
 import axios from '../../../utils/api/request'
+import {pxToPt} from '../../../utils/styleKits'
 import { NavigationContext } from '@react-navigation/native'
 import { PRODUCT_RECEIVE, ORDERS_PAY, ORDERS_LIST } from '../../../utils/api/pathMap'
 import { inject, observer } from 'mobx-react'
@@ -147,7 +148,7 @@ export default class listitem extends Component {
                         <View style={[styles.lf, basicStyle.flexRow]}>
                             {
                                 item.avater_url !== '' ?
-                                    <Image style={{ width: 26, height: 26, borderRadius: 13 }} source={{ uri: item.avater_url }}></Image>
+                                    <Image style={{ width: pxToPt(26), height: pxToPt(26), borderRadius: pxToPt(13) }} source={{ uri: item.avater_url }}></Image>
                                     : <Image source={require('../../../assets/icons/avatar/tou2.png')}></Image>
                             }
                             <Text style={styles.name}>{item.user_name}</Text>
@@ -200,73 +201,73 @@ export default class listitem extends Component {
 
 const styles = StyleSheet.create({
     container: {
-        marginLeft: 16,
-        marginRight: 16,
-        marginBottom: 12,
-        borderRadius: 8,
+        marginLeft: pxToPt(16),
+        marginRight: pxToPt(16),
+        marginBottom: pxToPt(12),
+        borderRadius: pxToPt(8),
         backgroundColor: '#FFFFFF',
-        elevation: 4,
+        elevation: pxToPt(4),
         shadowOffset: {
             width: 0,
             height: 1
         },
         shadowColor: '#565A66',
         shadowOpacity: 0.12,
-        shadowRadius: 2,
+        shadowRadius: pxToPt(2),
     },
     content: {
-        paddingTop: 13,
-        paddingRight: 12,
-        paddingBottom: 16,
-        paddingLeft: 12
+        paddingTop: pxToPt(13),
+        paddingRight: pxToPt(12),
+        paddingBottom: pxToPt(16),
+        paddingLeft: pxToPt(12)
     },
     title: {
-        marginLeft: 19,
-        marginBottom: 3,
-        height: 21,
-        lineHeight: 21,
-        fontSize: 15,
+        marginLeft: pxToPt(19),
+        marginBottom: pxToPt(3),
+        height: pxToPt(21),
+        lineHeight: pxToPt(21),
+        fontSize: pxToPt(15),
         color: '#8D9099'
     },
     upper: {
-        paddingBottom: 13,
+        paddingBottom: pxToPt(13),
         justifyContent: 'space-between',
-        borderBottomWidth: 1,
+        borderBottomWidth: pxToPt(1),
         borderBottomColor: '#F2F3F7'
     },
     lf: {
         alignItems: 'center'
     },
     avatar: {
-        height: 26,
-        width: 26
+        height: pxToPt(26),
+        width: pxToPt(26)
     },
     name: {
-        marginLeft: 8,
-        height: 20,
-        lineHeight: 20,
-        fontSize: 14,
+        marginLeft: pxToPt(8),
+        height: pxToPt(20),
+        lineHeight: pxToPt(20),
+        fontSize:pxToPt(14),
         color: '#2B2D33'
     },
     rt: {
         alignItems: 'center'
     },
     mid: {
-        paddingTop: 16,
-        paddingBottom: 8,
+        paddingTop: pxToPt(16),
+        paddingBottom: pxToPt(8),
         justifyContent: 'space-between',
     },
     midNum: {
         // height: 22,
-        lineHeight: 22,
-        fontSize: 16,
+        lineHeight: pxToPt(22),
+        fontSize: pxToPt(16),
         color: '#2B2D33'
     },
     midPri: {
         // height: 22,
         fontWeight: '700',
-        lineHeight: 22,
-        fontSize: 16,
+        lineHeight: pxToPt(22),
+        fontSize: pxToPt(16),
         color: '#FE5564'
     },
     btm: {
@@ -275,20 +276,20 @@ const styles = StyleSheet.create({
     btn: {
         justifyContent: 'center',
         alignItems: 'center',
-        height: 32,
-        borderRadius: 8,
+        height: pxToPt(32),
+        borderRadius: pxToPt(8),
         overflow: 'hidden',
         backgroundColor: '#3D72E4',
-        width: 71
+        width: pxToPt(71)
     },
     btmtxt: {
-        height: 20,
-        lineHeight: 20,
-        fontSize: 14,
+        height: pxToPt(20),
+        lineHeight: pxToPt(20),
+        fontSize:pxToPt(14),
         color: '#5A5D66'
     },
     btnTxt: {
-        fontSize: 12,
+        fontSize: pxToPt(12),
         color: '#FFFFFF',
         height: '100%',
         width: '100%'

@@ -14,7 +14,7 @@ import Toast from '../../../utils/api/Toast'
 import ToastTwo from "../../../components/ToastTwo"
 import ImagePicker from 'react-native-image-crop-picker'
 import { USER_INDEX, SETTING_LOGOUT, USER_SAVE, UPLOAD_PIC } from '../../../utils/api/pathMap'
-
+import { pxToPt } from "../../../utils/styleKits";
 import AsyncStorage from '@react-native-community/async-storage'
 import axios from '../../../utils/api/request'
 import { inject, observer } from 'mobx-react'
@@ -40,6 +40,7 @@ export default class setting extends Component {
       complate: false,  //区分返回和完成按钮
     }
   }
+  //我的
   userIndex = async () => {
     await axios.get(USER_INDEX, {
       headers: {
@@ -101,8 +102,6 @@ export default class setting extends Component {
       cropping: true
     }).then(image => {
       this.getHead(image)
-      console.log('设置头像路径', image.path)
-      this.props.rootStore.setAvaUrl(image.path)
       this.setState({
         avater_url: image.path
       })
@@ -145,7 +144,9 @@ export default class setting extends Component {
       })
       return
     }
-    if (user_name.length > 14) {
+    console.log('[user_name]', typeof user_name)
+
+    if (user_name.length == null || user_name.length > 14) {
       Toast.message('用户名不得超过14个字母，或7个中文', 2000, 'center')
       this.setState({
         showModal: false
@@ -186,7 +187,8 @@ export default class setting extends Component {
   }
   async componentDidMount() {
     let avater = await AsyncStorage.getItem('avater_url')
-    let userName = await AsyncStorage.getItem('userName') || ''
+    let userName = await AsyncStorage.getItem('userName')
+    console.log('componentDidMount',userName)
     this.setState({
       avater_url: avater,
       user_name: userName
@@ -195,11 +197,12 @@ export default class setting extends Component {
 
   render() {
     let { rootStore } = this.props
+    console.log('renderAvaUrl',this.state.avater_url,this.state.user_name)
     return (
       <>
         <StatusBar backgroundColor="#fff" barStyle={'dark-content'}></StatusBar>
         <View style={styles.arroWrap}>
-          <TouchableOpacity style={{ width: 60, height: 60, alignItems: 'center', justifyContent: 'center' }} onPress={() => {
+          <TouchableOpacity style={{ width: pxToPt(60), height: pxToPt(60), alignItems: 'center', justifyContent: 'center' }} onPress={() => {
             // if (this.state.canChange) {
             //   this.setState({
             //     showModal: true
@@ -216,7 +219,7 @@ export default class setting extends Component {
           {
             this.state.canChange ?
               <TouchableOpacity
-                style={{ paddingRight: 10, height: '100%', justifyContent: 'center' }}
+                style={{ paddingRight: pxToPt(10), height: '100%', justifyContent: 'center' }}
                 // onPress={() => {
                 //   this.setState({
                 //     showModal: true,
@@ -227,7 +230,7 @@ export default class setting extends Component {
               >
                 <Text>完成</Text>
               </TouchableOpacity> :
-              <TouchableOpacity style={{ paddingRight: 10, height: '100%', justifyContent: 'center' }} onPress={() => {
+              <TouchableOpacity style={{ paddingRight: pxToPt(10), height: '100%', justifyContent: 'center' }} onPress={() => {
                 this.setState({
                   canChange: true
                 })
@@ -243,23 +246,23 @@ export default class setting extends Component {
               this.state.canChange ?
                 <TouchableHighlight
                   underlayColor="#abcdef"
-                  style={{ width: 40, height: 40, borderRadius: 20, overflow: 'hidden' }}
+                  style={{ width: pxToPt(40), height: pxToPt(40), borderRadius: pxToPt(20), overflow: 'hidden' }}
                   onPress={this.upLoadHead}
                 >
                   {
                     !rootStore.avaUrl === true ?
-                      <Image style={{ width: 40, height: 40 }} source={require('../../../assets/icons/avatar/tou2.png')}></Image>
+                      <Image style={{ width: pxToPt(40), height: pxToPt(40) }} source={require('../../../assets/icons/avatar/tou2.png')}></Image>
                       :
-                      <Image style={{ width: 40, height: 40 }} source={{ uri: this.state.avater_url }}></Image>
+                      <Image style={{ width: pxToPt(40), height:pxToPt(40) }} source={{ uri: this.state.avater_url }}></Image>
                   }
                 </TouchableHighlight>
                 :
-                <View style={{ width: 40, height: 40, borderRadius: 20, overflow: 'hidden' }}>
+                <View style={{ width: pxToPt(40), height:pxToPt(40), borderRadius:pxToPt(20), overflow: 'hidden' }}>
                   {
                     !rootStore.avaUrl === true ?
-                      <Image style={{ width: 40, height: 40 }} source={require('../../../assets/icons/avatar/tou2.png')}></Image>
+                      <Image style={{ width: pxToPt(40), height:pxToPt(40) }} source={require('../../../assets/icons/avatar/tou2.png')}></Image>
                       :
-                      <Image style={{ width: 40, height: 40 }} source={{ uri: rootStore.avaUrl }}></Image>
+                      <Image style={{ width: pxToPt(40), height:pxToPt(40) }} source={{ uri: rootStore.avaUrl }}></Image>
                   }
                 </View>
             }
@@ -319,19 +322,19 @@ export default class setting extends Component {
             visible={this.state.showModal}
             transparent={true}
           >
-            <View style={{ flex: 1, alignItems: 'center', marginTop: 193 }}>
-              <View style={{ width: 319, height: 166, borderRadius: 32, backgroundColor: '#2B2D33', paddingLeft: 20, paddingRight: 20, paddingTop: 32, paddingBottom: 32 }}>
-                <Text style={{ color: '#FFFFFF', fontWeight: '500', fontSize: 14, height: 44 }}>
+            <View style={{ flex: 1, alignItems: 'center', marginTop: pxToPt(193) }}>
+              <View style={{ width: pxToPt(319), height: pxToPt(166), borderRadius: pxToPt(32), backgroundColor: '#2B2D33', paddingLeft: pxToPt(20), paddingRight: pxToPt(20), paddingTop: pxToPt(32), paddingBottom:pxToPt(32) }}>
+                <Text style={{ color: '#FFFFFF', fontWeight: '500', fontSize:pxToPt(14), height: pxToPt(44) }}>
                   请确认是否保存修改内容。
                 </Text>
-                <View style={{ width: '100%', flexDirection: 'row', justifyContent: 'space-around', marginTop: 28 }}>
+                <View style={{ width: '100%', flexDirection: 'row', justifyContent: 'space-around', marginTop:pxToPt(28) }}>
                   <TouchableHighlight
                     onPress={
                       this.cancelSumb
                     }
 
-                    style={{ width: 88, height: 30, borderRadius: 14, justifyContent: 'center', alignItems: 'center', borderWidth: 1, borderColor: '#fff' }}>
-                    <Text style={{ color: '#fff', fontSize: 14 }}>取消</Text>
+                    style={{ width: pxToPt(88), height: pxToPt(30), borderRadius: pxToPt(14), justifyContent: 'center', alignItems: 'center', borderWidth: pxToPt(1), borderColor: '#fff' }}>
+                    <Text style={{ color: '#fff', fontSize: pxToPt(14) }}>取消</Text>
                   </TouchableHighlight>
                   <TouchableHighlight
                     onPress={this.onsumbit}
@@ -347,7 +350,7 @@ export default class setting extends Component {
               <></> :
               <>
                 <View
-                  style={{ height: 44, width: 343, marginLeft: 26, marginTop: 286, borderRadius: 8, overflow: 'hidden' }}
+                  style={{ height: pxToPt(44), width: pxToPt(343), marginLeft: pxToPt(26), marginTop:pxToPt(286), borderRadius: pxToPt(8), overflow: 'hidden' }}
                 >
                   <ToastTwo
                     loginOut={this.loginOut}
@@ -369,7 +372,7 @@ export default class setting extends Component {
 }
 const styles = StyleSheet.create({
   arroWrap: {
-    height: 44,
+    height: pxToPt(44),
     alignItems: 'center',
     justifyContent: 'space-between',
     flexDirection: 'row',
@@ -377,12 +380,12 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff'
   },
   arrow: {
-    width: 11.82,
-    height: 22,
+    width: pxToPt(11.82),
+    height: pxToPt(22),
   },
   title: {
     color: '#2B2D33',
-    fontSize: 18,
+    fontSize: pxToPt(18),
     fontWeight: "500",
     fontFamily: 'PingFang SC'
   },
@@ -390,40 +393,40 @@ const styles = StyleSheet.create({
     flex: 1
   },
   box: {
-    marginTop: 8,
-    paddingTop: 10,
-    paddingBottom: 10,
-    paddingLeft: 16,
-    paddingRight: 16,
+    marginTop: pxToPt(8),
+    paddingTop: pxToPt(10),
+    paddingBottom: pxToPt(10),
+    paddingLeft: pxToPt(16),
+    paddingRight: pxToPt(16),
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
     backgroundColor: '#FFFFFF',
   },
   txt: {
-    height: 21,
-    lineHeight: 21,
-    fontSize: 15,
+    height: pxToPt(21),
+    lineHeight: pxToPt(21),
+    fontSize: pxToPt(15),
     fontWeight: '400',
     color: '#2B2D33'
   },
   list: {
-    marginTop: 8,
+    marginTop: pxToPt(8),
     backgroundColor: '#FFFFFF'
   },
   rowItem: {
-    marginLeft: 16,
-    marginRight: 16,
+    marginLeft: pxToPt(16),
+    marginRight: pxToPt(16),
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    height: 44,
+    height: pxToPt(44),
     // borderBottomColor: '#F5F5F7',
   },
   itTxt: {
-    height: 21,
-    lineHeight: 21,
-    fontSize: 15,
+    height: pxToPt(21),
+    lineHeight: pxToPt(21),
+    fontSize: pxToPt(15),
     color: '#2B2D33'
   },
   inpt: {

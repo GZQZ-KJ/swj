@@ -17,6 +17,7 @@ import OrderBuyer from './orderBuyer'
 import OrderDetail from './orderDetail'
 import OrderTime from './orderTime'
 import CountTime from '../ListItem/listTime'
+import { pxToPt } from "../../../utils/styleKits";
 import { PRODUCT_RECEIVE, ORDERS_INFO, PRODUCT_SALEINFO, ORDERS_CANCEL, ORDERS_PAY, PRODUCT_CANCEL } from '../../../utils/api/pathMap'
 import axios from '../../../utils/api/request'
 import { NavigationContext } from '@react-navigation/native'
@@ -270,7 +271,7 @@ export default class orderDetail extends Component {
                 <StatusBar backgroundColor="#fff" barStyle={'dark-content'}></StatusBar>
                 <View style={styles.arroWrap}>
                     <TouchableOpacity
-                        style={{ width: 60, height: 60, alignItems: 'center', justifyContent: 'center' }}
+                        style={{ width: pxToPt(60), height:pxToPt(60), alignItems: 'center', justifyContent: 'center' }}
                         onPress={() => {
                             this.props.navigation.navigate('Tabbar')
                         }}>
@@ -453,28 +454,28 @@ const styles = StyleSheet.create({
     },
     scrollView: {
         backgroundColor: '#F8F9FA',
-        paddingBottom: 60
+        paddingBottom: pxToPt(60)
     },
     arroWrap: {
-        height: 44,
+        height: pxToPt(44),
         alignItems: 'center',
         flexDirection: 'row',
         backgroundColor: '#fff'
     },
     arrow: {
-        width: 11.82,
-        height: 22,
+        width: pxToPt(11.82),
+        height: pxToPt(22),
     },
     title: {
-        marginLeft: 100,
+        marginLeft: pxToPt(100),
         color: '#2B2D33',
-        fontSize: 18,
+        fontSize: pxToPt(18),
         fontWeight: "500",
         fontFamily: 'PingFang SC'
     },
     wrap: {
         alignItems: 'center',
-        marginBottom: 20
+        marginBottom: pxToPt(20)
     },
 
 

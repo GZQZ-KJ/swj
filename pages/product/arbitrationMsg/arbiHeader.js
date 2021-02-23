@@ -4,6 +4,7 @@ import {
     Text,
     StyleSheet
 } from 'react-native'
+import { pxToPt } from "../../../utils/styleKits";
 export default class arbiHeader extends Component {
     constructor(props) {
         super(props)
@@ -35,7 +36,7 @@ export default class arbiHeader extends Component {
 
 const styles = StyleSheet.create({
     headMsg: {
-        height: 44,
+        height: pxToPt(44),
         width: '100%',
         backgroundColor: '#A6B8E0',
         justifyContent: 'center',
@@ -43,7 +44,7 @@ const styles = StyleSheet.create({
     },
     headTex: {
         color: '#fff',
-        fontSize: 15,
+        fontSize: pxToPt(15),
         fontWeight: '500',
         fontFamily: 'PingFang SC'
     },

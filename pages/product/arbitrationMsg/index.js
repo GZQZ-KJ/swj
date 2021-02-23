@@ -16,6 +16,7 @@ import ArbiDetail from './arbiDetail'
 import ArbiTime from './arbiTime'
 import ArbiPicmsg from './arbiPicmsg'
 import { NavigationContext } from '@react-navigation/native'
+import { pxToPt } from "../../../utils/styleKits";
 import axios from '../../../utils/api/request'
 import { ORDERS_ARBITRATIONINFO } from '../../../utils/api/pathMap'
 import { inject, observer } from 'mobx-react'
@@ -100,7 +101,7 @@ export default class arbitration extends Component {
                 <StatusBar backgroundColor="#fff" barStyle={'dark-content'}></StatusBar>
                 <View style={styles.arroWrap}>
                     <TouchableOpacity
-          style={{ width: 60, height: 60, alignItems: 'center', justifyContent: 'center' }} 
+          style={{ width: pxToPt(60), height: pxToPt(60), alignItems: 'center', justifyContent: 'center' }} 
                     onPress={() => {
                         this.props.navigation.goBack()
                     }}>
@@ -143,12 +144,12 @@ export default class arbitration extends Component {
                             />
                             {
                                 status === 3 && result_str !== undefined && result_str === '交易完成' ? <View style={styles.successWrap}>
-                                    <Text style={{ color: '#fff', fontSize: 15 }}>
+                                    <Text style={{ color: '#fff', fontSize: pxToPt(15) }}>
                                         {result_str}
                                     </Text>
                                 </View> : status === 3 && result_str !== undefined && result_str === '交易取消' ?
                                         <View style={styles.tesWrap}>
-                                            <Text style={{ color: '#fff', fontSize: 15 }}>
+                                            <Text style={{ color: '#fff', fontSize: pxToPt(15) }}>
                                                 {result_str}
                                             </Text>
                                         </View> : <></>
@@ -184,63 +185,63 @@ const styles = StyleSheet.create({
         backgroundColor: '#F8F9FA',
     },
     arroWrap: {
-        height: 44,
+        height: pxToPt(44),
         alignItems: 'center',
         flexDirection: 'row',
         backgroundColor: '#fff'
     },
     arrow: {
-        width: 11.82,
-        height: 22,
+        width: pxToPt(11.82),
+        height:pxToPt(22),
     },
     title: {
-        marginLeft: 100,
+        marginLeft: pxToPt(100),
         color: '#2B2D33',
-        fontSize: 18,
+        fontSize: pxToPt(18),
         fontWeight: "500",
         fontFamily: 'PingFang SC'
     },
     wrap: {
-        paddingLeft: 16
+        paddingLeft: pxToPt(16)
     },
     submitArb: {
-        width: 343,
-        height: 44,
+        width: pxToPt(343),
+        height: pxToPt(44),
         backgroundColor: '#3D72E4',
-        marginTop: 20,
-        marginLeft: 8,
-        borderRadius: 8,
+        marginTop: pxToPt(20),
+        marginLeft: pxToPt(8),
+        borderRadius: pxToPt(8),
         justifyContent: 'center',
         alignItems: 'center',
-        marginBottom: 36
+        marginBottom: pxToPt(36)
     },
     successWrap: {
-        width: 343,
-        height: 44,
-        borderRadius: 8,
-        marginLeft: 8,
+        width: pxToPt(343),
+        height: pxToPt(44),
+        borderRadius: pxToPt(8),
+        marginLeft: pxToPt(8),
         backgroundColor: '#3D72E4',
         shadowOffset: { width: 0, height: 4 },
         shadowColor: '#565A66',
-        shadowOpacity: 12,
-        shadowRadius: 2,
+        shadowOpacity: 0.12,
+        shadowRadius: pxToPt(2),
         elevation: 2,
-        marginBottom: 12,
+        marginBottom: pxToPt(12),
         justifyContent: 'center',
         alignItems: 'center'
     },
     tesWrap: {
-        width: 343,
-        height: 44,
-        borderRadius: 8,
-        marginLeft: 8,
+        width: pxToPt(343),
+        height: pxToPt(44),
+        borderRadius: pxToPt(8),
+        marginLeft: pxToPt(8),
         backgroundColor: '#FE5564',
         shadowOffset: { width: 0, height: 4 },
         shadowColor: '#565A66',
-        shadowOpacity: 12,
-        shadowRadius: 2,
+        shadowOpacity: 0.12,
+        shadowRadius: pxToPt(2),
         elevation: 2,
-        marginBottom: 12,
+        marginBottom: pxToPt(12),
         justifyContent: 'center',
         alignItems: 'center'
     },
@@ -248,6 +249,6 @@ const styles = StyleSheet.create({
         color: '#fff',
         fontFamily: 'PingFang SC',
         fontWeight: '500',
-        fontSize: 15
+        fontSize:pxToPt(15)
     },
 })

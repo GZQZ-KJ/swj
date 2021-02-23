@@ -7,7 +7,7 @@ import {
     TouchableHighlight,
     View
 } from "react-native";
-
+import { pxToPt } from "../utils/styleKits";
 class Toast extends Component {
     /**
      * showTex 显示的文本
@@ -34,8 +34,8 @@ class Toast extends Component {
      * @memberof Toast
      */
     static defaultProps = {
-        width: 88,
-        height: 20,
+        width: pxToPt(88),
+        height: pxToPt(20),
         bgC: '#fff',
         fC: '#3D72E4',
         showTex: '',
@@ -44,15 +44,15 @@ class Toast extends Component {
         zbtnBC: '#3D72E4',
         zbtnFC: '#3D72E4',
 
-        qbtnW: 88,
-        qbtnH: 30,
+        qbtnW: pxToPt(88),
+        qbtnH: pxToPt(30),
         qbtnFC: '#fff',
         qbtnBC: '#2B2D33',
         qbtnBoC: '#fff',
         qbtnF: '取消',
 
-        ebtnW: 88,
-        ebtnH: 30,
+        ebtnW: pxToPt(88),
+        ebtnH: pxToPt(30),
         ebtnFC: '#fff',
         ebtnBC: '#2B2D33',
         ebtnBoC: '#fff',
@@ -185,13 +185,13 @@ const styles = StyleSheet.create({
     },
     centered: {
         alignItems: "center",
-        paddingTop: 195,
+        paddingTop: pxToPt(195),
     },
     modalView: {
-        width: 319,
-        height: 166,
+        width: pxToPt(319),
+        height: pxToPt(166),
         backgroundColor: "#282D33",
-        borderRadius: 32,
+        borderRadius: pxToPt(32),
         // justifyContent: 'center',
         // alignItems: "center",
         shadowColor: "#000",
@@ -199,37 +199,37 @@ const styles = StyleSheet.create({
             width: 0,
             height: 2
         },
-        paddingLeft: 20,
-        paddingRight: 20,
-        paddingTop: 32,
-        marginBottom:32,
+        paddingLeft: pxToPt(20),
+        paddingRight: pxToPt(20),
+        paddingTop:pxToPt(32),
+        marginBottom:pxToPt(32),
         shadowOpacity: 0.25,
-        shadowRadius: 3.84,
+        shadowRadius: pxToPt(3.84),
         elevation: 5
     },
     openButton: {
-        borderRadius: 15,
-        paddingTop: 5,
-        paddingBottom: 5,
-        borderWidth: 1,
+        borderRadius: pxToPt(15),
+        paddingTop: pxToPt(5),
+        paddingBottom: pxToPt(5),
+        borderWidth: pxToPt(1),
         justifyContent: 'center',
     },
     textStyle: {
-        fontSize: 14,
+        fontSize: pxToPt(14),
         textAlign: "center"
     },
     textTStyle: {
-        fontSize: 14,
+        fontSize:pxToPt(14),
         textAlign: "center"
     },
     modalText: {
         color: '#fff',
         // backgroundColor:'#fff',
         fontWeight: '500',
-        fontSize: 15,
+        fontSize: pxToPt(15),
         letterSpacing: -1,
-        height:44,
-        marginBottom:28 
+        height:pxToPt(44),
+        marginBottom:pxToPt(28)
       },
     dobut: {
         flexDirection: "row",

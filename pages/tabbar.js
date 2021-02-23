@@ -7,6 +7,7 @@ import {
   Image,
   StyleSheet,
 } from 'react-native';
+import { pxToPt } from "../utils/styleKits";
 
 import TabNavigator from 'react-native-tab-navigator';
 import HomePage from './home/homePage';
@@ -93,7 +94,7 @@ const styles = StyleSheet.create({
   },
 
   tabIcon: {
-    width: 23,
-    height: 23,
+    width: pxToPt(23),
+    height: pxToPt(23),
   }
 });

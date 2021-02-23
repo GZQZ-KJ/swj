@@ -13,6 +13,7 @@ import Toast from '../../../utils/api/Toast'
 import DeviceInfo from 'react-native-device-info';
 import LoginToast from '../../../utils/LoginToast'
 import axios from '../../../utils/api/request'
+import {pxToPt} from '../../../utils/styleKits'
 import { ACCOUNT_LOGIN } from '../../../utils/api/pathMap'
 
 import AsyncStorage from '@react-native-community/async-storage'
@@ -178,7 +179,7 @@ export default class login extends Component {
                     <Text style={styles.regGo} onPress={this.regiest}>立即注册</Text>
                 </View>
                 <View style={styles.inpWrap}>
-                    <View style={{...styles.inp,marginBottom:16}}>
+                    <View style={{...styles.inp,marginBottom:pxToPt(16)}}>
                         <View style={styles.inpImgWrap}>
                             <Image style={styles.inpImg} source={require('../../../assets/icons/loginjujh.png')}></Image>
                         </View>
@@ -215,7 +216,7 @@ export default class login extends Component {
                             />
                         </>
                         <View style={styles.inpIcon}>
-                            <TouchableOpacity onPress={this.changeShowPass} style={{ height: '100%', width: 20, justifyContent: 'center' }}>
+                            <TouchableOpacity onPress={this.changeShowPass} style={{ height: '100%', width: pxToPt(20), justifyContent: 'center' }}>
                                 {
                                     this.state.showPassword ? <Image style={styles.inpImgLast} source={require('../../../assets/icons/eyer1.png')}></Image> : <Image style={styles.inpImgLast} source={require('../../../assets/icons/eyee4.png')}></Image>
                                 }
@@ -225,7 +226,7 @@ export default class login extends Component {
                 </View>
                 <View style={styles.lastWrap}>
                     <View style={styles.lastCir}>
-                        <TouchableOpacity onPress={this.changeCircle} style={{ height: 25, width: 25,alignItems:'flex-end',justifyContent:'center' }} >
+                        <TouchableOpacity onPress={this.changeCircle} style={{ height: pxToPt(25), width: pxToPt(25),alignItems:'flex-end',justifyContent:'center' }} >
                             {
                                 this.state.rootControl ?
                                     <Image style={styles.cirImg} source={require('../../../assets/icons/agree2.png')}></Image> :
@@ -272,103 +273,100 @@ const styles = StyleSheet.create({
         backgroundColor: '#3D72E4',
     },
     arroWrap: {
-        height: 44,
+        height: pxToPt(44),
         justifyContent: 'center',
-        paddingLeft: 16
+        // paddingLeft: pxToPt(16)
 
     },
     arrow: {
-        width: 11.82,
-        height: 22
+        width: pxToPt(11.82),
+        height: pxToPt(22)
     },
     texWrap: {
-        marginTop: 50,
-        marginLeft: 40,
-        height: 48,
-        paddingLeft: 16
+        marginTop: pxToPt(50),
+        marginLeft: pxToPt(40),
+        height: pxToPt(48),
+        // paddingLeft: pxToPt(16)
     },
     tex: {
         color: '#fff',
         fontWeight: 'bold',
-        fontSize: 34
+        fontSize: pxToPt(34)
     },
     regWrap: {
         flexDirection: 'row',
-        marginLeft: 40,
-        marginTop: 12,
-        width: 160,
-        height: 22,
-        paddingLeft: 16
+        marginLeft: pxToPt(40),
+        marginTop: pxToPt(12),
+        width: pxToPt(160),
+        height: pxToPt(22),
+        // paddingLeft:pxToPt(16)
 
     },
     reg: {
         color: '#FFF5FA',
-        fontSize: 16,
+        fontSize: pxToPt(16),
     },
     regGo: {
         color: '#FFF5FA',
         borderBottomWidth: 1,
         borderBottomColor: '#FFF5FA',
-        fontSize: 16,
+        fontSize: pxToPt(16),
     },
     inpWrap: {
-        marginTop: 88,
-        marginLeft: 36,
-        paddingLeft: 16
-
+        marginTop: pxToPt(88),
+        marginLeft:pxToPt(36),
     },
     inp: {
         flexDirection: 'row',
-        width: 303,
-        height: 48,
-        borderWidth: 1,
+        width: pxToPt(303),
+        height: pxToPt(48),
+        borderWidth: pxToPt(1),
         borderColor: '#fff',
-        borderRadius: 8,
+        borderRadius: pxToPt(8),
         alignItems: 'center',
         // marginBottom: 16,
-        paddingRight: 20
+        paddingRight: pxToPt(20)
     },
     inpImgWrap: {
-        marginLeft: 20,
-        marginRight: 11,
+        marginLeft: pxToPt(20),
+        marginRight: pxToPt(11),
     },
     inpIcon: {
-        marginLeft: 60
+        marginLeft:pxToPt(60)
     },
 
     inpImg: {
-        width: 22,
-        height: 22,
+        width: pxToPt(22),
+        height: pxToPt(22),
     },
     inpTexWrap: {
-        borderLeftWidth: 1,
+        borderLeftWidth: pxToPt(1),
         borderLeftColor: '#FFFEFF',
-        height: 12,
+        height: pxToPt(12),
     },
     inpTex: {
         // paddingLeft: 5,
-        width: 160,
+        width: pxToPt(160),
         overflow: 'hidden',
-        fontSize: 15,
+        fontSize: pxToPt(15),
         color: '#fff'
     },
     inpEmail: {
-        paddingLeft: 5,
-        width: 200,
+        // paddingLeft: pxToPt(5),
+        width: pxToPt(200),
         overflow: 'hidden',
-        fontSize: 15,
+        fontSize: pxToPt(15),
         color: '#fff'
     },
     inpImgLast: {
-        width: 14,
-        height: 8,
+        width: pxToPt(14),
+        height: pxToPt(8),
         resizeMode: 'contain'
     },
     lastWrap: {
         flexDirection: 'row',
-        marginLeft: 48,
-        marginTop: 24,
-        paddingLeft: 2
+        marginLeft: pxToPt(36),
+        marginTop: pxToPt(24),
 
     },
     lastCir: {
@@ -376,44 +374,44 @@ const styles = StyleSheet.create({
         alignItems: 'center'
     },
     cirImg: {
-        width: 12,
-        height: 12,
-        marginRight: 5,
+        width: pxToPt(12),
+        height: pxToPt(12),
+        marginRight: pxToPt(5),
     },
     cirTex: {
-        width: 148,
-        height: 16,
-        fontSize: 11,
+        width: pxToPt(148),
+        height: pxToPt(16),
+        fontSize: pxToPt(11),
         color: '#fff',
-        marginRight: 67
+        marginRight: pxToPt(67)
     },
     lastpro: {
         flexDirection: 'row',
         alignItems: 'center'
     },
     proImg: {
-        width: 12,
-        height: 12,
-        marginRight: 4
+        width: pxToPt(12),
+        height: pxToPt(12),
+        marginRight:pxToPt(4)
     },
     proTex: {
-        width: 46,
-        height: 16,
+        width: pxToPt(46),
+        height: pxToPt(16),
         color: '#fff',
-        fontSize: 11
+        fontSize: pxToPt(11)
     },
     loginGo: {
-        width: 303,
-        height: 48,
-        marginLeft: 52,
+        width: pxToPt(303),
+        height: pxToPt(48),
+        marginLeft:pxToPt(36),
         justifyContent: 'center',
         alignItems: 'center',
-        borderRadius: 8,
-        marginTop: 102,
+        borderRadius: pxToPt(8),
+        marginTop: pxToPt(102),
 
     },
     loginTex: {
         color: '#3D72E4',
-        fontSize: 18,
+        fontSize: pxToPt(18),
     }
 })

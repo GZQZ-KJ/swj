@@ -4,6 +4,7 @@ import {
     Text,
     StyleSheet
 } from 'react-native'
+import {pxToPt} from '../../../utils/styleKits'
 export default class listTime extends Component {
     constructor(props) {
         super(props)
@@ -60,9 +61,9 @@ export default class listTime extends Component {
 
 const styles = StyleSheet.create({
     txt: {
-        height: 17,
-        lineHeight: 17,
-        fontSize: 12,
+        height: pxToPt(17),
+        lineHeight: pxToPt(17),
+        fontSize: pxToPt(12),
         color: '#5A5D66'
     },
 })

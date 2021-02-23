@@ -6,7 +6,7 @@ import {
   TouchableNativeFeedback,
   StyleSheet
 } from 'react-native'
-
+import { pxToPt } from "../../../utils/styleKits";
 
 export default class top extends Component {
   constructor(props) {
@@ -54,7 +54,7 @@ const styles = StyleSheet.create({
   header: {
     flexDirection: 'row',
     justifyContent: 'center',
-    height: 44,
+    height: pxToPt(44),
     backgroundColor: '#FFFFFF',
   },
   item: {
@@ -64,11 +64,11 @@ const styles = StyleSheet.create({
     alignItems: 'center'
   },
   title: {
-    height: 21,
-    fontSize: 15,
+    height: pxToPt(21),
+    fontSize: pxToPt(15),
     // color: '#2B2D33'
   },
   topIcon: {
-    marginLeft: 4
+    marginLeft: pxToPt(4)
   },
 })

@@ -11,6 +11,7 @@ import {
 } from 'react-native'
 import Toast from '../../../utils/api/Toast'
 import axios from '../../../utils/api/request'
+import {pxToPt} from '../../../utils/styleKits'
 import AsyncStorage from '@react-native-community/async-storage'
 import { ACCOUNT_REGIEST, ACCOUNT_SENDCODE, ACCOUNT_LOGIN } from '../../../utils/api/pathMap'
 import { NavigationContext } from '@react-navigation/native'
@@ -207,7 +208,7 @@ export default class regiest extends Component {
         return (
             <View style={styles.container}>
                 <StatusBar backgroundColor="#3D72E4" ></StatusBar>
-                <TouchableOpacity style={{ width: 60, height: 60, alignItems: 'center', justifyContent: 'center' }} onPress={this.goBack}>
+                <TouchableOpacity style={{ width: pxToPt(60), height: pxToPt(60), alignItems: 'center', justifyContent: 'center' }} onPress={this.goBack}>
                     <Image style={styles.arrow} onPress={this.goBack} source={require('../../../assets/icons/backo.png')}></Image>
                 </TouchableOpacity>
                 <View style={styles.texWrap}>
@@ -225,7 +226,7 @@ export default class regiest extends Component {
                         </View>
                         <TextInput
                             selectionColor="#fff"
-                            style={{ ...styles.inpTex, width: 180 }}
+                            style={{ ...styles.inpTex, width: pxToPt(180) }}
                             placeholder='请输入邮箱'
                             placeholderTextColor='#ccc'
                             onChangeText={(email) => this.setState({ email })}
@@ -248,7 +249,7 @@ export default class regiest extends Component {
                             this.state.isCountDowning ?
                                 <>
                                     <View style={{ ...styles.inpBtn, backgroundColor: 'rgba(255,255,255,.7)' }}>
-                                            <Text style={{ ...styles.btnTex, color: '#0066C8',fontSize: 10}}>{btnText}</Text>
+                                            <Text style={{ ...styles.btnTex, color: '#0066C8',fontSize: pxToPt(10)}}>{btnText}</Text>
                                         </View>
                                 </> :
                                 <>
@@ -273,7 +274,7 @@ export default class regiest extends Component {
                                 onChangeText={(password) => this.setState({ password })}
                             />
                         </>
-                        <View style={{ marginLeft: 60, height: 40 }}>
+                        <View style={{ marginLeft: pxToPt(60), height: pxToPt(40) }}>
                             <TouchableOpacity
                                 style={{ height: '100%', justifyContent: 'center' }}
                                 onPress={this.changeShowPass}>
@@ -287,7 +288,7 @@ export default class regiest extends Component {
                     </View>
                 </View>
                 <View style={styles.lastCir}>
-                    <TouchableOpacity onPress={this.changeCircle} style={{ height: 25, width: 25, justifyContent: 'center', alignItems: 'center' }} >
+                    <TouchableOpacity onPress={this.changeCircle} style={{ height: pxToPt(25), width: pxToPt(25), justifyContent: 'center', alignItems: 'center' }} >
                         {
                             this.state.rootControl ?
                                 <Image style={styles.cirImg} source={require('../../../assets/icons/agree2.png')}></Image> :
@@ -323,47 +324,47 @@ const styles = StyleSheet.create({
         // paddingLeft: 16,
     },
     arroWrap: {
-        height: 44,
+        height: pxToPt(44),
         justifyContent: 'center',
-        paddingLeft: 16,
+        paddingLeft: pxToPt(16),
 
     },
     arrow: {
-        width: 11.82,
-        height: 22
+        width:pxToPt(11.82),
+        height: pxToPt(22)
     },
     texWrap: {
-        marginTop: 50,
-        marginLeft: 40,
-        height: 48
+        marginTop: pxToPt(50),
+        marginLeft: pxToPt(40),
+        height:pxToPt(48)
     },
     tex: {
         color: '#fff',
         fontWeight: 'bold',
-        fontSize: 34
+        fontSize:pxToPt(34)
     },
     regWrap: {
         flexDirection: 'row',
-        marginLeft: 40,
-        marginTop: 12,
-        width: 160,
-        height: 22,
+        marginLeft: pxToPt(40),
+        marginTop: pxToPt(12),
+        width:pxToPt(160),
+        height: pxToPt(22),
     },
     reg: {
         color: '#FFF5FA',
-        fontSize: 16,
+        fontSize: pxToPt(16),
     },
     inpWrap: {
-        marginTop: 53,
-        marginLeft: 42,
-        height: 159,
-        width: 303,
-        borderWidth: 1,
+        marginTop:pxToPt(53),
+        marginLeft:pxToPt(42),
+        height: pxToPt(159),
+        width: pxToPt(303),
+        borderWidth: pxToPt(1),
         borderColor: '#fff',
-        borderRadius: 12,
-        paddingLeft: 20,
-        paddingRight: 20,
-        paddingLeft: 16,
+        borderRadius: pxToPt(12),
+        paddingLeft: pxToPt(20),
+        paddingRight:pxToPt(20),
+        paddingLeft: pxToPt(16),
 
     },
     inp: {
@@ -373,75 +374,74 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     inpImg: {
-        width: 22,
-        height: 22,
+        width: pxToPt(22),
+        height: pxToPt(22),
     },
     inpTexWrap: {
-        marginLeft: 12,
+        marginLeft: pxToPt(12),
         borderLeftWidth: 1,
         borderLeftColor: '#FFFEFF',
-        height: 12,
+        height:pxToPt(12),
     },
     inpTex: {
         paddingLeft: 5,
-        width: 145,
+        width: pxToPt(145),
         overflow: 'hidden',
-        fontSize: 15,
+        fontSize: pxToPt(15),
         color: '#fff'
     },
     inpBtn: {
         backgroundColor: '#FFF',
-        width: 87,
-        height: 32,
-        borderRadius: 8,
-        paddingLeft: 14,
+        width: pxToPt(87),
+        height: pxToPt(32),
+        borderRadius: pxToPt(8),
+        paddingLeft: pxToPt(14),
         // marginLeft: 10
     },
     btnTex: {
         height: '100%',
         width: '100%',
         color: '#0066C8',
-        fontSize: 12,
-        lineHeight: 32,
+        fontSize: pxToPt(12),
+        lineHeight: pxToPt(32),
 
     },
     inpImgLast: {
-        width: 14,
-        height: 6,
+        width: pxToPt(14),
+        height: pxToPt(6),
         // marginLeft: 80
         // backgroundColor:'#fff'
     },
     loginGo: {
-        width: 303,
-        height: 48,
-        marginLeft: 42,
+        width: pxToPt(303),
+        height: pxToPt(48),
+        marginLeft:pxToPt(42),
         justifyContent: 'center',
         alignItems: 'center',
-        borderRadius: 8,
-        marginTop: 99,
+        borderRadius: pxToPt(8),
+        marginTop: pxToPt(99),
 
     },
     loginTex: {
         color: '#3D72E4',
-        fontSize: 18,
+        fontSize: pxToPt(18),
     },
     lastCir: {
         flexDirection: 'row',
         alignItems: 'center',
-        marginLeft: 44,
-        marginTop: 26
+        marginLeft:pxToPt(44),
+        marginTop: pxToPt(26)
     },
     cirImg: {
-        width: 8,
-        height: 8,
-        marginRight: 4,
+        width: pxToPt(12),
+        height: pxToPt(12),
     },
     cirTex: {
-        width: 148,
-        height: 16,
-        fontSize: 11,
+        width: pxToPt(148),
+        height: pxToPt(16),
+        fontSize: pxToPt(11),
         color: '#fff',
-        marginRight: 71
+        marginRight: pxToPt(71)
     },
     lastpro: {
         flexDirection: 'row',

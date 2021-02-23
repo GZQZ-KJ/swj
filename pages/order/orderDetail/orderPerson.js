@@ -7,6 +7,7 @@ import {
 } from 'react-native'
 
 import CountTime from '../ListItem/listTime'
+import { pxToPt } from "../../../utils/styleKits";
 export default class arbiPerson extends Component {
     constructor(props) {
         super(props)
@@ -97,65 +98,65 @@ export default class arbiPerson extends Component {
 
 const styles = StyleSheet.create({
     wrapper: {
-        width: 343,
-        height: 190,
-        marginTop: 8,
-        borderRadius: 8,
+        width: pxToPt(343),
+        height: pxToPt(190),
+        marginTop: pxToPt(8),
+        borderRadius:pxToPt(8),
         backgroundColor: '#fff',
-        shadowOffset: { width: 0, height: 1 },
+        shadowOffset: { width: pxToPt(0), height: pxToPt(1) },
         shadowColor: '#565A66',
-        elevation: 2,
+        elevation: pxToPt(2),
         shadowOpacity: 0.12,
-        shadowRadius: 2,
-        marginLeft: 6,
-        marginBottom: 12
+        shadowRadius: pxToPt(2),
+        marginLeft: pxToPt(6),
+        marginBottom: pxToPt(12)
     },
     head: {
-        height: 84,
-        width: 319,
-        borderBottomWidth: 1,
+        height: pxToPt(84),
+        width: pxToPt(319),
+        borderBottomWidth: pxToPt(1),
         borderBottomColor: '#F2F3F7',
         flexDirection: 'row',
         alignItems: 'center',
-        marginLeft: 12,
+        marginLeft: pxToPt(12),
     },
     myHead: {
-        width: 51,
-        height: 51,
-        marginRight: 12
+        width: pxToPt(51),
+        height: pxToPt(51),
+        marginRight: pxToPt(12)
     },
     headImg: {
         width: '100%',
         height: '100%',
-        borderRadius: 60
+        borderRadius: pxToPt(60)
     },
     headName: {
-        fontSize: 16,
+        fontSize: pxToPt(16),
         fontWeight: '500',
         color: '#2B2D33'
     },
     orderNum: {
         color: '#8D9099',
-        marginTop: 4,
-        fontSize: 12,
+        marginTop:pxToPt(4),
+        fontSize: pxToPt(12),
     },
     orderDetailWrap: {
         flexDirection: 'row',
-        height: 105,
-        paddingLeft: 12,
+        height: pxToPt(105),
+        paddingLeft: pxToPt(12),
         justifyContent: 'space-between',
-        paddingRight: 12
+        paddingRight:pxToPt(12)
     },
     oNum: {
-        marginTop: 24,
+        marginTop: pxToPt(24),
         fontWeight: '500',
-        fontSize: 18,
+        fontSize: pxToPt(18),
         color: '#2B2D33',
-        marginBottom: 12
+        marginBottom: pxToPt(12)
     },
     unTime: {
-        marginTop: 12,
-        fontSize: 14,
+        marginTop: pxToPt(12),
+        fontSize: pxToPt(14),
         fontWeight: '400',
         color: '#5A5D66'
     },
@@ -163,15 +164,15 @@ const styles = StyleSheet.create({
         alignItems: 'flex-end',
     },
     youMoney: {
-        marginTop: 24,
+        marginTop:pxToPt(24),
         color: '#FE5564',
-        fontSize: 18,
+        fontSize:pxToPt(18),
         fontWeight: 'bold'
     },
     money: {
-        marginTop: 12,
+        marginTop: pxToPt(12),
         color: '#5A5D66',
-        fontSize: 14,
+        fontSize: pxToPt(14),
         fontWeight: '400'
     },
 })

@@ -6,6 +6,7 @@ import {
     Image,
     TouchableOpacity
 } from 'react-native'
+import { pxToPt } from "../../../utils/styleKits";
 import { NavigationContext } from '@react-navigation/native'
 import { inject, observer } from 'mobx-react'
 @inject('rootStore')
@@ -60,22 +61,22 @@ export default class arbitrationIng extends Component {
                     </View>
                     <View style={styles.arbBody}>
                         <View>
-                            <Text style={{ color: '#2B2D33', fontWeight: '500', fontSize: 16 }}>NSS:{item.value}</Text>
+                            <Text style={{ color: '#2B2D33', fontWeight: '500', fontSize: pxToPt(16) }}>NSS:{item.value}</Text>
                         </View>
                         <View style={{ alignItems: 'flex-end' }}>
-                            <Text style={{ color: '#FE5564', marginBottom: 8, fontWeight: 'bold', fontSize: 16 }}>￥:{item.price}</Text>
-                            <Text style={{ color: '#5A5D66', fontSize: 14, fontWeight: '400' }}>总价:{item.sum_count}</Text>
+                            <Text style={{ color: '#FE5564', marginBottom: pxToPt(8), fontWeight: 'bold', fontSize: pxToPt(16) }}>￥:{item.price}</Text>
+                            <Text style={{ color: '#5A5D66', fontSize: pxToPt(14), fontWeight: '400' }}>总价:{item.sum_count}</Text>
                         </View>
                     </View>
-                    <Text style={{ paddingTop: 16, borderTopWidth: 1, borderColor: '#F2F3F7' }}>
+                    <Text style={{ paddingTop:pxToPt(16), borderTopWidth: pxToPt(1), borderColor: '#F2F3F7' }}>
                         {
                             item.status === 1 ?
                                 <>
-                                    <Text style={{ ...styles.arbMsg, marginRight: 8 }}>{item.time_list.buy_arbitration_time}</Text>
+                                    <Text style={{ ...styles.arbMsg, marginRight:pxToPt(8) }}>{item.time_list.buy_arbitration_time}</Text>
                                     <Text style={styles.arbMsg}> 您对该订单提出仲裁，请等待管理员审核</Text>
                                 </> : item.status === 2 ?
                                     <>
-                                        <Text style={{ ...styles.arbMsg, marginRight: 8 }}>{item.time_list.arbitration_finish_time}</Text>
+                                        <Text style={{ ...styles.arbMsg, marginRight:pxToPt(8) }}>{item.time_list.arbitration_finish_time}</Text>
                                         {
                                             item.text_switch ?
                                                 <>
@@ -98,55 +99,55 @@ export default class arbitrationIng extends Component {
 const styles = StyleSheet.create({
     arbing: {
         backgroundColor: '#fff',
-        width: 343,
-        paddingLeft: 12,
-        paddingRight: 12,
-        paddingTop: 12,
-        paddingBottom: 16,
-        borderRadius: 8,
-        shadowOffset: { width: 0, height: 1 },
+        width: pxToPt(343),
+        paddingLeft: pxToPt(12),
+        paddingRight: pxToPt(12),
+        paddingTop: pxToPt(12),
+        paddingBottom: pxToPt(16),
+        borderRadius:pxToPt(8),
+        shadowOffset: { width: pxToPt(0), height:pxToPt(1) },
         shadowColor: '#565A66',
-        elevation: 2,
-        shadowRadius: 2,
-        marginBottom: 12,
-        marginTop: 8
+        elevation: pxToPt(2),
+        shadowRadius:pxToPt(2),
+        marginBottom: pxToPt(12),
+        marginTop: pxToPt(8)
     },
     arbPer: {
         borderBottomColor: '#F2F3F7',
-        borderBottomWidth: 1,
+        borderBottomWidth: pxToPt(1),
         flexDirection: 'row',
         justifyContent: 'space-between'
     },
     arbHead: {
         flexDirection: 'row',
-        width: 100,
-        paddingBottom: 13,
+        width: pxToPt(100),
+        paddingBottom: pxToPt(13),
         alignItems: 'center'
     },
     arbIcon: {
-        width: 26,
-        height: 26,
-        marginRight: 8,
-        borderRadius: 13
+        width: pxToPt(26),
+        height: pxToPt(26),
+        marginRight: pxToPt(8),
+        borderRadius:pxToPt(13)
     },
     arbName: {
         color: '#2B2D33',
-        fontSize: 14,
+        fontSize: pxToPt(14),
         fontWeight: '500'
     },
     arbTex: {
-        fontSize: 12,
+        fontSize: pxToPt(12),
         fontWeight: '400'
     },
     arbBody: {
         flexDirection: 'row',
         justifyContent: 'space-between',
-        paddingTop: 16,
-        paddingBottom: 16,
+        paddingTop: pxToPt(16),
+        paddingBottom: pxToPt(16),
     },
     arbMsg: {
         color: '#5A5D66',
         fontWeight: '400',
-        fontSize: 12,
+        fontSize: pxToPt(12),
     }
 })

@@ -14,7 +14,7 @@ import { SHARE_PAGE, SHARE_GETQRCODE } from '../../../utils/api/pathMap'
 import axios from '../../../utils/api/request'
 import mobx from '../../../utils/mobx/index'
 import Toast from '../../../utils/api/Toast'
-
+import { pxToPt } from "../../../utils/styleKits";
 
 /**
  * 我的分享
@@ -84,7 +84,7 @@ export default class myShare extends Component {
         <StatusBar backgroundColor="#fff" barStyle={'dark-content'}></StatusBar>
         <View style={styles.arroWrap}>
           <TouchableOpacity
-            style={{ width: 60, height: 60, alignItems: 'center', justifyContent: 'center', marginRight: 100 }}
+            style={{ width: pxToPt(60), height: pxToPt(60), alignItems: 'center', justifyContent: 'center', marginRight: pxToPt(100)}}
             onPress={() => {
               this.props.navigation.navigate('Tabbar')
             }}>
@@ -95,7 +95,7 @@ export default class myShare extends Component {
 
         <View style={styles.container}>
           <SafeAreaView >
-            <ScrollView style={{ paddingBottom: 10 }} showsVerticalScrollIndicator={false}>
+            <ScrollView style={{ paddingBottom: pxToPt(10) }} showsVerticalScrollIndicator={false}>
               <View style={styles.card}>
                 <Text style={styles.title}>新用户注册，奖励NSS</Text>
                 <View style={styles.contents}>
@@ -140,7 +140,7 @@ export default class myShare extends Component {
                       <Image style={styles.xuanzekao} source={require('../../../assets/icons/arrows/pros.png')}></Image>
                     </View>
                     <View style={styles.showImage}>
-                      <Image style={{ width: 319.5, height: 319.5 }} source={{ uri: this.state.qrcode }}></Image>
+                      <Image style={{ width: pxToPt(319.5), height: pxToPt(319.5) }} source={{ uri: this.state.qrcode }}></Image>
                     </View>
                   </View>
                 </> : <></>
@@ -172,71 +172,71 @@ export default class myShare extends Component {
 }
 const styles = StyleSheet.create({
   arroWrap: {
-    height: 44,
+    height: pxToPt(44),
     alignItems: 'center',
     flexDirection: 'row',
     backgroundColor: '#fff'
   },
   arrow: {
-    width: 11.82,
-    height: 22,
+    width: pxToPt(11.82),
+    height: pxToPt(22),
   },
   headtitle: {
     color: '#2B2D33',
-    fontSize: 18,
+    fontSize: pxToPt(18),
     fontWeight: "500",
     fontFamily: 'PingFang SC',
   },
   container: {
-    paddingTop: 8,
-    paddingLeft: 16,
-    paddingRight: 16
+    paddingTop: pxToPt(8),
+    paddingLeft: pxToPt(16),
+    paddingRight: pxToPt(16)
   },
   card: {
-    paddingLeft: 12,
-    paddingRight: 12,
-    marginBottom: 24,
+    paddingLeft: pxToPt(12),
+    paddingRight: pxToPt(12),
+    marginBottom: pxToPt(24),
     backgroundColor: '#FFFFFF',
     // shadowColor: '#000',
     // shadowOffset: { width: 0, height: 2 },
     // shadowOpacity: 0.8,
     // shadowRadius: 6,
     // elevation: 2,
-    borderRadius: 8
+    borderRadius: pxToPt(8)
   },
   title: {
-    top: 11,
-    paddingBottom: 11,
-    fontSize: 16,
+    top: pxToPt(11),
+    paddingBottom: pxToPt(11),
+    fontSize: pxToPt(16),
     fontWeight: '600',
     color: '#2B2D33',
-    borderBottomWidth: 1,
+    borderBottomWidth: pxToPt(1),
     borderBottomColor: '#F5F5F7'
   },
   contents: {
-    marginTop: 11,
+    marginTop: pxToPt(11),
   },
   showImage: {
     justifyContent: 'center',
     alignItems: 'center'
   },
   msg: {
-    paddingTop: 12,
-    paddingBottom: 12,
+    paddingTop: pxToPt(12),
+    paddingBottom: pxToPt(12),
     flexDirection: 'row',
     alignItems: 'center'
   },
   txt: {
-    marginLeft: 3,
-    height: 20,
-    lineHeight: 20,
-    fontSize: 14,
+    marginLeft: pxToPt(3),
+    height:pxToPt(20),
+    lineHeight: pxToPt(20),
+    fontSize: pxToPt(14),
     color: '#5A5D66'
   },
   box: {
     flexDirection: 'row',
-    paddingTop: 12,
-    paddingBottom: 12,
+    paddingTop: pxToPt(12),
+    paddingBottom: pxToPt(12),
     justifyContent: 'space-around'
   },
   lf: {
@@ -248,41 +248,41 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   count: {
-    height: 25,
-    lineHeight: 25,
-    fontSize: 18,
+    height: pxToPt(25),
+    lineHeight: pxToPt(25),
+    fontSize: pxToPt(18),
     color: '#3D72E4'
   },
   note: {
-    marginTop: 4,
-    height: 17,
-    lineHeight: 17,
-    fontSize: 12,
+    marginTop: pxToPt(4),
+    height: pxToPt(17),
+    lineHeight: pxToPt(17),
+    fontSize: pxToPt(12),
     color: '#8D9099'
   },
   wrap: {
-    marginTop: 8,
-    marginBottom: 20
+    marginTop: pxToPt(8),
+    marginBottom: pxToPt(20)
   },
   info: {
-    fontSize: 14,
+    fontSize: pxToPt(14),
     color: '#5A5D66'
   },
   btn: {
     justifyContent: 'center',
     alignItems: 'center',
-    borderRadius: 8,
-    height: 44,
+    borderRadius: pxToPt(8),
+    height: pxToPt(44),
     backgroundColor: '#3D72E4',
-    marginBottom: 60
+    marginBottom:pxToPt(60)
   },
   btntxt: {
-    height: 21,
-    lineHeight: 21,
-    fontSize: 15,
+    height: pxToPt(21),
+    lineHeight: pxToPt(21),
+    fontSize: pxToPt(15),
     color: '#FFFFFF'
   },
   xuanzekao: {
-    marginTop: 21
+    marginTop: pxToPt(21)
   }
 })

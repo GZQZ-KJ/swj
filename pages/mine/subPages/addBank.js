@@ -4,6 +4,7 @@ import axios from '../../../utils/api/request'
 import { BANKS_BANKLIST, BANKS_ADDBANK } from '../../../utils/api/pathMap'
 import mobx from '../../../utils/mobx'
 import LoginToast from '../../../utils/LoginToast'
+import { pxToPt } from "../../../utils/styleKits";
 import Toast from "../../../utils/api/Toast"
 /**
  * 添加银行卡
@@ -90,7 +91,7 @@ export default class addBank extends Component {
         <StatusBar backgroundColor="#fff" barStyle={'dark-content'}></StatusBar>
         <View style={styles.arroWrap}>
           <TouchableOpacity
-          style={{ width: 60, height: 60, alignItems: 'center', justifyContent: 'center' }} 
+          style={{ width:pxToPt(60), height: pxToPt(60), alignItems: 'center', justifyContent: 'center' }} 
           onPress={() => {
             this.props.navigation.goBack()
           }}>
@@ -134,7 +135,7 @@ export default class addBank extends Component {
           {
             <Modal visible={this.state.show} transparent={true} animationType={'slide'}>
               <ScrollView>
-                <View style={{ paddingLeft: 20, paddingRight: 20, paddingTop: 10, paddingBottom: 10, backgroundColor: '#fff' }}>
+                <View style={{ paddingLeft: pxToPt(20), paddingRight: pxToPt(20), paddingTop: pxToPt(10), paddingBottom: pxToPt(10), backgroundColor: '#fff' }}>
                   {
                     this.state.chooseBank.map((v, i) => {
                       return (
@@ -170,7 +171,7 @@ export default class addBank extends Component {
 class Pionts extends Component {
   render() {
     let item = Array.from({ length: 3 }, (v, i) => (
-      <View style={{ height: 3, width: 3, backgroundColor: '#F5F5F7', marginLeft: 4 }} key={i}></View>
+      <View style={{ height:pxToPt(3), width: pxToPt(3), backgroundColor: '#F5F5F7', marginLeft: pxToPt(4) }} key={i}></View>
     ))
     return (
       <View style={{ flexDirection: 'row' }}>
@@ -181,46 +182,46 @@ class Pionts extends Component {
 }
 const styles = StyleSheet.create({
   arroWrap: {
-    height: 44,
+    height:pxToPt(44),
     alignItems: 'center',
     flexDirection: 'row',
     backgroundColor: '#fff'
   },
   arrow: {
-    width: 11.82,
-    height: 22,
+    width: pxToPt(11.82),
+    height: pxToPt(22),
   },
   headtitle: {
     color: '#2B2D33',
-    fontSize: 18,
+    fontSize: pxToPt(18),
     fontWeight: "500",
     fontFamily: 'PingFang SC',
-    marginLeft:90
+    marginLeft:pxToPt(90)
   },
   list: {
-    paddingLeft: 16,
-    paddingRight: 16,
+    paddingLeft: pxToPt(16),
+    paddingRight: pxToPt(16),
     backgroundColor: '#FFFFFF'
   },
   item: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    height: 44,
-    borderBottomWidth: 1,
+    height: pxToPt(44),
+    borderBottomWidth: pxToPt(1),
     borderBottomColor: '#F5F5F7'
   },
   title: {
-    height: 21,
-    lineHeight: 21,
-    fontSize: 15,
+    height: pxToPt(21),
+    lineHeight: pxToPt(21),
+    fontSize: pxToPt(15),
     color: '#2B2D33'
   },
   ipt: {
     paddingTop: 0,
     paddingBottom: 0,
-    height: 30,
-    borderBottomWidth: 1,
+    height: pxToPt(30),
+    borderBottomWidth: pxToPt(1),
     borderBottomColor: '#A6B8E0',
     color: '#5A5D66'
   },
@@ -229,56 +230,56 @@ const styles = StyleSheet.create({
     alignItems: 'center'
   },
   note: {
-    marginRight: 8,
-    height: 20,
-    lineHeight: 20,
-    fontSize: 14,
+    marginRight: pxToPt(8),
+    height: pxToPt(20),
+    lineHeight: pxToPt(20),
+    fontSize: pxToPt(14),
     color: '#5A5D66'
   },
   btn: {
-    marginTop: 318,
-    marginLeft: 16,
-    marginRight: 16,
-    height: 44,
+    marginTop: pxToPt(318),
+    marginLeft: pxToPt(16),
+    marginRight: pxToPt(16),
+    height: pxToPt(44),
     justifyContent: 'center',
     alignItems: 'center',
-    borderRadius: 8,
+    borderRadius: pxToPt(8),
     backgroundColor: '#3D72E4'
   },
   txt: {
-    height: 21,
-    lineHeight: 21,
-    fontSize: 15,
+    height: pxToPt(21),
+    lineHeight:pxToPt(21),
+    fontSize: pxToPt(15),
     color: '#FFFFFF'
   },
   bank: {
-    marginTop: 8,
-    marginBottom: 10,
-    height: 120,
+    marginTop:pxToPt(8),
+    marginBottom: pxToPt(10),
+    height: pxToPt(120),
     alignItems: 'center',
     shadowColor: '#000',
-    shadowOffset: { width: 0, height: 1 },
+    shadowOffset: { width: pxToPt(0), height: pxToPt(1) },
     shadowOpacity: 0.8,
-    shadowRadius: 6,
-    elevation: 2,
+    shadowRadius: pxToPt(6),
+    elevation: pxToPt(2),
     overflow: 'hidden'
   },
   img: {
     position: 'absolute',
-    width: 365,
+    width: pxToPt(365),
     height: '100%',
     margin: 0
   },
   num: {
-    marginTop: 31,
-    left: 120,
-    height: 20,
-    lineHeight: 20,
-    fontSize: 14,
+    marginTop: pxToPt(31),
+    left: pxToPt(120),
+    height:pxToPt(20),
+    lineHeight: pxToPt(20),
+    fontSize: pxToPt(14),
     color: '#F5F5F7'
   },
   pit: {
-    left: 154,
-    top: 50
+    left: pxToPt(154),
+    top: pxToPt(50)
   },
 })

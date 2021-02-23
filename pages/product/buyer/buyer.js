@@ -11,6 +11,7 @@ import {
 import MyToast from '../../../utils/MyToast'
 import TouchLingth from '../../../utils/TouchLinght'
 import ToastTwo from '../../../components/ToastTwo'
+import { pxToPt } from "../../../utils/styleKits";
 import Clipboard from '@react-native-community/clipboard'
 import axios from '../../../utils/api/request'
 import { PRODUCT_INFO, PRODUCT_LOCKING, ORDERS_PAY, ORDERS_CANCEL, ORDERS_INFO } from '../../../utils/api/pathMap'
@@ -285,7 +286,7 @@ export default class home extends Component {
                <StatusBar backgroundColor="#fff" barStyle={'dark-content'}></StatusBar>
                 <View style={styles.arroWrap}>
                     <TouchableOpacity 
-          style={{ width: 60, height: 60, alignItems: 'center', justifyContent: 'center' }} 
+          style={{ width: pxToPt(60), height: pxToPt(60), alignItems: 'center', justifyContent: 'center' }} 
                     onPress={() => {
                         this.props.navigation.goBack()
                     }}>
@@ -359,8 +360,8 @@ export default class home extends Component {
                                         <TouchableOpacity style={{ flexDirection: 'row' }}>
                                             {
                                                 num === 4 ?
-                                                    <Text style={{ color: '#3D72E4', paddingRight: 8 }}>{data.bank_account_no}</Text> :
-                                                    <Text style={{ color: '#3D72E4', paddingRight: 8 }}>{data.account_no}</Text>
+                                                    <Text style={{ color: '#3D72E4', paddingRight: pxToPt(8) }}>{data.bank_account_no}</Text> :
+                                                    <Text style={{ color: '#3D72E4', paddingRight: pxToPt(8) }}>{data.account_no}</Text>
                                             }
                                             <View style={styles.copyWrap}>
                                                 <Text style={styles.copyTex}>复制</Text>
@@ -459,19 +460,19 @@ export default class home extends Component {
 
 const styles = StyleSheet.create({
     arroWrap: {
-        height: 44,
+        height: pxToPt(44),
         alignItems: 'center',
         flexDirection: 'row',
         backgroundColor: '#fff'
     },
     arrow: {
-        width: 11.82,
-        height: 22,
+        width: pxToPt(11.82),
+        height: pxToPt(22),
     },
     title: {
-        marginLeft: 100,
+        marginLeft: pxToPt(100),
         color: '#2B2D33',
-        fontSize: 18,
+        fontSize: pxToPt(18),
         fontWeight: "500",
         fontFamily: 'PingFang SC'
     },
@@ -479,20 +480,20 @@ const styles = StyleSheet.create({
         alignItems: 'center'
     },
     wrapper: {
-        width: 343,
-        height: 190,
-        marginTop: 8,
-        borderRadius: 8,
+        width: pxToPt(343),
+        height: pxToPt(190),
+        marginTop: pxToPt(8),
+        borderRadius: pxToPt(8),
         backgroundColor: '#fff',
         shadowOffset: { width: 0, height: 1 },
         shadowColor: '#565A66',
         elevation: 2,
         shadowOpacity: 0.12,
-        shadowRadius: 2,
-        paddingRight: 8,
+        shadowRadius: pxToPt(2),
+        paddingRight: pxToPt(8),
     },
     changeMk: {
-        height: 44,
+        height: pxToPt(44),
         backgroundColor: '#A6B8E0',
         justifyContent: 'center',
         alignItems: 'center',
@@ -501,37 +502,37 @@ const styles = StyleSheet.create({
         position: 'absolute',
         left: 0,
         width: '100%',
-        height: 44,
-        paddingTop: 8,
-        paddingBottom: 7,
-        paddingLeft: 16,
-        paddingRight: 19,
+        height: pxToPt(44),
+        paddingTop: pxToPt(8),
+        paddingBottom: pxToPt(7),
+        paddingLeft: pxToPt(16),
+        paddingRight: pxToPt(19),
         justifyContent: 'center',
         alignItems: 'center',
     },
     showTex: {
         color: '#fff',
         fontWeight: '500',
-        fontSize: 15
+        fontSize: pxToPt(15)
     },
     head: {
-        height: 84,
-        width: 319,
-        borderBottomWidth: 1,
+        height: pxToPt(84),
+        width: pxToPt(319),
+        borderBottomWidth: pxToPt(1),
         borderBottomColor: '#F2F3F7',
         flexDirection: 'row',
         alignItems: 'center',
-        marginLeft: 12,
+        marginLeft: pxToPt(12),
     },
     myHead: {
-        width: 51,
-        height: 51,
-        marginRight: 12
+        width:pxToPt(51),
+        height: pxToPt(51),
+        marginRight:pxToPt(12)
     },
     headImg: {
         width: '100%',
         height: '100%',
-        borderRadius: 60,
+        borderRadius: pxToPt(60),
     },
     headName: {
         fontSize: 16,
@@ -541,18 +542,18 @@ const styles = StyleSheet.create({
     orderDetailWrap: {
         flexDirection: 'row',
         justifyContent: 'space-between',
-        height: 105,
-        marginLeft: 12,
+        height: pxToPt(105),
+        marginLeft: pxToPt(12),
     },
     oNum: {
-        marginTop: 24,
+        marginTop: pxToPt(24),
         fontWeight: '500',
-        fontSize: 18,
+        fontSize: pxToPt(18),
         color: '#2B2D33'
     },
     unTime: {
-        marginTop: 12,
-        fontSize: 14,
+        marginTop: pxToPt(12),
+        fontSize: pxToPt(14),
         fontWeight: '400',
         color: '#5A5D66'
     },
@@ -561,121 +562,121 @@ const styles = StyleSheet.create({
         // marginLeft: 48,
     },
     youMoney: {
-        marginTop: 24,
+        marginTop: pxToPt(24),
         color: '#FE5564',
-        fontSize: 18,
+        fontSize: pxToPt(18),
         fontWeight: 'bold'
     },
     money: {
-        marginTop: 12,
+        marginTop: pxToPt(12),
         color: '#5A5D66',
-        fontSize: 14,
+        fontSize: pxToPt(14),
         fontWeight: '400'
     },
     cTime: {
         flexDirection: 'row',
-        width: 343,
-        height: 44,
+        width: pxToPt(343),
+        height: pxToPt(44),
         backgroundColor: '#fff',
         shadowOffset: { width: 0, height: 1 },
         shadowColor: '#565A66',
-        shadowOpacity: 12,
+        shadowOpacity: 0.12,
         elevation: 2,
-        shadowRadius: 2,
-        borderRadius: 8,
-        marginTop: 12,
+        shadowRadius:pxToPt(2),
+        borderRadius: pxToPt(8),
+        marginTop: pxToPt(12),
         alignItems: 'center'
     },
     fbT: {
-        marginTop: 16,
-        marginLeft: 12,
+        marginTop: pxToPt(16),
+        marginLeft: pxToPt(12),
         color: '#5A5D66',
-        fontSize: 14
+        fontSize:pxToPt(14)
     },
     touchHig: {
-        width: 343,
-        height: 44,
+        width: pxToPt(343),
+        height: pxToPt(44),
         backgroundColor: '#3D72E4',
-        borderRadius: 8,
+        borderRadius: pxToPt(8),
         justifyContent: 'center',
         alignItems: 'center',
-        marginTop: 400,
-        marginLeft: 8,
+        marginTop:pxToPt(400),
+        marginLeft:pxToPt(8),
     },
     touchbot: {
-        width: 343,
-        height: 44,
+        width: pxToPt(343),
+        height:pxToPt(44),
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',
-        marginTop: 360,
-        paddingLeft: 6,
+        marginTop: pxToPt(360),
+        paddingLeft: pxToPt(6),
     },
     cancelClo: {
-        width: 143,
-        height: 44,
-        borderWidth: 1,
+        width: pxToPt(143),
+        height: pxToPt(44),
+        borderWidth: pxToPt(1),
         borderColor: '#3D72E4',
-        borderRadius: 8,
+        borderRadius: pxToPt(8),
         justifyContent: 'center',
         alignItems: 'center',
         backgroundColor: '#fff',
-        marginRight: 8,
+        marginRight: pxToPt(8),
         overflow: 'hidden'
 
     },
     cancelTex: {
         color: '#3D72E4',
-        fontSize: 15,
+        fontSize: pxToPt(15),
         fontWeight: '500'
     },
     enterPay: {
-        width: 188,
-        height: 44,
-        borderWidth: 1,
+        width: pxToPt(188),
+        height: pxToPt(44),
+        borderWidth: pxToPt(1),
         borderColor: '#3D72E4',
-        borderRadius: 8,
+        borderRadius: pxToPt(8),
         justifyContent: 'center',
         alignItems: 'center',
         backgroundColor: '#fff',
-        marginRight: 16,
+        marginRight: pxToPt(16),
         overflow: 'hidden'
     },
     enterTex: {
         color: '#fff',
-        fontSize: 15,
+        fontSize:pxToPt(15),
         fontWeight: '500'
     },
     showTime: {
-        width: 343,
-        marginTop: 12,
+        width: pxToPt(343),
+        marginTop: pxToPt(12),
         backgroundColor: '#fff',
         shadowOffset: { width: 0, height: 1 },
         shadowColor: '#565A66',
-        shadowOpacity: 12,
-        shadowRadius: 2,
-        borderRadius: 8,
+        shadowOpacity: 0.12,
+        shadowRadius: pxToPt(2),
+        borderRadius: pxToPt(8),
         elevation: 2,
         justifyContent: 'center',
-        paddingBottom: 20,
+        paddingBottom: pxToPt(20),
     },
     msgDetail: {
-        width: 343,
-        height: 220,
-        marginTop: 12,
+        width: pxToPt(343),
+        height:pxToPt(220),
+        marginTop: pxToPt(12),
         backgroundColor: '#fff',
         shadowOffset: { width: 0, height: 1 },
         shadowColor: '#565A66',
-        shadowOpacity: 12,
-        shadowRadius: 2,
+        shadowOpacity: 0.12,
+        shadowRadius: pxToPt(2),
         elevation: 2,
-        borderRadius: 8,
+        borderRadius: pxToPt(8),
         overflow: 'hidden',
         alignItems: 'center'
     },
     msgHead: {
-        height: 44,
-        width: 343,
+        height: pxToPt(44),
+        width:pxToPt(343),
         backgroundColor: '#fff',
         alignItems: 'center',
         justifyContent: 'center'
@@ -684,43 +685,43 @@ const styles = StyleSheet.create({
         fontFamily: 'PingFang SC',
         fontWeight: '500',
         color: '#2B2D33',
-        fontSize: 16,
+        fontSize: pxToPt(16),
     },
     msgBody: {
-        height: 43,
-        width: 319,
+        height: pxToPt(43),
+        width: pxToPt(319),
         flexDirection: 'row',
         backgroundColor: '#fff',
         alignItems: 'center',
         justifyContent: 'space-between',
-        borderBottomWidth: 1,
+        borderBottomWidth: pxToPt(1),
         borderBottomColor: '#F2F3F7',
     },
     msgContent: {
         fontFamily: "PingFang SC",
         fontWeight: '400',
         color: '#8D9099',
-        fontSize: 14
+        fontSize: pxToPt(14)
     },
     msgTex: {
         fontFamily: 'PingFang SC',
         fontWeight: '400',
         color: '#5A5D66',
-        fontSize: 14
+        fontSize: pxToPt(14)
     },
     copyWrap: {
-        width: 36,
-        height: 18,
+        width: pxToPt(36),
+        height: pxToPt(18),
         borderColor: '#3D72E4',
-        borderRadius: 15,
-        borderWidth: 1,
+        borderRadius: pxToPt(15),
+        borderWidth: pxToPt(1),
         backgroundColor: '#fff',
         alignItems: 'center',
         justifyContent: 'center'
     },
     copyTex: {
         color: '#3D72E4',
-        fontSize: 11,
+        fontSize: pxToPt(11),
         fontWeight: '500',
         fontFamily: 'PingFang SC'
     },
@@ -728,11 +729,11 @@ const styles = StyleSheet.create({
         fontFamily: 'PingFang SC',
         fontWeight: '500',
         color: '#FE5564',
-        fontSize: 14
+        fontSize: pxToPt(14)
     },
     msgFoot: {
-        height: 44,
-        width: 319,
+        height: pxToPt(44),
+        width: pxToPt(319),
         flexDirection: 'row',
         backgroundColor: '#fff',
         alignItems: 'center',
@@ -740,7 +741,7 @@ const styles = StyleSheet.create({
     },
     orderNum: {
         color: '#8D9099',
-        marginTop: 4,
-        fontSize: 12,
+        marginTop: pxToPt(4),
+        fontSize: pxToPt(12),
     },
 })
