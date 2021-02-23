@@ -276,7 +276,7 @@ export default class secondEchart extends Component {
     render() {
         return (
             <>
-                <StatusBar backgroundColor='#fff'></StatusBar>
+                <StatusBar backgroundColor='#fff' barStyle={'light-content'}></StatusBar>
                 <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center', backgroundColor: '#fff' }}>
                     <View style={{ width: Dimensions.get('window').height, height: Dimensions.get('window').width, transform: [{ rotateZ: '90deg' }] }}>
                         <TouchableOpacity

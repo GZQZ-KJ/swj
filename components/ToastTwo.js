@@ -192,8 +192,8 @@ const styles = StyleSheet.create({
         height: 166,
         backgroundColor: "#282D33",
         borderRadius: 32,
-        justifyContent: 'center',
-        alignItems: "center",
+        // justifyContent: 'center',
+        // alignItems: "center",
         shadowColor: "#000",
         shadowOffset: {
             width: 0,
@@ -202,6 +202,7 @@ const styles = StyleSheet.create({
         paddingLeft: 20,
         paddingRight: 20,
         paddingTop: 32,
+        marginBottom:32,
         shadowOpacity: 0.25,
         shadowRadius: 3.84,
         elevation: 5
@@ -223,13 +224,14 @@ const styles = StyleSheet.create({
     },
     modalText: {
         color: '#fff',
-        fontFamily: 'PingFang SC',
+        // backgroundColor:'#fff',
         fontWeight: '500',
         fontSize: 15,
-        letterSpacing: -1
-    },
+        letterSpacing: -1,
+        height:44,
+        marginBottom:28 
+      },
     dobut: {
-        marginTop: 28,
         flexDirection: "row",
         width: '100%',
         justifyContent: "space-around"

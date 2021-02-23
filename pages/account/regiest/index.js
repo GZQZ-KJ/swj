@@ -247,10 +247,9 @@ export default class regiest extends Component {
                         {
                             this.state.isCountDowning ?
                                 <>
-                                    <View style={{ ...styles.inpBtn, backgroundColor: '#eee' }}>
-                                        <Text style={{ ...styles.btnTex, color: '#ccc', fontSize: 10 }}>{btnText}</Text>
-
-                                    </View>
+                                    <View style={{ ...styles.inpBtn, backgroundColor: 'rgba(255,255,255,.7)' }}>
+                                            <Text style={{ ...styles.btnTex, color: '#0066C8',fontSize: 10}}>{btnText}</Text>
+                                        </View>
                                 </> :
                                 <>
                                     <View style={styles.inpBtn} >

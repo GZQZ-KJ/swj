@@ -287,10 +287,10 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         alignItems: 'center',
-        backgroundColor: '#F8F9FA'
+        backgroundColor: '#F8F9FA',
     },
     wrapper: {
-        marginTop: 48,
+        marginTop: 28,
         width: 343,
         paddingTop: 42,
         paddingBottom: 38,

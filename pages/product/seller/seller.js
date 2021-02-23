@@ -227,8 +227,8 @@ export default class home extends Component {
                                 style={styles.touchHig}>
                                 <ToastTwo
                                     zbtnF={'取消挂卖'}
-                                    showTex={'请确认是否取消挂卖'}
-                                    zbtnBC={'#fff'}
+                                    showTex={'请确认是否取消挂卖 。'}
+                                    zbtnBC={'rgba()'}
                                     zbtnBoC={'#3D72E4'}
                                     qbtnBC={'#fff'}
                                     qbtnF={'否'}
@@ -278,7 +278,8 @@ const styles = StyleSheet.create({
         fontWeight: "500",
     },
     wrap: {
-        paddingLeft: 16
+        width:'100%',
+        alignItems:'center'
     },
     wrapper: {
         width: 343,
@@ -291,8 +292,8 @@ const styles = StyleSheet.create({
         elevation: 2,
         shadowOpacity: 0.12,
         shadowRadius: 2,
-        marginLeft: 6,
-        paddingRight: 12
+        // marginLeft: 6,
+        paddingRight: 12,
     },
     head: {
         height: 84,

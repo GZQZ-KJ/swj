@@ -178,12 +178,11 @@ export default class forgetPass extends Component {
                             </View>
                             <TextInput
                                 selectionColor="#fff"
-                                style={{ ...styles.inpTex, width: 160 }}
+                                style={{ ...styles.inpTex, width: 190 }}
                                 placeholder='请输入邮箱'
                                 placeholderTextColor='#ccc'
                                 onChangeText={(email) => {
-                                    !!email ? email : email = myemail
-                                    console.log('[找回密码emailo]',email)
+                                    // !!email ? email : email = myemail
                                     this.setState({ myemail: email })
                                 }}
                                 value={this.state.myemail}
@@ -206,8 +205,8 @@ export default class forgetPass extends Component {
                             {
                                 this.state.isCountDowning ?
                                     <>
-                                        <View style={{ ...styles.inpBtn, backgroundColor: '#eee' }}>
-                                            <Text style={{ ...styles.btnTex, color: '#ccc' }}>{btnText}</Text>
+                                        <View style={{ ...styles.inpBtn, backgroundColor: 'rgba(255,255,255,.7)' }}>
+                                            <Text style={{ ...styles.btnTex, color: '#0066C8' }}>{btnText}</Text>
                                         </View>
                                     </> :
                                     <>
@@ -270,7 +269,7 @@ export default class forgetPass extends Component {
                         </View>
                     </View>
                     {
-                        !re.test(myemail) && password === '' && rePassword === '' ?
+                        !re.test(myemail) || password === '' || rePassword === '' ?
                             <TouchableHighlight style={{ ...styles.loginGo, backgroundColor: 'rgba(255,255,255,.6)' }} 
                                 underlayColor="rgba(255,255,255,.6)">
                                 <Text style={styles.loginTex}>确认</Text>
