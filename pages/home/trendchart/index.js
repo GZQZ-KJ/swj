@@ -7,7 +7,6 @@ import axios from '../../../utils/api/request'
 import { HOME_DATALIST } from '../../../utils/api/pathMap'
 import { NavigationContext } from '@react-navigation/native'
 import { inject, observer } from 'mobx-react'
-import AsyncStorage from '@react-native-community/async-storage';
 @inject('rootStore')
 @observer
 export default class chart extends Component {
@@ -24,15 +23,15 @@ export default class chart extends Component {
         grid: {
           left: 0,
           right: 0,
-          bottom: 50,
+          bottom: 0,
         },
         legend: {
-          left: 6
+          left: 0
         },
         dataZoom: [{
           type: 'inside',
-          start: 95,
-          end: 100,
+          start: 0,
+          end: 0,
           zoomLock: false,
         }],
         tooltip: {
@@ -62,7 +61,6 @@ export default class chart extends Component {
             show: false, //刻度
             alignWithLabel: true //刻度线和标签对齐
           },
-
           axisLabel: {
             align: {
               option: 'right'
@@ -252,7 +250,6 @@ export default class chart extends Component {
             xAxis: { //x轴
               boundaryGap: false,
               data: counTime,//需要动态改变
-              // data:date,
               axisLine: {
                 show: false, //是否显示轴线
               },
@@ -292,8 +289,6 @@ export default class chart extends Component {
                 splitLine: {
                   show: false, //是否显示分隔线
                 },
-                // scale: true,
-
               },
               {
                 type: 'value',

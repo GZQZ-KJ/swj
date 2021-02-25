@@ -133,7 +133,7 @@ export default class minePage extends Component {
           <View style={[styles.wraplf, basicStyle.flexRow]}>
             <Image style={styles.logo} source={require('../../assets/icons/mine/nssLOGO.png')}></Image>
             <View>
-              <Text style={styles.num}>NSS：{rootStore.nss}</Text>
+              <Text style={styles.num}>可交易余额：{rootStore.nss}</Text>
               <Text style={styles.lockNum}>锁定余额：{rootStore.lockNss}</Text>
             </View>
           </View>
@@ -287,7 +287,8 @@ const styles = StyleSheet.create({
   num: {
     height: pxToPt(25),
     fontSize:pxToPt(18),
-    color: '#3D72E4'
+    color: '#3D72E4',
+    fontWeight:'700'
   },
   lockNum: {
     fontSize: pxToPt(11),

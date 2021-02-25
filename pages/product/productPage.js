@@ -481,7 +481,9 @@ const styles = StyleSheet.create({
     borderTopColor: '#EBECED',
     paddingTop: pxToPt(9),
     paddingBottom: pxToPt(8),
-    backgroundColor: '#FFFFFF'
+    backgroundColor: '#FFFFFF',
+    height:pxToPt(48),
+    alignItems:'center'
   },
   modalBox: {
     flex: 1,

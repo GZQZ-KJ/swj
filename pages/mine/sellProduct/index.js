@@ -82,7 +82,6 @@ export default class sellProduct extends Component {
                 var mobxLockNss = mylockNss + (+sellNss)
                 this.props.rootStore.setNss(mobxnss, mobxLockNss)
                 this.props.rootStore.axiosProductList()
-                console.log('[已经执行mobx请求了]')
                 this.context.navigate('Seller', { id: r.data.result.sp_id, sellNss: sellNss,finish })
                 return
             }
@@ -106,7 +105,6 @@ export default class sellProduct extends Component {
             }
             else {
                 Toast.message(r.data.message, 2000, 'center')
-                return
             }
         }).catch(e => console.log('[获取单价]', e))
     }

@@ -330,7 +330,7 @@ const styles = StyleSheet.create({
 
     },
     arrow: {
-        width:pxToPt(11.82),
+        width: pxToPt(11.82),
         height: pxToPt(22)
     },
     texWrap: {

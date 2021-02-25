@@ -62,14 +62,20 @@ export default class dealMsg extends Component {
       <View style={styles.box}>
         <Text style={styles.title}>交易播报</Text>
         <View style={styles.line}></View>
-        <View style={styles.list}>
+        {
+          this.state.data.length < 1 ? 
+          <View style={styles.nonlist}>
+            <Text style={{color:'#E4E6E8',fontSize:pxToPt(16)}}>暂无交易</Text>
+          </View> :<></>
+        }
+        {/* <View style={styles.list}>
           {this.state.data.map((v, i) => {
             return (
               <Item data={v} key={i}></Item>
             )
           })
           }
-        </View>
+        </View> */}
       </View>
     )
   }
@@ -139,6 +145,13 @@ const styles = StyleSheet.create({
   list: {
     marginTop: pxToPt(8),
     marginBottom:pxToPt(8)
+  },
+  nonlist:{
+    marginTop: pxToPt(8),
+    marginBottom:pxToPt(8),
+    height:pxToPt(60),
+    justifyContent:'center',
+    alignItems:'center'
   },
   img: {
     height: pxToPt(32),
