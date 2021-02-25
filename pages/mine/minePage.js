@@ -3,16 +3,11 @@ import {
   View,
   Text,
   Image,
-  Button,
   StyleSheet,
   StatusBar,
-  TouchableHighlight,
-  DeviceEventEmitter,
-  NativeEventEmitter,
-  NativeModules
+  TouchableOpacity,
 } from 'react-native';
-
-import { TouchableOpacity } from 'react-native-gesture-handler';
+import {WebView} from 'react-native-webview'
 import basicStyle from '../../components/styles/basic/index'
 import { USER_INDEX } from '../../utils/api/pathMap'
 import axios from '../../utils/api/request'
@@ -25,6 +20,7 @@ import AsyncStorage from '@react-native-community/async-storage'
 /**
  * 底部我的页面
  */
+
 export default class minePage extends Component {
   constructor(props) {
     super(props)
@@ -77,19 +73,18 @@ export default class minePage extends Component {
         "token": this.state.token
       }
     }).then(r => {
-      if(r.data.code === 1) {
-        console.log('[我的]',r.data.result)
-        AsyncStorage.setItem('userName',r.data.result.user_name)
+      if (r.data.code === 1) {
+        console.log('[我的]', r.data.result)
+        AsyncStorage.setItem('userName', r.data.result.user_name)
         this.props.rootStore.setNss(r.data.result.nss_balance, r.data.result.locked_nss_balance)
-      this.props.rootStore.setUserInfo( r.data.result.email,this.state.token)
-      this.props.rootStore.setPNInfo(r.data.result.avater_url, this.state.phoneNum, r.data.result.user_name)
-      }else {
-        Toast.message(r.data.message,2000,'center')
-        
+        this.props.rootStore.setUserInfo(r.data.result.email, this.state.token)
+        this.props.rootStore.setPNInfo(r.data.result.avater_url, this.state.phoneNum, r.data.result.user_name)
+      } else {
+        Toast.message(r.data.message, 2000, 'center')
+
       }
     }).catch(e => console.log('[用户首页]', e))
   }
-
 
   componentDidMount() {
     this.userIndex()
@@ -110,7 +105,7 @@ export default class minePage extends Component {
             <View style={[styles.userInfo, basicStyle.flexRow]}>
               <View style={{ width: pxToPt(60), height: pxToPt(60), borderRadius: pxToPt(30) }}>
                 {
-                 rootStore.avaUrl !== null && rootStore.avaUrl.length > 0 ?
+                  rootStore.avaUrl !== null && rootStore.avaUrl.length > 0 ?
                     <Image style={styles.avatar} source={{ uri: rootStore.avaUrl }}></Image>
                     :
                     <Image style={styles.avatar} source={require('../../assets/icons/avatar/tou1.png')}></Image>
@@ -171,18 +166,18 @@ export default class minePage extends Component {
         </View>
         <View style={{ marginBottom: pxToPt(8) }}>
           <TouchableOpacity onPress={() => {
-            Toast.message('客服功能尚未开放')
-            // this.props.navigation.navigate("Service")
+            this.props.navigation.navigate("Service")
           }}>
             <ListItem list={this.state.listData[4]}></ListItem>
           </TouchableOpacity>
         </View>
-        <View style={{ marginBottom:pxToPt(8) }}>
+        
+        <View style={{ marginBottom: pxToPt(8) }}>
           <TouchableOpacity onPress={() => {
             Toast.message('组件功能尚未开放')
             // this.props.navigation.navigate("SouComp")
           }}>
-          <ListItem list={this.state.listData[5]}></ListItem>
+            <ListItem list={this.state.listData[5]}></ListItem>
           </TouchableOpacity>
           <View style={{ height: pxToPt(1), backgroundColor: '#F2F3F7', marginLeft: pxToPt(16), marginRight: pxToPt(16) }}></View>
           <TouchableOpacity onPress={() => {
@@ -247,7 +242,7 @@ const styles = StyleSheet.create({
   wrap: {
     justifyContent: 'space-between',
     alignItems: 'center',
-    height:pxToPt(60),
+    height: pxToPt(60),
     marginLeft: pxToPt(16),
     marginRight: pxToPt(16),
     marginTop: pxToPt(21),
@@ -262,7 +257,7 @@ const styles = StyleSheet.create({
   },
   name: {
     marginTop: pxToPt(8),
-    height:pxToPt(25),
+    height: pxToPt(25),
     fontSize: pxToPt(18),
     color: '#2B2D33'
   },
@@ -286,9 +281,9 @@ const styles = StyleSheet.create({
   },
   num: {
     height: pxToPt(25),
-    fontSize:pxToPt(18),
+    fontSize: pxToPt(18),
     color: '#3D72E4',
-    fontWeight:'700'
+    fontWeight: '700'
   },
   lockNum: {
     fontSize: pxToPt(11),
@@ -297,8 +292,8 @@ const styles = StyleSheet.create({
   },
   btn: {
     height: pxToPt(32),
-    width:pxToPt(80),
-    borderRadius:pxToPt(8),
+    width: pxToPt(80),
+    borderRadius: pxToPt(8),
     overflow: 'hidden',
     justifyContent: 'center',
     alignItems: 'center',
