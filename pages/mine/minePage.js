@@ -7,7 +7,7 @@ import {
   StatusBar,
   TouchableOpacity,
 } from 'react-native';
-import {WebView} from 'react-native-webview'
+import { WebView } from 'react-native-webview'
 import basicStyle from '../../components/styles/basic/index'
 import { USER_INDEX } from '../../utils/api/pathMap'
 import axios from '../../utils/api/request'
@@ -74,7 +74,6 @@ export default class minePage extends Component {
       }
     }).then(r => {
       if (r.data.code === 1) {
-        console.log('[我的]', r.data.result)
         AsyncStorage.setItem('userName', r.data.result.user_name)
         this.props.rootStore.setNss(r.data.result.nss_balance, r.data.result.locked_nss_balance)
         this.props.rootStore.setUserInfo(r.data.result.email, this.state.token)
@@ -101,7 +100,10 @@ export default class minePage extends Component {
         <StatusBar backgroundColor="#fff" barStyle={'dark-content'}></StatusBar>
         <View style={styles.top}>
           <Text style={styles.mineTxt}>我的</Text>
-          <View style={[styles.wrap, basicStyle.flexRow]}>
+          <TouchableOpacity 
+          activeOpacity={1}
+          style={[styles.wrap, basicStyle.flexRow]} 
+          onPress={this.goPresonallMSg}>
             <View style={[styles.userInfo, basicStyle.flexRow]}>
               <View style={{ width: pxToPt(60), height: pxToPt(60), borderRadius: pxToPt(30) }}>
                 {
@@ -116,13 +118,12 @@ export default class minePage extends Component {
                 <Text style={styles.email}>{rootStore.email}</Text>
               </View>
             </View>
-            <TouchableOpacity
+            <View
               style={{ height: '100%', width: pxToPt(30), justifyContent: 'center', alignItems: 'flex-end' }}
-              onPress={this.goPresonallMSg}
             >
               <Image style={styles.arrow} source={require('../../assets/icons/arrows/ck.png')}></Image>
-            </TouchableOpacity>
-          </View>
+            </View>
+          </TouchableOpacity>
         </View>
         <View style={[styles.sellWrap, basicStyle.flexRow]}>
           <View style={[styles.wraplf, basicStyle.flexRow]}>
@@ -132,55 +133,74 @@ export default class minePage extends Component {
               <Text style={styles.lockNum}>锁定余额：{rootStore.lockNss}</Text>
             </View>
           </View>
-          <TouchableOpacity style={styles.btn} onPress={() => {
+          <TouchableOpacity
+          activeOpacity={1}
+          style={styles.btn} onPress={() => {
             this.props.navigation.navigate("SellProduct")
           }}>
             <Text style={{ color: '#fff', fontSize: pxToPt(12) }}>挂卖产品</Text>
           </TouchableOpacity>
         </View>
         <View style={{ marginBottom: pxToPt(8) }}>
-          <TouchableOpacity onPress={() => {
+          <TouchableOpacity
+          activeOpacity={1}
+          onPress={() => {
             this.props.navigation.navigate("Banks")
           }}>
             <ListItem list={this.state.listData[0]}></ListItem>
           </TouchableOpacity>
           <View style={{ height: pxToPt(1), backgroundColor: '#F2F3F7', marginLeft: pxToPt(16), marginRight: pxToPt(16) }}></View>
-          <TouchableOpacity onPress={() => {
+          <TouchableOpacity 
+          activeOpacity={1}
+          onPress={() => {
             this.props.navigation.navigate("Share")
           }}>
             <ListItem list={this.state.listData[1]}></ListItem>
           </TouchableOpacity>
         </View>
         <View style={{ marginBottom: pxToPt(8) }}>
-          <TouchableOpacity onPress={() => {
+          <TouchableOpacity
+          activeOpacity={1}
+          onPress={() => {
             this.props.navigation.navigate("Paylogs")
           }}>
             <ListItem list={this.state.listData[2]}></ListItem>
           </TouchableOpacity>
           <View style={{ height: pxToPt(1), backgroundColor: '#F2F3F7', marginLeft: pxToPt(16), marginRight: pxToPt(16) }}></View>
-          <TouchableOpacity onPress={() => {
+          <TouchableOpacity 
+          activeOpacity={1}
+          onPress={() => {
             this.props.navigation.navigate("Order")
           }}>
+            {
+              !!this.props.rootStore.newArb ? <View style={{ width: pxToPt(6), height: pxToPt(6), borderRadius: pxToPt(3), backgroundColor: '#FE5564', zIndex: 222, position: 'absolute', right: pxToPt(30), top: pxToPt(15) }}></View> : <></>
+            }
             <ListItem list={this.state.listData[3]}></ListItem>
           </TouchableOpacity>
         </View>
         <View style={{ marginBottom: pxToPt(8) }}>
-          <TouchableOpacity onPress={() => {
+          <TouchableOpacity 
+          activeOpacity={1}
+          onPress={() => {
             this.props.navigation.navigate("Service")
           }}>
             <ListItem list={this.state.listData[4]}></ListItem>
           </TouchableOpacity>
         </View>
-        
+
         <View style={{ marginBottom: pxToPt(8) }}>
-          <TouchableOpacity onPress={() => {
+          <TouchableOpacity
+          activeOpacity={1}
+          onPress={() => {
             Toast.message('组件功能尚未开放')
             // this.props.navigation.navigate("SouComp")
           }}>
             <ListItem list={this.state.listData[5]}></ListItem>
           </TouchableOpacity>
           <View style={{ height: pxToPt(1), backgroundColor: '#F2F3F7', marginLeft: pxToPt(16), marginRight: pxToPt(16) }}></View>
-          <TouchableOpacity onPress={() => {
+          <TouchableOpacity
+          activeOpacity={1}
+          onPress={() => {
             this.props.navigation.navigate("About")
           }}>
             {
@@ -189,7 +209,9 @@ export default class minePage extends Component {
             <ListItem list={this.state.listData[6]} isUpdate={this.state.isUpdate}></ListItem>
           </TouchableOpacity>
           <View style={{ height: pxToPt(1), backgroundColor: '#F2F3F7', marginLeft: pxToPt(16), marginRight: pxToPt(16) }}></View>
-          <TouchableOpacity onPress={() => {
+          <TouchableOpacity
+          activeOpacity={1}
+          onPress={() => {
             this.props.navigation.navigate("Setting")
           }}>
             <ListItem list={this.state.listData[7]}></ListItem>
@@ -218,7 +240,9 @@ class ListItem extends Component {
             <View style={styles.itIcon}>
               <Image source={this.props.list.icon}></Image>
             </View>
-            <Text style={styles.itTitle}>{this.props.list.title}</Text>
+            <View style={{ height: 24,flexDirection:'row',alignItems:'center',justifyContent:'center'}}>
+              <Text style={styles.itTitle}>{this.props.list.title}</Text>
+            </View>
           </View>
           <Image style={styles.itArrow} source={require('../../assets/icons/arrows/ck.png')}></Image>
         </View>
@@ -300,24 +324,37 @@ const styles = StyleSheet.create({
     backgroundColor: '#3D72E4'
   },
   item: {
-    backgroundColor: '#FFFFFF'
+    backgroundColor: '#fff',
   },
   itBox: {
     justifyContent: 'space-between',
     alignItems: 'center',
+    height: pxToPt(44),
     marginLeft: pxToPt(16),
     marginRight: pxToPt(16),
     paddingTop: pxToPt(10),
-    paddingBottom: pxToPt(10)
+    paddingBottom: pxToPt(10),
+  },
+  itLf: {
+    alignItems: 'center',
+    height: '100%',
   },
   itTitle: {
     marginLeft: pxToPt(12),
-    height: pxToPt(20),
-    color: '#2B2D33'
+    color: '#2B2D33',
+    fontSize: pxToPt(14),
+    fontWeight: '500'
   },
   arrow: {
     width: pxToPt(4.95),
-    height: pxToPt(8.49)
+    height: pxToPt(8.49),
+  },
+  itIcon: {
+    width:  pxToPt(24),
+    height: pxToPt(24),
+    flexDirection:'row',
+    justifyContent:'center',
+    alignItems:'center'
   }
 
 })

@@ -177,11 +177,12 @@ export default class bank extends Component {
                   <>
                     <Image style={{ width: pxToPt(206.22), height:pxToPt(217.11), alignSelf: 'center', top: pxToPt(53) }} source={require('../../../assets/icons/default/Nobindingbankcard.png')}></Image>
                     <Text style={{ color: '#8D9099', marginTop: pxToPt(78), alignSelf: 'center', fontWeight: '400', fontSize: pxToPt(15) }}>暂无绑定银行卡</Text>
-                    <TouchableOpacity style={styles.nobtn} activeOpacity={.7} onPress={this._addBank}>
+                    <TouchableOpacity 
+                    style={styles.nobtn} activeOpacity={1} onPress={this._addBank}>
                       <Image style={{ height:pxToPt(14), width: pxToPt(14) }} source={this.state.Imgs.add}></Image>
                       <Text style={styles.notxt}>添加银行卡</Text>
                     </TouchableOpacity>
-                  </> : this.state.myBanks.length >= 2 ? <></> : <TouchableOpacity style={styles.btn} activeOpacity={.7} onPress={this._addBank}>
+                  </> : this.state.myBanks.length >= 2 ? <></> : <TouchableOpacity style={styles.btn} activeOpacity={1} onPress={this._addBank}>
                     <Image style={{ height: pxToPt(14), width: pxToPt(14) }} source={this.state.Imgs.add}></Image>
                     <Text style={styles.txt}>添加银行卡</Text>
                   </TouchableOpacity>

@@ -65,6 +65,7 @@ export default class order extends Component {
     }
     _selected = (i) => {
         if (this.state.active === i) return
+        console.log('[仲裁订单IIIIIIIIII]',i)
         this.setState({
             active: i
         })
@@ -75,14 +76,13 @@ export default class order extends Component {
         page = 1
 
         let url = ORDERS_ARBITRATIONLIST + `?status=${active}&page=${page}&page_size=${page_size}`
-        console.log('[仲裁地址Url]',url)
+        console.log('[仲裁地址Url]', url)
         await axios.get(url, {
             headers: {
                 "token": token
             }
         }).then(r => {
             if (r.data.code === 1) {
-                console.log('[仲裁订单]',r.data.result.list)
                 this.setState({
                     data: r.data.result.list,
                     page: r.data.result.page.current_page,
@@ -103,8 +103,9 @@ export default class order extends Component {
                 <StatusBar backgroundColor="#fff" barStyle={'dark-content'}></StatusBar>
                 <View style={styles.arroWrap}>
                     <TouchableOpacity
-                        style={{ width: pxToPt(60), height:pxToPt(60), alignItems: 'center', justifyContent: 'center' }}
+                        style={{ width: pxToPt(60), height: pxToPt(60), alignItems: 'center', justifyContent: 'center' }}
                         onPress={() => {
+                            this.props.rootStore.clearNewArb()
                             this.props.navigation.navigate('Tabbar')
 
                         }}>
@@ -117,29 +118,34 @@ export default class order extends Component {
                     {
                         this.state.title.map((v, i) => {
                             return (
-                                <>
+                                <View style={{height:'100%',flexDirection:'row',justifyContent:'space-around'}} key={i}>
                                     {
                                         this.state.active === v.id ?
                                             <TouchableOpacity
+                                                activeOpacity={1}
                                                 key={i}
                                                 style={{ alignItems: 'center', width: '50%' }}
                                                 onPress={() => this._selected(v.id)}
                                             >
                                                 <Text style={styles.activeTex}>{v.txt}</Text>
-                                                {/* <Text style={styles.activeTex}>—</Text> */}
+                                                {
+                                                  this.state.active === v.id ? <View style={[styles.underscore, styles.activeBto]} /> : <></>
+                                                }
                                             </TouchableOpacity>
                                             :
                                             <TouchableOpacity
+                                                activeOpacity={1}
                                                 key={i}
                                                 style={{ alignItems: 'center', width: '50%' }}
                                                 onPress={() => this._selected(v.id)}
                                             >
                                                 <Text style={styles.chooseTex}>{v.txt}</Text>
-                                                {/* <Text style={styles.chooseTex}>—</Text> */}
-
+                                                {
+                                                 this.state.active === v.id ? <View style={[styles.underscore, styles.activeBto]} /> : <></>
+                                                }
                                             </TouchableOpacity>
                                     }
-                                </>
+                                </View>
                             )
                         })
                     }
@@ -147,9 +153,8 @@ export default class order extends Component {
                 {
                     this.state.data.length < 1 ?
                         <>
-
-                            <Image style={{ width: pxToPt(206.22), height: pxToPt(217.11), alignSelf: 'center', top: pxToPt(53) }} source={require('../../../assets/icons/default/noProduct.png')}></Image>
-                            <View style={{ marginTop:pxToPt(58), alignSelf: 'center', flexDirection: 'row' }}>
+                            <Image style={{ width: pxToPt(206.22), height: pxToPt(217.11), alignSelf: 'center', top: pxToPt(53)}} source={require('../../../assets/icons/default/noProduct.png')}></Image>
+                            <View style={{ marginTop: pxToPt(58), alignSelf: 'center', flexDirection: 'row'}}>
                                 <Text style={{ color: '#8D9099', fontWeight: '400', fontSize: 15 }}>暂无</Text>
                                 <Text style={{ color: '#FE5564', fontWeight: '400', fontSize: 15 }}>仲裁订单</Text>
                             </View>
@@ -172,7 +177,7 @@ export default class order extends Component {
 
 const styles = StyleSheet.create({
     arroWrap: {
-        height:pxToPt(44),
+        height: pxToPt(44),
         alignItems: 'center',
         flexDirection: 'row',
         backgroundColor: '#fff'
@@ -186,19 +191,27 @@ const styles = StyleSheet.create({
         fontSize: pxToPt(18),
         fontWeight: "500",
         fontFamily: 'PingFang SC',
-        marginLeft:pxToPt(100)
+        marginLeft: pxToPt(100)
     },
     chooseHead: {
-        height: pxToPt(44),
+        height: 44,
         backgroundColor: '#fff',
         justifyContent: 'space-around',
-        alignItems: 'center',
+        paddingTop: pxToPt(12),
         flexDirection: 'row',
     },
     chooseTex: {
         color: '#5A5D66'
     },
     activeTex: {
-        color: '#3D72E4'
+        color: '#3D72E4',
     },
+    underscore: {
+        marginTop: pxToPt(4),
+        width: pxToPt(12),
+        height: pxToPt(1),
+    },
+    activeBto: {
+        backgroundColor: '#3D72E4FF',
+    }
 })

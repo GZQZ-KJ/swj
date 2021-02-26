@@ -8,7 +8,7 @@ import { pxToPt } from "../../../utils/styleKits";
 export default class orderTime extends Component {
     render() {
         let { timeList } = this.props
-        console.log('[订单 和 挂卖里面的时间]', timeList)
+        console.log('[订单 和 挂卖里面详情的时间]', timeList)
         if (timeList === undefined) return (<></>)
         return (
             <>
@@ -21,7 +21,7 @@ export default class orderTime extends Component {
                             timeList.finish_time && timeList.finish_time !== undefined ? <Text style={styles.fbT}>订单完成时间：{timeList.finish_time}</Text> : <></>
                         }
                         {
-                            timeList.buy_arbitration_time && timeList.buy_arbitration_time !== undefined ? <Text style={styles.fbT}>买方仲裁反馈时间：{timeList.finish_time}</Text> : <></>
+                            timeList.buy_arbitration_time && timeList.buy_arbitration_time !== undefined ? <Text style={styles.fbT}>买方仲裁反馈时间：{timeList.buy_arbitration_time}</Text> : <></>
                         }
                         {
                             timeList.arbitration_time && timeList.arbitration_time !== undefined ? <Text style={styles.fbT}>卖方提出仲裁时间：{timeList.arbitration_time}</Text> : <></>

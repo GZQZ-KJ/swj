@@ -186,9 +186,9 @@ export default class setting extends Component {
 
   }
   async componentDidMount() {
-    let avater = await AsyncStorage.getItem('avater_url')
-    let userName = await AsyncStorage.getItem('userName')
-    console.log('componentDidMount',userName)
+    let avater = this.props.rootStore.avaUrl
+    let userName = await AsyncStorage.getItem('userName') || ''
+    console.log('componentDidMount',avater)
     this.setState({
       avater_url: avater,
       user_name: userName
@@ -197,20 +197,13 @@ export default class setting extends Component {
 
   render() {
     let { rootStore } = this.props
-    console.log('renderAvaUrl',this.state.avater_url,this.state.user_name)
+    console.log('[头像路径]',rootStore.avaUrl)
     return (
       <>
         <StatusBar backgroundColor="#fff" barStyle={'dark-content'}></StatusBar>
         <View style={styles.arroWrap}>
-          <TouchableOpacity style={{ width: pxToPt(60), height: pxToPt(60), alignItems: 'center', justifyContent: 'center' }} onPress={() => {
-            // if (this.state.canChange) {
-            //   this.setState({
-            //     showModal: true
-            //   })
-            // } else {
+          <TouchableOpacity style={{ width: pxToPt(60), height: pxToPt(60),marginRight:pxToPt(100) , alignItems: 'center', justifyContent: 'center' }} onPress={() => {
             this.props.navigation.navigate('Tabbar')
-
-            // }
           }}>
             <Image style={styles.arrow} source={require('../../../assets/icons/backx.png')}></Image>
           </TouchableOpacity>
@@ -220,12 +213,6 @@ export default class setting extends Component {
             this.state.canChange ?
               <TouchableOpacity
                 style={{ paddingRight: pxToPt(10), height: '100%', justifyContent: 'center' }}
-                // onPress={() => {
-                //   this.setState({
-                //     showModal: true,
-                //     complate: true,
-                //   })
-                // }}
                 onPress={this.onsumbit}
               >
                 <Text>完成</Text>
@@ -250,16 +237,16 @@ export default class setting extends Component {
                   onPress={this.upLoadHead}
                 >
                   {
-                    !rootStore.avaUrl === true ?
+                    rootStore.avaUrl === true ?
                       <Image style={{ width: pxToPt(40), height: pxToPt(40) }} source={require('../../../assets/icons/avatar/tou2.png')}></Image>
                       :
-                      <Image style={{ width: pxToPt(40), height:pxToPt(40) }} source={{ uri: this.state.avater_url }}></Image>
+                      <Image style={{ width: pxToPt(40), height:pxToPt(40) }} source={{ uri: rootStore.avaUrl }}></Image>
                   }
                 </TouchableHighlight>
                 :
                 <View style={{ width: pxToPt(40), height:pxToPt(40), borderRadius:pxToPt(20), overflow: 'hidden' }}>
                   {
-                    !rootStore.avaUrl === true ?
+                    rootStore.avaUrl === true ?
                       <Image style={{ width: pxToPt(40), height:pxToPt(40) }} source={require('../../../assets/icons/avatar/tou2.png')}></Image>
                       :
                       <Image style={{ width: pxToPt(40), height:pxToPt(40) }} source={{ uri: rootStore.avaUrl }}></Image>
@@ -306,7 +293,7 @@ export default class setting extends Component {
                     <Text style={styles.itTxt}>手机号</Text>
                     <Text
                       style={styles.inpt}
-                    >{this.state.phoneNum === '' ? 'Phone Number' : rootStore.phoneNum}</Text>
+                    >{this.state.phoneNum === '' ? '请输入手机号' : rootStore.phoneNum}</Text>
                   </View>
                 </>
             }
@@ -350,7 +337,7 @@ export default class setting extends Component {
               <></> :
               <>
                 <View
-                  style={{ height: pxToPt(44), width: pxToPt(343), marginLeft: pxToPt(26), marginTop:pxToPt(286), borderRadius: pxToPt(8), overflow: 'hidden' }}
+                  style={{ height: pxToPt(44), width: pxToPt(343), marginLeft: pxToPt(16), marginTop:pxToPt(286), borderRadius: pxToPt(8), overflow: 'hidden' }}
                 >
                   <ToastTwo
                     loginOut={this.loginOut}
@@ -374,10 +361,10 @@ const styles = StyleSheet.create({
   arroWrap: {
     height: pxToPt(44),
     alignItems: 'center',
-    justifyContent: 'space-between',
+    // justifyContent: 'space-between',
     flexDirection: 'row',
     // paddingLeft: 26,
-    backgroundColor: '#fff'
+    backgroundColor: '#fff',
   },
   arrow: {
     width: pxToPt(11.82),
@@ -387,7 +374,8 @@ const styles = StyleSheet.create({
     color: '#2B2D33',
     fontSize: pxToPt(18),
     fontWeight: "500",
-    fontFamily: 'PingFang SC'
+    fontFamily: 'PingFang SC',
+    marginRight:pxToPt(100)
   },
   container: {
     flex: 1

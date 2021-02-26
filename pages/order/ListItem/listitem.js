@@ -49,7 +49,8 @@ export default class listitem extends Component {
                     break;
                 case 4:
                     if (st.remark === '您已确认到账，订单已完成') return `订单已完成`
-                    return `卖家未确认，订单自动完成`
+                    if (st.remark === '您未在规定时间内确认到账，订单已自动完成') return `订单已自动完成`
+                    return `${st.remark}`
                     break;
                 case 5:
                     return `被仲裁中`

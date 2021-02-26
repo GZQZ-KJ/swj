@@ -1,5 +1,5 @@
 import React, { Component } from "react"
-import { View, Text, Image, TextInput, StyleSheet, StatusBar, TouchableOpacity, Modal, ScrollView, TouchableHighlight } from 'react-native'
+import { View, Text, Image, ImageBackground, TextInput, StyleSheet, StatusBar, TouchableOpacity, Modal, ScrollView, TouchableHighlight } from 'react-native'
 import axios from '../../../utils/api/request'
 import { BANKS_BANKLIST, BANKS_ADDBANK } from '../../../utils/api/pathMap'
 import mobx from '../../../utils/mobx'
@@ -26,9 +26,6 @@ export default class addBank extends Component {
   //选择开户行
 
   _gotoBank = async () => {
-    this.setState({
-      show: true
-    })
     await axios.get(BANKS_BANKLIST, {
       headers: {
         "Content-Type": "application/json",
@@ -36,16 +33,15 @@ export default class addBank extends Component {
       }
     })
       .then(r => {
-        if(r.data.code === 1) {
+        if (r.data.code === 1) {
+          console.log('开户银行', r.data.result)
           this.setState({
-            chooseBank:r.data.result
+            chooseBank: r.data.result,
+            show: true
           })
+        } else {
           Toast.message(r.data.message, 2000, 'center')
-        }else {
-          Toast.message(r.data.message, 2000, 'center')
-
         }
-        
       })
       .catch(e => console.log(e))
   }
@@ -91,16 +87,16 @@ export default class addBank extends Component {
         <StatusBar backgroundColor="#fff" barStyle={'dark-content'}></StatusBar>
         <View style={styles.arroWrap}>
           <TouchableOpacity
-          style={{ width:pxToPt(60), height: pxToPt(60), alignItems: 'center', justifyContent: 'center' }} 
-          onPress={() => {
-            this.props.navigation.goBack()
-          }}>
+            style={{ width: pxToPt(60), height: pxToPt(60), alignItems: 'center', justifyContent: 'center' }}
+            onPress={() => {
+              this.props.navigation.goBack()
+            }}>
             <Image style={styles.arrow} source={require('../../../assets/icons/backx.png')}></Image>
           </TouchableOpacity>
           <Text style={styles.headtitle}>添加银行卡</Text>
         </View>
         <View style={styles.list}>
-          <TouchableOpacity style={styles.item} activeOpacity={.7} onPress={this._gotoBank}>
+          <TouchableOpacity style={styles.item} activeOpacity={1} onPress={this._gotoBank}>
             <Text style={styles.title}>开户银行</Text>
             <View style={styles.rtBox}>
               <Text style={styles.note}>{this.state.openbank}</Text>
@@ -131,36 +127,58 @@ export default class addBank extends Component {
               onChangeText={(account_address) => this.setState({ account_address })}
             ></TextInput>
           </View>
-
-          {
-            <Modal visible={this.state.show} transparent={true} animationType={'slide'}>
-              <ScrollView>
-                <View style={{ paddingLeft: pxToPt(20), paddingRight: pxToPt(20), paddingTop: pxToPt(10), paddingBottom: pxToPt(10), backgroundColor: '#fff' }}>
-                  {
-                    this.state.chooseBank.map((v, i) => {
-                      return (
-                        <TouchableOpacity
-                          activeOpacity={1}
-                          key={i} style={styles.bank} onPress={() => {
-                            this.setState({
-                              openbank: v.short_name,
-                              bank_id: v.bank_id,
-                              show: false
-                            })
-
-                          }}>
-                          <Image style={styles.img} source={{ uri: v.background_url }}></Image>
-                          <Text style={styles.num}>{i}</Text>
-                          {/* <View style={styles.pit}><Pionts /></View> */}
-                        </TouchableOpacity>
-                      )
-                    })
-                  }
-                </View>
-              </ScrollView>
-            </Modal>
-          }
         </View>
+        {
+          <Modal visible={this.state.show} >
+            <View style={styles.arroWrap}>
+              <TouchableOpacity
+                style={{ width: pxToPt(60), height: pxToPt(60), alignItems: 'center', justifyContent: 'center' }}
+                onPress={() => {
+                  this.setState({
+                    show: false
+                  })
+                }}>
+                <Image style={styles.arrow} source={require('../../../assets/icons/backx.png')}></Image>
+              </TouchableOpacity>
+              <Text style={styles.headtitle}>选择银行卡</Text>
+            </View>
+            <ScrollView>
+              <View style={{ paddingLeft: pxToPt(20), paddingRight: pxToPt(20), paddingTop: pxToPt(10), paddingBottom: pxToPt(10), backgroundColor: '#fff',overflow:'hidden',borderWidth:pxToPt(1),borderColor:'#fff'}}>
+                {
+                  this.state.chooseBank.map((v, i) => {
+                    return (
+                      <TouchableOpacity
+                        activeOpacity={1}
+                        key={i} style={styles.bank} onPress={() => {
+                          this.setState({
+                            openbank: v.short_name,
+                            bank_id: v.bank_id,
+                            show: false
+                          })
+
+                        }}>
+                        <ImageBackground 
+                        activeOpacity={1}
+                        source={{ uri: v.background_url }} 
+                        style={styles.wrapperBc}>
+                          <View style={{ flexDirection: "row" }}>
+                            <View style={styles.icon}>
+                              <Image source={{ uri: v.icon }} style={{ width: pxToPt(28), height: pxToPt(28) }}></Image>
+                            </View>
+                            <Text style={styles.bankTitle}>{v.full_name}</Text>
+                          </View>
+                          <View>
+                            {/* <Text style={styles.bankNum}>{v.bank_id}</Text> */}
+                          </View>
+                        </ImageBackground>
+                      </TouchableOpacity>
+                    )
+                  })
+                }
+              </View>
+            </ScrollView>
+          </Modal>
+        }
         <TouchableOpacity style={styles.btn} activeOpacity={.7} onPress={this._confirm}>
           <Text style={styles.txt}>确认</Text>
         </TouchableOpacity>
@@ -171,7 +189,7 @@ export default class addBank extends Component {
 class Pionts extends Component {
   render() {
     let item = Array.from({ length: 3 }, (v, i) => (
-      <View style={{ height:pxToPt(3), width: pxToPt(3), backgroundColor: '#F5F5F7', marginLeft: pxToPt(4) }} key={i}></View>
+      <View style={{ height: pxToPt(3), width: pxToPt(3), backgroundColor: '#F5F5F7', marginLeft: pxToPt(4) }} key={i}></View>
     ))
     return (
       <View style={{ flexDirection: 'row' }}>
@@ -182,7 +200,7 @@ class Pionts extends Component {
 }
 const styles = StyleSheet.create({
   arroWrap: {
-    height:pxToPt(44),
+    height: pxToPt(44),
     alignItems: 'center',
     flexDirection: 'row',
     backgroundColor: '#fff'
@@ -196,7 +214,7 @@ const styles = StyleSheet.create({
     fontSize: pxToPt(18),
     fontWeight: "500",
     fontFamily: 'PingFang SC',
-    marginLeft:pxToPt(90)
+    marginLeft: pxToPt(90)
   },
   list: {
     paddingLeft: pxToPt(16),
@@ -248,12 +266,12 @@ const styles = StyleSheet.create({
   },
   txt: {
     height: pxToPt(21),
-    lineHeight:pxToPt(21),
+    lineHeight: pxToPt(21),
     fontSize: pxToPt(15),
     color: '#FFFFFF'
   },
   bank: {
-    marginTop:pxToPt(8),
+    marginTop: pxToPt(8),
     marginBottom: pxToPt(10),
     height: pxToPt(120),
     alignItems: 'center',
@@ -273,7 +291,7 @@ const styles = StyleSheet.create({
   num: {
     marginTop: pxToPt(31),
     left: pxToPt(120),
-    height:pxToPt(20),
+    height: pxToPt(20),
     lineHeight: pxToPt(20),
     fontSize: pxToPt(14),
     color: '#F5F5F7'
@@ -281,5 +299,40 @@ const styles = StyleSheet.create({
   pit: {
     left: pxToPt(154),
     top: pxToPt(50)
+  },
+  wrapperBc: {
+    width: pxToPt(343),
+    height: pxToPt(120),
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    borderRadius:pxToPt(12),
+    borderWidth:1,
+    borderColor:'#fff',
+    overflow:'hidden'
+  },
+  icon: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginTop: pxToPt(20),
+    marginLeft: pxToPt(10),
+    width: pxToPt(40), height: pxToPt(40),
+    backgroundColor: '#fff',
+    borderRadius: pxToPt(20)
+  },
+  bankTitle: {
+    marginTop: pxToPt(29),
+    marginLeft: pxToPt(8),
+    fontSize: pxToPt(16),
+    fontWeight: "500",
+    color: '#F5F5F7'
+  },
+  bankNum: {
+    color: '#F5F5F7',
+    paddingRight: pxToPt(12),
+    fontSize:pxToPt(14),
+    fontWeight: '400',
+    marginTop: pxToPt(31),
+    marginBottom: pxToPt(50)
+
   },
 })

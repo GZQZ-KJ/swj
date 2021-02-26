@@ -118,13 +118,13 @@ export default class productPage extends Component {
     var priceSort = price_Sort ? 'price_desc' : 'prrice_asc'
     var url = PRODUCT_INDEX + `?min_sum_count=${min_sum_count}&max_sum_count=${max_sum_count}&min_price=${min_price}&max_price=${max_price}&page=${current_page}&page_size=${pageSize}&sort_code=${timeSort, sumCountSort, priceSort}`
     //发送请求
-    console.log('[价格筛选 请求前]','最小总价',min_sum_count,'最大总价',max_sum_count,'最小单价',min_price,'最大单价',max_price)
+    console.log('[价格筛选 请求前]', '最小总价', min_sum_count, '最大总价', max_sum_count, '最小单价', min_price, '最大单价', max_price)
     await axios.get(url, {
       headers: {
         "token": token
       }
     }).then(r => {
-      console.log('[请求回来的数据]',r.data.result.list)
+      console.log('[请求回来的数据]', r.data.result.list)
       if (r.data.code === 1) {
         this.props.rootStore.setProductList(r.data.result.list)
         this.setState({
@@ -132,10 +132,10 @@ export default class productPage extends Component {
           page: r.data.result.page.current_page,
           total: r.data.result.page.total,
           modalVisible: false,
-          min_sum_count:'',
-          max_sum_count:'',
-          min_price:'',
-          max_price:'',
+          min_sum_count: '',
+          max_sum_count: '',
+          min_price: '',
+          max_price: '',
         })
       } else {
         Toast.message(r.data.message, 2000, 'center')
@@ -322,11 +322,11 @@ export default class productPage extends Component {
                             this.state.time_Sort ?
                               <>
                                 <Text style={styles.rttxt}>从高到低</Text>
-                                <Image style={{width:pxToPt(14.78),height:pxToPt(18)}} source={require('../../assets/icons/pro/pro1.png')}></Image>
+                                <Image style={{ width: pxToPt(14.78), height: pxToPt(18) }} source={require('../../assets/icons/pro/pro1.png')}></Image>
                               </> :
                               <>
                                 <Text style={styles.rttxt}>从低到高</Text>
-                                <Image style={{width:pxToPt(14.78),height:pxToPt(18)}} source={require('../../assets/icons/pro/pro.png')}></Image>
+                                <Image style={{ width: pxToPt(14.78), height: pxToPt(18) }} source={require('../../assets/icons/pro/pro.png')}></Image>
                               </>
                           }
                         </TouchableOpacity>
@@ -345,11 +345,11 @@ export default class productPage extends Component {
                             this.state.sum_count_Sort ?
                               <>
                                 <Text style={styles.rttxt}>从高到低</Text>
-                                <Image style={{width:pxToPt(14.78),height:pxToPt(18)}} source={require('../../assets/icons/pro/pro1.png')}></Image>
+                                <Image style={{ width: pxToPt(14.78), height: pxToPt(18) }} source={require('../../assets/icons/pro/pro1.png')}></Image>
                               </> :
                               <>
                                 <Text style={styles.rttxt}>从低到高</Text>
-                                <Image style={{width:pxToPt(14.78),height:pxToPt(18)}} source={require('../../assets/icons/pro/pro.png')}></Image>
+                                <Image style={{ width: pxToPt(14.78), height: pxToPt(18) }} source={require('../../assets/icons/pro/pro.png')}></Image>
                               </>
                           }
                         </TouchableOpacity>
@@ -368,11 +368,11 @@ export default class productPage extends Component {
                             this.state.price_Sort ?
                               <>
                                 <Text style={styles.rttxt}>从高到低</Text>
-                                <Image style={{width:pxToPt(14.78),height:pxToPt(18)}} source={require('../../assets/icons/pro/pro1.png')}></Image>
+                                <Image style={{ width: pxToPt(14.78), height: pxToPt(18) }} source={require('../../assets/icons/pro/pro1.png')}></Image>
                               </> :
                               <>
                                 <Text style={styles.rttxt}>从低到高</Text>
-                                <Image style={{width:pxToPt(14.78),height:pxToPt(18)}} source={require('../../assets/icons/pro/pro.png')}></Image>
+                                <Image style={{ width: pxToPt(14.78), height: pxToPt(18) }} source={require('../../assets/icons/pro/pro.png')}></Image>
                               </>
                           }
 
@@ -392,47 +392,46 @@ export default class productPage extends Component {
               </View>
             </View>
           </Modal>
-          {
-            rootStore.productList.length < 1 ?
-              <>
-                <Image style={{ width: pxToPt(206.22), height:pxToPt(217.11), alignSelf: 'center', top: pxToPt(53) }} source={require('../../assets/icons/default/noProduct.png')}></Image>
-                <Text style={{ color: '#8D9099', marginTop:pxToPt(58), alignSelf: 'center', fontWeight: '400', fontSize: pxToPt(15) }}>暂无产品</Text>
-              </>
-              :
-              <SafeAreaView style={{ paddingBottom: pxToPt(90) }}>
-                <ScrollView
-                  refreshControl={
-                    <RefreshControl
-                      refreshing={this.state.isRefreshing}
-                      onRefresh={() => this.onRefreshHandle()}
+          <SafeAreaView style={{ paddingBottom: pxToPt(90) }}>
+            <ScrollView
+              refreshControl={
+                <RefreshControl
+                  refreshing={this.state.isRefreshing}
+                  onRefresh={() => this.onRefreshHandle()}
+                />
+              }
+              showsVerticalScrollIndicator={false}
+              scrollsToTop={true}
+              onMomentumScrollEnd={this.getMore}
+              onScroll={() => {
+                this.setState({
+                  isScroll: false
+                })
+              }}
+            >
+              {
+                rootStore.productList.length < 1 ?
+                  <>
+                    <Image style={{ width: pxToPt(206.22), height: pxToPt(217.11), alignSelf: 'center', top: pxToPt(53) }} source={require('../../assets/icons/default/noProduct.png')}></Image>
+                    <Text style={{ color: '#8D9099', marginTop: pxToPt(58), alignSelf: 'center', fontWeight: '400', fontSize: pxToPt(15) }}>暂无产品</Text>
+                  </>
+                  :
+                  rootStore.productList.map((v, i) => {
+                    return <ProItem
+                      key={i}
+                      navigation={this.props.navigation}
+                      isScroll={this.state.isScroll}
+                      v={v}
                     />
-                  }
-                  showsVerticalScrollIndicator={false}
-                  scrollsToTop={true}
-                  onMomentumScrollEnd={this.getMore}
-                  onScroll={() => {
-                    this.setState({
-                      isScroll: false
-                    })
-                  }}
-                >
-                  {
-                    rootStore.productList.map((v, i) => {
-                      return <ProItem
-                        key={i}
-                        navigation={this.props.navigation}
-                        isScroll={this.state.isScroll}
-                        v={v}
-                      />
-                    })
-                  }
-                  {
-                    this.state.control ?
-                      <View style={{ height: pxToPt(44), width: '100%', justifyContent: 'center', alignItems: 'center' }}><Text style={{ fontSize: pxToPt(12), color: '#000' }}>---人家是有底线的---</Text></View> : <></>
-                  }
-                </ScrollView>
-              </SafeAreaView>
-          }
+                  })
+              }
+              {
+                this.state.control ?
+                  <View style={{ height: pxToPt(44), width: '100%', justifyContent: 'center', alignItems: 'center' }}><Text style={{ fontSize: pxToPt(12), color: '#000' }}>---人家是有底线的---</Text></View> : <></>
+              }
+            </ScrollView>
+          </SafeAreaView>
+          {/* } */}
 
         </View>
       </>
@@ -482,8 +481,8 @@ const styles = StyleSheet.create({
     paddingTop: pxToPt(9),
     paddingBottom: pxToPt(8),
     backgroundColor: '#FFFFFF',
-    height:pxToPt(48),
-    alignItems:'center'
+    height: pxToPt(48),
+    alignItems: 'center'
   },
   modalBox: {
     flex: 1,
@@ -505,8 +504,8 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     flexDirection: 'row',
     marginLeft: pxToPt(16),
-    marginRight:pxToPt(13),
-    borderBottomWidth:pxToPt(1),
+    marginRight: pxToPt(13),
+    borderBottomWidth: pxToPt(1),
     borderBottomColor: '#F5F5F7'
   },
   lftxt: {

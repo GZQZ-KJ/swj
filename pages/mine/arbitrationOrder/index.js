@@ -26,13 +26,15 @@ export default class arbitrationIng extends Component {
     }
     goArbitrationMsg = () => {
         let { item } = this.props
-        this.context.navigate('ArbitrationMsg', {id:item.so_id,status:item.status})
+        this.context.navigate('ArbitrationMsg', { id: item.so_id, status: item.status })
     }
     render() {
         let { item } = this.props
         return (
-            <View style={{ width: '100%', justifyContent: 'center', alignItems: 'center' }}>
-                <TouchableOpacity style={styles.arbing} onPress={this.goArbitrationMsg}>
+            <View style={{ width: '100%', justifyContent: 'center', alignItems: 'center'}}>
+                <TouchableOpacity
+                    activeOpacity={1}
+                    style={styles.arbing} onPress={this.goArbitrationMsg}>
                     <View style={styles.arbPer}>
                         <View style={styles.arbHead}>
                             {
@@ -68,15 +70,15 @@ export default class arbitrationIng extends Component {
                             <Text style={{ color: '#5A5D66', fontSize: pxToPt(14), fontWeight: '400' }}>总价:{item.sum_count}</Text>
                         </View>
                     </View>
-                    <Text style={{ paddingTop:pxToPt(16), borderTopWidth: pxToPt(1), borderColor: '#F2F3F7' }}>
+                    <Text style={{ paddingTop: pxToPt(16), borderTopWidth: pxToPt(1), borderColor: '#F2F3F7' }}>
                         {
                             item.status === 1 ?
                                 <>
-                                    <Text style={{ ...styles.arbMsg, marginRight:pxToPt(8) }}>{item.time_list.buy_arbitration_time}</Text>
+                                    <Text style={{ ...styles.arbMsg, marginRight: pxToPt(8) }}>{item.time_list.buy_arbitration_time}</Text>
                                     <Text style={styles.arbMsg}> 您对该订单提出仲裁，请等待管理员审核</Text>
                                 </> : item.status === 2 ?
                                     <>
-                                        <Text style={{ ...styles.arbMsg, marginRight:pxToPt(8) }}>{item.time_list.arbitration_finish_time}</Text>
+                                        <Text style={{ ...styles.arbMsg, marginRight: pxToPt(8) }}>{item.time_list.arbitration_finish_time}</Text>
                                         {
                                             item.text_switch ?
                                                 <>
@@ -86,7 +88,7 @@ export default class arbitrationIng extends Component {
                                                     <Text style={styles.arbMsg}> 卖家对此订单提出仲裁，请上传您的证据，以便管理员及时验证发聩</Text>
                                                 </>
                                         }
-                                    </> : <Text  style={styles.arbMsg}>已结束</Text>
+                                    </> : <Text style={styles.arbMsg}>已结束</Text>
                         }
                         <></>
                     </Text>
@@ -104,11 +106,11 @@ const styles = StyleSheet.create({
         paddingRight: pxToPt(12),
         paddingTop: pxToPt(12),
         paddingBottom: pxToPt(16),
-        borderRadius:pxToPt(8),
-        shadowOffset: { width: pxToPt(0), height:pxToPt(1) },
+        borderRadius: pxToPt(8),
+        shadowOffset: { width: pxToPt(0), height: pxToPt(1) },
         shadowColor: '#565A66',
         elevation: pxToPt(2),
-        shadowRadius:pxToPt(2),
+        shadowRadius: pxToPt(2),
         marginBottom: pxToPt(12),
         marginTop: pxToPt(8)
     },
@@ -128,7 +130,7 @@ const styles = StyleSheet.create({
         width: pxToPt(26),
         height: pxToPt(26),
         marginRight: pxToPt(8),
-        borderRadius:pxToPt(13)
+        borderRadius: pxToPt(13)
     },
     arbName: {
         color: '#2B2D33',

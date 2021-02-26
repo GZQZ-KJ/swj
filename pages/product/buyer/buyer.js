@@ -357,7 +357,9 @@ export default class home extends Component {
                                     <View style={styles.msgBody}>
                                         <Text style={styles.msgContent}>卡号</Text>
 
-                                        <TouchableOpacity style={{ flexDirection: 'row' }}>
+                                        <TouchableOpacity style={{ flexDirection: 'row' }} onPress={() => {
+                                            alert(123)
+                                        }}>
                                             {
                                                 num === 4 ?
                                                     <Text style={{ color: '#3D72E4', paddingRight: pxToPt(8) }}>{data.bank_account_no}</Text> :
@@ -600,7 +602,7 @@ const styles = StyleSheet.create({
         borderRadius: pxToPt(8),
         justifyContent: 'center',
         alignItems: 'center',
-        marginTop:pxToPt(400),
+        marginTop:pxToPt(350),
         marginLeft:pxToPt(8),
     },
     touchbot: {

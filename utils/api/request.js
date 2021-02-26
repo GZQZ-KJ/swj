@@ -5,10 +5,10 @@ const instance = axios.create({
   baseURL: BASE_URI,
 })
 
-
 // 添加请求拦截器
 instance.interceptors.request.use(function (config) {
   // 在发送请求之前做些什么
+
   let reg = "/index/index"
   let re = '/index/getBroadcast'
   if (config.url.match(reg) || config.url.match(re)) {
@@ -27,6 +27,7 @@ instance.interceptors.request.use(function (config) {
 instance.interceptors.response.use(function (response) {
   // 对响应数据做点什么
   if (response.status === 401) {
+    console.log(response)
     Toast.hideLoading()
     Toast.message('登录过期,请重新登录', 4000, 'center')
     response.config.url = '/login/index'

@@ -7,7 +7,7 @@ import {
 } from 'react-native';
 import basicStyle from '../../../components/styles/basic/index';
 import axios from '../../../utils/api/request'
-import {pxToPt} from '../../../utils/styleKits'
+import { pxToPt } from '../../../utils/styleKits'
 import { HOME_GETBROADCAST } from '../../../utils/api/pathMap'
 import { inject, observer } from 'mobx-react'
 @inject('rootStore')
@@ -45,14 +45,14 @@ export default class dealMsg extends Component {
     }).catch(e => console.log(e))
   }
 
-  
+
   componentDidMount() {
     this.getHomeGetBroadcast()
     this.timer = setInterval(() => {
       this.getHomeGetBroadcast()
     }, 120000)
   }
-  
+
 
   componentWillUnmount() {
     clearInterval(this.timer)
@@ -63,19 +63,20 @@ export default class dealMsg extends Component {
         <Text style={styles.title}>交易播报</Text>
         <View style={styles.line}></View>
         {
-          this.state.data.length < 1 ? 
-          <View style={styles.nonlist}>
-            <Text style={{color:'#E4E6E8',fontSize:pxToPt(16)}}>暂无交易</Text>
-          </View> :<></>
+          this.state.data.length < 1 ?
+            <View style={styles.nonlist}>
+              <Text style={{ color: '#E4E6E8', fontSize: pxToPt(16) }}>暂无交易</Text>
+            </View> :
+            <View style={styles.list}>
+              {this.state.data.map((v, i) => {
+                return (
+                  <Item data={v} key={i}></Item>
+                )
+              })
+              }
+            </View>
         }
-        {/* <View style={styles.list}>
-          {this.state.data.map((v, i) => {
-            return (
-              <Item data={v} key={i}></Item>
-            )
-          })
-          }
-        </View> */}
+
       </View>
     )
   }
@@ -109,17 +110,25 @@ class Item extends Component {
 
 const styles = StyleSheet.create({
   box: {
-    marginTop: pxToPt(8),
+    marginTop: pxToPt(12),
     marginLeft: pxToPt(16),
     marginRight: pxToPt(16),
     borderRadius: pxToPt(20),
-    backgroundColor: '#FFFFFF'
+    backgroundColor: '#FFFFFF',
+    elevation: 2,
+    shadowOffset: {
+        width: 0,
+        height: 1
+    },
+    shadowColor: '#565A66',
+    shadowOpacity: 0.12,
+    shadowRadius: pxToPt(2),
   },
   title: {
     marginTop: pxToPt(11),
     marginBottom: pxToPt(10),
     marginLeft: pxToPt(26),
-    height:pxToPt(22),
+    height: pxToPt(22),
     lineHeight: pxToPt(22),
     fontSize: pxToPt(16),
     fontWeight: '800',
@@ -144,19 +153,19 @@ const styles = StyleSheet.create({
   },
   list: {
     marginTop: pxToPt(8),
-    marginBottom:pxToPt(8)
+    marginBottom: pxToPt(8)
   },
-  nonlist:{
+  nonlist: {
     marginTop: pxToPt(8),
-    marginBottom:pxToPt(8),
-    height:pxToPt(60),
-    justifyContent:'center',
-    alignItems:'center'
+    marginBottom: pxToPt(8),
+    height: pxToPt(60),
+    justifyContent: 'center',
+    alignItems: 'center'
   },
   img: {
     height: pxToPt(32),
     width: pxToPt(32),
-    borderRadius:pxToPt(16)
+    borderRadius: pxToPt(16)
   },
   wraprt: {
     alignItems: 'center'

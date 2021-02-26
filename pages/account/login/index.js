@@ -46,7 +46,7 @@ export default class login extends Component {
         let changeEmail = await AsyncStorage.getItem("email") || email
         changeEmail === email ? changeEmail : changeEmail = email
 
-        var res = await axios.post(ACCOUNT_LOGIN, {
+        await axios.post(ACCOUNT_LOGIN, {
             account: changeEmail,
             password: password
         }, {
@@ -55,49 +55,53 @@ export default class login extends Component {
                 "deviceId": deviceId,
                 "systemName": systemName,
             }
-        })
-        var data = res.data
-        //获取数据，跳转页面
-        if (data.code === 1) {
-            //儲存數據到mobx中
-            this.props.rootStore.setUserInfo(data.result.user_info.email, data.result.token)
-            //儲存用戶數據到 本地緩存中 永久
-            AsyncStorage.setItem('usertoken', data.result.token)
-            AsyncStorage.setItem('email', email)
-            AsyncStorage.setItem('appVersion', data.result.app_version)
-            AsyncStorage.setItem('isUpdate', `${data.result.is_update}`)
-            this.props.rootStore.setVersion(data.result.app_version, data.result.is_update)
-
-            this.setState({
-                password: ''
-            })
-            this.props.navigation.navigate('Tabbar')
-        } else {
-            if (data.code === -1) {
-                this.setState({ //如果账号被冻结
-                    dangeingToast: true,
-                    result: data
+        }).then(res => {
+            var data = res.data
+            //获取数据，跳转页面
+            console.log(data)
+            if (data.code === 1) {
+                //儲存數據到mobx中
+                this.props.rootStore.setUserInfo(data.result.user_info.email, data.result.token)
+                //儲存用戶數據到 本地緩存中 永久
+                AsyncStorage.setItem('usertoken', data.result.token)
+                AsyncStorage.setItem('email', email)
+                AsyncStorage.setItem('appVersion', data.result.app_version)
+                AsyncStorage.setItem('isUpdate', `${data.result.is_update}`)
+                this.props.rootStore.setVersion(data.result.app_version, data.result.is_update,data.result.user_info.newOaOrder)
+    
+                this.setState({
+                    password: ''
                 })
+                this.props.navigation.navigate('Tabbar')
             } else {
-                var re = /请重新修改密码/
-                var rg = /账号不存在/
-                if (data.message.match(re) || data.message.match(rg)) {
-                    Toast.message(data.message, 1000, 'center')
-                    this.setState({
-                        password: ''
+                if (data.code === -1) {
+                    this.setState({ //如果账号被冻结
+                        dangeingToast: true,
+                        result: data
                     })
-                }
-                var reg = /\d/g
-                let dataNum = data.message.match(reg)[0]
-                data.message = data.message.split(reg, 1)
-                if (dataNum) {
-                    Toast.message(data.message + `请重新输入。错误超过5次，可通过忘记密码找回。（${dataNum}/5）`, 2000, 'center')
-                    this.setState({
-                        password: ''
-                    })
+                } else {
+                    var re = /请重新修改密码/
+                    var rg = /账号不存在/
+                    if (data.message.match(re) || data.message.match(rg)) {
+                        Toast.message(data.message, 1000, 'center')
+                        this.setState({
+                            password: ''
+                        })
+                    }
+                    var reg = /\d/g
+                    let dataNum = data.message.match(reg)[0]
+                    data.message = data.message.split(reg, 1)
+                    if (dataNum) {
+                        Toast.message(data.message + `请重新输入。错误超过5次，可通过忘记密码找回。（${dataNum}/5）`, 2000, 'center')
+                        this.setState({
+                            password: ''
+                        })
+                    }
                 }
             }
-        }
+        }).catch(e => {
+            console.log('[登录异常]',e)
+        })
 
 
     }

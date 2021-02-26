@@ -26,7 +26,7 @@ export default class chart extends Component {
           bottom: 0,
         },
         legend: {
-          left: 0
+          left: 16
         },
         dataZoom: [{
           type: 'inside',
@@ -225,7 +225,7 @@ export default class chart extends Component {
               bottom: 50,
             },
             legend: {
-              left: 6
+              left: 16
             },
             dataZoom: [{
               type: 'inside',
@@ -466,7 +466,7 @@ export default class chart extends Component {
           <TouchableOpacity
             onPress={this._dbclick}
             style={{ backgroundColor: 'rgba(255,255,255,0)', width: '100%', height: 120, position: 'absolute', top: 60, zIndex: 2 }}></TouchableOpacity>
-          <Echarts ref={this.echartsRef} option={this.state.option1} height={280} />
+          <Echarts ref={this.echartsRef} option={this.state.option1} height={282} />
         </View >
       </>
     );
@@ -489,7 +489,7 @@ const styles = StyleSheet.create({
   fon: {
     color: '#8D9099',
     fontSize: 11,
-    fontWeight: '400',
+    fontWeight: '400'
   },
   active: {
     color: '#3D72E4',

@@ -1,65 +1,19 @@
+
 [
     {
-        "buy_avater_url": "http://picfix.gzqz.work/display/resize/300x399/16139862594558.jpeg",
-        "buy_user_id": 6,
-        "buy_user_name": "阿国",
-        "price": "2.332496",
-        "result_str": "",
-        "sale_avater_url": "http://picfix.gzqz.work/display/resize/225x300/16139870148591.jpeg",
-        "sale_user_id": 5,
-        "sale_user_name": "天主",
-        "so_id": 258,
-        "status": 2,
-        "status_str": "被仲裁中",
-        "sum_count": "2.332496",
-        "text_switch": true,
-        "time_list": {
-            "buy_arbitration_time": "2021-02-22 18:04:34",
-            "remark": null,
-            "sale_arbitration_time": "2021-02-22 18:01:27"
-        },
-        "value": 1
+        "background_url": "http://picfix.gzqz.work/display/resize/343x120/16106781185489.",
+        "bank_id": 1,
+        "code": "GS",
+        "full_name": "中国工商银行",
+        "icon": "http://picfix.gzqz.work/display/resize/26x26/16143359411747.",
+        "short_name": "工商银行"
     },
     {
-        "buy_avater_url": "http://picfix.gzqz.work/display/resize/300x399/16139862594558.jpeg",
-        "buy_user_id": 6,
-        "buy_user_name": "阿国",
-        "price": "2.325520",
-        "result_str": "",
-        "sale_avater_url": "http://picfix.gzqz.work/display/resize/225x300/16139870148591.jpeg",
-        "sale_user_id": 5,
-        "sale_user_name": "天主",
-        "so_id": 257,
-        "status": 2,
-        "status_str": "被仲裁中",
-        "sum_count": "2.325520",
-        "text_switch": true,
-        "time_list": {
-            "buy_arbitration_time": "2021-02-22 18:03:36",
-            "remark": null,
-            "sale_arbitration_time": "2021-02-22 18:02:05"
-        },
-        "value": 1
-    },
-    {
-        "buy_avater_url": "http://picfix.gzqz.work/display/resize/300x399/16139862594558.jpeg",
-        "buy_user_id": 6,
-        "buy_user_name": "阿国",
-        "price": "2.334710",
-        "result_str": "",
-        "sale_avater_url": "http://picfix.gzqz.work/display/resize/225x300/16139870148591.jpeg",
-        "sale_user_id": 5,
-        "sale_user_name": "天 主",
-        "so_id": 256,
-        "status": 2,
-        "status_str": "被仲裁中",
-        "sum_count": "14.008260",
-        "text_switch": true,
-        "time_list": {
-            "buy_arbitration_time": "2021-02-22 18:03:58",
-            "remark": null,
-            "sale_arbitration_time": "2021-02-22 18:02:26"
-        },
-        "value": 6
+        "background_url": "http://picfix.gzqz.work/display/resize/343x120/16106780493723.",
+        "bank_id": 12,
+        "code": "aer",
+        "full_name": "ara",
+        "icon": "http://picfix.gzqz.work/display/resize/28x28/16106780594605.",
+        "short_name": "asf"
     }
 ]

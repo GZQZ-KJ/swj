@@ -412,7 +412,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         flexDirection: 'row',
         alignItems: 'center',
-        marginTop:pxToPt(8),
+        marginTop:pxToPt(68),
         width: pxToPt(343),
         height: pxToPt(44),
         borderRadius: pxToPt(8),

@@ -16,7 +16,6 @@ import OrderPerson from './orderPerson'
 import OrderBuyer from './orderBuyer'
 import OrderDetail from './orderDetail'
 import OrderTime from './orderTime'
-import CountTime from '../ListItem/listTime'
 import { pxToPt } from "../../../utils/styleKits";
 import { PRODUCT_RECEIVE, ORDERS_INFO, PRODUCT_SALEINFO, ORDERS_CANCEL, ORDERS_PAY, PRODUCT_CANCEL } from '../../../utils/api/pathMap'
 import axios from '../../../utils/api/request'
@@ -43,6 +42,7 @@ export default class orderDetail extends Component {
     getOrderDetail = async () => {
         let { id, token } = this.state
         let url = ORDERS_INFO.replace('{so_id}', id)
+        console.log('[详情Url]',url)
         await axios.get(url, {
             headers: {
                 "token": token
@@ -62,7 +62,6 @@ export default class orderDetail extends Component {
     getProductSaleInfo = async () => {
         let { id, token, status } = this.state
         let url = PRODUCT_SALEINFO.replace('{sp_id}', id) + `/${status}`
-        console.log(url)
         await axios.get(url, {
             headers: {
                 "token": token
@@ -152,8 +151,6 @@ export default class orderDetail extends Component {
                 this.props.rootStore.axiosProductList()
                 Toast.message(r.data.message, 2000, 'center')
                 this.getOrderDetail()
-                console.log('[重新加载详情执行]')
-
             }
             else {
                 Toast.message(r.data.message, 1000, 'center')
@@ -176,7 +173,9 @@ export default class orderDetail extends Component {
                     return `${time_list.remark}`
                     break;
                 case 4:
-                    return `${time_list.remark === '您已确认到账，订单已完成' ? `卖家已确认收款，恭喜你获得${value}NSS币` : `订单自动完成，恭喜你获得${value}NSS币`}`
+                    if(time_list.remark === '您已确认到账，订单已完成') return `卖家已确认收款，恭喜你获得${value}NSS币`
+                    if(time_list.remark === '您未在规定时间内确认到账，订单已自动完成') return `订单自动完成，恭喜你获得${value}NSS币`
+                    if(time_list.remark === '后台审判，交易完成') return `审判完成，恭喜你获得${value}NSS币`
                     break;
                 case 5:
                     return `${time_list.remark}`

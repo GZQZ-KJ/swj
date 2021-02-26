@@ -14,7 +14,7 @@ export default class arbiDetail extends Component {
     }
     copyBankNum = () => {
         Clipboard.setString(this.props.bankAccountNo)
-        Toast.message('Copy Success')
+        Toast.message('复制成功')
     }
     render() {
         let {

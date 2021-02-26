@@ -408,7 +408,7 @@ const styles = StyleSheet.create({
         borderColor: '#3D72E4',
         borderWidth: pxToPt(1),
         overflow: 'hidden',
-        marginTop: pxToPt(400),
+        marginTop: pxToPt(386),
         marginLeft: pxToPt(8),
     },
     showTime: {

@@ -20,9 +20,11 @@ class RootStore {
     //锁定余额
     @observable lockNss = 0;
 
-    //存版本号 和 是否版本
+    //存版本号 和 是否更新版本
     @observable appVersion = '';
     @observable isUpdate = '';
+    //是否有未处理的仲裁订单
+    @observable newArb = ''
 
     //线路
     @observable activeCDN = 1;
@@ -41,9 +43,10 @@ class RootStore {
         this.avaUrl = avaUrl
     }
 
-    @action setVersion(appVersion, isUpdate) {
+    @action setVersion(appVersion, isUpdate,newArb) {
         this.appVersion = appVersion;
         this.isUpdate = isUpdate;
+        this.newArb = newArb
     }
 
     @action setNss(nss, lockNss) {
@@ -52,7 +55,6 @@ class RootStore {
     }
 
     @action async axiosNss() {
-    console.log('[远程NSS进来了，请求前]')
         await axios.get(USER_INDEX, {
             headers: {
               "Content-Type": "application/json",
@@ -87,9 +89,14 @@ class RootStore {
     @action clearActiveCDN() {
         this.activeCDN = 1
     }
-
-    @action async axiosLoginOut() {
-
+    @action clearNewArb() {
+        this.newArb = ''
+    }
+   
+    //清除rn-tab-navigation角标
+    @action clearcir() {
+        this.isUpdate = '',
+        this.newArb = ''
     }
 
 
