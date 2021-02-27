@@ -6,13 +6,13 @@
 	<string>en</string>
 	<key>NSCameraUsageDescription</key>
   	<string>需要相机权限</string>
-	<key>NSStoreKitDescription</key>
+	<key>NSStoreKitUsageDescription</key>
     <string>存储权限</string>
-	<key>NSMediaLibraryDescription</key>
+	<key>NSMediaLibraryUsageDescription</key>
     <string>媒体权限</string>
 	<key>NSPhotoLibraryUsageDescription</key>
     <string>需要相册使用权限</string>
-	<key>NSPhotoLibraryAddOnlyDescription</key>
+	<key>NSPhotoLibraryAddUsageDescription</key>
     <string>需要相册添加权限</string>
 	<key>CFBundleDisplayName</key>
 	<string>mynsapp</string>
