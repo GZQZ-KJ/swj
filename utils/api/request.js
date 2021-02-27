@@ -8,6 +8,7 @@ const instance = axios.create({
 // 添加请求拦截器
 instance.interceptors.request.use(function (config) {
   // 在发送请求之前做些什么
+  console.log('响应',config)
 
   let reg = "/index/index"
   let re = '/index/getBroadcast'
@@ -26,11 +27,11 @@ instance.interceptors.request.use(function (config) {
 // 添加响应拦截器
 instance.interceptors.response.use(function (response) {
   // 对响应数据做点什么
+  console.log('响应',response.config)
   if (response.status === 401) {
-    console.log(response)
     Toast.hideLoading()
     Toast.message('登录过期,请重新登录', 4000, 'center')
-    response.config.url = '/login/index'
+    response.config.url = 'http://192.168.68.108:8080/login/index'
   } else if (response.status === 404) {
     Toast.hideLoading()
     Toast.message('网络出错，请稍后再试',3000, 'center')

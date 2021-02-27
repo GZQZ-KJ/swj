@@ -23,7 +23,7 @@ export default class board extends Component {
     return (
       <View style={[styles.box, basicStyle.flexRow]}>
         <View style={[styles.boxlf, basicStyle.flexRow]}>
-          <Image style={styles.logo} source={require('../../../assets/icons/logo/nssLOGO.png')}></Image>
+          <Image style={styles.logo} source={require('../../../assets/icons/logo/nssLOGO323x.png')}></Image>
           <Text style={styles.name}>NSS</Text>
         </View>
         <Text style={styles.price}>￥:{price}</Text>
@@ -31,12 +31,12 @@ export default class board extends Component {
           {
              percent.status === 0 ?
               (<>
-                <Image style={styles.downIcon} source={require('../../../assets/icons/home/decline.png')}></Image>
+                <Image style={styles.downIcon} source={require('../../../assets/icons/home/decline3x.png')}></Image>
                 <Text style={{...styles.addPec,color: 'green'}}>-{percent.result}%</Text>
               </>)
               :
               (<>
-                <Image source={require('../../../assets/icons/home/up.png')}></Image>
+                <Image   style={styles.downIcon} source={require('../../../assets/icons/home/goup3x.png')}></Image>
                 <Text style={{...styles.addPec,color: '#FE5564FF'}}>+{percent.result}%</Text>
               </>)
           }
@@ -55,15 +55,16 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1
   },
   boxlf: {
-    marginLeft: 5,
     alignItems: 'center',
   },
   logo: {
-    // borderWidth: 1,
+    width:28,
+    height:28,
+    marginLeft:16
   },
   name: {
     position: 'absolute',
-    marginLeft: 43,
+    marginLeft: 48,
     height: 25,
     lineHeight: 25,
     fontSize: 18,
@@ -71,24 +72,23 @@ const styles = StyleSheet.create({
     fontWeight:'bold'
   },
   price: {
-    marginLeft: 44,
-    height: 25,
-    lineHeight: 25,
+    marginLeft: 56,
     fontSize: 18,
     color: '#FE5564FF',
     fontWeight:'700'
   },
   percent: {
     marginLeft: 12,
+    // marginTop:11,
     alignItems: 'center',
   },
   addPec: {
     marginLeft: 3,
-    height: 16,
-    lineHeight: 16,
     fontSize: 11,
   },
   downIcon: {
     marginLeft: 3,
+    width:10,
+    height:10
   }
 })

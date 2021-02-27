@@ -29,7 +29,7 @@ export default class setting extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      file: '',
+      avaUrl: '',
       avater_url: '',   //头像地址
       email: this.props.rootStore.email,
       user_name: this.props.rootStore.name,    //用户名
@@ -101,9 +101,7 @@ export default class setting extends Component {
       height: 400,
       cropping: true
     }).then(image => {
-      this.setState({
-        avater_url: image.path
-      })
+      this.props.rootStore.setAvaUrl(image.path)
       this.getHead(image)
     }).catch(e => console.log('[获取本地图片]', e))
 
@@ -144,8 +142,6 @@ export default class setting extends Component {
       })
       return
     }
-    console.log('[user_name]', typeof user_name)
-
     if (user_name.length == null || user_name.length > 14) {
       Toast.message('用户名不得超过14个字母，或7个中文', 2000, 'center')
       this.setState({
@@ -188,21 +184,24 @@ export default class setting extends Component {
   async componentDidMount() {
     let avater = this.props.rootStore.avaUrl
     let userName = await AsyncStorage.getItem('userName') || ''
-    console.log('componentDidMount',avater)
+    let avaUrl = this.props.rootStore.avaUrl
     this.setState({
       avater_url: avater,
-      user_name: userName
+      user_name: userName,
+      avaUrl:avaUrl
     })
   }
 
   render() {
     let { rootStore } = this.props
-    console.log('[头像路径]',rootStore.avaUrl)
     return (
       <>
         <StatusBar backgroundColor="#fff" barStyle={'dark-content'}></StatusBar>
         <View style={styles.arroWrap}>
-          <TouchableOpacity style={{ width: pxToPt(60), height: pxToPt(60),marginRight:pxToPt(75) ,marginLeft:pxToPt(16), justifyContent: 'center' }} onPress={() => {
+          <TouchableOpacity 
+          style={{ width: pxToPt(60), height: pxToPt(60),marginRight:pxToPt(75) ,marginLeft:pxToPt(16), justifyContent: 'center' }} 
+          onPress={() => {
+            this.state.canChange ? rootStore.setAvaUrl(this.state.avaUrl) : null
             this.props.navigation.navigate('Tabbar')
           }}>
             <Image style={styles.arrow} source={require('../../../assets/icons/backx.png')}></Image>

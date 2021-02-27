@@ -126,11 +126,9 @@ export default class minePage extends Component {
         </View>
         <View style={[styles.sellWrap, basicStyle.flexRow]}>
           <View style={[styles.wraplf, basicStyle.flexRow]}>
-            <View style={{ flexDirection: 'row' }}>
-              <View style={{backgroundColor:'#afc',width:pxToPt(50.59),height:pxToPt(53.85)}}>
-                <Image style={styles.logo} source={require('../../assets/icons/mine/nssLOGO-my.png')}></Image>
-              </View>
-              <View style={{ marginTop: 11 }}>
+            <View style={{ flexDirection: 'row',alignItems:'center' }}>
+                <Image style={styles.logo} source={require('../../assets/icons/logo/nssLOGO323x.png')}></Image>
+              <View >
                 <Text style={styles.num}>可交易余额：{rootStore.nss}</Text>
                 <Text style={styles.lockNum}>锁定余额：{rootStore.lockNss}</Text>
               </View>
@@ -291,8 +289,10 @@ const styles = StyleSheet.create({
     marginTop: pxToPt(21),
   },
   logo: {
-    // width:pxToPt(32),
-    // height:pxToPt(32),
+    width:pxToPt(32),
+    height:pxToPt(32),
+    marginLeft:pxToPt(16),
+    marginRight:pxToPt(8)
   },
   avatar: {
     height: pxToPt(60),
@@ -320,12 +320,15 @@ const styles = StyleSheet.create({
     paddingRight: pxToPt(16),
     justifyContent: 'space-between',
     alignItems: 'center',
-    backgroundColor: '#FFFFFF'
+    backgroundColor: '#FFFFFF',
+    overflow:'hidden',
+    height:pxToPt(60),
   },
   wraplf: {
     alignItems: 'center',
     width: pxToPt(279),
-    justifyContent: 'space-between'
+    justifyContent: 'space-between',
+    overflow:'hidden'
   },
   num: {
     height: pxToPt(25),

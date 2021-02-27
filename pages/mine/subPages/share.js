@@ -151,7 +151,7 @@ export default class myShare extends Component {
                 <View style={styles.contents}>
                   <View style={styles.wrap}>
                     {/* <Text style={styles.info}>一期推广规则</Text> */}
-                    <Text style={styles.info}>子集：扫描对方推广二维码，成为对方的子集，只能拥有一个父级，切不可解除，请谨慎选择
+                    <Text style={styles.info}>子集：扫描对方推广二维码，成为对方的子集，只能拥有一个父级，且不可解除，请谨慎选择
 父级：当其他人扫描您的推广二维码，成为您的子集，您为父级，可同时拥有多个子集。</Text>
                     <Text style={styles.info}>奖励：当子集购买NSS币种时，根据系统设置会奖励您对应的NSS币。</Text>
                   </View>

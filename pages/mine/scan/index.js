@@ -27,6 +27,7 @@ export default class scan extends Component {
             avaterUrl: this.props.route.params.avaterUrl,
             email: this.props.route.params.email,
             code: this.props.route.params.code,
+            message:this.props.route.params.message,
             showModal: false,
             showNextModal: false,
             resultmessage: '',
@@ -79,14 +80,14 @@ export default class scan extends Component {
         this.props.navigation.navigate("Tabbar")
     }
     render() {
-        let { userId, userName, avaterUrl, email, showModal, showNextModal, resultName, resultmessage, code } = this.state
-        console.log('结果扫一扫', this.props.route.params)
+        let { userId, userName, avaterUrl, email, showModal, showNextModal, resultName, resultmessage, code,message } = this.state
+        console.log('结果扫一扫', message)
         return (
             <View style={{ flex: 1 }}>
                 <StatusBar backgroundColor="#fff" barStyle={'dark-content'}></StatusBar>
                 <View style={styles.arroWrap}>
                     <TouchableOpacity >
-                        {/* <Image style={styles.arrow} source={require('../../../assets/icons/backx.png')}></Image> */}
+                        <Image style={styles.arrow} source={require('../../../assets/icons/backx.png')}></Image>
                     </TouchableOpacity>
                     <Text style={styles.title}>扫描结果</Text>
                 </View>
@@ -115,12 +116,12 @@ export default class scan extends Component {
                             <View>
                                 <View style={styles.btnTex}>
                                     <Text>
-                                        您已有上级，无法与其他人建立关系。
+                                        {message}
                                      </Text>
                                 </View>
                                 <View style={styles.btnWrap}>
                                     <TouchableOpacity style={styles.btnTouc} onPress={this.goBack}>
-                                        <Text style={styles.btnToucTex}>返回</Text>
+                                        <Text style={styles.btnToucTex}>确认</Text>
                                     </TouchableOpacity>
                                 </View>
                             </View> : 
@@ -218,7 +219,7 @@ const styles = StyleSheet.create({
         height: pxToPt(22),
     },
     title: {
-        marginLeft: pxToPt(148),
+        marginLeft: pxToPt(118),
         color: '#2B2D33',
         fontSize: pxToPt(18),
         fontWeight: "500",

@@ -37,7 +37,7 @@ export default class CameraScan extends Component {
     }).then(r => {
       //  if(r.data.code === 1) {
           let {user_id,user_name,avater_url,email} = r.data.result
-          this.context.navigate("Scan",{userId:user_id,userName:user_name,avaterUrl:avater_url,email:email,code:r.data.code})
+          this.context.navigate("Scan",{userId:user_id,userName:user_name,avaterUrl:avater_url,email:email,code:r.data.code,message:r.data.message})
       //  }
       //  else {
       //     Toast.message(r.data.message,1000,'center')
