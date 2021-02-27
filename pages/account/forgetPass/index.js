@@ -159,8 +159,8 @@ export default class forgetPass extends Component {
         var re = /^[a-zA-Z\d]+([-_\.][a-zA-Z\d]+)*@[a-zA-Z\d]+\.[a-zA-Z\d]{2,4}$/
         return (
             <View style={styles.container}>
-                    <StatusBar backgroundColor="#3D72E4" ></StatusBar>
-                    <TouchableOpacity style={{ width: pxToPt(60), height: pxToPt(60), alignItems: 'center',justifyContent: 'center' }} onPress={this.goBack}>
+                    <StatusBar backgroundColor="#3D72E4" barStyle={'light-content'}></StatusBar>
+                    <TouchableOpacity style={{ width: pxToPt(60), height: pxToPt(44),alignItems: 'center',justifyContent: 'center' }} onPress={this.goBack}>
                     <Image style={styles.arrow} onPress={this.goBack} source={require('../../../assets/icons/backo.png')}></Image>
                 </TouchableOpacity>
                 <View>
@@ -295,7 +295,7 @@ const styles = StyleSheet.create({
 
     arroWrap: {
         height: pxToPt(44),
-        justifyContent: 'center'
+        justifyContent: 'center',
     },
     arrow: {
         width:pxToPt(11.82),
@@ -316,7 +316,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         marginLeft: pxToPt(40),
         marginTop: pxToPt(12),
-        width: pxToPt(180),
+        width: pxToPt(190),
         height: pxToPt(22),
     },
     reg: {

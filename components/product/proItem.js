@@ -61,6 +61,7 @@ export default class proItem extends Component {
     let { v } = this.props
     return (
       <TouchableOpacity
+      activeOpacity={1}
         underlayColor={'rgba(255,255,255,.1)'}
         style={styles.container}
         onPress={() => {

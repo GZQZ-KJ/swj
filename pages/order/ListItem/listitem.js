@@ -137,7 +137,7 @@ export default class listitem extends Component {
     render() {
         let { item, activeTop, status } = this.props
         return (
-            <TouchableOpacity style={styles.container} onPress={() => {
+            <TouchableOpacity activeOpacity={1} style={styles.container} onPress={() => {
                 if (activeTop === 1) {
                     this.context.navigate("OrderDetail", { id: item.so_id, status: item.status, activeTop: activeTop })
                 } else {
@@ -170,7 +170,7 @@ export default class listitem extends Component {
                         <Text style={styles.btmtxt}>总价: {item.sum_count}</Text>
                         {
                             activeTop === 1 && item.status === 1 ?
-                                (<TouchableOpacity style={styles.btn} activeOpacity={.8}
+                                (<TouchableOpacity style={styles.btn} activeOpacity={1}
                                 ><ToastTwo style={styles.btnTxt}
                                     onEnter={this.onEnter}
                                     id={item.so_id}
@@ -181,7 +181,7 @@ export default class listitem extends Component {
                                     ebtnFC={'#3D72E4'}
                                     />
                                 </TouchableOpacity>) : activeTop === 0 && item.status === 3 ?
-                                    (<TouchableOpacity style={styles.btn} activeOpacity={.8}
+                                    (<TouchableOpacity style={styles.btn} activeOpacity={1}
                                     ><ToastTwo style={styles.btnTxt}
                                         onMakeCollect={this.onMakeCollect}
                                         id={item.sp_id}

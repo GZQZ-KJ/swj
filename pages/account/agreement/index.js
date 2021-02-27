@@ -17,9 +17,9 @@ export default class agreement extends Component {
     render() {
         return (
             <>
-                <StatusBar backgroundColor="#3D72E4"></StatusBar>
+                <StatusBar backgroundColor="#3D72E4" barStyle={'light-content'}></StatusBar>
                 <View style={styles.arroWrap}>
-                    <TouchableOpacity style={{ width: pxToPt(60), height:pxToPt(60), alignItems: 'center', justifyContent: 'center' }} onPress={() => {
+                    <TouchableOpacity style={{ width: pxToPt(60), height:pxToPt(60),marginRight:pxToPt(0) ,marginLeft:pxToPt(16), justifyContent: 'center' }} onPress={() => {
                         this.props.navigation.goBack()
                     }}>
                         <Image style={styles.arrow} source={require('../../../assets/icons/backo.png')}></Image>
@@ -273,7 +273,6 @@ const styles = StyleSheet.create({
         height: pxToPt(22),
     },
     title: {
-        marginLeft: pxToPt(36),
         color: '#fff',
         fontSize: pxToPt(18),
         fontWeight: "500",
@@ -284,8 +283,8 @@ const styles = StyleSheet.create({
     },
     scrollView: {
         backgroundColor: '#F8F9FA',
-        paddingLeft: pxToPt(10),
-        paddingRight: pxToPt(10),
+        paddingLeft: pxToPt(16),
+        paddingRight: pxToPt(16),
     },
     tex: {
         fontSize: pxToPt(14),

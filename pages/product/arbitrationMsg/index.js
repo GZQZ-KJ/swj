@@ -101,7 +101,7 @@ export default class arbitration extends Component {
                 <StatusBar backgroundColor="#fff" barStyle={'dark-content'}></StatusBar>
                 <View style={styles.arroWrap}>
                     <TouchableOpacity
-          style={{ width: pxToPt(60), height: pxToPt(60), alignItems: 'center', justifyContent: 'center' }} 
+          style={{ width: pxToPt(60),  height: pxToPt(44),paddingLeft:pxToPt(16), justifyContent: 'center' }} 
                     onPress={() => {
                         this.props.navigation.goBack()
                     }}>
@@ -195,7 +195,7 @@ const styles = StyleSheet.create({
         height:pxToPt(22),
     },
     title: {
-        marginLeft: pxToPt(100),
+        marginLeft: pxToPt(92),
         color: '#2B2D33',
         fontSize: pxToPt(18),
         fontWeight: "500",

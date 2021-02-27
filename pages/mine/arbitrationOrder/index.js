@@ -31,7 +31,7 @@ export default class arbitrationIng extends Component {
     render() {
         let { item } = this.props
         return (
-            <View style={{ width: '100%', justifyContent: 'center', alignItems: 'center'}}>
+            <View style={{ width: '100%', justifyContent: 'center', alignItems: 'center' }}>
                 <TouchableOpacity
                     activeOpacity={1}
                     style={styles.arbing} onPress={this.goArbitrationMsg}>
@@ -70,30 +70,32 @@ export default class arbitrationIng extends Component {
                             <Text style={{ color: '#5A5D66', fontSize: pxToPt(14), fontWeight: '400' }}>总价:{item.sum_count}</Text>
                         </View>
                     </View>
-                    <Text style={{ paddingTop: pxToPt(16), borderTopWidth: pxToPt(1), borderColor: '#F2F3F7' }}>
-                        {
-                            item.status === 1 ?
-                                <>
+
+                    {
+                        item.status === 1 ?
+                            <>
+                                <Text style={{ paddingTop: pxToPt(17), borderTopWidth: pxToPt(1), borderColor: '#F2F3F7' }}>
                                     <Text style={{ ...styles.arbMsg, marginRight: pxToPt(8) }}>{item.time_list.buy_arbitration_time}</Text>
                                     <Text style={styles.arbMsg}> 您对该订单提出仲裁，请等待管理员审核</Text>
-                                </> : item.status === 2 ?
-                                    <>
-                                        <Text style={{ ...styles.arbMsg, marginRight: pxToPt(8) }}>{item.time_list.arbitration_finish_time}</Text>
-                                        {
-                                            item.text_switch ?
-                                                <>
-                                                    <Text style={styles.arbMsg}> 您已上传证据，请等待管理员审核</Text>
-                                                </> :
-                                                <>
-                                                    <Text style={styles.arbMsg}> 卖家对此订单提出仲裁，请上传您的证据，以便管理员及时验证发聩</Text>
-                                                </>
-                                        }
-                                    </> : <Text style={styles.arbMsg}>已结束</Text>
-                        }
-                        <></>
-                    </Text>
+                                </Text>
+                            </> : item.status === 2 ?
+                                <>
+                                    <Text style={{ ...styles.arbMsg, marginRight: pxToPt(8) }}>{item.time_list.arbitration_finish_time}</Text>
+                                    {
+                                        item.text_switch ?
+                                            <>
+                                                <Text style={styles.arbMsg}> 您已上传证据，请等待管理员审核</Text>
+                                            </> :
+                                            <>
+                                                <Text style={styles.arbMsg}> 卖家对此订单提出仲裁，请上传您的证据，以便管理员及时验证发聩</Text>
+                                            </>
+                                    }
+                                </> : <></>
+                    }
+                    <></>
+
                 </TouchableOpacity>
-            </View>
+            </View >
         )
     }
 }
@@ -139,13 +141,14 @@ const styles = StyleSheet.create({
     },
     arbTex: {
         fontSize: pxToPt(12),
-        fontWeight: '400'
+        fontWeight: '400',
+        marginTop: pxToPt(6)
     },
     arbBody: {
         flexDirection: 'row',
         justifyContent: 'space-between',
         paddingTop: pxToPt(16),
-        paddingBottom: pxToPt(16),
+        // paddingBottom: pxToPt(16),
     },
     arbMsg: {
         color: '#5A5D66',

@@ -35,13 +35,13 @@ export default class top extends Component {
       <View style={styles.header}>
         <TouchableNativeFeedback onPress={() => this._isFiltrate()}>
           <View style={styles.item}>
-            <Text style={styles.title, [this.props.flag ? { color: '#3D72E4' } : { color: '#2B2D33' }]}>价格筛选</Text>
+            <Text style={styles.title, [this.props.flag ? { color: '#3D72E4',fontSize:15,fontWeight:'700' } : { color: '#2B2D33' }]}>价格筛选</Text>
             <Image style={styles.topIcon} source={this.props.flag ? require('../../../assets/icons/arrows/pro-sx.png') : require('../../../assets/icons/arrows/pros.png')}></Image>
           </View>
         </TouchableNativeFeedback>
         <TouchableNativeFeedback onPress={() => this._getSort()}>
           <View style={styles.item}>
-            <Text  style={styles.title, [this.props.show || this.props.flag ? { color: '#2B2D33' } : { color: '#3D72E4' }]}>排序</Text>
+            <Text  style={styles.title, [this.props.show || this.props.flag ? { color: '#2B2D33' } : { color: '#3D72E4',fontSize:15,fontWeight:'700' }]}>排序</Text>
             <Image style={styles.topIcon} source={this.props.show || this.props.flag ? require('../../../assets/icons/pro/propaxu.png') : require('../../../assets/icons/pro/proc.png')}></Image>
           </View>
         </TouchableNativeFeedback>

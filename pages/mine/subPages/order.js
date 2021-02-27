@@ -103,7 +103,7 @@ export default class order extends Component {
                 <StatusBar backgroundColor="#fff" barStyle={'dark-content'}></StatusBar>
                 <View style={styles.arroWrap}>
                     <TouchableOpacity
-                        style={{ width: pxToPt(60), height: pxToPt(60), alignItems: 'center', justifyContent: 'center' }}
+                        style={{ width: pxToPt(60),  height: pxToPt(44),paddingLeft:pxToPt(16), justifyContent: 'center' }}
                         onPress={() => {
                             this.props.rootStore.clearNewArb()
                             this.props.navigation.navigate('Tabbar')
@@ -191,7 +191,7 @@ const styles = StyleSheet.create({
         fontSize: pxToPt(18),
         fontWeight: "500",
         fontFamily: 'PingFang SC',
-        marginLeft: pxToPt(100)
+        marginLeft: pxToPt(92)
     },
     chooseHead: {
         height: 44,

@@ -270,7 +270,7 @@ export default class orderDetail extends Component {
                 <StatusBar backgroundColor="#fff" barStyle={'dark-content'}></StatusBar>
                 <View style={styles.arroWrap}>
                     <TouchableOpacity
-                        style={{ width: pxToPt(60), height:pxToPt(60), alignItems: 'center', justifyContent: 'center' }}
+                        style={{ width: pxToPt(60),  height: pxToPt(44),paddingLeft:pxToPt(16), justifyContent: 'center' }}
                         onPress={() => {
                             this.props.navigation.navigate('Tabbar')
                         }}>
@@ -432,7 +432,7 @@ export default class orderDetail extends Component {
                                     underlayColor="#A6B8E0"
                                     style={styles.enterPay}
                                     onPress={this.enterPay}>
-                                    <Text style={{ color: '#3D72E4' }}>
+                                    <Text style={{ color: '#fff' }}>
                                         确认收款
                                      </Text>
 
@@ -466,7 +466,7 @@ const styles = StyleSheet.create({
         height: pxToPt(22),
     },
     title: {
-        marginLeft: pxToPt(100),
+        marginLeft: pxToPt(92),
         color: '#2B2D33',
         fontSize: pxToPt(18),
         fontWeight: "500",
@@ -483,66 +483,66 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',
-        marginLeft: 8
+        marginLeft: pxToPt(8)
     },
     fiexbot: {
         flexDirection: 'row',
         justifyContent: 'center',
         alignItems: 'center',
-        paddingLeft: 6,
+        paddingLeft: pxToPt(6),
         backgroundColor: '#fff',
-        paddingBottom: 17,
-        paddingTop: 4
+        paddingBottom: pxToPt(17),
+        paddingTop: pxToPt(4)
 
     },
     cancelClo: {
-        width: 143,
-        height: 44,
-        borderRadius: 8,
+        width: pxToPt(143),
+        height: pxToPt(44),
+        borderRadius: pxToPt(8),
         justifyContent: 'center',
         alignItems: 'center',
         backgroundColor: '#fff',
         borderColor: '#3D72E4',
-        borderWidth: 1,
+        borderWidth: pxToPt(1),
         overflow: 'hidden',
     }, enterPay: {
-        width: 188,
-        height: 44,
-        marginLeft: 18,
-        borderWidth: 1,
+        width: pxToPt(188),
+        height: pxToPt(44),
+        marginLeft: pxToPt(18),
+        borderWidth: pxToPt(1),
         borderColor: '#3D72E4',
-        borderRadius: 8,
+        borderRadius: pxToPt(8),
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: '#fff',
+        backgroundColor: '#3D72E4',
         overflow: 'hidden'
     },
     touchHig: {
-        width: 343,
-        height: 44,
-        borderRadius: 8,
+        width:pxToPt(343),
+        height: pxToPt(44),
+        borderRadius: pxToPt(8),
         borderColor: '#3D72E4',
-        borderWidth: 1,
+        borderWidth: pxToPt(1),
         overflow: 'hidden',
-        marginLeft: 8,
-        marginTop: 40
+        marginLeft: pxToPt(8),
+        marginTop: pxToPt(40)
     },
     cTime: {
-        width: 343,
+        width: pxToPt(343),
         backgroundColor: '#fff',
         shadowOffset: { width: 0, height: 1 },
         shadowColor: '#565A66',
-        shadowOpacity: 12,
+        shadowOpacity: 0.12,
         elevation: 2,
         shadowRadius: 2,
         borderRadius: 8,
-        marginLeft: 8,
-        paddingBottom: 20,
-        marginBottom: 12
+        marginLeft: pxToPt(8),
+        paddingBottom: pxToPt(20),
+        marginBottom:pxToPt(12)
     },
     fbT: {
-        paddingTop: 16,
-        paddingLeft: 12,
+        paddingTop: pxToPt(16),
+        paddingLeft: pxToPt(12),
         color: '#5A5D66',
         fontSize: 14
     },

@@ -122,7 +122,7 @@ export default class home extends Component {
                         finish !== '' ? <></> : 
                         <>
                         <TouchableOpacity
-                            style={{ width: pxToPt(60), height: pxToPt(60), alignItems: 'center', justifyContent: 'center' }}
+                            style={{ width: pxToPt(60), height: pxToPt(44),paddingLeft:pxToPt(16), justifyContent: 'center' }}
                             onPress={() => {
                                 this.props.navigation.navigate("Tabbar")
                             }}> <Image style={styles.arrow} source={require('../../../assets/icons/backx.png')}></Image>
@@ -267,7 +267,7 @@ const styles = StyleSheet.create({
         height: pxToPt(22),
     },
     title: {
-        marginLeft: pxToPt(100),
+        marginLeft: pxToPt(92),
         color: '#2B2D33',
         fontSize: pxToPt(18),
         fontWeight: "500",

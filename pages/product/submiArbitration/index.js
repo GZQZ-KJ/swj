@@ -138,7 +138,7 @@ export default class arbitration extends Component {
 <StatusBar backgroundColor="#fff" barStyle={'dark-content'}></StatusBar>
                 <View style={styles.arroWrap}>
                     <TouchableOpacity
-          style={{ width: pxToPt(60), height:pxToPt(60), alignItems: 'center', justifyContent: 'center' }} 
+          style={{ width: pxToPt(60), height: pxToPt(44),paddingLeft:pxToPt(16), justifyContent: 'center' }} 
                     onPress={() => {
                         this.props.navigation.goBack()
                     }}>
@@ -147,10 +147,10 @@ export default class arbitration extends Component {
                     {
                         activeTop === 0 ?
                             //卖家
-                            <Text style={{ ...styles.title, marginLeft: pxToPt(100) }}>未到账，提出仲裁</Text> :
+                            <Text style={{ ...styles.title, marginLeft: pxToPt(57) }}>未到账，提出仲裁</Text> :
 
                             //买
-                            <Text style={{ ...styles.title, marginLeft: pxToPt(140) }}>仲裁反馈</Text>
+                            <Text style={{ ...styles.title, marginLeft: pxToPt(92) }}>仲裁反馈</Text>
                     }
                 </View>
                 <View style={styles.wrapper}>

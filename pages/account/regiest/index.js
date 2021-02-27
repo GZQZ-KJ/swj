@@ -207,8 +207,8 @@ export default class regiest extends Component {
         let { email, password, btnText } = this.state
         return (
             <View style={styles.container}>
-                <StatusBar backgroundColor="#3D72E4" ></StatusBar>
-                <TouchableOpacity style={{ width: pxToPt(60), height: pxToPt(60), alignItems: 'center', justifyContent: 'center' }} onPress={this.goBack}>
+                <StatusBar backgroundColor="#3D72E4" barStyle={'light-content'} ></StatusBar>
+                <TouchableOpacity style={{ width: pxToPt(60), height: pxToPt(44), alignItems: 'center', justifyContent: 'center'}} onPress={this.goBack}>
                     <Image style={styles.arrow} onPress={this.goBack} source={require('../../../assets/icons/backo.png')}></Image>
                 </TouchableOpacity>
                 <View style={styles.texWrap}>
@@ -347,7 +347,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         marginLeft: pxToPt(40),
         marginTop: pxToPt(12),
-        width:pxToPt(160),
+        width:pxToPt(180),
         height: pxToPt(22),
     },
     reg: {
@@ -355,7 +355,7 @@ const styles = StyleSheet.create({
         fontSize: pxToPt(16),
     },
     inpWrap: {
-        marginTop:pxToPt(53),
+        marginTop:pxToPt(69),
         marginLeft:pxToPt(42),
         height: pxToPt(159),
         width: pxToPt(303),
@@ -419,7 +419,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         borderRadius: pxToPt(8),
-        marginTop: pxToPt(99),
+        marginTop: pxToPt(59),
 
     },
     loginTex: {
@@ -430,7 +430,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
         marginLeft:pxToPt(44),
-        marginTop: pxToPt(26)
+        marginTop: pxToPt(24)
     },
     cirImg: {
         width: pxToPt(12),

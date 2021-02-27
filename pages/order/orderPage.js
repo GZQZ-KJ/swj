@@ -260,7 +260,9 @@ export default class orderPage extends Component {
             <View style={{ flexDirection: 'row',justifyContent:'space-between'}}>
             {this.state.tag.map((v, i) => {
               return (
-                <TouchableOpacity style={styles.box1} key={i} onPress={() => {
+                <TouchableOpacity 
+                activeOpacity={1}
+                style={styles.box1} key={i} onPress={() => {
                   if (v.tag_status === this.state.active) return
                   if (this.state.activeTop === 1) {
                     if (i === 3) {
@@ -287,7 +289,11 @@ export default class orderPage extends Component {
           <ScrollView showsHorizontalScrollIndicator={false} horizontal={true} style={{ flexDirection: 'row'}}>
             {this.state.tag.map((v, i) => {
               return (
-                <TouchableOpacity style={styles.box} key={i} onPress={() => {
+                <TouchableOpacity
+                activeOpacity={1}
+                style={styles.box} 
+                key={i} 
+                onPress={() => {
                   if (v.tag_status === this.state.active) return
                   if (this.state.activeTop === 1) {
                     if (i === 3) {
@@ -367,12 +373,16 @@ class TopHeadChoose extends Component {
     return (
       <View style={styles.ordTop}>
         <View style={[styles.contol, basicStyle.flexRow]}>
-          <TouchableOpacity style={styles.ctrlf} onPress={() => this.props._selectLf()}>
+          <TouchableOpacity 
+          activeOpacity={1}
+          style={styles.ctrlf} onPress={() => this.props._selectLf()}>
             <View style={styles.ctrlf}>
               <Text style={styles.txtlf}>订单表</Text>
             </View>
           </TouchableOpacity>
-          <TouchableOpacity style={styles.ctrrt} onPress={() => this.props._selectRt()}>
+          <TouchableOpacity
+          activeOpacity={1}
+          style={styles.ctrrt} onPress={() => this.props._selectRt()}>
             <View style={styles.ctrrt}>
               <Text style={styles.txtrt}>挂卖表</Text>
             </View>

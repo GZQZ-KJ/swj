@@ -82,7 +82,7 @@ export default class sellProduct extends Component {
                 var mobxLockNss = mylockNss + (+sellNss)
                 this.props.rootStore.setNss(mobxnss, mobxLockNss)
                 this.props.rootStore.axiosProductList()
-                this.context.navigate('Seller', { id: r.data.result.sp_id, sellNss: sellNss,finish })
+                this.context.navigate('Seller', { id: r.data.result.sp_id, sellNss: sellNss, finish })
                 return
             }
             else {
@@ -110,10 +110,10 @@ export default class sellProduct extends Component {
     }
     _addBank = () => {
         this.setState({
-            showMyBanks:false
+            showMyBanks: false
         })
         this.props.navigation.navigate("AddBank")
-      }
+    }
     componentDidMount() {
         this.getPrice()
     }
@@ -130,7 +130,7 @@ export default class sellProduct extends Component {
             <>
                 <StatusBar backgroundColor="#fff" barStyle={'dark-content'}></StatusBar>
                 <View style={styles.arroWrap}>
-                    <TouchableOpacity style={{ width: pxToPt(60), height: pxToPt(60), alignItems: 'center', justifyContent: 'center' }}  onPress={() => {
+                    <TouchableOpacity style={{ width: pxToPt(60), height: pxToPt(44),paddingLeft:pxToPt(16) ,justifyContent: 'center' }} onPress={() => {
                         this.props.navigation.navigate("Tabbar")
                     }}>
                         <Image style={styles.arrow} source={require('../../../assets/icons/backx.png')}></Image>
@@ -180,7 +180,7 @@ export default class sellProduct extends Component {
                                 {
                                     !!this.state.bankNum ?
                                         <Text style={{ color: '#2B2D33', fontSize: pxToPt(16), fontWeight: '500' }}>{this.state.bankNum}</Text> :
-                                        <Image style={{ height:pxToPt(8.49), width: pxToPt(4.95)}} source={require('../../../assets/icons/xuanzeka.png')}></Image>
+                                        <Image style={{ height: pxToPt(8.49), width: pxToPt(4.95) }} source={require('../../../assets/icons/xuanzeka.png')}></Image>
                                 }
                             </TouchableOpacity>
                         }
@@ -188,7 +188,7 @@ export default class sellProduct extends Component {
                             <Text style={styles.tekeNote}>注意事项</Text>
                             <Text style={styles.illustrate}>1、挂卖产品时以该界面的单价为准。</Text>
                             <Text style={styles.illustrate}>2、双方交易时，请认准双方的账户和用户名。</Text>
-                            <Text style={styles.illustrate}>3、如果想取消该产品订单，请在未被其他用户锁定前，取消挂卖</Text>
+                            <Text style={styles.illustrate}>3、如果想取消该产品订单，请在未被其他用户锁定前，取消挂卖。</Text>
                         </View>
                     </View>
                     {
@@ -207,50 +207,54 @@ export default class sellProduct extends Component {
                 <Modal visible={this.state.showMyBanks} animationType={'slide'} >
                     <View style={styles.arroWrap}>
                         <TouchableOpacity
-                        style={{ width: pxToPt(60), height: pxToPt(60), alignItems: 'center', justifyContent: 'center' }} 
-                        onPress={() => {
-                            this.setState({
-                                showMyBanks: false,
-                            })
-                        }}>
+                            style={{ width: pxToPt(60), height: pxToPt(44), alignItems: 'center', justifyContent: 'center' }}
+                            onPress={() => {
+                                this.setState({
+                                    showMyBanks: false,
+                                })
+                            }}>
                             <Image style={styles.arrow} source={require('../../../assets/icons/backx.png')}></Image>
                         </TouchableOpacity>
-                        <Text style={styles.banktitle}>选择银行卡</Text>
+                        <Text style={styles.headbanktitle}>选择银行卡</Text>
                     </View>
-                    <SafeAreaView style={{ flex: 1, alignItems: 'center' }}>
-                        <ScrollView showsVerticalScrollIndicator={false} style={{ paddingBottom: pxToPt(120), backgroundColor: '#fff' }}>
+                    <TouchableOpacity style={styles.btn} activeOpacity={1} onPress={this._addBank}>
+                        <Image style={{ height: pxToPt(14), width: pxToPt(14) }} source={require('../../../assets/icons/MybandCardad222d.png')}></Image>
+                        <Text style={styles.txt}>添加银行卡</Text>
+                    </TouchableOpacity>
+                    <SafeAreaView >
+                        <ScrollView style={{ height:550,paddingLeft:pxToPt(16) }}>
                             {
                                 this.state.myBanks.map((v, i) => {
                                     var reg = /^(\d{4})\d+(\d{4})$/;
                                     v.account_no = v.account_no.replace(reg, "**** $2");
                                     return (
-                                        <TouchableOpacity style={styles.bankwrap} key={i} onPress={() => {
-                                            this.setState({
-                                                bankId: v.bank_card_id,
-                                                bankName: v.full_name,
-                                                bankNum: v.account_no,
-                                                showMyBanks: false,
-                                            })
-                                        }} >
-                                            <ImageBackground source={{ uri: v.background_url }} style={styles.bankBC}>
-                                                <View style={{ flexDirection: "row" }}>
-                                                    <View style={styles.bankicon}>
-                                                        <Image source={{ uri: v.icon }} style={{ width: pxToPt(28), height: pxToPt(28) }}></Image>
+                                        <>
+                                            <TouchableOpacity 
+                                            activeOpacity={1}
+                                            style={styles.bankwrap} key={i} onPress={() => {
+                                                this.setState({
+                                                    bankId: v.bank_card_id,
+                                                    bankName: v.full_name,
+                                                    bankNum: v.account_no,
+                                                    showMyBanks: false,
+                                                })
+                                            }} >
+                                                <ImageBackground source={{ uri: v.background_url }} style={styles.bankBC}>
+                                                    <View style={{ flexDirection: "row" }}>
+                                                        <View style={styles.bankicon}>
+                                                            <Image source={{ uri: v.icon }} style={{ width: pxToPt(28), height: pxToPt(28) }}></Image>
+                                                        </View>
+                                                        <Text style={styles.bankTitle}>{v.full_name}</Text>
                                                     </View>
-                                                    <Text style={styles.bankTitle}>{v.full_name}</Text>
-                                                </View>
-                                                <View>
-                                                    <Text style={styles.bankNum}>{v.account_no}</Text>
-                                                </View>
-                                            </ImageBackground>
-                                        </TouchableOpacity>
+                                                    <View>
+                                                        <Text style={styles.bankNum}>{v.account_no}</Text>
+                                                    </View>
+                                                </ImageBackground>
+                                            </TouchableOpacity>
+                                        </>
                                     )
                                 })
                             }
-                            <TouchableOpacity style={styles.btn} activeOpacity={.7} onPress={this._addBank}>
-                                <Image style={{ height: pxToPt(14), width: pxToPt(14) }} source={require('../../../assets/icons/add.png')}></Image>
-                                <Text style={styles.txt}>添加银行卡</Text>
-                            </TouchableOpacity>
                         </ScrollView>
                     </SafeAreaView>
                 </Modal>
@@ -260,33 +264,42 @@ export default class sellProduct extends Component {
 }
 const styles = StyleSheet.create({
     arroWrap: {
-        height:pxToPt(44),
+        height: pxToPt(44),
         alignItems: 'center',
         flexDirection: 'row',
         backgroundColor: '#fff'
     },
     arrow: {
         width: pxToPt(11.82),
-        height:pxToPt(22),
+        height: pxToPt(22),
     },
     title: {
-        marginLeft: pxToPt(100),
+        marginLeft: pxToPt(92),
         color: '#2B2D33',
         fontSize: pxToPt(18),
         fontWeight: "500",
         fontFamily: 'PingFang SC'
     },
-    banktitle:{
+    banktitle: {
         marginLeft: pxToPt(90),
         color: '#2B2D33',
         fontSize: pxToPt(18),
         fontWeight: "500",
         fontFamily: 'PingFang SC'
     },
+    headbanktitle: {
+        marginLeft: pxToPt(84),
+        color: '#2B2D33',
+        fontSize: pxToPt(18),
+        fontWeight: "500",
+        fontFamily: 'PingFang SC',
+        marginBottom: pxToPt(8)
+    },
     container: {
         flex: 1,
         alignItems: 'center',
         backgroundColor: '#F8F9FA',
+        position: 'relative'
     },
     wrapper: {
         marginTop: pxToPt(28),
@@ -296,13 +309,13 @@ const styles = StyleSheet.create({
         paddingLeft: pxToPt(12),
         paddingRight: pxToPt(12),
         backgroundColor: '#fff',
-        elevation: pxToPt(2),
-        shadowColor: '#565A66',
-        shadowOpacity: pxToPt(1),
-        shadowOffset: {
-            width: pxToPt(0),
-            height: pxToPt(1)
-        },
+        // elevation: pxToPt(2),
+        // shadowColor: '#565A66',
+        // shadowOpacity: pxToPt(1),
+        // shadowOffset: {
+        //     width: pxToPt(0),
+        //     height: pxToPt(1)
+        // },
         borderRadius: pxToPt(12),
         marginBottom: pxToPt(48)
     },
@@ -341,7 +354,7 @@ const styles = StyleSheet.create({
 
     },
     chooseBankCard: {
-        borderBottomWidth:pxToPt(1),
+        borderBottomWidth: pxToPt(1),
         borderBottomColor: '#F5F5F7',
         paddingBottom: pxToPt(8),
         flexDirection: 'row',
@@ -353,7 +366,7 @@ const styles = StyleSheet.create({
         marginBottom: pxToPt(12),
         color: '#2B2D33',
         fontWeight: '500',
-        fontSize:pxToPt(15)
+        fontSize: pxToPt(15)
     },
     illustrate: {
         color: '#5A5D66',
@@ -370,27 +383,30 @@ const styles = StyleSheet.create({
     },
     //我的卡的样式
     bankwrap: {
-        height:pxToPt(121),
-        width: pxToPt(346),
+        height: pxToPt(121),
+        width: pxToPt(343),
         overflow: 'hidden',
-        marginTop: pxToPt(8),
         marginBottom: pxToPt(12),
-        borderRadius: pxToPt(12)
+        borderRadius: pxToPt(12),
+        position: 'relative'
     },
     bankBC: {
-        width: pxToPt(343),
+        position: 'absolute',
+        width: pxToPt(355),
         height: pxToPt(120),
+        left: pxToPt(-5),
         flexDirection: 'row',
-        justifyContent: 'space-between'
+        justifyContent: 'space-between',
     },
     bankicon: {
         justifyContent: 'center',
         alignItems: 'center',
         marginTop: pxToPt(20),
-        marginLeft: pxToPt(10),
-        width: pxToPt(40), height: pxToPt(40),
+        marginLeft: pxToPt(15),
+        width: pxToPt(40),
+        height: pxToPt(40),
         backgroundColor: '#fff',
-        borderRadius:pxToPt(20)
+        borderRadius: pxToPt(20)
     },
     bankTitle: {
         marginTop: pxToPt(29),
@@ -401,7 +417,7 @@ const styles = StyleSheet.create({
     },
     bankNum: {
         color: '#F5F5F7',
-        paddingRight: pxToPt(12),
+        paddingRight: pxToPt(17),
         fontSize: pxToPt(14),
         fontWeight: '400',
         marginTop: pxToPt(31),
@@ -412,12 +428,24 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         flexDirection: 'row',
         alignItems: 'center',
-        marginTop:pxToPt(68),
         width: pxToPt(343),
         height: pxToPt(44),
         borderRadius: pxToPt(8),
         backgroundColor: '#3D72E4',
         marginBottom: pxToPt(100),
+        marginTop: pxToPt(644),
+        position: 'absolute',
+        marginLeft: pxToPt(16),
+        zIndex: 100,
+        elevation: 4,
+        shadowOffset: {
+            width: 0,
+            height: 4
+        },
+        shadowColor: '#181D29',
+        shadowOpacity: 0.12,
+        shadowRadius: pxToPt(2),
+
     },
     txt: {
         marginLeft: pxToPt(4),

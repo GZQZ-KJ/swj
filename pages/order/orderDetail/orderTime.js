@@ -58,7 +58,7 @@ const styles = StyleSheet.create({
         borderRadius: pxToPt(8),
         marginLeft: pxToPt(8),
         paddingBottom: pxToPt(20),
-        marginBottom: pxToPt(12)
+        paddingTop: pxToPt(4)
     },
     fbT: {
         paddingTop: pxToPt(16),

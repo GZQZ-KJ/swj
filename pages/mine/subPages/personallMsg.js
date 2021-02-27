@@ -101,10 +101,10 @@ export default class setting extends Component {
       height: 400,
       cropping: true
     }).then(image => {
-      this.getHead(image)
       this.setState({
         avater_url: image.path
       })
+      this.getHead(image)
     }).catch(e => console.log('[获取本地图片]', e))
 
   }
@@ -202,7 +202,7 @@ export default class setting extends Component {
       <>
         <StatusBar backgroundColor="#fff" barStyle={'dark-content'}></StatusBar>
         <View style={styles.arroWrap}>
-          <TouchableOpacity style={{ width: pxToPt(60), height: pxToPt(60),marginRight:pxToPt(100) , alignItems: 'center', justifyContent: 'center' }} onPress={() => {
+          <TouchableOpacity style={{ width: pxToPt(60), height: pxToPt(60),marginRight:pxToPt(75) ,marginLeft:pxToPt(16), justifyContent: 'center' }} onPress={() => {
             this.props.navigation.navigate('Tabbar')
           }}>
             <Image style={styles.arrow} source={require('../../../assets/icons/backx.png')}></Image>
@@ -212,17 +212,17 @@ export default class setting extends Component {
           {
             this.state.canChange ?
               <TouchableOpacity
-                style={{ paddingRight: pxToPt(10), height: '100%', justifyContent: 'center' }}
+                style={{ height: '100%', justifyContent: 'center' }}
                 onPress={this.onsumbit}
               >
-                <Text>完成</Text>
+                <Text style={{fontSize:pxToPt(12),color:'#3D72E4'}}>完成</Text>
               </TouchableOpacity> :
-              <TouchableOpacity style={{ paddingRight: pxToPt(10), height: '100%', justifyContent: 'center' }} onPress={() => {
+              <TouchableOpacity style={{ height: '100%', justifyContent: 'center' }} onPress={() => {
                 this.setState({
                   canChange: true
                 })
               }}>
-                <Text >编辑</Text>
+                <Text style={{fontSize:pxToPt(12),color:'#3D72E4'}}>编辑</Text>
               </TouchableOpacity>
           }
         </View>
@@ -375,7 +375,7 @@ const styles = StyleSheet.create({
     fontSize: pxToPt(18),
     fontWeight: "500",
     fontFamily: 'PingFang SC',
-    marginRight:pxToPt(100)
+    marginRight:pxToPt(108)
   },
   container: {
     flex: 1

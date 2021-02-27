@@ -84,7 +84,7 @@ export default class myShare extends Component {
         <StatusBar backgroundColor="#fff" barStyle={'dark-content'}></StatusBar>
         <View style={styles.arroWrap}>
           <TouchableOpacity
-            style={{ width: pxToPt(60), height: pxToPt(60), alignItems: 'center', justifyContent: 'center', marginRight: pxToPt(100)}}
+            style={{ width: pxToPt(60),  height: pxToPt(44),paddingLeft:pxToPt(16), justifyContent: 'center', marginRight: pxToPt(92)}}
             onPress={() => {
               this.props.navigation.navigate('Tabbar')
             }}>

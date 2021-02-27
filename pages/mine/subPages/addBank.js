@@ -47,8 +47,12 @@ export default class addBank extends Component {
   }
   _confirm = async () => {
     var { account_no, account_name, openbank, bank_id, account_address } = this.state
-    if (account_no === '' || account_name === '' || openbank === '请选择开户行') {
-      Toast.message('请检查信息是否已填写', 2000, 'center')
+    if (account_no === '') {
+      Toast.message('银行卡号未填写', 2000, 'center')
+      return
+    }
+    if (account_name === '') {
+      Toast.message('开户名未填写', 2000, 'center')
       return
     }
     await axios.post(BANKS_ADDBANK, {
@@ -104,25 +108,29 @@ export default class addBank extends Component {
             </View>
           </TouchableOpacity>
           <View style={styles.item}>
-            <Text style={styles.title}>银行卡号</Text>
-            <TextInput style={styles.ipt}
-              placeholder="请输入银行卡号"
-              placeholderTextColor="#5A5D66"
-              onChangeText={(account_no) => this.setState({ account_no })}
-            ></TextInput>
-          </View>
-          <View style={styles.item}>
             <Text style={styles.title}>开户名</Text>
             <TextInput style={styles.ipt}
+            textAlign={'right'}
               placeholder="请输入户名"
               placeholderTextColor="#5A5D66"
               onChangeText={(account_name) => this.setState({ account_name })}
             ></TextInput>
           </View>
           <View style={styles.item}>
-            <Text style={styles.title}>开户银行(选填)</Text>
+            <Text style={styles.title}>银行卡号</Text>
             <TextInput style={styles.ipt}
-              placeholder="请输入开户银行"
+            textAlign={'right'}
+              keyboardType='numeric'
+              placeholder="请输入银行卡号"
+              placeholderTextColor="#5A5D66"
+              onChangeText={(account_no) => this.setState({ account_no })}
+            ></TextInput>
+          </View>
+          <View style={styles.item}>
+            <Text style={styles.title}>开户支行(选填)</Text>
+            <TextInput style={styles.ipt}
+            textAlign={'right'}
+              placeholder="请输入开户支行"
               placeholderTextColor="#5A5D66"
               onChangeText={(account_address) => this.setState({ account_address })}
             ></TextInput>
@@ -132,7 +140,7 @@ export default class addBank extends Component {
           <Modal visible={this.state.show} >
             <View style={styles.arroWrap}>
               <TouchableOpacity
-                style={{ width: pxToPt(60), height: pxToPt(60), alignItems: 'center', justifyContent: 'center' }}
+                style={{ width: pxToPt(60), height: pxToPt(44),paddingLeft:pxToPt(16), justifyContent: 'center' }}
                 onPress={() => {
                   this.setState({
                     show: false
@@ -143,7 +151,7 @@ export default class addBank extends Component {
               <Text style={styles.headtitle}>选择银行卡</Text>
             </View>
             <ScrollView>
-              <View style={{ paddingLeft: pxToPt(20), paddingRight: pxToPt(20), paddingTop: pxToPt(10), paddingBottom: pxToPt(10), backgroundColor: '#fff',overflow:'hidden',borderWidth:pxToPt(1),borderColor:'#fff'}}>
+              <View style={{ paddingLeft: pxToPt(16), paddingRight: pxToPt(20), paddingTop: pxToPt(10), paddingBottom: pxToPt(10), backgroundColor: '#fff', overflow: 'hidden', borderWidth: pxToPt(1), borderColor: '#fff' }}>
                 {
                   this.state.chooseBank.map((v, i) => {
                     return (
@@ -157,10 +165,10 @@ export default class addBank extends Component {
                           })
 
                         }}>
-                        <ImageBackground 
-                        activeOpacity={1}
-                        source={{ uri: v.background_url }} 
-                        style={styles.wrapperBc}>
+                        <ImageBackground
+                          activeOpacity={1}
+                          source={{ uri: v.background_url }}
+                          style={styles.wrapperBc}>
                           <View style={{ flexDirection: "row" }}>
                             <View style={styles.icon}>
                               <Image source={{ uri: v.icon }} style={{ width: pxToPt(28), height: pxToPt(28) }}></Image>
@@ -214,7 +222,7 @@ const styles = StyleSheet.create({
     fontSize: pxToPt(18),
     fontWeight: "500",
     fontFamily: 'PingFang SC',
-    marginLeft: pxToPt(90)
+    marginLeft: pxToPt(84)
   },
   list: {
     paddingLeft: pxToPt(16),
@@ -305,10 +313,10 @@ const styles = StyleSheet.create({
     height: pxToPt(120),
     flexDirection: 'row',
     justifyContent: 'space-between',
-    borderRadius:pxToPt(12),
-    borderWidth:1,
-    borderColor:'#fff',
-    overflow:'hidden'
+    borderRadius: pxToPt(12),
+    borderWidth: 1,
+    borderColor: '#fff',
+    overflow: 'hidden'
   },
   icon: {
     justifyContent: 'center',
@@ -329,7 +337,7 @@ const styles = StyleSheet.create({
   bankNum: {
     color: '#F5F5F7',
     paddingRight: pxToPt(12),
-    fontSize:pxToPt(14),
+    fontSize: pxToPt(14),
     fontWeight: '400',
     marginTop: pxToPt(31),
     marginBottom: pxToPt(50)

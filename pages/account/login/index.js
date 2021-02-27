@@ -171,7 +171,7 @@ export default class login extends Component {
         var re = /^[a-zA-Z\d]+([-_\.][a-zA-Z\d]+)*@[a-zA-Z\d]+\.[a-zA-Z\d]{2,4}$/
         return (
             <View style={styles.container}>
-                <StatusBar backgroundColor="#3D72E4" ></StatusBar>
+                <StatusBar backgroundColor="#3D72E4" barStyle={'light-content'}></StatusBar>
                 <TouchableOpacity style={styles.arroWrap} >
                     {/* <Image style={styles.arrow} source={require('../../../assets/icons/backo.png')}></Image> */}
                 </TouchableOpacity>
@@ -279,7 +279,6 @@ const styles = StyleSheet.create({
     arroWrap: {
         height: pxToPt(44),
         justifyContent: 'center',
-        // paddingLeft: pxToPt(16)
 
     },
     arrow: {
@@ -317,7 +316,7 @@ const styles = StyleSheet.create({
         fontSize: pxToPt(16),
     },
     inpWrap: {
-        marginTop: pxToPt(88),
+        marginTop: pxToPt(73),
         marginLeft:pxToPt(36),
     },
     inp: {

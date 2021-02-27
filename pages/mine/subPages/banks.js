@@ -30,7 +30,7 @@ export default class bank extends Component {
       myBanks: [],
       token: this.props.rootStore.token,
       Imgs: {
-        add: require('../../../assets/icons/add.png'),
+        add: require('../../../assets/icons/MybandCardad222d.png'),
         nongye: require('../../../assets/icons/mine/MybandCardad3d.png')
       }
     }
@@ -75,18 +75,25 @@ export default class bank extends Component {
       <>
         <StatusBar backgroundColor="#fff" barStyle={'dark-content'}></StatusBar>
         <View style={styles.arroWrap}>
-          <TouchableOpacity 
-          style={{ width: pxToPt(60), height: pxToPt(60), alignItems: 'center', justifyContent: 'center' }} 
-          onPress={() => {
-            this.props.navigation.navigate('Tabbar')
+          <TouchableOpacity
+            style={{ width: pxToPt(60), height: pxToPt(44),paddingLeft:pxToPt(16), justifyContent: 'center' }}
+            onPress={() => {
+              this.props.navigation.navigate('Tabbar')
 
-          }}>
+            }}>
             <Image style={styles.arrow} source={require('../../../assets/icons/backx.png')}></Image>
           </TouchableOpacity>
           <Text style={styles.title}>我的银行卡</Text>
         </View>
+        {
+          this.state.myBanks.length < 1 ? <></> :
+            <TouchableOpacity style={styles.btn} activeOpacity={1} onPress={this._addBank}>
+              <Image style={{ height: pxToPt(14), width: pxToPt(14) }} source={this.state.Imgs.add}></Image>
+              <Text style={styles.txt}>添加银行卡</Text>
+            </TouchableOpacity>
+        }
         <SafeAreaView>
-          <ScrollView showsHorizontalScrollIndicator={false} style={{ marginBottom: 120 }}>
+          <ScrollView style={{height:550}}>
             <View style={styles.container}>
               {
                 this.state.myBanks.map((v, i) => {
@@ -94,15 +101,6 @@ export default class bank extends Component {
                   v.account_no = v.account_no.replace(reg, "**** $2");
                   return (
                     <View key={i}>
-                      {
-                        i === this.state.showAdd ? <>
-                          <TouchableOpacity style={styles.btn} activeOpacity={.7} onPress={this._addBank}>
-                            <Image style={{ height: pxToPt(14), width: pxToPt(14) }} source={this.state.Imgs.add}></Image>
-                            <Text style={styles.txt}>添加银行卡</Text>
-                          </TouchableOpacity>
-                        </> :
-                          <></>
-                      }
                       <View style={styles.wrapper} key={i}>
                         <ImageBackground source={{ uri: v.background_url }} style={styles.wrapperBc}>
                           <View style={{ flexDirection: "row" }}>
@@ -113,25 +111,19 @@ export default class bank extends Component {
                           </View>
                           <View>
                             <Text style={styles.bankNum}>{v.account_no}</Text>
-                            {/* {
-                            this.state.showDelete ? <>
-                              <View style={styles.showDelete} onPress={this.showDelete}>
-                                <TouchableOpacity style={{ marginRight: 15, borderRadius: 6 }} onPress={(i) => { console.log(i) }}>
-                                  <Text style={styles.fontTex}>删除</Text>
-                                </TouchableOpacity>
-                                <TouchableOpacity style={{ borderRadius: 6 }} onPress={(i) => this.showDelete(i)}>
-                                  <Text style={styles.fontTex}>取消</Text>
-                                </TouchableOpacity>
-                              </View>
-                            </> :
-                              <>
-                                <TouchableOpacity
-                                  onPress={this.showDelete}
-                                >
-                                  <Pionts />
-                                </TouchableOpacity>
-                              </>
-                          } */}
+                          </View>
+                        </ImageBackground>
+                      </View>
+                      <View style={styles.wrapper} key={i}>
+                        <ImageBackground source={{ uri: v.background_url }} style={styles.wrapperBc}>
+                          <View style={{ flexDirection: "row" }}>
+                            <View style={styles.icon}>
+                              <Image source={{ uri: v.icon }} style={{ width: pxToPt(28), height: pxToPt(28) }}></Image>
+                            </View>
+                            <Text style={styles.bankTitle}>{v.full_name}</Text>
+                          </View>
+                          <View>
+                            <Text style={styles.bankNum}>{v.account_no}</Text>
                           </View>
                         </ImageBackground>
                       </View>
@@ -139,53 +131,18 @@ export default class bank extends Component {
                   )
                 })
               }
-              {/* <View style={styles.wrapper}>
-                <ImageBackground source={this.state.Imgs.nongye} style={styles.wrapperBc}>
-                  <View style={{ flexDirection: "row" }}>
-                    <View style={styles.icon}>
-                      <Image source={require('../../../assets/icons/biaoqin.png')} style={{ width: 28, height: 28 }}></Image>
-                    </View>
-                    <Text style={styles.bankTitle}>中国农业银行储蓄卡</Text>
-                  </View>
-                  <View>
-                    <Text style={styles.bankNum}>**** 7576</Text>
-
-                    {
-                      this.state.showDelete ? <>
-                        <View style={ styles.showDelete} onPress={this.showDelete}>
-                          <TouchableOpacity style={{ marginRight: 15, borderRadius: 6 }} onPress={() => { alert('11') }}>
-                            <Text style={styles.fontTex}>删除</Text>
-                          </TouchableOpacity>
-                          <TouchableOpacity style={{  borderRadius: 6 }} onPress={this.showDelete}>
-                            <Text style={styles.fontTex}>取消</Text>
-                          </TouchableOpacity>
-                        </View>
-                      </> :
-                        <>
-                          <TouchableOpacity
-                            onPress={this.showDelete}
-                          >
-                            <Pionts />
-                          </TouchableOpacity>
-                        </>
-                    }
-                  </View>
-                </ImageBackground>
-              </View> */}
               {
                 this.state.myBanks.length < 1 ?
                   <>
-                    <Image style={{ width: pxToPt(206.22), height:pxToPt(217.11), alignSelf: 'center', top: pxToPt(53) }} source={require('../../../assets/icons/default/Nobindingbankcard.png')}></Image>
+                    <Image style={{ width: pxToPt(206.22), height: pxToPt(217.11), alignSelf: 'center', top: pxToPt(53) }} source={require('../../../assets/icons/default/Nobindingbankcard.png')}></Image>
                     <Text style={{ color: '#8D9099', marginTop: pxToPt(78), alignSelf: 'center', fontWeight: '400', fontSize: pxToPt(15) }}>暂无绑定银行卡</Text>
-                    <TouchableOpacity 
-                    style={styles.nobtn} activeOpacity={1} onPress={this._addBank}>
-                      <Image style={{ height:pxToPt(14), width: pxToPt(14) }} source={this.state.Imgs.add}></Image>
+                    <TouchableOpacity
+                      style={styles.nobtn} activeOpacity={1} onPress={this._addBank}>
+                      <Image style={{ height: pxToPt(14), width: pxToPt(14) }} source={this.state.Imgs.add}></Image>
                       <Text style={styles.notxt}>添加银行卡</Text>
                     </TouchableOpacity>
-                  </> : this.state.myBanks.length >= 2 ? <></> : <TouchableOpacity style={styles.btn} activeOpacity={1} onPress={this._addBank}>
-                    <Image style={{ height: pxToPt(14), width: pxToPt(14) }} source={this.state.Imgs.add}></Image>
-                    <Text style={styles.txt}>添加银行卡</Text>
-                  </TouchableOpacity>
+                  </> :
+                  <></>
               }
             </View>
           </ScrollView>
@@ -198,11 +155,11 @@ export default class bank extends Component {
 class Pionts extends Component {
   render() {
     let item = Array.from({ length: 3 }, (v, i) => (
-      <View style={{ height: pxToPt(3), width:pxToPt(3), backgroundColor: '#F5F5F7', marginLeft:pxToPt(4), borderRadius:pxToPt(2) }} key={i}></View>
+      <View style={{ height: pxToPt(3), width: pxToPt(3), backgroundColor: '#F5F5F7', marginLeft: pxToPt(4), borderRadius: pxToPt(2) }} key={i}></View>
     ))
     return (
       <View
-        style={{ flexDirection: 'row', height: pxToPt(30), width:pxToPt(60), justifyContent: 'flex-end' }}
+        style={{ flexDirection: 'row', height: pxToPt(30), width: pxToPt(60), justifyContent: 'flex-end' }}
       >
         {item}
       </View>
@@ -215,7 +172,9 @@ const styles = StyleSheet.create({
     height: pxToPt(44),
     alignItems: 'center',
     flexDirection: 'row',
-    backgroundColor: '#fff'
+    backgroundColor: '#fff',
+    marginBottom: pxToPt(8),
+
   },
   arrow: {
     width: pxToPt(11.82),
@@ -226,32 +185,37 @@ const styles = StyleSheet.create({
     fontSize: pxToPt(18),
     fontWeight: "500",
     fontFamily: 'PingFang SC',
-    marginLeft:pxToPt(90)
+    marginLeft: pxToPt(84)
   },
   container: {
-    marginLeft: pxToPt(22),
+    marginLeft: pxToPt(16),
     marginRight: pxToPt(16),
   },
   wrapper: {
-    height: pxToPt(121),
-    width: pxToPt(346),
+    height: pxToPt(120),
+    width: pxToPt(343),
     overflow: 'hidden',
-    marginTop: pxToPt(8),
     marginBottom: pxToPt(12),
-    borderRadius:pxToPt(12)
+    borderRadius: pxToPt(12),
+    position: 'relative',
+
   },
   wrapperBc: {
-    width: pxToPt(343),
-    height: pxToPt(120),
     flexDirection: 'row',
-    justifyContent: 'space-between'
+    justifyContent: 'space-between',
+    width: pxToPt(350),
+    height: '100%',
+    position: 'absolute',
+    left: pxToPt(-2)
   },
+
+
   icon: {
     justifyContent: 'center',
     alignItems: 'center',
     marginTop: pxToPt(20),
     marginLeft: pxToPt(10),
-    width:pxToPt(40), height: pxToPt(40),
+    width: pxToPt(40), height: pxToPt(40),
     backgroundColor: '#fff',
     borderRadius: pxToPt(20)
   },
@@ -265,7 +229,7 @@ const styles = StyleSheet.create({
   bankNum: {
     color: '#F5F5F7',
     paddingRight: pxToPt(12),
-    fontSize:pxToPt(14),
+    fontSize: pxToPt(14),
     fontWeight: '400',
     marginTop: pxToPt(31),
     marginBottom: pxToPt(50)
@@ -281,12 +245,15 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     flexDirection: 'row',
     alignItems: 'center',
-    marginTop: pxToPt(8),
+    marginTop: pxToPt(620),
     width: pxToPt(343),
     height: pxToPt(44),
     borderRadius: pxToPt(8),
     backgroundColor: '#3D72E4',
     marginBottom: pxToPt(100),
+    position: 'absolute',
+    marginLeft: pxToPt(16),
+    zIndex:100,
   },
   nobtn: {
     justifyContent: 'center',
@@ -298,7 +265,7 @@ const styles = StyleSheet.create({
     borderRadius: pxToPt(8),
     borderWidth: pxToPt(1),
     backgroundColor: '#fff',
-    marginBottom:pxToPt(100),
+    marginBottom: pxToPt(100),
     borderColor: '#3D72E4',
     alignSelf: 'center'
   },
@@ -311,7 +278,7 @@ const styles = StyleSheet.create({
     color: '#FFFFFF'
   },
   notxt: {
-    marginLeft:pxToPt(4),
+    marginLeft: pxToPt(4),
     color: '#3D72E4'
   }
 
