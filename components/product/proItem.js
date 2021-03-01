@@ -135,12 +135,13 @@ const styles = StyleSheet.create({
   },
   price: {
     height: pxToPt(22),
-    // marginLeft: 75,
     fontSize: pxToPt(16),
-    color: '#FE5564'
+    color: '#FE5564',
+    fontWeight: '700',
   },
   next: {
     justifyContent: 'space-between',
+    alignItems:'center',       
     marginLeft: pxToPt(12),
     marginRight: pxToPt(12),
     paddingTop: pxToPt(11),

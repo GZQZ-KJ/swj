@@ -4,7 +4,8 @@ import {
   Text,
   Image,
   TouchableNativeFeedback,
-  StyleSheet
+  StyleSheet,
+  Platform
 } from 'react-native'
 import { pxToPt } from "../../../utils/styleKits";
 
@@ -32,7 +33,7 @@ export default class top extends Component {
   }
   render() {
     return (
-      <View style={styles.header}>
+      <View style={[styles.header,Platform.OS === 'ios' ? styles.headerTwo : null]}>
         <TouchableNativeFeedback onPress={() => this._isFiltrate()}>
           <View style={styles.item}>
             <Text style={styles.title, [this.props.flag ? { color: '#3D72E4',fontSize:15,fontWeight:'700' } : { color: '#2B2D33' }]}>价格筛选</Text>
@@ -56,6 +57,9 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     height: pxToPt(44),
     backgroundColor: '#FFFFFF',
+  },
+  headerTwo:{
+    marginTop:pxToPt(44)
   },
   item: {
     flex: 1,
