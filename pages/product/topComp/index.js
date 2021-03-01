@@ -33,7 +33,7 @@ export default class top extends Component {
   }
   render() {
     return (
-      <View style={[styles.header,Platform.OS === 'ios' ? styles.headerTwo : null]}>
+      <View style={[styles.header,Platform.OS === 'ios' && this.props.flag? styles.headerTwo : null]}>
         <TouchableNativeFeedback onPress={() => this._isFiltrate()}>
           <View style={styles.item}>
             <Text style={styles.title, [this.props.flag ? { color: '#3D72E4',fontSize:15,fontWeight:'700' } : { color: '#2B2D33' }]}>价格筛选</Text>

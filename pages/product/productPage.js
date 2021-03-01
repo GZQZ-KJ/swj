@@ -270,6 +270,7 @@ export default class productPage extends Component {
                     <View style={[styles.inpRow, basicStyle.flexRow]}>
                       <TextInput
                         style={styles.floorInput}
+                        allowFontScaling={true}
                         placeholder={'输入最低价'}
                         onChangeText={(val) => this.setState({
                           min_sum_count: val
@@ -278,6 +279,7 @@ export default class productPage extends Component {
                       <View style={styles.line}></View>
                       <TextInput
                         style={styles.floorInput}
+                        allowFontScaling={true}
                         placeholder={'输入最高价'}
                         onChangeText={(val) => this.setState({
                           max_sum_count: val
@@ -288,6 +290,7 @@ export default class productPage extends Component {
                     <View style={[styles.inpRow, basicStyle.flexRow]}>
                       <TextInput
                         style={styles.floorInput}
+                        allowFontScaling={true}
                         placeholder={'输入最低价'}
                         onChangeText={(val) => this.setState({
                           min_price: val
@@ -296,6 +299,7 @@ export default class productPage extends Component {
                       <View style={styles.line}></View>
                       <TextInput
                         style={styles.floorInput}
+                        allowFontScaling={true}
                         placeholder={'输入最高价'}
                         onChangeText={(val) => this.setState({
                           max_price: val
