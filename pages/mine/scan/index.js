@@ -13,7 +13,6 @@ import axios from '../../../utils/api/request'
 import { pxToPt } from "../../../utils/styleKits";
 import { SHARE_BIND } from '../../../utils/api/pathMap'
 import { inject, observer } from 'mobx-react'
-import {pxToPt} from '../../../utils/styleKits'
 import Toast from '../../../utils/api/Toast'
 @inject('rootStore')
 @observer

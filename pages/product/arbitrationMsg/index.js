@@ -7,7 +7,7 @@ import {
     SafeAreaView,
     Image,
     TouchableOpacity,
-    ScrollView，
+    ScrollView,
     Platform
 } from 'react-native'
 import ArbiHeader from './arbiHeader'

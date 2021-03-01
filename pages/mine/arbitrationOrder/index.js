@@ -10,7 +10,6 @@ import {
 import { pxToPt } from "../../../utils/styleKits";
 import { NavigationContext } from '@react-navigation/native'
 import { inject, observer } from 'mobx-react'
-import { pxToPt } from '../../../utils/styleKits'
 @inject('rootStore')
 @observer
 // @observer

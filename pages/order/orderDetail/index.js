@@ -8,7 +8,7 @@ import {
     StatusBar,
     StyleSheet,
     SafeAreaView,
-    ScrollView，
+    ScrollView,
     Platform
 } from 'react-native'
 import ToastTwo from '../../../components/ToastTwo'
@@ -17,7 +17,7 @@ import OrderPerson from './orderPerson'
 import OrderBuyer from './orderBuyer'
 import OrderDetail from './orderDetail'
 import OrderTime from './orderTime'
-import { pxToPt } from "../../../utils/styleKits";
+import { pxToPt } from "../../../utils/styleKits"
 import { PRODUCT_RECEIVE, ORDERS_INFO, PRODUCT_SALEINFO, ORDERS_CANCEL, ORDERS_PAY, PRODUCT_CANCEL } from '../../../utils/api/pathMap'
 import axios from '../../../utils/api/request'
 import { NavigationContext } from '@react-navigation/native'
