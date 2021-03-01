@@ -5,7 +5,8 @@ import {
     StyleSheet,
     Text,
     TouchableHighlight,
-    View
+    View,
+    Platform
 } from "react-native";
 import { pxToPt } from "../utils/styleKits";
 class Toast extends Component {
@@ -205,7 +206,7 @@ const styles = StyleSheet.create({
         marginBottom:pxToPt(32),
         shadowOpacity: 0.25,
         shadowRadius: pxToPt(3.84),
-        elevation: 5
+        elevation: 2
     },
     openButton: {
         borderRadius: pxToPt(15),
@@ -230,7 +231,8 @@ const styles = StyleSheet.create({
         letterSpacing: -1,
         height:pxToPt(44),
         marginBottom:pxToPt(28),
-        lineHeight:pxToPt(-5),
+        lineHeight:Platform.OS === 'ios' ? pxToPt(20) :pxToPt(20),
+        height:pxToPt(44)
       },
     dobut: {
         flexDirection: "row",
