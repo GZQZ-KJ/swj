@@ -231,7 +231,7 @@ const styles = StyleSheet.create({
         letterSpacing: -1,
         height:pxToPt(44),
         marginBottom:pxToPt(28),
-        lineHeight:Platform.OS === 'ios' ? pxToPt(20) :pxToPt(20),
+        lineHeight:Platform.OS === 'ios' ? pxToPt(22) :pxToPt(22),
         height:pxToPt(44)
       },
     dobut: {

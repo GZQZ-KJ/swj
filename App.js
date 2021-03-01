@@ -29,7 +29,7 @@ Text.render = function(...args) {
 export default class App extends Component {
   render() {
     return (
-      <SafeAreaView style={{ flex: 1,backgroundColor:'#fff' }}>
+      <SafeAreaView style={{ flex: 1,backgroundColor:'rgba(255,255,255,0)' }}>
         <Provider rootStore={rootStore}>
           <Nav></Nav>
         </Provider>
