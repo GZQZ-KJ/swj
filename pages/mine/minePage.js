@@ -312,7 +312,8 @@ const styles = StyleSheet.create({
     marginTop: pxToPt(8),
     height: pxToPt(25),
     fontSize: pxToPt(18),
-    color: '#2B2D33'
+    color: '#2B2D33',
+    fontWeight:'500'
   },
   email: {
     height: pxToPt(16),
