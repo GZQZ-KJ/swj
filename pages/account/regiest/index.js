@@ -259,7 +259,7 @@ export default class regiest extends Component {
                                 </>
                         }
                     </View>
-                    <View style={{ ...styles.inp }}>
+                    <View style={styles.inp}>
                         <>
                             <View style={styles.inpImgWrap}>
                                 <Image style={styles.inpImg} source={require('../../../assets/icons/loginp.png')}></Image>
@@ -372,6 +372,7 @@ const styles = StyleSheet.create({
         borderBottomWidth: 1,
         borderColor: '#fff',
         alignItems: 'center',
+        height:pxToPt(45)
     },
     inpImg: {
         width: pxToPt(22),
