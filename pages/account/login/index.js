@@ -8,12 +8,13 @@ import {
     TouchableHighlight,
     StatusBar,
     TouchableOpacity,
+    Platform
 } from 'react-native'
 import Toast from '../../../utils/api/Toast'
 import DeviceInfo from 'react-native-device-info';
 import LoginToast from '../../../utils/LoginToast'
 import axios from '../../../utils/api/request'
-import {pxToPt} from '../../../utils/styleKits'
+import { pxToPt } from '../../../utils/styleKits'
 import { ACCOUNT_LOGIN } from '../../../utils/api/pathMap'
 
 import AsyncStorage from '@react-native-community/async-storage'
@@ -67,8 +68,8 @@ export default class login extends Component {
                 AsyncStorage.setItem('email', email)
                 AsyncStorage.setItem('appVersion', data.result.app_version)
                 AsyncStorage.setItem('isUpdate', `${data.result.is_update}`)
-                this.props.rootStore.setVersion(data.result.app_version, data.result.is_update,data.result.user_info.newOaOrder)
-    
+                this.props.rootStore.setVersion(data.result.app_version, data.result.is_update, data.result.user_info.newOaOrder)
+
                 this.setState({
                     password: ''
                 })
@@ -100,7 +101,7 @@ export default class login extends Component {
                 }
             }
         }).catch(e => {
-            console.log('[登录异常]',e)
+            console.log('[登录异常]', e)
         })
 
 
@@ -171,7 +172,9 @@ export default class login extends Component {
         var re = /^[a-zA-Z\d]+([-_\.][a-zA-Z\d]+)*@[a-zA-Z\d]+\.[a-zA-Z\d]{2,4}$/
         return (
             <View style={styles.container}>
-                <StatusBar backgroundColor="#3D72E4" barStyle={'light-content'}></StatusBar>
+                {
+                    Platform.OS === 'ios' ? <View style={{ marginTop: pxToPt(28) }}></View> : <StatusBar backgroundColor="#3D72E4" barStyle={'light-content'}></StatusBar>
+                }
                 <TouchableOpacity style={styles.arroWrap} >
                     {/* <Image style={styles.arrow} source={require('../../../assets/icons/backo.png')}></Image> */}
                 </TouchableOpacity>
@@ -183,7 +186,7 @@ export default class login extends Component {
                     <Text style={styles.regGo} onPress={this.regiest}>立即注册</Text>
                 </View>
                 <View style={styles.inpWrap}>
-                    <View style={{...styles.inp,marginBottom:pxToPt(16)}}>
+                    <View style={{ ...styles.inp, marginBottom: pxToPt(16) }}>
                         <View style={styles.inpImgWrap}>
                             <Image style={styles.inpImg} source={require('../../../assets/icons/loginjujh.png')}></Image>
                         </View>
@@ -230,7 +233,7 @@ export default class login extends Component {
                 </View>
                 <View style={styles.lastWrap}>
                     <View style={styles.lastCir}>
-                        <TouchableOpacity onPress={this.changeCircle} style={{ height: pxToPt(25), width: pxToPt(25),alignItems:'flex-end',justifyContent:'center' }} >
+                        <TouchableOpacity onPress={this.changeCircle} style={{ height: pxToPt(25), width: pxToPt(25), alignItems: 'flex-end', justifyContent: 'center' }} >
                             {
                                 this.state.rootControl ?
                                     <Image style={styles.cirImg} source={require('../../../assets/icons/agree2.png')}></Image> :
@@ -317,7 +320,7 @@ const styles = StyleSheet.create({
     },
     inpWrap: {
         marginTop: pxToPt(73),
-        marginLeft:pxToPt(36),
+        marginLeft: pxToPt(36),
     },
     inp: {
         flexDirection: 'row',
@@ -335,7 +338,7 @@ const styles = StyleSheet.create({
         marginRight: pxToPt(11),
     },
     inpIcon: {
-        marginLeft:pxToPt(60)
+        marginLeft: pxToPt(60)
     },
 
     inpImg: {
@@ -395,7 +398,7 @@ const styles = StyleSheet.create({
     proImg: {
         width: pxToPt(12),
         height: pxToPt(12),
-        marginRight:pxToPt(4)
+        marginRight: pxToPt(4)
     },
     proTex: {
         width: pxToPt(46),
@@ -406,7 +409,7 @@ const styles = StyleSheet.create({
     loginGo: {
         width: pxToPt(303),
         height: pxToPt(48),
-        marginLeft:pxToPt(36),
+        marginLeft: pxToPt(36),
         justifyContent: 'center',
         alignItems: 'center',
         borderRadius: pxToPt(8),

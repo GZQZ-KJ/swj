@@ -7,11 +7,12 @@ import {
     StyleSheet,
     StatusBar,
     TouchableHighlight,
-    TouchableOpacity
+    TouchableOpacity,
+    Platform
 } from 'react-native'
 import Toast from '../../../utils/api/Toast'
 import axios from '../../../utils/api/request'
-import {pxToPt} from '../../../utils/styleKits'
+import { pxToPt } from '../../../utils/styleKits'
 import AsyncStorage from '@react-native-community/async-storage'
 import { NavigationContext } from '@react-navigation/native'
 
@@ -88,7 +89,7 @@ export default class forgetPass extends Component {
             AsyncStorage.setItem('email', myemail)
             this.props.rootStore.setUserInfo(myemail, '')
             clearInterval(this.timeId);
-            
+
             Toast.message('成功，为您跳转到登录页面', 1000, 'center')
             setTimeout(() => {
 
@@ -109,7 +110,7 @@ export default class forgetPass extends Component {
             return
         }
         const { myemail } = this.state
-        console.log('[找回密码email]',myemail)
+        console.log('[找回密码email]', myemail)
         var re = /^[a-zA-Z\d]+([-_\.][a-zA-Z\d]+)*@[a-zA-Z\d]+\.[a-zA-Z\d]{2,4}$/
         //匹配邮箱
         if (!re.test(myemail) || myemail === '') {
@@ -151,7 +152,7 @@ export default class forgetPass extends Component {
     async componentDidMount() {
         let email = await AsyncStorage.getItem("email") || ''
         this.setState({
-            myemail:email
+            myemail: email
         })
     }
     render() {
@@ -159,8 +160,10 @@ export default class forgetPass extends Component {
         var re = /^[a-zA-Z\d]+([-_\.][a-zA-Z\d]+)*@[a-zA-Z\d]+\.[a-zA-Z\d]{2,4}$/
         return (
             <View style={styles.container}>
-                    <StatusBar backgroundColor="#3D72E4" barStyle={'light-content'}></StatusBar>
-                    <TouchableOpacity style={{ width: pxToPt(60), height: pxToPt(44),alignItems: 'center',justifyContent: 'center' }} onPress={this.goBack}>
+                {
+                    Platform.OS === 'ios' ? <View style={{ marginTop: pxToPt(28) }}></View> : <StatusBar backgroundColor="#3D72E4" barStyle={'light-content'}></StatusBar>
+                }
+                <TouchableOpacity style={{ width: pxToPt(60), height: pxToPt(44), alignItems: 'center', justifyContent: 'center' }} onPress={this.goBack}>
                     <Image style={styles.arrow} onPress={this.goBack} source={require('../../../assets/icons/backo.png')}></Image>
                 </TouchableOpacity>
                 <View>
@@ -271,7 +274,7 @@ export default class forgetPass extends Component {
                     </View>
                     {
                         !re.test(myemail) || password === '' || rePassword === '' ?
-                            <TouchableHighlight style={{ ...styles.loginGo, backgroundColor: 'rgba(255,255,255,.6)' }} 
+                            <TouchableHighlight style={{ ...styles.loginGo, backgroundColor: 'rgba(255,255,255,.6)' }}
                                 underlayColor="rgba(255,255,255,.6)">
                                 <Text style={styles.loginTex}>确认</Text>
                             </TouchableHighlight>
@@ -298,7 +301,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
     },
     arrow: {
-        width:pxToPt(11.82),
+        width: pxToPt(11.82),
         height: pxToPt(22)
     },
 
@@ -310,7 +313,7 @@ const styles = StyleSheet.create({
     tex: {
         color: '#fff',
         fontWeight: 'bold',
-        fontSize:pxToPt(34)
+        fontSize: pxToPt(34)
     },
     regWrap: {
         flexDirection: 'row',
@@ -340,21 +343,21 @@ const styles = StyleSheet.create({
         borderBottomWidth: 1,
         borderColor: '#fff',
         alignItems: 'center',
-        height:pxToPt(46)
-        
+        height: pxToPt(46)
+
     },
     inpImg: {
         width: pxToPt(22),
-        height:pxToPt(22),
+        height: pxToPt(22),
     },
     inpTexWrap: {
-        marginLeft:pxToPt(12),
+        marginLeft: pxToPt(12),
         borderLeftWidth: pxToPt(1),
         borderLeftColor: '#FFFEFF',
         height: pxToPt(12),
     },
     inpTex: {
-        paddingLeft:pxToPt(5),
+        paddingLeft: pxToPt(5),
         width: pxToPt(135),
         overflow: 'hidden',
         fontSize: pxToPt(15),
@@ -376,7 +379,7 @@ const styles = StyleSheet.create({
     inpImgLast: {
         width: pxToPt(14),
         height: pxToPt(6),
-        marginLeft:pxToPt(74)
+        marginLeft: pxToPt(74)
     },
     inpBtn: {
         backgroundColor: '#FFF',

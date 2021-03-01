@@ -7,11 +7,12 @@ import {
     TextInput,
     StyleSheet,
     TouchableOpacity,
-    TouchableHighlight
+    TouchableHighlight,
+    Platform
 } from 'react-native'
 import Toast from '../../../utils/api/Toast'
 import axios from '../../../utils/api/request'
-import {pxToPt} from '../../../utils/styleKits'
+import { pxToPt } from '../../../utils/styleKits'
 import AsyncStorage from '@react-native-community/async-storage'
 import { ACCOUNT_REGIEST, ACCOUNT_SENDCODE, ACCOUNT_LOGIN } from '../../../utils/api/pathMap'
 import { NavigationContext } from '@react-navigation/native'
@@ -47,7 +48,7 @@ export default class regiest extends Component {
     getCode = async () => {
         //发送验证码
         var { email } = this.state
-        console.log('[注册获取验证码]',email)
+        console.log('[注册获取验证码]', email)
 
         if (this.state.isCountDowning) {
             return;
@@ -65,9 +66,9 @@ export default class regiest extends Component {
                 "Content-Type": 'application/x-www-form-urlencoded;charset=UTF-8'
             }
         }).then(r => {
-            console.log('[注册验证码返回]',r.data.result)
+            console.log('[注册验证码返回]', r.data.result)
             if (r.data.code === 1) {
-                
+
                 this.setState({
                     isCountDowning: true
                 })
@@ -103,7 +104,7 @@ export default class regiest extends Component {
     }
     enterRegiest = async () => {
         var { email, code, password } = this.state
-        console.log('[注册]',email)
+        console.log('[注册]', email)
         //验证邮箱
         var re = /^[a-zA-Z\d]+([-_\.][a-zA-Z\d]+)*@[a-zA-Z\d]+\.[a-zA-Z\d]{2,4}$/
         //验证密码
@@ -168,7 +169,7 @@ export default class regiest extends Component {
             }
         }).then(r => {
             if (r.data.code === 1) {
-                console.log('[注册完成后直接登录]',r.data.result)
+                console.log('[注册完成后直接登录]', r.data.result)
                 this.props.rootStore.setUserInfo(r.data.result.user_info.email, r.data.result.token)
                 //儲存用戶數據到 本地緩存中 永久
                 AsyncStorage.setItem('usertoken', r.data.result.token)
@@ -207,8 +208,10 @@ export default class regiest extends Component {
         let { email, password, btnText } = this.state
         return (
             <View style={styles.container}>
-                <StatusBar backgroundColor="#3D72E4" barStyle={'light-content'} ></StatusBar>
-                <TouchableOpacity style={{ width: pxToPt(60), height: pxToPt(44), alignItems: 'center', justifyContent: 'center'}} onPress={this.goBack}>
+                {
+                    Platform.OS === 'ios' ? <View style={{ marginTop: pxToPt(28) }}></View> : <StatusBar backgroundColor="#3D72E4" barStyle={'light-content'}></StatusBar>
+                }
+                <TouchableOpacity style={{ width: pxToPt(60), height: pxToPt(44), alignItems: 'center', justifyContent: 'center' }} onPress={this.goBack}>
                     <Image style={styles.arrow} onPress={this.goBack} source={require('../../../assets/icons/backo.png')}></Image>
                 </TouchableOpacity>
                 <View style={styles.texWrap}>
@@ -249,8 +252,8 @@ export default class regiest extends Component {
                             this.state.isCountDowning ?
                                 <>
                                     <View style={{ ...styles.inpBtn, backgroundColor: 'rgba(255,255,255,.7)' }}>
-                                            <Text style={{ ...styles.btnTex, color: '#0066C8',fontSize: pxToPt(10)}}>{btnText}</Text>
-                                        </View>
+                                        <Text style={{ ...styles.btnTex, color: '#0066C8', fontSize: pxToPt(10) }}>{btnText}</Text>
+                                    </View>
                                 </> :
                                 <>
                                     <View style={styles.inpBtn} >
@@ -336,18 +339,18 @@ const styles = StyleSheet.create({
     texWrap: {
         marginTop: pxToPt(50),
         marginLeft: pxToPt(40),
-        height:pxToPt(48)
+        height: pxToPt(48)
     },
     tex: {
         color: '#fff',
         fontWeight: 'bold',
-        fontSize:pxToPt(34)
+        fontSize: pxToPt(34)
     },
     regWrap: {
         flexDirection: 'row',
         marginLeft: pxToPt(40),
         marginTop: pxToPt(12),
-        width:pxToPt(180),
+        width: pxToPt(180),
         height: pxToPt(22),
     },
     reg: {
@@ -355,15 +358,15 @@ const styles = StyleSheet.create({
         fontSize: pxToPt(16),
     },
     inpWrap: {
-        marginTop:pxToPt(69),
-        marginLeft:pxToPt(42),
+        marginTop: pxToPt(69),
+        marginLeft: pxToPt(42),
         height: pxToPt(159),
         width: pxToPt(303),
         borderWidth: pxToPt(1),
         borderColor: '#fff',
         borderRadius: pxToPt(12),
         paddingLeft: pxToPt(20),
-        paddingRight:pxToPt(20),
+        paddingRight: pxToPt(20),
         paddingLeft: pxToPt(16),
 
     },
@@ -372,7 +375,7 @@ const styles = StyleSheet.create({
         borderBottomWidth: 1,
         borderColor: '#fff',
         alignItems: 'center',
-        height:pxToPt(45)
+        height: pxToPt(45)
     },
     inpImg: {
         width: pxToPt(22),
@@ -382,7 +385,7 @@ const styles = StyleSheet.create({
         marginLeft: pxToPt(12),
         borderLeftWidth: 1,
         borderLeftColor: '#FFFEFF',
-        height:pxToPt(12),
+        height: pxToPt(12),
     },
     inpTex: {
         paddingLeft: 5,
@@ -416,7 +419,7 @@ const styles = StyleSheet.create({
     loginGo: {
         width: pxToPt(303),
         height: pxToPt(48),
-        marginLeft:pxToPt(42),
+        marginLeft: pxToPt(42),
         justifyContent: 'center',
         alignItems: 'center',
         borderRadius: pxToPt(8),
@@ -430,7 +433,7 @@ const styles = StyleSheet.create({
     lastCir: {
         flexDirection: 'row',
         alignItems: 'center',
-        marginLeft:pxToPt(44),
+        marginLeft: pxToPt(44),
         marginTop: pxToPt(24)
     },
     cirImg: {
