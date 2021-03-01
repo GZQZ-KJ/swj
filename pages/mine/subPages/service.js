@@ -8,7 +8,7 @@ import {
     StatusBar,
     SafeAreaView,
     ScrollView,
-    Platform
+    Platform,
 } from 'react-native'
 import { WebView } from 'react-native-webview'
 import { pxToPt } from "../../../utils/styleKits";
@@ -42,7 +42,7 @@ export default class service extends Component {
     }
     render() {
         return (
-            <>
+            <SafeAreaView style={{flex:1}}>
                 {
           Platform.OS === 'ios' ? <View style={{marginTop:pxToPt(28)}}></View> : <StatusBar backgroundColor="#fff" barStyle={'dark-content'}></StatusBar>
         }
@@ -64,7 +64,7 @@ export default class service extends Component {
                     setAllowFileAccessFromFileURLs={true}
                     setAllowUniversalAccessFromFileURLs={true}
                 />
-            </>
+            </SafeAreaView>
         )
     }
 }

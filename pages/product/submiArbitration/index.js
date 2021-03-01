@@ -9,7 +9,8 @@ import {
     TextInput,
     Modal,
     TouchableHighlight,
-    Platform
+    Platform,
+    SafeAreaView
 } from 'react-native'
 import ImagePicker from 'react-native-image-crop-picker'
 import { pxToPt } from "../../../utils/styleKits";
@@ -133,7 +134,7 @@ export default class arbitration extends Component {
         const { modalVisible, id, status, token, orderNum, arbitrationImages, arbitrationFont, activeTop } = this.state;
         console.log(status)
         return (
-            <>
+            <SafeAreaView style={{flex:1}}>
 
                 {
                     Platform.OS === 'ios' ? <View style={{ marginTop: pxToPt(28) }}></View> : <StatusBar backgroundColor="#fff" barStyle={'dark-content'}></StatusBar>
@@ -263,7 +264,7 @@ export default class arbitration extends Component {
                         }
                     </View>
                 </View>
-            </>
+            </SafeAreaView>
         )
     }
 }

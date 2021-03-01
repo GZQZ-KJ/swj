@@ -9,7 +9,8 @@ import {
   StatusBar,
   TouchableHighlight,
   Modal,
-  Platform
+  Platform,
+  SafeAreaView
 } from 'react-native'
 import Toast from '../../../utils/api/Toast'
 import ToastTwo from "../../../components/ToastTwo"
@@ -196,7 +197,7 @@ export default class setting extends Component {
   render() {
     let { rootStore } = this.props
     return (
-      <>
+      <SafeAreaView style={{flex:1}}>
         {
           Platform.OS === 'ios' ? <View style={{marginTop:pxToPt(28)}}></View> : <StatusBar backgroundColor="#fff" barStyle={'dark-content'}></StatusBar>
         }
@@ -355,7 +356,7 @@ export default class setting extends Component {
           }
         </View>
 
-      </>
+      </SafeAreaView>
     )
   }
 }

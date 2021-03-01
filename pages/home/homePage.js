@@ -4,7 +4,8 @@ import {
   Text,
   StyleSheet,
   StatusBar,
-  Platform
+  Platform,
+  SafeAreaView
 } from 'react-native';
 
 
@@ -20,7 +21,7 @@ export default class homePage extends Component {
 
   render() {
     return (
-      <View>
+      <SafeAreaView style={{flex:1}}>
         {
           Platform.OS === 'ios' ? <View style={{marginTop:pxToPt(28)}}></View> : <StatusBar backgroundColor="#fff" barStyle={'dark-content'}></StatusBar>
         }
@@ -28,7 +29,7 @@ export default class homePage extends Component {
         <Chart></Chart>
         {/* <MySwiper></MySwiper> */}
         <DealMsg></DealMsg>
-      </View>
+      </SafeAreaView>
     )
   }
 }

@@ -253,7 +253,7 @@ export default class productPage extends Component {
     return (
       <>
         {
-          Platform.OS === 'ios' ? <View style={{marginTop:pxToPt(28)}}></View> : <StatusBar backgroundColor="#fff" barStyle={'dark-content'}></StatusBar>
+          Platform.OS === 'ios' ? <View style={{marginTop:pxToPt(36)}}></View> : <StatusBar backgroundColor="#fff" barStyle={'dark-content'}></StatusBar>
         }
         <View style={styles.topBox}>
           <TopComp showState={this._onShow} show={this.state.show}></TopComp>

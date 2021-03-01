@@ -1,5 +1,5 @@
 import React, { Component } from "react"
-import { View,  Platform, Text, Image, ImageBackground, TextInput, StyleSheet, StatusBar, TouchableOpacity, Modal, ScrollView, TouchableHighlight } from 'react-native'
+import { View,  Platform, Text, Image, ImageBackground, TextInput, StyleSheet, StatusBar, TouchableOpacity, Modal, ScrollView, SafeAreaView} from 'react-native'
 import axios from '../../../utils/api/request'
 import { BANKS_BANKLIST, BANKS_ADDBANK } from '../../../utils/api/pathMap'
 import mobx from '../../../utils/mobx'
@@ -87,7 +87,7 @@ export default class addBank extends Component {
   }
   render() {
     return (
-      <>
+      <SafeAreaView style={{flex:1}}>
         {
           Platform.OS === 'ios' ? <View style={{marginTop:pxToPt(28)}}></View> : <StatusBar backgroundColor="#fff" barStyle={'dark-content'}></StatusBar>
         }
@@ -192,7 +192,7 @@ export default class addBank extends Component {
         <TouchableOpacity style={styles.btn} activeOpacity={.7} onPress={this._confirm}>
           <Text style={styles.txt}>确认</Text>
         </TouchableOpacity>
-      </>
+      </SafeAreaView>
     )
   }
 }

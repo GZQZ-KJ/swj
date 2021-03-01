@@ -64,9 +64,9 @@ export default class tabbar extends Component {
         <TabNavigator.Item
           title={item.tabName}
           selected={this.state.selectedTab === item.tabPage}
-          titleStyle={{ color: '#979797' }}
+          titleStyle={{ color: '#979797'}}
           selectedTitleStyle={{ color: '#3D72E4' }}
-
+          sceneStyle={{ paddingBottom: 36 }}
           renderBadge={()=> i === 3 ? this.props.rootStore.isUpdate || this.props.rootStore.newArb ? <View style={styles.badgeView}></View> :<></> : <></>}
 
           renderIcon={() => <Image style={styles.tabIcon} source={item.icon} />}

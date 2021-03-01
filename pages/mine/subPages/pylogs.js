@@ -8,7 +8,8 @@ import {
   TouchableOpacity,
   ScrollView,
   RefreshControl,
-  Platform
+  Platform,
+  SafeAreaView
 } from 'react-native'
 import { USER_ACCOUNTLOG } from '../../../utils/api/pathMap'
 import axios from '../../../utils/api/request'
@@ -114,7 +115,7 @@ export default class pylogs extends Component {
   render() {
     console.log(this.state.data.length, this.state.total)
     return (
-      <>
+      <SafeAreaView style={{flex:1}}>
         {
           Platform.OS === 'ios' ? <View style={{marginTop:pxToPt(28)}}></View> : <StatusBar backgroundColor="#fff" barStyle={'dark-content'}></StatusBar>
         }
@@ -178,7 +179,7 @@ export default class pylogs extends Component {
             </View>
           </> : <></>
         }
-      </>
+      </SafeAreaView>
     )
   }
 }

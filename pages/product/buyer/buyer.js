@@ -7,7 +7,8 @@ import {
     StyleSheet,
     TouchableHighlight,
     TouchableOpacity,
-    Platform
+    Platform,
+    SafeAreaView
 } from 'react-native'
 import MyToast from '../../../utils/MyToast'
 import TouchLingth from '../../../utils/TouchLinght'
@@ -283,7 +284,7 @@ export default class home extends Component {
         const { data, dataLock, num, dataPay } = this.state
         const result = this.controlHeadMsg(num)
         return (
-            <View style={{ flex: 1 }}>
+            <SafeAreaView style={{ flex: 1 }}>
                 {
                     Platform.OS === 'ios' ? <View style={{ marginTop: pxToPt(28) }}></View> : <StatusBar backgroundColor="#fff" barStyle={'dark-content'}></StatusBar>
                 }
@@ -458,7 +459,7 @@ export default class home extends Component {
                     }
 
                 </View>
-            </View>
+            </SafeAreaView>
         )
     }
 }

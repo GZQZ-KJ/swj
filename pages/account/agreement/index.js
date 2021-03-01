@@ -17,7 +17,7 @@ export default class agreement extends Component {
     }
     render() {
         return (
-            <>
+            <SafeAreaView style={{flex:1}}>
                 {
                     Platform.OS === 'ios' ? <View style={{ marginTop: pxToPt(28) }}></View> : <StatusBar backgroundColor="#3D72E4" barStyle={'light-content'}></StatusBar>
                 }
@@ -258,7 +258,7 @@ export default class agreement extends Component {
                         <Text style={styles.tex}>第九九条 本协议的最终解释权归《NSSapp》所有。</Text>
                     </ScrollView>
                 </SafeAreaView>
-            </>
+            </SafeAreaView>
         )
     }
 }

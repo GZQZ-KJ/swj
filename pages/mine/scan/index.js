@@ -84,7 +84,7 @@ export default class scan extends Component {
         let { userId, userName, avaterUrl, email, showModal, showNextModal, resultName, resultmessage, code, message } = this.state
         console.log('结果扫一扫', message)
         return (
-            <View style={{ flex: 1 }}>
+            <SafeAreaView style={{ flex: 1 }}>
                 {
                     Platform.OS === 'ios' ? <View style={{ marginTop: pxToPt(28) }}></View> : <StatusBar backgroundColor="#fff" barStyle={'dark-content'}></StatusBar>
                 }
@@ -203,7 +203,7 @@ export default class scan extends Component {
                         </View>
                     </View>
                 </Modal>
-            </View>
+            </SafeAreaView>
         )
     }
 }

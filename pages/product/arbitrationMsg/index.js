@@ -98,7 +98,7 @@ export default class arbitration extends Component {
         } = this.state.data
         if (time_list === undefined) return (<></>)
         return (
-            <>
+            <SafeAreaView style={{flex:1}}>
                 {
           Platform.OS === 'ios' ? <View style={{marginTop:pxToPt(28)}}></View> : <StatusBar backgroundColor="#fff" barStyle={'dark-content'}></StatusBar>
         }
@@ -175,7 +175,7 @@ export default class arbitration extends Component {
                         </View>
                     </ScrollView>
                 </SafeAreaView>
-            </>
+            </SafeAreaView>
         )
     }
 }

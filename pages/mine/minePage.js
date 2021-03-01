@@ -6,7 +6,8 @@ import {
   StyleSheet,
   StatusBar,
   TouchableOpacity,
-  Platform
+  Platform,
+  SafeAreaView
 } from 'react-native';
 import basicStyle from '../../components/styles/basic/index'
 import { USER_INDEX } from '../../utils/api/pathMap'
@@ -96,7 +97,7 @@ export default class minePage extends Component {
   render() {
     let { rootStore } = this.props
     return (
-      <View>
+      <SafeAreaView style={{flex:1}}>
         {
           Platform.OS === 'ios' ? <View style={{marginTop:pxToPt(28)}}></View> : <StatusBar backgroundColor="#fff" barStyle={'dark-content'}></StatusBar>
         }
@@ -148,7 +149,10 @@ export default class minePage extends Component {
                 alignItems: 'center',
                 justifyContent: 'center',
               }}
-              onPress={this.userIndex}
+              onPress={()=>{
+                this.userIndex()
+                Toast.message('刷新成功')
+              }}
             >
               <Image style={{ width: pxToPt(12), height: pxToPt(12) }} source={require('../../assets/icons/mine/shuaxin3x.png')}></Image>
             </TouchableOpacity>
@@ -238,7 +242,7 @@ export default class minePage extends Component {
           </TouchableOpacity>
 
         </View>
-      </View >
+      </SafeAreaView >
     )
   }
 }

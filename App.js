@@ -4,6 +4,7 @@ import {
   Platform,
   Text
 } from 'react-native'
+import {pxToPt} from './utils/styleKits'
 import rootStore from "./utils/mobx";
 import { Provider } from "mobx-react";
 

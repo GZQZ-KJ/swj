@@ -73,7 +73,7 @@ export default class bank extends Component {
   }
   render() {
     return (
-      <>
+      <SafeAreaView style={{flex:1}}>
         {
           Platform.OS === 'ios' ? <View style={{marginTop:pxToPt(28)}}></View> : <StatusBar backgroundColor="#fff" barStyle={'dark-content'}></StatusBar>
         }
@@ -150,7 +150,7 @@ export default class bank extends Component {
             </View>
           </ScrollView>
         </SafeAreaView>
-      </>
+      </SafeAreaView>
     )
   }
 }

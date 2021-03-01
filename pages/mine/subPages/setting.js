@@ -6,7 +6,8 @@ import {
     TouchableOpacity,
     StyleSheet,
     Image,
-    Platform
+    Platform,
+    SafeAreaView
 } from 'react-native'
 // import Toast from '../../../utils/api/Toast'
 import { pxToPt } from "../../../utils/styleKits";
@@ -48,7 +49,7 @@ export default class setting extends Component {
     render() {
         let { active } = this.state
         return (
-            <>
+            <SafeAreaView style={{flex:1}}>
                 {
           Platform.OS === 'ios' ? <View style={{marginTop:pxToPt(28)}}></View> : <StatusBar backgroundColor="#fff" barStyle={'dark-content'}></StatusBar>
         }
@@ -103,7 +104,7 @@ export default class setting extends Component {
                         <Text style={{ color: '#fff', fontSize: pxToPt(15), fontWeight: '500' }}>清除缓存</Text>
                     </TouchableOpacity> */}
                 </View>
-            </>
+            </SafeAreaView>
         )
     }
 }

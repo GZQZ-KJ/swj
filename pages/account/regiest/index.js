@@ -8,7 +8,8 @@ import {
     StyleSheet,
     TouchableOpacity,
     TouchableHighlight,
-    Platform
+    Platform,
+    SafeAreaView
 } from 'react-native'
 import Toast from '../../../utils/api/Toast'
 import axios from '../../../utils/api/request'
@@ -320,11 +321,6 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: '#3D72E4'
-    },
-    container: {
-        flex: 1,
-        backgroundColor: '#3D72E4',
-        // paddingLeft: 16,
     },
     arroWrap: {
         height: pxToPt(44),

@@ -6,7 +6,8 @@ import {
     TouchableOpacity,
     Image,
     StatusBar,
-    Platform
+    Platform,
+    SafeAreaView
 } from 'react-native'
 import AsyncStorage from '@react-native-community/async-storage'
 import { pxToPt } from "../../../utils/styleKits"
@@ -34,7 +35,7 @@ export default class about extends Component {
 
     render() {
         return (
-            <>
+            <SafeAreaView style={{flex:1}}>
                 {
                     Platform.OS === 'ios' ? <View style={{ marginTop: pxToPt(28) }}></View> : <StatusBar backgroundColor="#fff" barStyle={'dark-content'}></StatusBar>
                 }
@@ -71,7 +72,7 @@ export default class about extends Component {
                         </View> : <></>
                     }
                 </View>
-            </>
+            </SafeAreaView>
         )
     }
 }

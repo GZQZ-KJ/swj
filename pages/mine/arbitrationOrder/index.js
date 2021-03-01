@@ -32,7 +32,7 @@ export default class arbitrationIng extends Component {
     render() {
         let { item } = this.props
         return (
-            <View style={{ width: '100%', justifyContent: 'center', alignItems: 'center' }}>
+            <SafeAreaView style={{ width: '100%', justifyContent: 'center', alignItems: 'center' }}>
                 {
                     Platform.OS === 'ios' ? <View style={{ marginTop: pxToPt(28) }}></View> : <StatusBar backgroundColor="#fff" barStyle={'dark-content'}></StatusBar>
                 }
@@ -99,7 +99,7 @@ export default class arbitrationIng extends Component {
                     <></>
 
                 </TouchableOpacity>
-            </View >
+            </SafeAreaView >
         )
     }
 }

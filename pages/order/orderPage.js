@@ -248,7 +248,7 @@ export default class orderPage extends Component {
   render() {
     let { rootStore } = this.props
     return (
-      <View style={{ flex: 1 }}>
+      <SafeAreaView style={{ flex: 1 }}>
         <TopHeadChoose
           _selectLf={this._selectLf}
           _selectRt={this._selectRt}
@@ -359,7 +359,7 @@ export default class orderPage extends Component {
               </ScrollView>
             </SafeAreaView>
         }
-      </View>
+      </SafeAreaView>
 
     )
   }

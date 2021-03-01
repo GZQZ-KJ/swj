@@ -128,7 +128,7 @@ export default class sellProduct extends Component {
         let { rootStore } = this.props
         return (
 
-            <>
+            <SafeAreaView style={{flex:1}}>
                 {
                     Platform.OS === 'ios' ? <View style={{ marginTop: pxToPt(28) }}></View> : <StatusBar backgroundColor="#fff" barStyle={'dark-content'}></StatusBar>
                 }
@@ -261,7 +261,7 @@ export default class sellProduct extends Component {
                         </ScrollView>
                     </SafeAreaView>
                 </Modal>
-            </>
+            </SafeAreaView>
         )
     }
 }
