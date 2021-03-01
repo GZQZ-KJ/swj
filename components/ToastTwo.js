@@ -230,7 +230,7 @@ const styles = StyleSheet.create({
         letterSpacing: -1,
         height:pxToPt(44),
         marginBottom:pxToPt(28),
-        lineHeight:10,
+        lineHeight:pxToPt(-5),
       },
     dobut: {
         flexDirection: "row",
