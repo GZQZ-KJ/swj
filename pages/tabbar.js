@@ -66,9 +66,7 @@ export default class tabbar extends Component {
           selected={this.state.selectedTab === item.tabPage}
           titleStyle={{ color: '#979797'}}
           selectedTitleStyle={{ color: '#3D72E4' }}
-          sceneStyle={{ paddingBottom: 36 }}
           renderBadge={()=> i === 3 ? this.props.rootStore.isUpdate || this.props.rootStore.newArb ? <View style={styles.badgeView}></View> :<></> : <></>}
-
           renderIcon={() => <Image style={styles.tabIcon} source={item.icon} />}
           renderSelectedIcon={() => <Image style={styles.tabIcon} source={item.selectedIcon} />}
           tabStyle={{ alignSelf: 'center' }}

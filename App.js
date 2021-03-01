@@ -2,7 +2,8 @@ import React, { Component } from 'react'
 import {
   View,
   Platform,
-  Text
+  Text,
+  SafeAreaView
 } from 'react-native'
 import {pxToPt} from './utils/styleKits'
 import rootStore from "./utils/mobx";
@@ -27,11 +28,11 @@ Text.render = function(...args) {
 export default class App extends Component {
   render() {
     return (
-      <View style={{ flex: 1 }}>
+      <SafeAreaView style={{ flex: 1 }}>
         <Provider rootStore={rootStore}>
           <Nav></Nav>
         </Provider>
-      </View>
+      </SafeAreaView>
     )
   }
 }
