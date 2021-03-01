@@ -6,6 +6,7 @@ import {
   StyleSheet,
   Image
 } from 'react-native';
+import { pxToPt } from "../../../utils/styleKits";
 /**
  * 首页顶部扫码块
  */
@@ -46,18 +47,18 @@ const styles = StyleSheet.create({
   top: {
     justifyContent: 'center',
     alignItems: 'center',
-    height: 44,
+    height: pxToPt(55),
     backgroundColor: '#FFFFFF'
   },
   txt: {
-    height: 25,
-    lineHeight: 25,
-    fontSize: 18,
+    height: pxToPt(25),
+    lineHeight: pxToPt(25),
+    fontSize: pxToPt(18),
     color: '#2B2D33FF',
     fontWeight: '400'
   },
   imgBox: {
     position: 'absolute',
-    right: 20
+    right: pxToPt(20)
   }
 })

@@ -69,7 +69,7 @@ export default class tabbar extends Component {
           renderBadge={()=> i === 3 ? this.props.rootStore.isUpdate || this.props.rootStore.newArb ? <View style={styles.badgeView}></View> :<></> : <></>}
           renderIcon={() => <Image style={styles.tabIcon} source={item.icon} />}
           renderSelectedIcon={() => <Image style={styles.tabIcon} source={item.selectedIcon} />}
-          tabStyle={{ alignSelf: 'center' }}
+          tabStyle={{ alignSelf: 'center'}}
           onPress={() => { this.setState({ selectedTab: item.tabPage }) }}
           key={i}
         >

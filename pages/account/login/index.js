@@ -314,6 +314,8 @@ const styles = StyleSheet.create({
     },
     regGo: {
         color: '#FFF5FA',
+        height:pxToPt(26),
+        paddingBottom:pxToPt(4),
         borderBottomWidth: pxToPt(1),
         borderBottomColor: '#FFF5FA',
         fontSize: pxToPt(16),
