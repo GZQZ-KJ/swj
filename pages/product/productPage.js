@@ -251,10 +251,8 @@ export default class productPage extends Component {
   render() {
     let { rootStore } = this.props
     return (
-      <>
-        {
-          Platform.OS === 'ios' ? <View style={{marginTop:pxToPt(36)}}></View> : <StatusBar backgroundColor="#fff" barStyle={'dark-content'}></StatusBar>
-        }
+      <SafeAreaView style={{flex:1}}>
+       <StatusBar backgroundColor="#fff" barStyle={'dark-content'}></StatusBar>
         <View style={styles.topBox}>
           <TopComp showState={this._onShow} show={this.state.show}></TopComp>
           <Modal
@@ -437,7 +435,7 @@ export default class productPage extends Component {
           {/* } */}
 
         </View>
-      </>
+      </SafeAreaView>
     )
   }
 }

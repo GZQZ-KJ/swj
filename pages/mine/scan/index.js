@@ -82,12 +82,11 @@ export default class scan extends Component {
     }
     render() {
         let { userId, userName, avaterUrl, email, showModal, showNextModal, resultName, resultmessage, code, message } = this.state
-        console.log('结果扫一扫', message)
+ 
         return (
             <SafeAreaView style={{ flex: 1 }}>
-                {
-                    Platform.OS === 'ios' ? <View style={{ marginTop: pxToPt(28) }}></View> : <StatusBar backgroundColor="#fff" barStyle={'dark-content'}></StatusBar>
-                }
+               <StatusBar backgroundColor="#fff" barStyle={'dark-content'}></StatusBar>
+                
                 <View style={styles.arroWrap}>
                     <TouchableOpacity >
                         <Image style={styles.arrow} source={require('../../../assets/icons/backx.png')}></Image>

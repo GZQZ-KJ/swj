@@ -33,9 +33,8 @@ export default class arbitrationIng extends Component {
         let { item } = this.props
         return (
             <SafeAreaView style={{ width: '100%', justifyContent: 'center', alignItems: 'center' }}>
-                {
-                    Platform.OS === 'ios' ? <View style={{ marginTop: pxToPt(28) }}></View> : <StatusBar backgroundColor="#fff" barStyle={'dark-content'}></StatusBar>
-                }
+               <StatusBar backgroundColor="#fff" barStyle={'dark-content'}></StatusBar>
+                
                 <TouchableOpacity
                     activeOpacity={1}
                     style={styles.arbing} onPress={this.goArbitrationMsg}>
