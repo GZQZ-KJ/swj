@@ -8,7 +8,6 @@ import { pxToPt } from "../../../utils/styleKits";
 export default class orderTime extends Component {
     render() {
         let { timeList } = this.props
-        console.log('[订单 和 挂卖里面详情的时间]', timeList)
         if (timeList === undefined) return (<></>)
         return (
             <>
@@ -52,8 +51,8 @@ const styles = StyleSheet.create({
         backgroundColor: '#fff',
         shadowOffset: { width: pxToPt(0), height: pxToPt(1)},
         shadowColor: '#565A66',
-        shadowOpacity:pxToPt(12),
-        elevation: pxToPt(2),
+        shadowOpacity:0.12,
+        elevation: 2,
         shadowRadius: pxToPt(2),
         borderRadius: pxToPt(8),
         marginLeft: pxToPt(8),

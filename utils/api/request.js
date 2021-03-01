@@ -1,15 +1,16 @@
 import axios from 'axios'
 import { BASE_URI } from './pathMap'
 import Toast from './Toast'
+import rootStore from '../mobx'
+
+
 const instance = axios.create({
   baseURL: BASE_URI,
 })
-
+axios.defaults.timeout = 3000
 // 添加请求拦截器
 instance.interceptors.request.use(function (config) {
   // 在发送请求之前做些什么
-  console.log('响应',config)
-
   let reg = "/index/index"
   let re = '/index/getBroadcast'
   if (config.url.match(reg) || config.url.match(re)) {
@@ -19,24 +20,20 @@ instance.interceptors.request.use(function (config) {
   return config
   // 对请求错误做些什么
 }, function (error) {
-  console.log('errorError', error)
-  
   return Promise.reject(error);
 });
 
 // 添加响应拦截器
 instance.interceptors.response.use(function (response) {
   // 对响应数据做点什么
-  console.log('响应',response.config)
-  if (response.status === 401) {
-    Toast.hideLoading()
-    Toast.message('登录过期,请重新登录', 4000, 'center')
-    response.config.url = 'http://192.168.68.108:8080/login/index'
-  } else if (response.status === 404) {
-    Toast.hideLoading()
-    Toast.message('网络出错，请稍后再试',3000, 'center')
-  }
   Toast.hideLoading()
+  if (response.status === 401) {
+    rootStore.setUserInfo('', '')
+    Toast.message('登录过期,请重新登录', 4000, 'center')
+    return response.config.url = 'http://192.168.68.108:8080/login/index'
+  } else if (response.status === 404) {
+    return Toast.message('网络出错，请稍后再试', 3000, 'center')
+  }
   return response;
 
 }, function (error) {

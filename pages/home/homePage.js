@@ -3,7 +3,8 @@ import {
   View,
   Text,
   StyleSheet,
-  StatusBar
+  StatusBar,
+  Platform
 } from 'react-native';
 
 
@@ -20,9 +21,11 @@ export default class homePage extends Component {
   render() {
     return (
       <View>
-       <StatusBar backgroundColor="#fff" barStyle={'dark-content'}></StatusBar>
+        {
+          Platform.OS === 'ios' ? <View style={{marginTop:pxToPt(44)}}></View> : <StatusBar backgroundColor="#fff" barStyle={'dark-content'}></StatusBar>
+        }
         <TopShow navigation={this.props.navigation}></TopShow>
-          <Chart></Chart>
+        <Chart></Chart>
         {/* <MySwiper></MySwiper> */}
         <DealMsg></DealMsg>
       </View>
