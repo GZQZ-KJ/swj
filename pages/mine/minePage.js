@@ -283,7 +283,8 @@ const styles = StyleSheet.create({
     alignSelf: "center",
     height: pxToPt(25),
     color: '#2B2D33',
-    fontSize: pxToPt(18)
+    fontSize: pxToPt(18),
+    fontWeight:'500'
   },
   wrap: {
     justifyContent: 'space-between',
