@@ -25,7 +25,7 @@ import ArbitrationMsg from './product/arbitrationMsg'
 import SubmiArbitration from './product/submiArbitration'
 import OrderDetail from './order/orderDetail'
 import secondEchart from './home/trendchart/secondEchart';
-
+import { ifIphoneX } from '../utils/isIphoneX'
 import { inject, observer } from "mobx-react";
 const Stack = createStackNavigator();
 @inject("rootStore")
