@@ -478,7 +478,6 @@ const styles = StyleSheet.create({
         color: '#2B2D33',
         fontSize: pxToPt(18),
         fontWeight: "500",
-        fontFamily: 'PingFang SC'
     },
     wrap: {
         alignItems: 'center'

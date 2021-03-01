@@ -229,7 +229,8 @@ const styles = StyleSheet.create({
         fontSize: pxToPt(15),
         letterSpacing: -1,
         height:pxToPt(44),
-        marginBottom:pxToPt(28)
+        marginBottom:pxToPt(28),
+        lineHeight:10,
       },
     dobut: {
         flexDirection: "row",

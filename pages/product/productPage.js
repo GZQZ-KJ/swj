@@ -271,7 +271,7 @@ export default class productPage extends Component {
                       <TextInput
                         style={styles.floorInput}
                         allowFontScaling={true}
-                        placeholder={'输入最低价'}
+                        placeholder={'最低价'}
                         onChangeText={(val) => this.setState({
                           min_sum_count: val
                         })}
@@ -280,7 +280,7 @@ export default class productPage extends Component {
                       <TextInput
                         style={styles.floorInput}
                         allowFontScaling={true}
-                        placeholder={'输入最高价'}
+                        placeholder={'最高价'}
                         onChangeText={(val) => this.setState({
                           max_sum_count: val
                         })}
@@ -291,7 +291,7 @@ export default class productPage extends Component {
                       <TextInput
                         style={styles.floorInput}
                         allowFontScaling={true}
-                        placeholder={'输入最低价'}
+                        placeholder={'最低价'}
                         onChangeText={(val) => this.setState({
                           min_price: val
                         })}
@@ -300,7 +300,7 @@ export default class productPage extends Component {
                       <TextInput
                         style={styles.floorInput}
                         allowFontScaling={true}
-                        placeholder={'输入最高价'}
+                        placeholder={'最高价'}
                         onChangeText={(val) => this.setState({
                           max_price: val
                         })}

@@ -55,7 +55,7 @@ const styles = StyleSheet.create({
     lineHeight: pxToPt(25),
     fontSize: pxToPt(18),
     color: '#2B2D33FF',
-    fontWeight: '400'
+    fontWeight: '500'
   },
   imgBox: {
     position: 'absolute',

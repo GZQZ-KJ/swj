@@ -7,6 +7,7 @@ import {
     TouchableOpacity,
     StatusBar,
     FlatList,
+    SafeAreaView,
     Platform
 } from 'react-native'
 import ArbitrationOrder from '../arbitrationOrder'
