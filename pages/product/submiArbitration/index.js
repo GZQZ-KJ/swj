@@ -9,7 +9,7 @@ import {
     TextInput,
     Modal,
     TouchableHighlight,
-    Keyboard
+    Platform
 } from 'react-native'
 import ImagePicker from 'react-native-image-crop-picker'
 import { pxToPt } from "../../../utils/styleKits";
@@ -135,13 +135,15 @@ export default class arbitration extends Component {
         return (
             <>
 
-<StatusBar backgroundColor="#fff" barStyle={'dark-content'}></StatusBar>
+                {
+                    Platform.OS === 'ios' ? <View style={{ marginTop: pxToPt(28) }}></View> : <StatusBar backgroundColor="#fff" barStyle={'dark-content'}></StatusBar>
+                }
                 <View style={styles.arroWrap}>
                     <TouchableOpacity
-          style={{ width: pxToPt(60), height: pxToPt(44),paddingLeft:pxToPt(16), justifyContent: 'center' }} 
-                    onPress={() => {
-                        this.props.navigation.goBack()
-                    }}>
+                        style={{ width: pxToPt(60), height: pxToPt(44), paddingLeft: pxToPt(16), justifyContent: 'center' }}
+                        onPress={() => {
+                            this.props.navigation.goBack()
+                        }}>
                         <Image style={styles.arrow} source={require('../../../assets/icons/backx.png')}></Image>
                     </TouchableOpacity>
                     {
@@ -188,9 +190,9 @@ export default class arbitration extends Component {
                         {
                             arbitrationImages.length > 0 ?
                                 <View style={styles.showMyimg}>
-                                    <Image style={{ width: pxToPt(110), height:pxToPt(70) }} source={{ uri: arbitrationImages[0] }}></Image>
+                                    <Image style={{ width: pxToPt(110), height: pxToPt(70) }} source={{ uri: arbitrationImages[0] }}></Image>
                                     <Image style={{ width: pxToPt(110), height: pxToPt(70) }} source={{ uri: arbitrationImages[1] }}></Image>
-                                    <Image style={{ width:pxToPt(110), height: pxToPt(70)}} source={{ uri: arbitrationImages[2] }}></Image>
+                                    <Image style={{ width: pxToPt(110), height: pxToPt(70) }} source={{ uri: arbitrationImages[2] }}></Image>
                                 </View>
                                 : <></>
                         }
@@ -282,7 +284,7 @@ const styles = StyleSheet.create({
         fontSize: pxToPt(18),
         fontWeight: "500",
         fontFamily: 'PingFang SC',
-        marginLeft:pxToPt(100)
+        marginLeft: pxToPt(100)
     },
     wrapper: {
         // marginLeft: 20,
@@ -390,14 +392,14 @@ const styles = StyleSheet.create({
         textAlign: "center"
     },
     modalText: {
-        marginBottom:pxToPt(28),
+        marginBottom: pxToPt(28),
         fontSize: pxToPt(15),
         color: '#fff',
         fontWeight: '500'
     },
     enterButton: {
         width: pxToPt(88),
-        height:pxToPt(30),
+        height: pxToPt(30),
         borderRadius: pxToPt(15),
         backgroundColor: "#fff",
         justifyContent: 'center',

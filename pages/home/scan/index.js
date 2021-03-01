@@ -5,7 +5,8 @@ import {
   Text,
   TouchableOpacity,
   View,
-  Image
+  Image,
+  
 } from 'react-native';
 import axios from '../../../utils/api/request'
 import Toast from '../../../utils/api/Toast'

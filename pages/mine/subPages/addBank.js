@@ -1,5 +1,5 @@
 import React, { Component } from "react"
-import { View, Text, Image, ImageBackground, TextInput, StyleSheet, StatusBar, TouchableOpacity, Modal, ScrollView, TouchableHighlight } from 'react-native'
+import { View,  Platform, Text, Image, ImageBackground, TextInput, StyleSheet, StatusBar, TouchableOpacity, Modal, ScrollView, TouchableHighlight } from 'react-native'
 import axios from '../../../utils/api/request'
 import { BANKS_BANKLIST, BANKS_ADDBANK } from '../../../utils/api/pathMap'
 import mobx from '../../../utils/mobx'
@@ -88,7 +88,9 @@ export default class addBank extends Component {
   render() {
     return (
       <>
-        <StatusBar backgroundColor="#fff" barStyle={'dark-content'}></StatusBar>
+        {
+          Platform.OS === 'ios' ? <View style={{marginTop:pxToPt(28)}}></View> : <StatusBar backgroundColor="#fff" barStyle={'dark-content'}></StatusBar>
+        }
         <View style={styles.arroWrap}>
           <TouchableOpacity
             style={{ width: pxToPt(60), height: pxToPt(60), alignItems: 'center', justifyContent: 'center' }}

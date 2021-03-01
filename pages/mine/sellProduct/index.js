@@ -10,7 +10,8 @@ import {
     Modal,
     SafeAreaView,
     ScrollView,
-    ImageBackground
+    ImageBackground,
+    Platform
 } from 'react-native'
 import Toast from '../../../utils/api/Toast'
 import axios from '../../../utils/api/request'
@@ -128,9 +129,11 @@ export default class sellProduct extends Component {
         return (
 
             <>
-                <StatusBar backgroundColor="#fff" barStyle={'dark-content'}></StatusBar>
+                {
+                    Platform.OS === 'ios' ? <View style={{ marginTop: pxToPt(28) }}></View> : <StatusBar backgroundColor="#fff" barStyle={'dark-content'}></StatusBar>
+                }
                 <View style={styles.arroWrap}>
-                    <TouchableOpacity style={{ width: pxToPt(60), height: pxToPt(44),paddingLeft:pxToPt(16) ,justifyContent: 'center' }} onPress={() => {
+                    <TouchableOpacity style={{ width: pxToPt(60), height: pxToPt(44), paddingLeft: pxToPt(16), justifyContent: 'center' }} onPress={() => {
                         this.props.navigation.navigate("Tabbar")
                     }}>
                         <Image style={styles.arrow} source={require('../../../assets/icons/backx.png')}></Image>
@@ -222,23 +225,23 @@ export default class sellProduct extends Component {
                         <Text style={styles.txt}>添加银行卡</Text>
                     </TouchableOpacity>
                     <SafeAreaView >
-                        <ScrollView style={{ height:550,paddingLeft:pxToPt(16) }}>
+                        <ScrollView style={{ height: 550, paddingLeft: pxToPt(16) }}>
                             {
                                 this.state.myBanks.map((v, i) => {
                                     var reg = /^(\d{4})\d+(\d{4})$/;
                                     v.account_no = v.account_no.replace(reg, "**** $2");
                                     return (
                                         <>
-                                            <TouchableOpacity 
-                                            activeOpacity={1}
-                                            style={styles.bankwrap} key={i} onPress={() => {
-                                                this.setState({
-                                                    bankId: v.bank_card_id,
-                                                    bankName: v.full_name,
-                                                    bankNum: v.account_no,
-                                                    showMyBanks: false,
-                                                })
-                                            }} >
+                                            <TouchableOpacity
+                                                activeOpacity={1}
+                                                style={styles.bankwrap} key={i} onPress={() => {
+                                                    this.setState({
+                                                        bankId: v.bank_card_id,
+                                                        bankName: v.full_name,
+                                                        bankNum: v.account_no,
+                                                        showMyBanks: false,
+                                                    })
+                                                }} >
                                                 <ImageBackground source={{ uri: v.background_url }} style={styles.bankBC}>
                                                     <View style={{ flexDirection: "row" }}>
                                                         <View style={styles.bankicon}>

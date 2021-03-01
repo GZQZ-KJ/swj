@@ -7,6 +7,7 @@ import {
     StyleSheet,
     TouchableHighlight,
     TouchableOpacity,
+    Platform
 } from 'react-native'
 import MyToast from '../../../utils/MyToast'
 import TouchLingth from '../../../utils/TouchLinght'
@@ -75,7 +76,7 @@ export default class home extends Component {
             }
         }).then(r => {
             if (r.data.code === 1) {
-                console.log('[锁定后的数据]',r.data.result)
+                console.log('[锁定后的数据]', r.data.result)
                 this.props.rootStore.deleteProduct(this.props.route.params.id)
                 this.props.rootStore.productStorage(this.props.route.params.id)
                 clearInterval(this.time)
@@ -92,7 +93,7 @@ export default class home extends Component {
                         num: 2,
                         soId: r.data.result.so_id,
                     })
-                    this.onFn() 
+                    this.onFn()
                 }, 0);
             }
             else {
@@ -118,7 +119,7 @@ export default class home extends Component {
                     showBtn: false,
                     num: 5
                 })
-            }else {
+            } else {
                 Toast.message(r.data.message, 2000, 'center')
                 return
             }
@@ -190,7 +191,7 @@ export default class home extends Component {
                     data: r.data.result
                 })
                 this.onFn()
-            }else {
+            } else {
                 Toast.message(r.data.message, 2000, 'center')
             }
         }).catch(e => console.log(e))
@@ -283,13 +284,15 @@ export default class home extends Component {
         const result = this.controlHeadMsg(num)
         return (
             <View style={{ flex: 1 }}>
-               <StatusBar backgroundColor="#fff" barStyle={'dark-content'}></StatusBar>
+                {
+                    Platform.OS === 'ios' ? <View style={{ marginTop: pxToPt(28) }}></View> : <StatusBar backgroundColor="#fff" barStyle={'dark-content'}></StatusBar>
+                }
                 <View style={styles.arroWrap}>
-                    <TouchableOpacity 
-          style={{ width: pxToPt(60),  height: pxToPt(44),paddingLeft:pxToPt(16), justifyContent: 'center' }} 
-                    onPress={() => {
-                        this.props.navigation.goBack()
-                    }}>
+                    <TouchableOpacity
+                        style={{ width: pxToPt(60), height: pxToPt(44), paddingLeft: pxToPt(16), justifyContent: 'center' }}
+                        onPress={() => {
+                            this.props.navigation.goBack()
+                        }}>
                         <Image style={styles.arrow} source={require('../../../assets/icons/backx.png')}></Image>
                     </TouchableOpacity>
                     <Text style={styles.title}>产品详情</Text>
@@ -527,9 +530,9 @@ const styles = StyleSheet.create({
         marginLeft: pxToPt(12),
     },
     myHead: {
-        width:pxToPt(51),
+        width: pxToPt(51),
         height: pxToPt(51),
-        marginRight:pxToPt(12)
+        marginRight: pxToPt(12)
     },
     headImg: {
         width: '100%',
@@ -584,7 +587,7 @@ const styles = StyleSheet.create({
         shadowColor: '#565A66',
         shadowOpacity: 0.12,
         elevation: 2,
-        shadowRadius:pxToPt(2),
+        shadowRadius: pxToPt(2),
         borderRadius: pxToPt(8),
         marginTop: pxToPt(12),
         alignItems: 'center'
@@ -593,7 +596,7 @@ const styles = StyleSheet.create({
         marginTop: pxToPt(16),
         marginLeft: pxToPt(12),
         color: '#5A5D66',
-        fontSize:pxToPt(14)
+        fontSize: pxToPt(14)
     },
     touchHig: {
         width: pxToPt(343),
@@ -602,12 +605,12 @@ const styles = StyleSheet.create({
         borderRadius: pxToPt(8),
         justifyContent: 'center',
         alignItems: 'center',
-        marginTop:pxToPt(350),
-        marginLeft:pxToPt(8),
+        marginTop: pxToPt(350),
+        marginLeft: pxToPt(8),
     },
     touchbot: {
         width: pxToPt(343),
-        height:pxToPt(44),
+        height: pxToPt(44),
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',
@@ -646,7 +649,7 @@ const styles = StyleSheet.create({
     },
     enterTex: {
         color: '#fff',
-        fontSize:pxToPt(15),
+        fontSize: pxToPt(15),
         fontWeight: '500'
     },
     showTime: {
@@ -664,7 +667,7 @@ const styles = StyleSheet.create({
     },
     msgDetail: {
         width: pxToPt(343),
-        height:pxToPt(220),
+        height: pxToPt(220),
         marginTop: pxToPt(12),
         backgroundColor: '#fff',
         shadowOffset: { width: 0, height: 1 },
@@ -678,7 +681,7 @@ const styles = StyleSheet.create({
     },
     msgHead: {
         height: pxToPt(44),
-        width:pxToPt(343),
+        width: pxToPt(343),
         backgroundColor: '#fff',
         alignItems: 'center',
         justifyContent: 'center'

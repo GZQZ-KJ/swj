@@ -8,7 +8,8 @@ import {
   SafeAreaView,
   ScrollView,
   StatusBar,
-  Modal
+  Modal,
+  Platform
 } from 'react-native'
 import { SHARE_PAGE, SHARE_GETQRCODE } from '../../../utils/api/pathMap'
 import axios from '../../../utils/api/request'
@@ -81,7 +82,9 @@ export default class myShare extends Component {
   render() {
     return (
       <>
-        <StatusBar backgroundColor="#fff" barStyle={'dark-content'}></StatusBar>
+        {
+          Platform.OS === 'ios' ? <View style={{marginTop:pxToPt(28)}}></View> : <StatusBar backgroundColor="#fff" barStyle={'dark-content'}></StatusBar>
+        }
         <View style={styles.arroWrap}>
           <TouchableOpacity
             style={{ width: pxToPt(60),  height: pxToPt(44),paddingLeft:pxToPt(16), justifyContent: 'center', marginRight: pxToPt(92)}}

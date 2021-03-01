@@ -6,12 +6,14 @@ import {
     StyleSheet,
     StatusBar,
     TouchableOpacity,
-    Modal
+    Modal,
+    Platform
 } from 'react-native'
 import axios from '../../../utils/api/request'
 import { pxToPt } from "../../../utils/styleKits";
 import { SHARE_BIND } from '../../../utils/api/pathMap'
 import { inject, observer } from 'mobx-react'
+import {pxToPt} from '../../../utils/styleKits'
 import Toast from '../../../utils/api/Toast'
 @inject('rootStore')
 @observer
@@ -27,7 +29,7 @@ export default class scan extends Component {
             avaterUrl: this.props.route.params.avaterUrl,
             email: this.props.route.params.email,
             code: this.props.route.params.code,
-            message:this.props.route.params.message,
+            message: this.props.route.params.message,
             showModal: false,
             showNextModal: false,
             resultmessage: '',
@@ -80,11 +82,13 @@ export default class scan extends Component {
         this.props.navigation.navigate("Tabbar")
     }
     render() {
-        let { userId, userName, avaterUrl, email, showModal, showNextModal, resultName, resultmessage, code,message } = this.state
+        let { userId, userName, avaterUrl, email, showModal, showNextModal, resultName, resultmessage, code, message } = this.state
         console.log('结果扫一扫', message)
         return (
             <View style={{ flex: 1 }}>
-                <StatusBar backgroundColor="#fff" barStyle={'dark-content'}></StatusBar>
+                {
+                    Platform.OS === 'ios' ? <View style={{ marginTop: pxToPt(28) }}></View> : <StatusBar backgroundColor="#fff" barStyle={'dark-content'}></StatusBar>
+                }
                 <View style={styles.arroWrap}>
                     <TouchableOpacity >
                         <Image style={styles.arrow} source={require('../../../assets/icons/backx.png')}></Image>
@@ -117,22 +121,22 @@ export default class scan extends Component {
                                 <View style={styles.btnTex}>
                                     <Text>
                                         {message}
-                                     </Text>
+                                    </Text>
                                 </View>
                                 <View style={styles.btnWrap}>
                                     <TouchableOpacity style={styles.btnTouc} onPress={this.goBack}>
                                         <Text style={styles.btnToucTex}>确认</Text>
                                     </TouchableOpacity>
                                 </View>
-                            </View> : 
-                        <View style={styles.btnTwrap}>
-                            <TouchableOpacity style={styles.btnBFriend} onPress={this.goBack}>
-                                <Text style={styles.btnBTex}>返回</Text>
-                            </TouchableOpacity>
-                            <TouchableOpacity style={styles.btnBeFriend} onPress={this.showToast}>
-                                <Text style={styles.btnBeTex} >绑定关系</Text>
-                            </TouchableOpacity>
-                        </View>
+                            </View> :
+                            <View style={styles.btnTwrap}>
+                                <TouchableOpacity style={styles.btnBFriend} onPress={this.goBack}>
+                                    <Text style={styles.btnBTex}>返回</Text>
+                                </TouchableOpacity>
+                                <TouchableOpacity style={styles.btnBeFriend} onPress={this.showToast}>
+                                    <Text style={styles.btnBeTex} >绑定关系</Text>
+                                </TouchableOpacity>
+                            </View>
                     }
                 </View>
                 <Modal visible={showModal} transparent={true} animationType="slide">
@@ -144,8 +148,8 @@ export default class scan extends Component {
                             borderRadius: pxToPt(32),
                             paddingTop: pxToPt(32),
                             paddingLeft: pxToPt(20),
-                            paddingRight:pxToPt(20),
-                            paddingBottom:pxToPt(32)
+                            paddingRight: pxToPt(20),
+                            paddingBottom: pxToPt(32)
                         }}>
                             {
                                 code === 0 ? <>
@@ -157,7 +161,7 @@ export default class scan extends Component {
                                         <>
                                             <Text style={{ height: pxToPt(21), color: '#fff', fontSize: pxToPt(15), fontWeight: '500', marginBottom: pxToPt(8) }}>请确认是否与{userName}绑定关系。</Text>
                                             <View style={{ flexDirection: 'row', height: pxToPt(16), alignItems: 'center', marginBottom: pxToPt(27) }}>
-                                                <Image style={{ width: pxToPt(6), height:pxToPt(6), marginRight: pxToPt(5) }} source={require('../../../assets/icons/jujiao2.png')}></Image>
+                                                <Image style={{ width: pxToPt(6), height: pxToPt(6), marginRight: pxToPt(5) }} source={require('../../../assets/icons/jujiao2.png')}></Image>
                                                 <Text style={{ color: "#fff", fontSize: pxToPt(11), fontWeight: '500' }}>你只能与一个邀请人绑定关系哦！</Text>
                                             </View>
                                             <View style={{ flexDirection: 'row', justifyContent: 'space-around' }}>
@@ -173,7 +177,7 @@ export default class scan extends Component {
                                                 </TouchableOpacity>
                                                 <TouchableOpacity
                                                     onPress={this.enterYes}
-                                                    style={{ height: pxToPt(30), width: pxToPt(88), borderColor: '#FFFFFF', borderWidth:pxToPt(1), borderRadius: pxToPt(15), justifyContent: 'center', alignItems: 'center', backgroundColor: '#fff' }}
+                                                    style={{ height: pxToPt(30), width: pxToPt(88), borderColor: '#FFFFFF', borderWidth: pxToPt(1), borderRadius: pxToPt(15), justifyContent: 'center', alignItems: 'center', backgroundColor: '#fff' }}
                                                 >
                                                     <Text style={{ fontSize: pxToPt(14), color: '#3D72E4', fontWeight: '400' }}>是</Text>
 
@@ -183,10 +187,10 @@ export default class scan extends Component {
                                         :
                                         showNextModal ?
                                             <>
-                                                <Text style={{ height: pxToPt(21), color: '#fff', fontSize:pxToPt(15), fontWeight: '500', marginBottom: pxToPt(8)}}>您与{resultName}{resultmessage}</Text>
+                                                <Text style={{ height: pxToPt(21), color: '#fff', fontSize: pxToPt(15), fontWeight: '500', marginBottom: pxToPt(8) }}>您与{resultName}{resultmessage}</Text>
                                                 <TouchableOpacity
                                                     onPress={this.resultClick}
-                                                    style={{ height: pxToPt(30), width: pxToPt(88), alignSelf: 'center', borderColor: '#FFFFFF', borderWidth: pxToPt(1), borderRadius: pxToPt(15), justifyContent: 'center', alignItems: 'center', backgroundColor: '#fff', marginTop:pxToPt(51) }}
+                                                    style={{ height: pxToPt(30), width: pxToPt(88), alignSelf: 'center', borderColor: '#FFFFFF', borderWidth: pxToPt(1), borderRadius: pxToPt(15), justifyContent: 'center', alignItems: 'center', backgroundColor: '#fff', marginTop: pxToPt(51) }}
                                                 >
                                                     <Text style={{ fontSize: pxToPt(14), color: '#3D72E4', fontWeight: '400' }}>确定</Text>
 
@@ -296,13 +300,13 @@ const styles = StyleSheet.create({
         height: pxToPt(44),
         width: pxToPt(343),
         flexDirection: 'row',
-        marginTop:pxToPt(400),
+        marginTop: pxToPt(400),
         justifyContent: 'space-around',
         alignItems: 'center'
     },
     btnBeFriend: {
         width: pxToPt(188),
-        borderWidth:pxToPt(1),
+        borderWidth: pxToPt(1),
         borderColor: '#3D72E4',
         borderRadius: pxToPt(8),
         height: '100%',

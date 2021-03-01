@@ -8,7 +8,8 @@ import {
   StatusBar,
   SafeAreaView,
   ScrollView,
-  ImageBackground
+  ImageBackground,
+  Platform
 } from 'react-native'
 import { BANKS_GETMYBANKS } from '../../../utils/api/pathMap'
 import axios from '../../../utils/api/request'
@@ -73,7 +74,9 @@ export default class bank extends Component {
   render() {
     return (
       <>
-        <StatusBar backgroundColor="#fff" barStyle={'dark-content'}></StatusBar>
+        {
+          Platform.OS === 'ios' ? <View style={{marginTop:pxToPt(28)}}></View> : <StatusBar backgroundColor="#fff" barStyle={'dark-content'}></StatusBar>
+        }
         <View style={styles.arroWrap}>
           <TouchableOpacity
             style={{ width: pxToPt(60), height: pxToPt(44),paddingLeft:pxToPt(16), justifyContent: 'center' }}

@@ -7,6 +7,7 @@ import {
     StyleSheet,
     TouchableOpacity,
     TouchableHighlight,
+    Platform
 } from 'react-native'
 import Toast from '../../../utils/api/Toast'
 import ToastTwo from '../../../components/ToastTwo'
@@ -116,33 +117,35 @@ export default class home extends Component {
         var finish = this.props.route.params.finish || ''
         return (
             <>
-                <StatusBar backgroundColor="#fff" barStyle={'dark-content'}></StatusBar>
+                {
+                    Platform.OS === 'ios' ? <View style={{ marginTop: pxToPt(28) }}></View> : <StatusBar backgroundColor="#fff" barStyle={'dark-content'}></StatusBar>
+                }
                 <View style={styles.arroWrap}>
                     {
-                        finish !== '' ? <></> : 
-                        <>
-                        <TouchableOpacity
-                            style={{ width: pxToPt(60), height: pxToPt(44),paddingLeft:pxToPt(16), justifyContent: 'center' }}
-                            onPress={() => {
-                                this.props.navigation.navigate("Tabbar")
-                            }}> <Image style={styles.arrow} source={require('../../../assets/icons/backx.png')}></Image>
-                            </TouchableOpacity>
-                            <Text style={styles.title}>产品详情</Text>
+                        finish !== '' ? <></> :
+                            <>
+                                <TouchableOpacity
+                                    style={{ width: pxToPt(60), height: pxToPt(44), paddingLeft: pxToPt(16), justifyContent: 'center' }}
+                                    onPress={() => {
+                                        this.props.navigation.navigate("Tabbar")
+                                    }}> <Image style={styles.arrow} source={require('../../../assets/icons/backx.png')}></Image>
+                                </TouchableOpacity>
+                                <Text style={styles.title}>产品详情</Text>
                             </>
                     }
                     {
-                        finish !== '' ? 
-                        <View style={styles.finishst}>
-                       <Text style={styles.titlest}>产品详情</Text> 
-                        <TouchableOpacity
-                        style={{ width: pxToPt(60), height: pxToPt(60), alignItems: 'center', justifyContent: 'center' }}
-                        onPress={() => {
-                            this.props.navigation.navigate("Tabbar")
-                        }}> 
-                        <Text>完成</Text>
-                        </TouchableOpacity>
-                        </View>
-                        : <></>
+                        finish !== '' ?
+                            <View style={styles.finishst}>
+                                <Text style={styles.titlest}>产品详情</Text>
+                                <TouchableOpacity
+                                    style={{ width: pxToPt(60), height: pxToPt(60), alignItems: 'center', justifyContent: 'center' }}
+                                    onPress={() => {
+                                        this.props.navigation.navigate("Tabbar")
+                                    }}>
+                                    <Text>完成</Text>
+                                </TouchableOpacity>
+                            </View>
+                            : <></>
                     }
                 </View>
                 {
@@ -254,13 +257,13 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         backgroundColor: '#fff'
     },
-    finishst:{
-        height:'100%',
+    finishst: {
+        height: '100%',
         flexDirection: 'row',
         alignItems: 'center',
         backgroundColor: '#fff',
-        width:'100%',
-       justifyContent:'flex-end'
+        width: '100%',
+        justifyContent: 'flex-end'
     },
     arrow: {
         width: pxToPt(11.82),
@@ -272,15 +275,15 @@ const styles = StyleSheet.create({
         fontSize: pxToPt(18),
         fontWeight: "500",
     },
-    titlest:{
-        marginRight:pxToPt(100),
+    titlest: {
+        marginRight: pxToPt(100),
         color: '#2B2D33',
-        fontSize:pxToPt(18),
+        fontSize: pxToPt(18),
         fontWeight: "500",
     },
     wrap: {
-        width:'100%',
-        alignItems:'center'
+        width: '100%',
+        alignItems: 'center'
     },
     wrapper: {
         width: pxToPt(343),
@@ -299,7 +302,7 @@ const styles = StyleSheet.create({
     head: {
         height: pxToPt(84),
         width: pxToPt(319),
-        borderBottomWidth:pxToPt(1),
+        borderBottomWidth: pxToPt(1),
         borderBottomColor: '#F2F3F7',
         flexDirection: 'row',
         alignItems: 'center',
@@ -336,7 +339,7 @@ const styles = StyleSheet.create({
     headImg: {
         width: '100%',
         height: '100%',
-        borderRadius:pxToPt(60)
+        borderRadius: pxToPt(60)
     },
     headName: {
         fontSize: pxToPt(16),
@@ -361,8 +364,8 @@ const styles = StyleSheet.create({
         color: '#2B2D33'
     },
     unTime: {
-        marginTop:pxToPt(12),
-        fontSize:pxToPt(14),
+        marginTop: pxToPt(12),
+        fontSize: pxToPt(14),
         fontWeight: '400',
         color: '#5A5D66'
     },
@@ -383,7 +386,7 @@ const styles = StyleSheet.create({
     },
     cTime: {
         flexDirection: 'row',
-        width:pxToPt(343),
+        width: pxToPt(343),
         height: pxToPt(44),
         backgroundColor: '#fff',
         shadowOffset: { width: 0, height: 1 },
@@ -403,7 +406,7 @@ const styles = StyleSheet.create({
     },
     touchHig: {
         width: pxToPt(343),
-        height:pxToPt(44),
+        height: pxToPt(44),
         borderRadius: pxToPt(8),
         borderColor: '#3D72E4',
         borderWidth: pxToPt(1),
@@ -418,7 +421,7 @@ const styles = StyleSheet.create({
         shadowOffset: { width: 0, height: 1 },
         shadowColor: '#565A66',
         shadowOpacity: 0.12,
-        shadowRadius:pxToPt(2),
+        shadowRadius: pxToPt(2),
         borderRadius: pxToPt(8),
         elevation: 2,
         justifyContent: 'center',
@@ -440,7 +443,7 @@ const styles = StyleSheet.create({
     },
     msgHead: {
         height: pxToPt(44),
-        width:pxToPt(343),
+        width: pxToPt(343),
         backgroundColor: '#fff',
         alignItems: 'center',
         justifyContent: 'center'
@@ -477,7 +480,7 @@ const styles = StyleSheet.create({
         fontFamily: 'PingFang SC',
         fontWeight: '500',
         color: '#FE5564',
-        fontSize:pxToPt(14)
+        fontSize: pxToPt(14)
     },
     msgFoot: {
         height: pxToPt(44),

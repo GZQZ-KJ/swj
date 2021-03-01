@@ -9,6 +9,7 @@ import {
   StatusBar,
   TouchableHighlight,
   Modal,
+  Platform
 } from 'react-native'
 import Toast from '../../../utils/api/Toast'
 import ToastTwo from "../../../components/ToastTwo"
@@ -196,7 +197,9 @@ export default class setting extends Component {
     let { rootStore } = this.props
     return (
       <>
-        <StatusBar backgroundColor="#fff" barStyle={'dark-content'}></StatusBar>
+        {
+          Platform.OS === 'ios' ? <View style={{marginTop:pxToPt(28)}}></View> : <StatusBar backgroundColor="#fff" barStyle={'dark-content'}></StatusBar>
+        }
         <View style={styles.arroWrap}>
           <TouchableOpacity 
           style={{ width: pxToPt(60), height: pxToPt(60),marginRight:pxToPt(75) ,marginLeft:pxToPt(16), justifyContent: 'center' }} 

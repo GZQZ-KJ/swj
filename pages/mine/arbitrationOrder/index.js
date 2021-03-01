@@ -4,11 +4,13 @@ import {
     Text,
     StyleSheet,
     Image,
-    TouchableOpacity
+    TouchableOpacity,
+    Platform
 } from 'react-native'
 import { pxToPt } from "../../../utils/styleKits";
 import { NavigationContext } from '@react-navigation/native'
 import { inject, observer } from 'mobx-react'
+import { pxToPt } from '../../../utils/styleKits'
 @inject('rootStore')
 @observer
 // @observer
@@ -32,6 +34,9 @@ export default class arbitrationIng extends Component {
         let { item } = this.props
         return (
             <View style={{ width: '100%', justifyContent: 'center', alignItems: 'center' }}>
+                {
+                    Platform.OS === 'ios' ? <View style={{ marginTop: pxToPt(28) }}></View> : <StatusBar backgroundColor="#fff" barStyle={'dark-content'}></StatusBar>
+                }
                 <TouchableOpacity
                     activeOpacity={1}
                     style={styles.arbing} onPress={this.goArbitrationMsg}>

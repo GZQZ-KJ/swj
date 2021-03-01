@@ -5,10 +5,11 @@ import {
     StyleSheet,
     TouchableOpacity,
     Image,
-    StatusBar
+    StatusBar,
+    Platform
 } from 'react-native'
 import AsyncStorage from '@react-native-community/async-storage'
-import { pxToPt } from "../../../utils/styleKits";
+import { pxToPt } from "../../../utils/styleKits"
 import { inject, observer } from 'mobx-react'
 @inject('rootStore')
 @observer
@@ -34,24 +35,26 @@ export default class about extends Component {
     render() {
         return (
             <>
-                <StatusBar backgroundColor="#fff" barStyle={'dark-content'}></StatusBar>
+                {
+                    Platform.OS === 'ios' ? <View style={{ marginTop: pxToPt(28) }}></View> : <StatusBar backgroundColor="#fff" barStyle={'dark-content'}></StatusBar>
+                }
                 <View style={styles.arroWrap}>
                     <TouchableOpacity
-                    style={{ width: pxToPt(60),  height: pxToPt(44),paddingLeft:pxToPt(16), justifyContent: 'center' }} 
-                    onPress={() => {
-                        this.props.navigation.navigate('Tabbar')
-                    }}>
+                        style={{ width: pxToPt(60), height: pxToPt(44), paddingLeft: pxToPt(16), justifyContent: 'center' }}
+                        onPress={() => {
+                            this.props.navigation.navigate('Tabbar')
+                        }}>
                         <Image style={styles.arrow} source={require('../../../assets/icons/backx.png')}></Image>
                     </TouchableOpacity>
                     <Text style={styles.title}>关于</Text>
                 </View>
                 <View style={styles.container}>
                     <View style={styles.wrapper}>
-                        <Text style={{ marginBottom:pxToPt(8) }}>
+                        <Text style={{ marginBottom: pxToPt(8) }}>
                             目前版本：
                             <Text style={styles.ver}>V{this.state.version}</Text>
                         </Text>
-                        <Text style={{ marginBottom:pxToPt(8) }}>
+                        <Text style={{ marginBottom: pxToPt(8) }}>
                             最新版本：
                             <Text style={styles.ver}>V{this.props.rootStore.appVersion}</Text>
                         </Text>
@@ -61,7 +64,7 @@ export default class about extends Component {
                     {
                         !!this.state.isUpdate ? <View style={{ top: pxToPt(286), width: '100%', justifyContent: 'center', alignItems: 'center' }}>
                             <TouchableOpacity
-                            onPress={this.upDate}
+                                onPress={this.upDate}
                                 style={{ height: pxToPt(44), width: pxToPt(343), backgroundColor: '#3D72E4', borderRadius: 8, justifyContent: 'center', alignItems: 'center' }}>
                                 <Text style={{ color: '#fff' }}>更新App</Text>
                             </TouchableOpacity>
@@ -89,7 +92,7 @@ const styles = StyleSheet.create({
         fontSize: pxToPt(18),
         fontWeight: "500",
         fontFamily: 'PingFang SC',
-        marginLeft:pxToPt(110)
+        marginLeft: pxToPt(110)
     },
     container: {
         flex: 1,
@@ -97,7 +100,7 @@ const styles = StyleSheet.create({
         alignItems: 'center'
     },
     wrapper: {
-        width:pxToPt(343),
+        width: pxToPt(343),
         backgroundColor: '#fff',
         borderRadius: pxToPt(20),
         shadowOffset: { width: pxToPt(0), height: pxToPt(2) },
