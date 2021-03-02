@@ -7,6 +7,7 @@ import {
   Image,
   Text,
   StyleSheet,
+  Platform
 } from 'react-native';
 
 import { pxToPt } from "../utils/styleKits";
@@ -93,7 +94,8 @@ export default class tabbar extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#F8F9FA',
+    backgroundColor: '#fff',
+    paddingBottom:Platform.OS === 'ios' ? pxToPt(34) : 0
   },
 
   tabIcon: {

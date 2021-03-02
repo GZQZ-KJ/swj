@@ -329,9 +329,8 @@ export default class orderPage extends Component {
               <Text style={{ color: '#8D9099', marginTop: pxToPt(58), alignSelf: 'center', fontWeight: '400', fontSize: pxToPt(15) }}>暂无订单</Text>
             </>
             :
-            <SafeAreaView style={{  }}>
+            <SafeAreaView style={{flex:1 }}>
               <ScrollView
-                style={{height:pxToPt(600)}}
                 refreshControl={
                   <RefreshControl
                     refreshing={this.state.isRefreshing}
@@ -341,11 +340,11 @@ export default class orderPage extends Component {
                 showsVerticalScrollIndicator={false}
                 scrollsToTop={true}
                 onMomentumScrollEnd={this.getMore}
-                // onScroll={() => {
-                //   this.setState({
-                //     isScroll: false
-                //   })
-                // }}
+                onScroll={() => {
+                  this.setState({
+                    isScroll: false
+                  })
+                }}
               >
                 {
                   rootStore.orderList.map((v, i) => {
