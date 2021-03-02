@@ -13,7 +13,7 @@ import TopShow from './topComp/index'
 import Chart from './trendchart/index'
 import MySwiper from './banner/index'
 import DealMsg from './dealmsg/index'
-import {pxToPt} from '../../utils/styleKits'
+import { pxToPt } from '../../utils/styleKits'
 export default class homePage extends Component {
   constructor(props) {
     super(props)
@@ -22,12 +22,15 @@ export default class homePage extends Component {
   render() {
     return (
       <>
-       <StatusBar backgroundColor="#fff" barStyle={'dark-content'}></StatusBar> 
-       <SafeAreaView style={{flex:1}}>
-        <TopShow navigation={this.props.navigation}></TopShow>
-        <Chart></Chart>
-        {/* <MySwiper></MySwiper> */}
-        <DealMsg></DealMsg>
+        {
+          Platform.OS === 'ios' ? <StatusBar></StatusBar>
+            : <StatusBar backgroundColor="#fff" barStyle={'dark-content'}></StatusBar>
+        }
+        <SafeAreaView style={{ flex: 1 }}>
+          <TopShow navigation={this.props.navigation}></TopShow>
+          <Chart></Chart>
+          {/* <MySwiper></MySwiper> */}
+          <DealMsg></DealMsg>
         </SafeAreaView>
       </>
     )

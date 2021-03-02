@@ -95,7 +95,7 @@ export default class bank extends Component {
               </TouchableOpacity>
           }
           <SafeAreaView>
-            <ScrollView style={{ height: 550 }}>
+            <ScrollView style={{ height: 548 }}>
               <View style={styles.container}>
                 {
                   this.state.myBanks.map((v, i) => {

@@ -369,9 +369,7 @@ const styles = StyleSheet.create({
   arroWrap: {
     height: pxToPt(44),
     alignItems: 'center',
-    // justifyContent: 'space-between',
     flexDirection: 'row',
-    // paddingLeft: 26,
     backgroundColor: '#fff',
   },
   arrow: {
