@@ -5,10 +5,8 @@ import {
   Text,
   SafeAreaView
 } from 'react-native'
-import {pxToPt} from './utils/styleKits'
 import rootStore from "./utils/mobx";
 import { Provider } from "mobx-react";
-import { NavigationActions } from 'react-navigation'
 
 import Nav from './pages/nav'
 

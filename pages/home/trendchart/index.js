@@ -182,6 +182,7 @@ export default class chart extends Component {
       }
     }).then(r => {
       if (r.data.code === 1) {
+        console.log('[大数据图表的数据]',r.data)
         let counTime = []
         let price = []
         let marketCap = []

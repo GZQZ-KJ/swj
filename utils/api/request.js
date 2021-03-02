@@ -18,8 +18,7 @@ instance.interceptors.request.use(function (config) {
   return config
   // 对请求错误做些什么
 }, function (error) {
-  console.log('请求的正常', config)
-
+  Toast.message('网络失去连接')
   return Promise.reject(error);
 });
 
@@ -89,6 +88,8 @@ instance.interceptors.response.use(function (response) {
         error.message = `连接出错(${error.response.status})!`;
     }
   }
+  Toast.hideLoading()
+  Toast.message('请检查网络',1000,'center')
   return Promise.reject(error);
 });
 
