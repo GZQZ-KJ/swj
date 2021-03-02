@@ -5,7 +5,9 @@ import {
     StyleSheet,
     Image,
     TouchableOpacity,
-    Platform
+    Platform,
+    SafeAreaView,
+    StatusBar
 } from 'react-native'
 import { pxToPt } from "../../../utils/styleKits";
 import { NavigationContext } from '@react-navigation/native'

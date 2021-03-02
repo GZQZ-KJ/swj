@@ -1,7 +1,7 @@
 /**
  * 接口基地址
  */
-export const BASE_URI = "http://192.168.68.108:8080";
+export const BASE_URI = "http://192.168.68.221:30006";
 
 /**
  *  登录 获取验证码  
