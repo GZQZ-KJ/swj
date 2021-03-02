@@ -6,7 +6,8 @@ import {
     StatusBar,
     Dimensions
 } from 'react-native'
-import { Echarts } from 'native-echarts'
+import Echarts from 'native-echarts';
+
 import axios from '../../../utils/api/request'
 import { HOME_DATALIST } from '../../../utils/api/pathMap'
 
@@ -277,7 +278,7 @@ export default class secondEchart extends Component {
         return (
             <>
                 <StatusBar backgroundColor='#fff' barStyle={'light-content'}></StatusBar>
-                <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center', backgroundColor: '#fff' }}>
+                <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center', backgroundColor: '#fff'}}>
                     <View style={{ width: Dimensions.get('window').height, height: Dimensions.get('window').width, transform: [{ rotateZ: '90deg' }] }}>
                         <TouchableOpacity
                             onPress={() => {
@@ -305,7 +306,7 @@ export default class secondEchart extends Component {
                                     <Text>拼命加载中....</Text>
                                 </View> : <></>
                         }
-                        <Echarts option={this.state.option} height={320} />
+                        <Echarts ref={this.echartsRef} option={this.state.option} height={320}/>
 
                     </View>
                 </View>

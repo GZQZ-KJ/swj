@@ -2609,7 +2609,7 @@ ecc-jsbn@~0.1.1:
 
 echarts@3.2.3:
   version "3.2.3"
-  resolved "https://registry.yarnpkg.com/echarts/-/echarts-3.2.3.tgz#4f01e15bfda3352fcd8ef9049f13d8448971a258"
+  resolved "https://registry.npmjs.org/echarts/-/echarts-3.2.3.tgz#4f01e15bfda3352fcd8ef9049f13d8448971a258"
   integrity sha1-TwHhW/2jNS/NjvkEnxPYRIlxolg=
   dependencies:
     zrender "^3.1.3"
@@ -6088,6 +6088,11 @@ react-native-device-info@^8.0.1:
   resolved "https://registry.npmjs.org/react-native-device-info/-/react-native-device-info-8.0.1.tgz"
   integrity sha512-5fIcrEfxsyIJ0HZ/pHd+DeYwC81wi5tupFkPSASYXz/7QhatF8W0W6qR+YlvI6gJVSFNgQKgrPrh18RGMgbZdg==
 
+react-native-echarts-pro@^1.2.4:
+  version "1.2.4"
+  resolved "https://registry.npmjs.org/react-native-echarts-pro/-/react-native-echarts-pro-1.2.4.tgz#8562b4ef11fcda5dc16be4848ed72f442a1d079c"
+  integrity sha512-jEIuXPuLTBgADVdLdjR2RMbxeK+sjZr/Pt19gRhCpoYH2uJkbOZUprorQbxi0Oe4j2l3xUW6fI8gLUapojG5tQ==
+
 react-native-gesture-handler@^1.9.0:
   version "1.9.0"
   resolved "https://registry.npmjs.org/react-native-gesture-handler/-/react-native-gesture-handler-1.9.0.tgz"
@@ -6124,6 +6129,11 @@ react-native-legacy-components@^0.1.3:
     prop-types "^15.5.10"
     react-timer-mixin "^0.13.2"
     rebound "^0.0.13"
+
+react-native-logs@^3.0.3:
+  version "3.0.3"
+  resolved "https://registry.yarnpkg.com/react-native-logs/-/react-native-logs-3.0.3.tgz#10bc6a24010dad2bcf9b3b7eacc27f6a3796ed01"
+  integrity sha512-Fnkoe9f1taxY8MiONGdPVaQPDml01i7oSYY+pxk/2fthJv24Z/Tlw22p8dgkuJ3SiwBHc71WlzQ4asKR5FPKbw==
 
 react-native-macos@^0.63.18:
   version "0.63.18"
@@ -6200,13 +6210,6 @@ react-native-screens@^2.16.1:
   version "2.16.1"
   resolved "https://registry.npmjs.org/react-native-screens/-/react-native-screens-2.16.1.tgz"
   integrity sha512-WZ7m0sBDVaHbBnlHxwQnUlI6KNfQKHq+Unfw+VBuAlnSXvT+aw6Bb/K2bUlHzBgvrPjwY3Spc7ZERFuTwRLLwg==
-
-react-native-secharts@^1.7.0:
-  version "1.7.0"
-  resolved "https://registry.npmjs.org/react-native-secharts/-/react-native-secharts-1.7.0.tgz"
-  integrity sha512-XXRbqXumlQHJMusj07PSuBJtRrh7CSR/eBSTUwZ8JL2qjMClN9RGqfAbb7GvVXZJoknJFUAsXl/oB5mg+jseAw==
-  dependencies:
-    prop-types "^15.7.2"
 
 react-native-swiper@^1.6.0:
   version "1.6.0"
@@ -7830,5 +7833,5 @@ yargs@^15.1.0, yargs@^15.4.1:
 
 zrender@^3.1.3:
   version "3.7.4"
-  resolved "https://registry.yarnpkg.com/zrender/-/zrender-3.7.4.tgz#f847d53948481ef6d42906d1ea9aeec7acbefdf2"
+  resolved "https://registry.npmjs.org/zrender/-/zrender-3.7.4.tgz#f847d53948481ef6d42906d1ea9aeec7acbefdf2"
   integrity sha512-5Nz7+L1wIoL0+Pp/iOP56jD6eD017qC9VRSgUBheXBiAHgOBJZ4uh4/g6e83acIwa8RKSyZf/FlceKu5ntUuxQ==

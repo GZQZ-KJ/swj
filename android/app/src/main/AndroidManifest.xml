@@ -20,8 +20,12 @@
       android:roundIcon="@mipmap/ic_launcher_round"
       android:allowBackup="false"
       android:theme="@style/AppTheme"
+<<<<<<< HEAD
       android:usesCleartextTraffic="true"
       >
+=======
+      android:usesCleartextTraffic="true">
+>>>>>>> 21607848ad7cc28d309144c991b979e5ea0735e3
       <activity
         android:name=".MainActivity"
         android:label="@string/app_name"

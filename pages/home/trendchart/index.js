@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { View, StyleSheet, Text, TouchableOpacity, BackHandler, ToastAndroid, Navigator } from 'react-native';
-import { Echarts } from 'native-echarts';
+import Echarts from 'native-echarts';
 import PriceShow from '../billboard/index'
 import Toast from '../../../utils/api/Toast'
 import axios from '../../../utils/api/request'
@@ -182,7 +182,6 @@ export default class chart extends Component {
       }
     }).then(r => {
       if (r.data.code === 1) {
-        console.log('[大数据图表的数据]',r.data)
         let counTime = []
         let price = []
         let marketCap = []
