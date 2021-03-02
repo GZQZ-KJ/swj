@@ -171,9 +171,10 @@ export default class login extends Component {
         console.log(this.state.email, this.state.password)
         var re = /^[a-zA-Z\d]+([-_\.][a-zA-Z\d]+)*@[a-zA-Z\d]+\.[a-zA-Z\d]{2,4}$/
         return (
-            <View style={styles.container}>
-               <StatusBar backgroundColor="#3D72E4" barStyle={'light-content'}></StatusBar>
+            <>
+            <StatusBar backgroundColor="#3D72E4" barStyle={'light-content'}></StatusBar>
                 
+            <View style={styles.container}>
                 <TouchableOpacity style={styles.arroWrap} >
                     {/* <Image style={styles.arrow} source={require('../../../assets/icons/backo.png')}></Image> */}
                 </TouchableOpacity>
@@ -268,6 +269,7 @@ export default class login extends Component {
                     </> : <></>
                 }
             </View>
+      </>
         )
     }
 }

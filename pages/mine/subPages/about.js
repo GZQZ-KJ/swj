@@ -35,7 +35,7 @@ export default class about extends Component {
 
     render() {
         return (
-            <SafeAreaView style={{flex:1}}>
+            <SafeAreaView style={{flex:1,backgroundColor:'#fff'}}>
             <StatusBar backgroundColor="#fff" barStyle={'dark-content'}></StatusBar>
                 <View style={styles.arroWrap}>
                     <TouchableOpacity

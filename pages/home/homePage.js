@@ -23,10 +23,12 @@ export default class homePage extends Component {
     return (
       <>
        <StatusBar backgroundColor="#fff" barStyle={'dark-content'}></StatusBar> 
+       <SafeAreaView style={{flex:1}}>
         <TopShow navigation={this.props.navigation}></TopShow>
         <Chart></Chart>
         {/* <MySwiper></MySwiper> */}
         <DealMsg></DealMsg>
+        </SafeAreaView>
       </>
     )
   }

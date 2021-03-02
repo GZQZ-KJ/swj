@@ -10,7 +10,8 @@ import {
   Image,
   RefreshControl,
   Dimensions,
-  SafeAreaView
+  SafeAreaView,
+  StatusBar
 } from 'react-native'
 
 import basicStyle from '../../components/styles/basic/index'
@@ -248,7 +249,9 @@ export default class orderPage extends Component {
   render() {
     let { rootStore } = this.props
     return (
-      <SafeAreaView style={{ flex: 1 }}>
+      <>
+      <StatusBar barStyle={'dark-content'}></StatusBar>
+      <SafeAreaView style={{ flex: 1}}>
         <TopHeadChoose
           _selectLf={this._selectLf}
           _selectRt={this._selectRt}
@@ -326,8 +329,9 @@ export default class orderPage extends Component {
               <Text style={{ color: '#8D9099', marginTop: pxToPt(58), alignSelf: 'center', fontWeight: '400', fontSize: pxToPt(15) }}>暂无订单</Text>
             </>
             :
-            <SafeAreaView style={{ paddingBottom: pxToPt(90) }}>
+            <SafeAreaView style={{  }}>
               <ScrollView
+                style={{height:pxToPt(600)}}
                 refreshControl={
                   <RefreshControl
                     refreshing={this.state.isRefreshing}
@@ -337,11 +341,11 @@ export default class orderPage extends Component {
                 showsVerticalScrollIndicator={false}
                 scrollsToTop={true}
                 onMomentumScrollEnd={this.getMore}
-                onScroll={() => {
-                  this.setState({
-                    isScroll: false
-                  })
-                }}
+                // onScroll={() => {
+                //   this.setState({
+                //     isScroll: false
+                //   })
+                // }}
               >
                 {
                   rootStore.orderList.map((v, i) => {
@@ -360,7 +364,7 @@ export default class orderPage extends Component {
             </SafeAreaView>
         }
       </SafeAreaView>
-
+</>
     )
   }
 }

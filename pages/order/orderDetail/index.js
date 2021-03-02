@@ -267,8 +267,10 @@ export default class orderDetail extends Component {
         } = this.state.data
         if (time_list === undefined) return (<></>)
         return (
-            <SafeAreaView style={{flex:1}}>
-              <StatusBar backgroundColor="#fff" barStyle={'dark-content'}></StatusBar>
+            <>
+            
+            <StatusBar barStyle={'light-content'}></StatusBar>
+            <SafeAreaView style={{flex:1,backgroundColor:'#fff'}}>
                 <View style={styles.arroWrap}>
                     <TouchableOpacity
                         style={{ width: pxToPt(60),  height: pxToPt(44),paddingLeft:pxToPt(16), justifyContent: 'center' }}
@@ -442,6 +444,7 @@ export default class orderDetail extends Component {
                     }
                 </View>
             </SafeAreaView>
+       </>
         )
     }
 }
