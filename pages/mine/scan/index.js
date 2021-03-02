@@ -7,7 +7,8 @@ import {
     StatusBar,
     TouchableOpacity,
     Modal,
-    Platform
+    Platform,
+    SafeAreaView
 } from 'react-native'
 import axios from '../../../utils/api/request'
 import { pxToPt } from "../../../utils/styleKits";

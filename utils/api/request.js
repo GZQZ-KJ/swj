@@ -2,10 +2,30 @@ import axios from 'axios'
 import { BASE_URI } from './pathMap'
 import Toast from './Toast'
 import rootStore from '../mobx'
+import { logger, consoleTransport} from "react-native-logs";
+import { cleanSingle } from 'react-native-image-crop-picker';
 const instance = axios.create({
   baseURL: BASE_URI,
   timeout: 10000,
 })
+const defaultConfig = {
+  severity: "debug",
+  transport: consoleTransport,
+  transportOptions: {
+    color: "ansi", // custom option that color consoleTransport logs
+  },
+  levels: {
+    debug: 0,
+    info: 1,
+    warn: 2,
+    error: 3,
+  },
+  async: true,
+  dateFormat: "time",
+  printLevel: true,
+  printDate: true,
+  enabled: true,
+};
 // 添加请求拦截器
 instance.interceptors.request.use(function (config) {
   // 在发送请求之前做些什么
@@ -18,13 +38,18 @@ instance.interceptors.request.use(function (config) {
   return config
   // 对请求错误做些什么
 }, function (error) {
+  console.log(error)
   Toast.message('网络失去连接')
+  var log = logger.createLogger(defaultConfig);
+  log.debug(error);
+  log.error(error);
   return Promise.reject(error);
 });
 
 // 添加响应拦截器
 instance.interceptors.response.use(function (response) {
   // 对响应数据做点什么
+  console.log('响应response',response)
   Toast.hideLoading()
   if (response.status === 401) {
     rootStore.setUserInfo('', '')
@@ -36,6 +61,8 @@ instance.interceptors.response.use(function (response) {
 
 }, function (error) {
   // 对响应错误做点什么
+  console.log('响应response错误',error)
+
   if (error && error.response) {
     Toast.hideLoading()
     switch (error.response.status) {
@@ -89,6 +116,9 @@ instance.interceptors.response.use(function (response) {
     }
   }
   Toast.hideLoading()
+  var log = logger.createLogger(defaultConfig);
+  log.debug(error);
+  log.error(error);
   Toast.message('请检查网络',1000,'center')
   return Promise.reject(error);
 });

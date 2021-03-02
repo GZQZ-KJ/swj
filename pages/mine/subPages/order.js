@@ -106,7 +106,6 @@ export default class order extends Component {
                     Platform.OS === 'ios' ? <View style={{ marginTop: pxToPt(44) }}></View> :
                         <StatusBar backgroundColor="#fff" barStyle={'dark-content'}></StatusBar>
                 }
-                <SafeAreaView style={{ flex: 1 }}>
                     <View style={styles.arroWrap}>
                         <TouchableOpacity
                             style={{ width: pxToPt(60), height: pxToPt(44), paddingLeft: pxToPt(16), justifyContent: 'center' }}
@@ -175,8 +174,6 @@ export default class order extends Component {
                                     <ArbitrationOrder key={index} item={item} navigation={this.props.navigation} />}
                             />
                     }
-
-                </SafeAreaView>
             </>
         )
     }
