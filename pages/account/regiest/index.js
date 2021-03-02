@@ -208,10 +208,10 @@ export default class regiest extends Component {
     render() {
         let { email, password, btnText } = this.state
         return (
+            <>
+            <StatusBar backgroundColor="#3D72E4" barStyle={'light-content'}></StatusBar>
+
             <View style={styles.container}>
-                {
-                    Platform.OS === 'ios' ? <View style={{ marginTop: pxToPt(28) }}></View> : <StatusBar backgroundColor="#3D72E4" barStyle={'light-content'}></StatusBar>
-                }
                 <TouchableOpacity style={{ width: pxToPt(60), height: pxToPt(44), alignItems: 'center', justifyContent: 'center' }} onPress={this.goBack}>
                     <Image style={styles.arrow} onPress={this.goBack} source={require('../../../assets/icons/backo.png')}></Image>
                 </TouchableOpacity>
@@ -312,8 +312,8 @@ export default class regiest extends Component {
                             <Text style={styles.loginTex}>注册</Text>
                         </TouchableHighlight>
                 }
-
             </View>
+            </>
         )
     }
 }

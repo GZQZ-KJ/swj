@@ -27,7 +27,6 @@ instance.interceptors.request.use(function (config) {
 instance.interceptors.response.use(function (response) {
   // 对响应数据做点什么
   Toast.hideLoading()
-  console.log('响应',response)
   if (response.status === 401) {
     rootStore.setUserInfo('', '')
     Toast.message('登录过期,请重新登录', 4000, 'center')
@@ -38,9 +37,6 @@ instance.interceptors.response.use(function (response) {
 
 }, function (error) {
   // 对响应错误做点什么
-  console.log('响应的错误', error)
-
-  // console.log('errorError', error)
   if (error && error.response) {
     Toast.hideLoading()
     switch (error.response.status) {
@@ -54,27 +50,22 @@ instance.interceptors.response.use(function (response) {
         break;
       case 403:
         Toast.message('拒绝访问(403)');
-
         error.message = "拒绝访问(403)";
         break;
       case 404:
         Toast.message('请求出错(404)');
-
         error.message = "请求出错(404)";
         break;
       case 408:
         Toast.message('请求超时(408)');
-
         error.message = "请求超时(408)";
         break;
       case 500:
         Toast.message('服务器错误(500)');
-
         error.message = "服务器错误(500)";
         break;
       case 501:
         Toast.message('服务未实现(501)');
-
         error.message = "服务未实现(501)";
         break;
       case 502:
@@ -83,17 +74,14 @@ instance.interceptors.response.use(function (response) {
         break;
       case 503:
         Toast.message('服务不可用(503)');
-
         error.message = "服务不可用(503)";
         break;
       case 504:
         Toast.message('网络超时(504)');
-
         error.message = "网络超时(504)";
         break;
       case 505:
         Toast.message('HTTP版本不受支持(505)');
-
         error.message = "HTTP版本不受支持(505)";
         break;
       default:

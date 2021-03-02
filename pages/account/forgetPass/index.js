@@ -159,133 +159,133 @@ export default class forgetPass extends Component {
         let { myemail, password, rePassword, btnText } = this.state
         var re = /^[a-zA-Z\d]+([-_\.][a-zA-Z\d]+)*@[a-zA-Z\d]+\.[a-zA-Z\d]{2,4}$/
         return (
-            <View style={styles.container}>
-                {
-                    Platform.OS === 'ios' ? <View style={{ marginTop: pxToPt(28) }}></View> : <StatusBar backgroundColor="#3D72E4" barStyle={'light-content'}></StatusBar>
-                }
-                <TouchableOpacity style={{ width: pxToPt(60), height: pxToPt(44), alignItems: 'center', justifyContent: 'center' }} onPress={this.goBack}>
-                    <Image style={styles.arrow} onPress={this.goBack} source={require('../../../assets/icons/backo.png')}></Image>
-                </TouchableOpacity>
-                <View>
-                    <View style={styles.texWrap}>
-                        <Text style={styles.tex}>找回密码</Text>
+            <>
+                <StatusBar backgroundColor="#3D72E4" barStyle={'light-content'}></StatusBar>
+                <View style={styles.container}>
+                    <TouchableOpacity style={{ width: pxToPt(60), height: pxToPt(44), alignItems: 'center', justifyContent: 'center' }} onPress={this.goBack}>
+                        <Image style={styles.arrow} onPress={this.goBack} source={require('../../../assets/icons/backo.png')}></Image>
+                    </TouchableOpacity>
+                    <View>
+                        <View style={styles.texWrap}>
+                            <Text style={styles.tex}>找回密码</Text>
+                        </View>
+                        <View style={styles.regWrap}>
+                            <Text style={styles.reg}>找回密码后需要重新登录</Text>
+                        </View>
+                        <View style={styles.inpWrap}>
+                            <View style={styles.inp}>
+                                <View style={styles.inpImgWrap}>
+                                    <Image style={styles.inpImg} source={require('../../../assets/icons/loginjujh.png')}></Image>
+                                </View>
+                                <View style={styles.inpTexWrap}>
+                                </View>
+                                <TextInput
+                                    selectionColor="#fff"
+                                    style={{ ...styles.inpTex, width: pxToPt(190) }}
+                                    placeholder='请输入邮箱'
+                                    placeholderTextColor='#ccc'
+                                    onChangeText={(email) => {
+                                        // !!email ? email : email = myemail
+                                        this.setState({ myemail: email })
+                                    }}
+                                    value={this.state.myemail}
+                                />
+                            </View>
+                            <View style={styles.inp}>
+                                <View style={styles.inpImgWrap}>
+                                    <Image style={styles.inpImg} source={require('../../../assets/icons/loginpppp.png')}></Image>
+                                </View>
+                                <View style={styles.inpTexWrap}>
+                                </View>
+                                <TextInput
+                                    selectionColor="#fff"
+
+                                    style={styles.inpTex}
+                                    placeholder='请输入验证码'
+                                    placeholderTextColor='#ccc'
+                                    onChangeText={(code) => this.setState({ code })}
+                                />
+                                {
+                                    this.state.isCountDowning ?
+                                        <>
+                                            <View style={{ ...styles.inpBtn, backgroundColor: 'rgba(255,255,255,.7)' }}>
+                                                <Text style={{ ...styles.btnTex, color: '#0066C8' }}>{btnText}</Text>
+                                            </View>
+                                        </> :
+                                        <>
+                                            <View style={styles.inpBtn} >
+                                                <Text style={{ ...styles.btnTex, color: '#0066C8' }} onPress={this.getCode}>获取验证码</Text>
+                                            </View>
+                                        </>
+                                }
+
+                            </View>
+                            <View style={styles.inp}>
+                                <View style={styles.inpImgWrap}>
+                                    <Image style={styles.inpImg} source={require('../../../assets/icons/loginp.png')}></Image>
+                                </View>
+                                <View style={styles.inpTexWrap}>
+                                </View>
+                                <TextInput
+                                    selectionColor="#fff"
+
+                                    style={styles.inpTex}
+                                    placeholder='请输入重置的密码'
+                                    placeholderTextColor='#ccc'
+                                    secureTextEntry={this.state.showSetPass} //隐藏输入内容
+                                    onChangeText={(password) => this.setState({ password })}
+                                />
+                                <View style={styles.inpImgWrap}>
+                                    <TouchableOpacity onPress={this.changeSetPass} >
+                                        {
+                                            this.state.showSetPass ?
+                                                <Image style={styles.inpImgLast} source={require('../../../assets/icons/eyer1.png')}></Image> :
+                                                <Image style={styles.inpImgLast} source={require('../../../assets/icons/eyee4.png')}></Image>
+                                        }
+                                    </TouchableOpacity>
+                                </View>
+                            </View>
+                            <View style={styles.inp}>
+                                <View style={styles.inpImgWrap}>
+                                    <Image style={styles.inpImg} source={require('../../../assets/icons/loginp.png')}></Image>
+                                </View>
+                                <View style={styles.inpTexWrap}>
+                                </View>
+                                <TextInput
+                                    selectionColor="#fff"
+
+                                    style={styles.inpTex}
+                                    placeholder='请再次输入密码'
+                                    placeholderTextColor='#ccc'
+                                    secureTextEntry={this.state.showPassword} //隐藏输入内容
+                                    onChangeText={(rePassword) => this.setState({ rePassword })}
+                                />
+                                <View style={styles.inpImgWrap}>
+                                    <TouchableOpacity onPress={this.changeShowPass}>
+                                        {
+                                            this.state.showPassword ?
+                                                <Image style={styles.inpImgLast} source={require('../../../assets/icons/eyer1.png')}></Image> :
+                                                <Image style={styles.inpImgLast} source={require('../../../assets/icons/eyee4.png')}></Image>
+                                        }
+                                    </TouchableOpacity>
+                                </View>
+                            </View>
+                        </View>
+                        {
+                            !re.test(myemail) || password === '' || rePassword === '' ?
+                                <TouchableHighlight style={{ ...styles.loginGo, backgroundColor: 'rgba(255,255,255,.6)' }}
+                                    underlayColor="rgba(255,255,255,.6)">
+                                    <Text style={styles.loginTex}>确认</Text>
+                                </TouchableHighlight>
+                                :
+                                <TouchableHighlight onPress={this.enterGo} style={{ ...styles.loginGo, backgroundColor: 'rgba(255,255,255,1)' }}
+                                    underlayColor="rgba(255,255,255, .6)">
+                                    <Text style={styles.loginTex}>确认</Text>
+                                </TouchableHighlight>
+                        }
                     </View>
-                    <View style={styles.regWrap}>
-                        <Text style={styles.reg}>找回密码后需要重新登录</Text>
-                    </View>
-                    <View style={styles.inpWrap}>
-                        <View style={styles.inp}>
-                            <View style={styles.inpImgWrap}>
-                                <Image style={styles.inpImg} source={require('../../../assets/icons/loginjujh.png')}></Image>
-                            </View>
-                            <View style={styles.inpTexWrap}>
-                            </View>
-                            <TextInput
-                                selectionColor="#fff"
-                                style={{ ...styles.inpTex, width: pxToPt(190) }}
-                                placeholder='请输入邮箱'
-                                placeholderTextColor='#ccc'
-                                onChangeText={(email) => {
-                                    // !!email ? email : email = myemail
-                                    this.setState({ myemail: email })
-                                }}
-                                value={this.state.myemail}
-                            />
-                        </View>
-                        <View style={styles.inp}>
-                            <View style={styles.inpImgWrap}>
-                                <Image style={styles.inpImg} source={require('../../../assets/icons/loginpppp.png')}></Image>
-                            </View>
-                            <View style={styles.inpTexWrap}>
-                            </View>
-                            <TextInput
-                                selectionColor="#fff"
-
-                                style={styles.inpTex}
-                                placeholder='请输入验证码'
-                                placeholderTextColor='#ccc'
-                                onChangeText={(code) => this.setState({ code })}
-                            />
-                            {
-                                this.state.isCountDowning ?
-                                    <>
-                                        <View style={{ ...styles.inpBtn, backgroundColor: 'rgba(255,255,255,.7)' }}>
-                                            <Text style={{ ...styles.btnTex, color: '#0066C8' }}>{btnText}</Text>
-                                        </View>
-                                    </> :
-                                    <>
-                                        <View style={styles.inpBtn} >
-                                            <Text style={{ ...styles.btnTex, color: '#0066C8' }} onPress={this.getCode}>获取验证码</Text>
-                                        </View>
-                                    </>
-                            }
-
-                        </View>
-                        <View style={styles.inp}>
-                            <View style={styles.inpImgWrap}>
-                                <Image style={styles.inpImg} source={require('../../../assets/icons/loginp.png')}></Image>
-                            </View>
-                            <View style={styles.inpTexWrap}>
-                            </View>
-                            <TextInput
-                                selectionColor="#fff"
-
-                                style={styles.inpTex}
-                                placeholder='请输入重置的密码'
-                                placeholderTextColor='#ccc'
-                                secureTextEntry={this.state.showSetPass} //隐藏输入内容
-                                onChangeText={(password) => this.setState({ password })}
-                            />
-                            <View style={styles.inpImgWrap}>
-                                <TouchableOpacity onPress={this.changeSetPass} >
-                                    {
-                                        this.state.showSetPass ?
-                                            <Image style={styles.inpImgLast} source={require('../../../assets/icons/eyer1.png')}></Image> :
-                                            <Image style={styles.inpImgLast} source={require('../../../assets/icons/eyee4.png')}></Image>
-                                    }
-                                </TouchableOpacity>
-                            </View>
-                        </View>
-                        <View style={styles.inp}>
-                            <View style={styles.inpImgWrap}>
-                                <Image style={styles.inpImg} source={require('../../../assets/icons/loginp.png')}></Image>
-                            </View>
-                            <View style={styles.inpTexWrap}>
-                            </View>
-                            <TextInput
-                                selectionColor="#fff"
-
-                                style={styles.inpTex}
-                                placeholder='请再次输入密码'
-                                placeholderTextColor='#ccc'
-                                secureTextEntry={this.state.showPassword} //隐藏输入内容
-                                onChangeText={(rePassword) => this.setState({ rePassword })}
-                            />
-                            <View style={styles.inpImgWrap}>
-                                <TouchableOpacity onPress={this.changeShowPass}>
-                                    {
-                                        this.state.showPassword ?
-                                            <Image style={styles.inpImgLast} source={require('../../../assets/icons/eyer1.png')}></Image> :
-                                            <Image style={styles.inpImgLast} source={require('../../../assets/icons/eyee4.png')}></Image>
-                                    }
-                                </TouchableOpacity>
-                            </View>
-                        </View>
-                    </View>
-                    {
-                        !re.test(myemail) || password === '' || rePassword === '' ?
-                            <TouchableHighlight style={{ ...styles.loginGo, backgroundColor: 'rgba(255,255,255,.6)' }}
-                                underlayColor="rgba(255,255,255,.6)">
-                                <Text style={styles.loginTex}>确认</Text>
-                            </TouchableHighlight>
-                            :
-                            <TouchableHighlight onPress={this.enterGo} style={{ ...styles.loginGo, backgroundColor: 'rgba(255,255,255,1)' }}
-                                underlayColor="rgba(255,255,255, .6)">
-                                <Text style={styles.loginTex}>确认</Text>
-                            </TouchableHighlight>
-                    }
                 </View>
-            </View>
+            </>
         )
     }
 }

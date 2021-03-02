@@ -269,7 +269,8 @@ const styles = StyleSheet.create({
         height: pxToPt(44),
         alignItems: 'center',
         flexDirection: 'row',
-        backgroundColor: '#fff'
+        backgroundColor: '#fff',
+        marginTop:Platform.OS === 'ios' ? pxToPt(44) : 0
     },
     arrow: {
         width: pxToPt(11.82),

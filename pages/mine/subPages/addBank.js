@@ -1,5 +1,5 @@
 import React, { Component } from "react"
-import { View,  Platform, Text, Image, ImageBackground, TextInput, StyleSheet, StatusBar, TouchableOpacity, Modal, ScrollView, SafeAreaView} from 'react-native'
+import { View, Platform, Text, Image, ImageBackground, TextInput, StyleSheet, StatusBar, TouchableOpacity, Modal, ScrollView, SafeAreaView } from 'react-native'
 import axios from '../../../utils/api/request'
 import { BANKS_BANKLIST, BANKS_ADDBANK } from '../../../utils/api/pathMap'
 import mobx from '../../../utils/mobx'
@@ -87,8 +87,8 @@ export default class addBank extends Component {
   }
   render() {
     return (
-      <SafeAreaView style={{flex:1}}>
-     <StatusBar backgroundColor="#fff" barStyle={'dark-content'}></StatusBar>
+      <SafeAreaView style={{ flex: 1 }}>
+        <StatusBar backgroundColor="#fff" barStyle={'dark-content'}></StatusBar>
         <View style={styles.arroWrap}>
           <TouchableOpacity
             style={{ width: pxToPt(60), height: pxToPt(60), alignItems: 'center', justifyContent: 'center' }}
@@ -110,7 +110,7 @@ export default class addBank extends Component {
           <View style={styles.item}>
             <Text style={styles.title}>开户名</Text>
             <TextInput style={styles.ipt}
-            textAlign={'right'}
+              textAlign={'right'}
               placeholder="请输入户名"
               placeholderTextColor="#5A5D66"
               onChangeText={(account_name) => this.setState({ account_name })}
@@ -119,7 +119,7 @@ export default class addBank extends Component {
           <View style={styles.item}>
             <Text style={styles.title}>银行卡号</Text>
             <TextInput style={styles.ipt}
-            textAlign={'right'}
+              textAlign={'right'}
               keyboardType='numeric'
               placeholder="请输入银行卡号"
               placeholderTextColor="#5A5D66"
@@ -129,7 +129,7 @@ export default class addBank extends Component {
           <View style={styles.item}>
             <Text style={styles.title}>开户支行(选填)</Text>
             <TextInput style={styles.ipt}
-            textAlign={'right'}
+              textAlign={'right'}
               placeholder="请输入开户支行"
               placeholderTextColor="#5A5D66"
               onChangeText={(account_address) => this.setState({ account_address })}
@@ -140,7 +140,7 @@ export default class addBank extends Component {
           <Modal visible={this.state.show} >
             <View style={styles.arroWrap}>
               <TouchableOpacity
-                style={{ width: pxToPt(60), height: pxToPt(44),paddingLeft:pxToPt(16), justifyContent: 'center' }}
+                style={{ width: pxToPt(60), height: pxToPt(44), paddingLeft: pxToPt(16), justifyContent: 'center' }}
                 onPress={() => {
                   this.setState({
                     show: false
@@ -211,7 +211,8 @@ const styles = StyleSheet.create({
     height: pxToPt(44),
     alignItems: 'center',
     flexDirection: 'row',
-    backgroundColor: '#fff'
+    backgroundColor: '#fff',
+    marginTop: Platform.OS === 'ios' ? pxToPt(44) : 0
   },
   arrow: {
     width: pxToPt(11.82),

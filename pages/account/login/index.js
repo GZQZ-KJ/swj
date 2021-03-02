@@ -172,9 +172,8 @@ export default class login extends Component {
         var re = /^[a-zA-Z\d]+([-_\.][a-zA-Z\d]+)*@[a-zA-Z\d]+\.[a-zA-Z\d]{2,4}$/
         return (
             <View style={styles.container}>
-                {
-                    Platform.OS === 'ios' ? <View style={{ marginTop: pxToPt(28) }}></View> : <StatusBar backgroundColor="#3D72E4" barStyle={'light-content'}></StatusBar>
-                }
+               <StatusBar backgroundColor="#3D72E4" barStyle={'light-content'}></StatusBar>
+                
                 <TouchableOpacity style={styles.arroWrap} >
                     {/* <Image style={styles.arrow} source={require('../../../assets/icons/backo.png')}></Image> */}
                 </TouchableOpacity>
