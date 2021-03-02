@@ -67,7 +67,7 @@ export default class order extends Component {
     }
     _selected = (i) => {
         if (this.state.active === i) return
-        console.log('[仲裁订单IIIIIIIIII]',i)
+        console.log('[仲裁订单IIIIIIIIII]', i)
         this.setState({
             active: i
         })
@@ -101,79 +101,83 @@ export default class order extends Component {
 
     render() {
         return (
-            <SafeAreaView style={{flex:1}}>
-               <StatusBar backgroundColor="#fff" barStyle={'dark-content'}></StatusBar>
-        
-                <View style={styles.arroWrap}>
-                    <TouchableOpacity
-                        style={{ width: pxToPt(60),  height: pxToPt(44),paddingLeft:pxToPt(16), justifyContent: 'center' }}
-                        onPress={() => {
-                            this.props.rootStore.clearNewArb()
-                            this.props.navigation.navigate('Tabbar')
-
-                        }}>
-                        <Image style={styles.arrow} source={require('../../../assets/icons/backx.png')}></Image>
-                    </TouchableOpacity>
-                    <Text style={styles.title}>仲裁订单</Text>
-                </View>
-
-                <View style={styles.chooseHead}>
-                    {
-                        this.state.title.map((v, i) => {
-                            return (
-                                <View style={{height:'100%',flexDirection:'row',justifyContent:'space-around'}} key={i}>
-                                    {
-                                        this.state.active === v.id ?
-                                            <TouchableOpacity
-                                                activeOpacity={1}
-                                                key={i}
-                                                style={{ alignItems: 'center', width: '50%' }}
-                                                onPress={() => this._selected(v.id)}
-                                            >
-                                                <Text style={styles.activeTex}>{v.txt}</Text>
-                                                {
-                                                  this.state.active === v.id ? <View style={[styles.underscore, styles.activeBto]} /> : <></>
-                                                }
-                                            </TouchableOpacity>
-                                            :
-                                            <TouchableOpacity
-                                                activeOpacity={1}
-                                                key={i}
-                                                style={{ alignItems: 'center', width: '50%' }}
-                                                onPress={() => this._selected(v.id)}
-                                            >
-                                                <Text style={styles.chooseTex}>{v.txt}</Text>
-                                                {
-                                                 this.state.active === v.id ? <View style={[styles.underscore, styles.activeBto]} /> : <></>
-                                                }
-                                            </TouchableOpacity>
-                                    }
-                                </View>
-                            )
-                        })
-                    }
-                </View>
+            <>
                 {
-                    this.state.data.length < 1 ?
-                        <>
-                            <Image style={{ width: pxToPt(206.22), height: pxToPt(217.11), alignSelf: 'center', top: pxToPt(53)}} source={require('../../../assets/icons/default/noProduct.png')}></Image>
-                            <View style={{ marginTop: pxToPt(58), alignSelf: 'center', flexDirection: 'row'}}>
-                                <Text style={{ color: '#8D9099', fontWeight: '400', fontSize: 15 }}>暂无</Text>
-                                <Text style={{ color: '#FE5564', fontWeight: '400', fontSize: 15 }}>仲裁订单</Text>
-                            </View>
-
-                        </> :
-                        <FlatList
-                            onEndReachedThreshold={0.05}
-                            onEndReached={this.getMore}
-                            data={this.state.data}
-                            keyExtractor={(v, i) => i}
-                            renderItem={({ item, index }) =>
-                                <ArbitrationOrder key={index} item={item} navigation={this.props.navigation} />}
-                        />
+                    Platform.OS === 'ios' ? <View style={{ marginTop: pxToPt(44) }}></View> :
+                        <StatusBar backgroundColor="#fff" barStyle={'dark-content'}></StatusBar>
                 }
+                <SafeAreaView style={{ flex: 1 }}>
+                    <View style={styles.arroWrap}>
+                        <TouchableOpacity
+                            style={{ width: pxToPt(60), height: pxToPt(44), paddingLeft: pxToPt(16), justifyContent: 'center' }}
+                            onPress={() => {
+                                this.props.rootStore.clearNewArb()
+                                this.props.navigation.navigate('Tabbar')
 
-            </SafeAreaView>
+                            }}>
+                            <Image style={styles.arrow} source={require('../../../assets/icons/backx.png')}></Image>
+                        </TouchableOpacity>
+                        <Text style={styles.title}>仲裁订单</Text>
+                    </View>
+
+                    <View style={styles.chooseHead}>
+                        {
+                            this.state.title.map((v, i) => {
+                                return (
+                                    <View style={{ height: '100%', flexDirection: 'row', justifyContent: 'space-around' }} key={i}>
+                                        {
+                                            this.state.active === v.id ?
+                                                <TouchableOpacity
+                                                    activeOpacity={1}
+                                                    key={i}
+                                                    style={{ alignItems: 'center', width: '50%' }}
+                                                    onPress={() => this._selected(v.id)}
+                                                >
+                                                    <Text style={styles.activeTex}>{v.txt}</Text>
+                                                    {
+                                                        this.state.active === v.id ? <View style={[styles.underscore, styles.activeBto]} /> : <></>
+                                                    }
+                                                </TouchableOpacity>
+                                                :
+                                                <TouchableOpacity
+                                                    activeOpacity={1}
+                                                    key={i}
+                                                    style={{ alignItems: 'center', width: '50%' }}
+                                                    onPress={() => this._selected(v.id)}
+                                                >
+                                                    <Text style={styles.chooseTex}>{v.txt}</Text>
+                                                    {
+                                                        this.state.active === v.id ? <View style={[styles.underscore, styles.activeBto]} /> : <></>
+                                                    }
+                                                </TouchableOpacity>
+                                        }
+                                    </View>
+                                )
+                            })
+                        }
+                    </View>
+                    {
+                        this.state.data.length < 1 ?
+                            <>
+                                <Image style={{ width: pxToPt(206.22), height: pxToPt(217.11), alignSelf: 'center', top: pxToPt(53) }} source={require('../../../assets/icons/default/noProduct.png')}></Image>
+                                <View style={{ marginTop: pxToPt(58), alignSelf: 'center', flexDirection: 'row' }}>
+                                    <Text style={{ color: '#8D9099', fontWeight: '400', fontSize: 15 }}>暂无</Text>
+                                    <Text style={{ color: '#FE5564', fontWeight: '400', fontSize: 15 }}>仲裁订单</Text>
+                                </View>
+
+                            </> :
+                            <FlatList
+                                onEndReachedThreshold={0.05}
+                                onEndReached={this.getMore}
+                                data={this.state.data}
+                                keyExtractor={(v, i) => i}
+                                renderItem={({ item, index }) =>
+                                    <ArbitrationOrder key={index} item={item} navigation={this.props.navigation} />}
+                            />
+                    }
+
+                </SafeAreaView>
+            </>
         )
     }
 }

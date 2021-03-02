@@ -73,83 +73,84 @@ export default class bank extends Component {
   }
   render() {
     return (
-      <SafeAreaView style={{flex:1}}>
-       <StatusBar backgroundColor="#fff" barStyle={'dark-content'}></StatusBar>
-        
-        <View style={styles.arroWrap}>
-          <TouchableOpacity
-            style={{ width: pxToPt(60), height: pxToPt(44),paddingLeft:pxToPt(16), justifyContent: 'center' }}
-            onPress={() => {
-              this.props.navigation.navigate('Tabbar')
+      <>
+        <StatusBar backgroundColor="#fff" barStyle={'dark-content'}></StatusBar>
+        <SafeAreaView style={{ flex: 1 }}>
+          <View style={styles.arroWrap}>
+            <TouchableOpacity
+              style={{ width: pxToPt(60), height: pxToPt(44), paddingLeft: pxToPt(16), justifyContent: 'center' }}
+              onPress={() => {
+                this.props.navigation.navigate('Tabbar')
 
-            }}>
-            <Image style={styles.arrow} source={require('../../../assets/icons/backx.png')}></Image>
-          </TouchableOpacity>
-          <Text style={styles.title}>我的银行卡</Text>
-        </View>
-        {
-          this.state.myBanks.length < 1 ? <></> :
-            <TouchableOpacity style={styles.btn} activeOpacity={1} onPress={this._addBank}>
-              <Image style={{ height: pxToPt(14), width: pxToPt(14) }} source={this.state.Imgs.add}></Image>
-              <Text style={styles.txt}>添加银行卡</Text>
+              }}>
+              <Image style={styles.arrow} source={require('../../../assets/icons/backx.png')}></Image>
             </TouchableOpacity>
-        }
-        <SafeAreaView>
-          <ScrollView style={{height:550}}>
-            <View style={styles.container}>
-              {
-                this.state.myBanks.map((v, i) => {
-                  var reg = /^(\d{4})\d+(\d{4})$/;
-                  v.account_no = v.account_no.replace(reg, "**** $2");
-                  return (
-                    <View key={i}>
-                      <View style={styles.wrapper} key={i}>
-                        <ImageBackground source={{ uri: v.background_url }} style={styles.wrapperBc}>
-                          <View style={{ flexDirection: "row" }}>
-                            <View style={styles.icon}>
-                              <Image source={{ uri: v.icon }} style={{ width: pxToPt(28), height: pxToPt(28) }}></Image>
+            <Text style={styles.title}>我的银行卡</Text>
+          </View>
+          {
+            this.state.myBanks.length < 1 ? <></> :
+              <TouchableOpacity style={styles.btn} activeOpacity={1} onPress={this._addBank}>
+                <Image style={{ height: pxToPt(14), width: pxToPt(14) }} source={this.state.Imgs.add}></Image>
+                <Text style={styles.txt}>添加银行卡</Text>
+              </TouchableOpacity>
+          }
+          <SafeAreaView>
+            <ScrollView style={{ height: 550 }}>
+              <View style={styles.container}>
+                {
+                  this.state.myBanks.map((v, i) => {
+                    var reg = /^(\d{4})\d+(\d{4})$/;
+                    v.account_no = v.account_no.replace(reg, "**** $2");
+                    return (
+                      <View key={i}>
+                        <View style={styles.wrapper} key={i}>
+                          <ImageBackground source={{ uri: v.background_url }} style={styles.wrapperBc}>
+                            <View style={{ flexDirection: "row" }}>
+                              <View style={styles.icon}>
+                                <Image source={{ uri: v.icon }} style={{ width: pxToPt(28), height: pxToPt(28) }}></Image>
+                              </View>
+                              <Text style={styles.bankTitle}>{v.full_name}</Text>
                             </View>
-                            <Text style={styles.bankTitle}>{v.full_name}</Text>
-                          </View>
-                          <View>
-                            <Text style={styles.bankNum}>{v.account_no}</Text>
-                          </View>
-                        </ImageBackground>
-                      </View>
-                      <View style={styles.wrapper} key={i}>
-                        <ImageBackground source={{ uri: v.background_url }} style={styles.wrapperBc}>
-                          <View style={{ flexDirection: "row" }}>
-                            <View style={styles.icon}>
-                              <Image source={{ uri: v.icon }} style={{ width: pxToPt(28), height: pxToPt(28) }}></Image>
+                            <View>
+                              <Text style={styles.bankNum}>{v.account_no}</Text>
                             </View>
-                            <Text style={styles.bankTitle}>{v.full_name}</Text>
-                          </View>
-                          <View>
-                            <Text style={styles.bankNum}>{v.account_no}</Text>
-                          </View>
-                        </ImageBackground>
+                          </ImageBackground>
+                        </View>
+                        <View style={styles.wrapper} key={i}>
+                          <ImageBackground source={{ uri: v.background_url }} style={styles.wrapperBc}>
+                            <View style={{ flexDirection: "row" }}>
+                              <View style={styles.icon}>
+                                <Image source={{ uri: v.icon }} style={{ width: pxToPt(28), height: pxToPt(28) }}></Image>
+                              </View>
+                              <Text style={styles.bankTitle}>{v.full_name}</Text>
+                            </View>
+                            <View>
+                              <Text style={styles.bankNum}>{v.account_no}</Text>
+                            </View>
+                          </ImageBackground>
+                        </View>
                       </View>
-                    </View>
-                  )
-                })
-              }
-              {
-                this.state.myBanks.length < 1 ?
-                  <>
-                    <Image style={{ width: pxToPt(206.22), height: pxToPt(217.11), alignSelf: 'center', top: pxToPt(53) }} source={require('../../../assets/icons/default/Nobindingbankcard.png')}></Image>
-                    <Text style={{ color: '#8D9099', marginTop: pxToPt(78), alignSelf: 'center', fontWeight: '400', fontSize: pxToPt(15) }}>暂无绑定银行卡</Text>
-                    <TouchableOpacity
-                      style={styles.nobtn} activeOpacity={1} onPress={this._addBank}>
-                      <Image style={{ height: pxToPt(14), width: pxToPt(14) }} source={this.state.Imgs.add}></Image>
-                      <Text style={styles.notxt}>添加银行卡</Text>
-                    </TouchableOpacity>
-                  </> :
-                  <></>
-              }
-            </View>
-          </ScrollView>
+                    )
+                  })
+                }
+                {
+                  this.state.myBanks.length < 1 ?
+                    <>
+                      <Image style={{ width: pxToPt(206.22), height: pxToPt(217.11), alignSelf: 'center', top: pxToPt(53) }} source={require('../../../assets/icons/default/Nobindingbankcard.png')}></Image>
+                      <Text style={{ color: '#8D9099', marginTop: pxToPt(78), alignSelf: 'center', fontWeight: '400', fontSize: pxToPt(15) }}>暂无绑定银行卡</Text>
+                      <TouchableOpacity
+                        style={styles.nobtn} activeOpacity={1} onPress={this._addBank}>
+                        <Image style={{ height: pxToPt(14), width: pxToPt(14) }} source={this.state.Imgs.add}></Image>
+                        <Text style={styles.notxt}>添加银行卡</Text>
+                      </TouchableOpacity>
+                    </> :
+                    <></>
+                }
+              </View>
+            </ScrollView>
+          </SafeAreaView>
         </SafeAreaView>
-      </SafeAreaView>
+      </>
     )
   }
 }
@@ -255,7 +256,7 @@ const styles = StyleSheet.create({
     marginBottom: pxToPt(100),
     position: 'absolute',
     marginLeft: pxToPt(16),
-    zIndex:100,
+    zIndex: 100,
   },
   nobtn: {
     justifyContent: 'center',
