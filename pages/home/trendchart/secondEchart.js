@@ -6,7 +6,7 @@ import {
     StatusBar,
     Dimensions
 } from 'react-native'
-import Echarts from 'native-echarts';
+import {Echarts} from 'native-echarts';
 
 import axios from '../../../utils/api/request'
 import { HOME_DATALIST } from '../../../utils/api/pathMap'

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { View, StyleSheet, Text, TouchableOpacity, BackHandler, ToastAndroid, Navigator } from 'react-native';
-import Echarts from 'native-echarts';
+import { View, StyleSheet, Text, TouchableOpacity, BackHandler } from 'react-native';
+import {Echarts} from 'native-echarts';
 import PriceShow from '../billboard/index'
 import Toast from '../../../utils/api/Toast'
 import axios from '../../../utils/api/request'
