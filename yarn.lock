@@ -5388,11 +5388,6 @@ mobx@^6.0.4:
   resolved "https://registry.npmjs.org/mobx/-/mobx-6.0.4.tgz"
   integrity sha512-wT2QJT9tW19VSHo9x7RPKU3z/I2Ps6wUS8Kb1OO+kzmg7UY3n4AkcaYG6jq95Lp1R9ohjC/NGYuT2PtuvBjhFg==
 
-moment@^2.29.1:
-  version "2.29.1"
-  resolved "https://registry.npmjs.org/moment/-/moment-2.29.1.tgz"
-  integrity sha512-kHmoybcPV8Sqy59DwNDY3Jefr64lK/by/da0ViFcuA4DH0vQg5Q6Ze5VimxkfQNSC+Mls/Kx53s7TjP1RhFEDQ==
-
 ms@2.0.0:
   version "2.0.0"
   resolved "https://registry.npmjs.org/ms/-/ms-2.0.0.tgz"
@@ -6087,11 +6082,6 @@ react-native-device-info@^8.0.1:
   version "8.0.1"
   resolved "https://registry.npmjs.org/react-native-device-info/-/react-native-device-info-8.0.1.tgz"
   integrity sha512-5fIcrEfxsyIJ0HZ/pHd+DeYwC81wi5tupFkPSASYXz/7QhatF8W0W6qR+YlvI6gJVSFNgQKgrPrh18RGMgbZdg==
-
-react-native-echarts-pro@^1.2.4:
-  version "1.2.4"
-  resolved "https://registry.npmjs.org/react-native-echarts-pro/-/react-native-echarts-pro-1.2.4.tgz#8562b4ef11fcda5dc16be4848ed72f442a1d079c"
-  integrity sha512-jEIuXPuLTBgADVdLdjR2RMbxeK+sjZr/Pt19gRhCpoYH2uJkbOZUprorQbxi0Oe4j2l3xUW6fI8gLUapojG5tQ==
 
 react-native-gesture-handler@^1.9.0:
   version "1.9.0"

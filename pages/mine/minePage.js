@@ -214,8 +214,8 @@ export default class minePage extends Component {
           <TouchableOpacity
             activeOpacity={1}
             onPress={() => {
-              Toast.message('组件功能尚未开放')
-              // this.props.navigation.navigate("SouComp")
+              // Toast.message('组件功能尚未开放')
+              this.props.navigation.navigate("SouComp")
             }}>
             <ListItem list={this.state.listData[5]}></ListItem>
           </TouchableOpacity>

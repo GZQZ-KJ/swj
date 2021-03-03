@@ -59,7 +59,6 @@ export default class login extends Component {
         }).then(res => {
             var data = res.data
             //获取数据，跳转页面
-            console.log(data)
             if (data.code === 1) {
                 //儲存數據到mobx中
                 this.props.rootStore.setUserInfo(data.result.user_info.email, data.result.token)
@@ -144,7 +143,6 @@ export default class login extends Component {
         let deviceId = await DeviceInfo.getDeviceId()
         let systemName = await DeviceInfo.getSystemName()
         let email = await AsyncStorage.getItem("email") || ''
-        console.log('[缓存]', email)
         if (email) {
             this.setState({
                 brand,
@@ -168,7 +166,6 @@ export default class login extends Component {
     render() {
         let { result } = this.state
         let { email } = this.props
-        console.log(this.state.email, this.state.password)
         var re = /^[a-zA-Z\d]+([-_\.][a-zA-Z\d]+)*@[a-zA-Z\d]+\.[a-zA-Z\d]{2,4}$/
         return (
             <>

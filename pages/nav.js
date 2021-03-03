@@ -19,6 +19,7 @@ import CameraScan from './home/scan'
 import About from './mine/subPages/about'
 import SellProduct from './mine/sellProduct'
 import Seller from './product/seller/seller'
+import SouComp from './mine/subPages/souComp'
 import ProItem from '../components/product/proItem'
 import Buyer from './product/buyer/buyer'
 import ArbitrationMsg from './product/arbitrationMsg'
@@ -69,6 +70,7 @@ export default class nav extends Component {
                     <Stack.Screen name="About" component={About} />
                     <Stack.Screen name="SecondEchart" component={secondEchart} />
                     <Stack.Screen name="LightBox" component={LightBox} />
+                    <Stack.Screen name="SouComp" component={SouComp} />
                 </Stack.Navigator>
             </NavigationContainer>
         )

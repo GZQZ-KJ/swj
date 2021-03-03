@@ -49,8 +49,6 @@ export default class regiest extends Component {
     getCode = async () => {
         //发送验证码
         var { email } = this.state
-        console.log('[注册获取验证码]', email)
-
         if (this.state.isCountDowning) {
             return;
         }
@@ -67,7 +65,6 @@ export default class regiest extends Component {
                 "Content-Type": 'application/x-www-form-urlencoded;charset=UTF-8'
             }
         }).then(r => {
-            console.log('[注册验证码返回]', r.data.result)
             if (r.data.code === 1) {
 
                 this.setState({
@@ -77,11 +74,9 @@ export default class regiest extends Component {
                 // 重新获取(60s)
                 this.setState({ btnText: `重新获取(${seconds}s)` })
                 this.timeId = setInterval(() => {
-                    console.log('[进入倒计时秒数]', seconds)
                     seconds--
                     this.setState({ btnText: `重新获取(${seconds}s)` })
                     if (seconds === 0) {
-                        console.log('[清除倒计时秒数]', seconds)
                         clearInterval(this.timeId);
                         this.setState({
                             btnText: "重新获取",
@@ -105,7 +100,6 @@ export default class regiest extends Component {
     }
     enterRegiest = async () => {
         var { email, code, password } = this.state
-        console.log('[注册]', email)
         //验证邮箱
         var re = /^[a-zA-Z\d]+([-_\.][a-zA-Z\d]+)*@[a-zA-Z\d]+\.[a-zA-Z\d]{2,4}$/
         //验证密码
@@ -170,7 +164,6 @@ export default class regiest extends Component {
             }
         }).then(r => {
             if (r.data.code === 1) {
-                console.log('[注册完成后直接登录]', r.data.result)
                 this.props.rootStore.setUserInfo(r.data.result.user_info.email, r.data.result.token)
                 //儲存用戶數據到 本地緩存中 永久
                 AsyncStorage.setItem('usertoken', r.data.result.token)

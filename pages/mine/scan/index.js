@@ -54,7 +54,6 @@ export default class scan extends Component {
             }
         })
             .then(r => {
-                console.log('[绑定用户]', r.data)
                 if (r.data.code === 1) {
                     this.setState({
                         showNextModal: true,

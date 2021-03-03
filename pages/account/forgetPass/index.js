@@ -110,7 +110,6 @@ export default class forgetPass extends Component {
             return
         }
         const { myemail } = this.state
-        console.log('[找回密码email]', myemail)
         var re = /^[a-zA-Z\d]+([-_\.][a-zA-Z\d]+)*@[a-zA-Z\d]+\.[a-zA-Z\d]{2,4}$/
         //匹配邮箱
         if (!re.test(myemail) || myemail === '') {
@@ -132,11 +131,9 @@ export default class forgetPass extends Component {
                 // 重新获取(60s)
                 this.setState({ btnText: `重新获取(${seconds}s)` })
                 this.timeId = setInterval(() => {
-                    console.log('[进入倒计时秒数]', seconds)
                     seconds--
                     this.setState({ btnText: `重新获取(${seconds}s)` })
                     if (seconds === 0) {
-                        console.log('[清除倒计时秒数]', seconds)
                         clearInterval(this.timeId);
                         this.setState({
                             btnText: "重新获取",
