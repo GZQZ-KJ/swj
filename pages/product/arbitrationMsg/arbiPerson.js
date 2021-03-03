@@ -75,7 +75,7 @@ const styles = StyleSheet.create({
         elevation: 2,
         shadowOpacity: 0.12,
         shadowRadius: pxToPt(2),
-        marginLeft: pxToPt(6),
+        // marginLeft: pxToPt(6),
         marginBottom: pxToPt(12)
     },
     head: {

@@ -49,7 +49,6 @@ instance.interceptors.request.use(function (config) {
 // 添加响应拦截器
 instance.interceptors.response.use(function (response) {
   // 对响应数据做点什么
-  console.log('响应response',response)
   Toast.hideLoading()
   if (response.status === 401) {
     rootStore.setUserInfo('', '')
@@ -61,7 +60,6 @@ instance.interceptors.response.use(function (response) {
 
 }, function (error) {
   // 对响应错误做点什么
-  console.log('响应response错误',error)
   if (error && error.response) {
     Toast.hideLoading()
     switch (error.response.status) {

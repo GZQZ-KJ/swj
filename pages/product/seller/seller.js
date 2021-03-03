@@ -48,6 +48,7 @@ export default class home extends Component {
                 let nss = this.props.rootStore.nss + (+sellNss)
                 let lockNss = this.props.rootStore.lockNss - (+sellNss)
                 this.props.rootStore.setNss(nss, lockNss)
+                this.props.rootStore.axiosProductList()
                 this.setState({
                     changeDetail: false,
                     cancelTime: r.data.result.cancel_time

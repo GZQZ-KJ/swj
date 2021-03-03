@@ -116,19 +116,6 @@ export default class bank extends Component {
                             </View>
                           </ImageBackground>
                         </View>
-                        <View style={styles.wrapper} key={i}>
-                          <ImageBackground source={{ uri: v.background_url }} style={styles.wrapperBc}>
-                            <View style={{ flexDirection: "row" }}>
-                              <View style={styles.icon}>
-                                <Image source={{ uri: v.icon }} style={{ width: pxToPt(28), height: pxToPt(28) }}></Image>
-                              </View>
-                              <Text style={styles.bankTitle}>{v.full_name}</Text>
-                            </View>
-                            <View>
-                              <Text style={styles.bankNum}>{v.account_no}</Text>
-                            </View>
-                          </ImageBackground>
-                        </View>
                       </View>
                     )
                   })

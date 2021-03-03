@@ -21,4 +21,5 @@ Toast.hideLoading = () => {
 }
 
 
+
 export default Toast

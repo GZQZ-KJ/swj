@@ -3,10 +3,13 @@ import {
     View,
     Text,
     StyleSheet,
-    Image
+    Image,
+    TouchableOpacity
 } from 'react-native'
 import { pxToPt } from "../../../utils/styleKits";
+import { NavigationContext } from '@react-navigation/native'
 export default class arbiPicmsg extends Component {
+    static contextType = NavigationContext
     constructor(props) {
         super(props)
         this.state = {
@@ -37,7 +40,13 @@ export default class arbiPicmsg extends Component {
                         {
                             saleImages.length > 0 ?
                                 saleImages.map((v, i) => {
-                                    return (<Image style={styles.showImg} key={i} source={{ uri: v }}></Image>)
+                                    return (<TouchableOpacity
+                                        activeOpacity={1}
+                                        key={i}
+                                        onPress={() => {
+                                            this.context.navigate("LightBox", { url: v })
+                                        }}
+                                    ><Image style={styles.showImg} source={{ uri: v }}></Image></TouchableOpacity>)
                                 }) : <></>
                         }
 
@@ -48,7 +57,7 @@ export default class arbiPicmsg extends Component {
                         <Text style={{ color: '#8D9099', fontSize: pxToPt(14), fontWeight: '400', marginTop: pxToPt(8) }}>
                             买家描述
                                 </Text>
-                        <Text style={{ color: '#5A5D66', fontSize: pxToPt(14), fontWeight: '500', marginTop:pxToPt(4) }}>
+                        <Text style={{ color: '#5A5D66', fontSize: pxToPt(14), fontWeight: '500', marginTop: pxToPt(4) }}>
                             {buyArbitration}
                         </Text>
 
@@ -65,7 +74,7 @@ export default class arbiPicmsg extends Component {
                             </View>
                         </View>
                     </> : buyArbitration && !buyImages.length ? <>
-                        <Text style={{ color: '#8D9099', fontSize: pxToPt(14), fontWeight: '400', marginTop: pxToPt(8)}}>
+                        <Text style={{ color: '#8D9099', fontSize: pxToPt(14), fontWeight: '400', marginTop: pxToPt(8) }}>
                             买家描述
                                 </Text>
                         <Text style={{ color: '#5A5D66', fontSize: pxToPt(14), fontWeight: '500', marginTop: pxToPt(4) }}>
@@ -76,6 +85,7 @@ export default class arbiPicmsg extends Component {
         )
     }
 }
+
 
 const styles = StyleSheet.create({
     msgArbitration: {
@@ -89,11 +99,11 @@ const styles = StyleSheet.create({
         elevation: 2,
         borderRadius: pxToPt(8),
         overflow: 'hidden',
-        marginLeft: pxToPt(8),
+        // marginLeft: pxToPt(8),
         paddingLeft: pxToPt(12),
         paddingRight: pxToPt(12),
-        paddingBottom:pxToPt(10),
-        marginBottom:pxToPt(24)
+        paddingBottom: pxToPt(10),
+        marginBottom: pxToPt(24)
     },
     msgArbHead: {
         height: pxToPt(44),
@@ -114,14 +124,14 @@ const styles = StyleSheet.create({
         width: pxToPt(100),
         height: '100%',
         resizeMode: 'stretch',
-        marginRight:pxToPt(8)
+        marginRight: pxToPt(8)
     },
     ArbtiMsg: {
-        marginTop:pxToPt(8),
+        marginTop: pxToPt(8),
         width: pxToPt(319),
         height: pxToPt(80),
         flexDirection: 'row',
-        paddingBottom:pxToPt(8),
+        paddingBottom: pxToPt(8),
         borderBottomWidth: pxToPt(1),
         borderBottomColor: '#F2F3F7',
     }

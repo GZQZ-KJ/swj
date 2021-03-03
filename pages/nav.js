@@ -25,6 +25,7 @@ import ArbitrationMsg from './product/arbitrationMsg'
 import SubmiArbitration from './product/submiArbitration'
 import OrderDetail from './order/orderDetail'
 import secondEchart from './home/trendchart/secondEchart';
+import LightBox from '../utils/lightBox'
 import { inject, observer } from "mobx-react";
 const Stack = createStackNavigator();
 @inject("rootStore")
@@ -67,6 +68,7 @@ export default class nav extends Component {
                     <Stack.Screen name="SubmiArbitration" component={SubmiArbitration} />
                     <Stack.Screen name="About" component={About} />
                     <Stack.Screen name="SecondEchart" component={secondEchart} />
+                    <Stack.Screen name="LightBox" component={LightBox} />
                 </Stack.Navigator>
             </NavigationContainer>
         )

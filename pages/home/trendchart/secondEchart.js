@@ -6,11 +6,9 @@ import {
     StatusBar,
     Dimensions
 } from 'react-native'
-import {Echarts} from 'native-echarts';
-
+import { Echarts } from 'native-echarts';
 import axios from '../../../utils/api/request'
 import { HOME_DATALIST } from '../../../utils/api/pathMap'
-
 import { inject, observer } from 'mobx-react'
 import Toast from '../../../utils/api/Toast'
 @inject('rootStore')
@@ -47,16 +45,6 @@ export default class secondEchart extends Component {
                 },
                 tooltip: {
                     trigger: 'axis',
-                    formatter: function (params) {
-                        var htmlStr = '';
-                        htmlStr += '<div><span style="color:#fff;">' + params[0].name + '</span><br/> ';
-                        for (var i = 0; i < params.length; i++) {
-                            htmlStr += '<span style="width: 8px;height: 8px;display:inline-block;border-radius: 50%;background-color:' + params[i].color + '"></span><span style="color:#fff;">' + params[i].seriesName + ':</span>' +
-                                '<span style="color:#fff;">' + params[i].value + '</span><br/>';
-                        }
-                        htmlStr += '</div>';
-                        return htmlStr;
-                    },
                 },
                 xAxis: { //x轴
                     boundaryGap: false,
@@ -96,9 +84,9 @@ export default class secondEchart extends Component {
                             show: false, //是否显示分隔线
                         },
                         scale: true,
-                        max: function (value) {
-                            return value.max + value.max * 0.4
-                        }
+                        // max: function (value) {
+                        //     return value.max + value.max * 0.4
+                        // }
                     },
                     {
                         type: 'value',
@@ -208,13 +196,54 @@ export default class secondEchart extends Component {
                 this.setState({
                     showLoading: false,
                     option: {
-                        xAxis: { //x轴
-                            data: counTime,   //需要动态改变
+                        grid: {
+                            left: 0,
+                            right: 0,
+                            bottom: 50,
                         },
-                        dataZoom: [{
+                        legend: {
+                        },
+                        dataZoom: [{   //
+                            type: 'inside',
                             start: mystart,
-                            end: myend
-                        }],
+                            end: myend,//x坐标的百分比容量
+                            zoomLock: false,
+                        },],
+                        toolbox: {
+                            right: 30,
+                            feature: {
+                                dataZoom: {
+                                    yAxisIndex: 'none'
+                                },
+                                restore: {},
+                            }
+                        },
+                        tooltip: {
+                            trigger: 'axis',
+                        },
+                        xAxis: { //x轴
+                            boundaryGap: false,
+                            data: counTime,   //需要动态改变
+                            // data:date,
+                            axisLine: {
+                                show: false, //是否显示轴线
+                            },
+                            type: 'category',
+                            // offset: 9, //偏移量
+                            axisTick: {
+                                show: false, //刻度
+                                alignWithLabel: true //刻度线和标签对齐
+                            },
+                            offset: 26,
+                            axisLabel: {
+                                align: {
+                                    option: 'right'
+                                },
+                                color: 'rgba(141, 144, 153, 1)',
+                                fontSize: 10,
+                                lineHeight: 14,
+                            },
+                        },
                         yAxis: [{
                             position: 'left',
                             max: function (value) {
@@ -222,7 +251,21 @@ export default class secondEchart extends Component {
                             },
                             min: function (value) {
                                 return value.min - value.min * 0.005
-                            }
+                            },
+                            type: 'value',
+                            boundaryGap: false,
+                            position: 'left',
+                            axisLine: {
+                                show: false, //是否显示轴线
+                            },
+                            axisTick: {
+                                show: false, //刻度
+                            },
+                            splitLine: {
+                                show: false, //是否显示分隔线
+                            },
+                            scale: true,
+
                         },
                         {
                             position: 'left',
@@ -231,7 +274,20 @@ export default class secondEchart extends Component {
                             },
                             min: function (value) {
                                 return value.min - value.min * 0.005
-                            }
+                            },
+                            type: 'value',
+                            boundaryGap: false,
+                            position: 'left',
+                            axisLine: {
+                                show: false, //是否显示轴线
+                            },
+                            axisTick: {
+                                show: false, //刻度
+                            },
+                            splitLine: {
+                                show: false, //是否显示分隔线
+                            },
+                            scale: true,
                         },
                         {
                             position: 'left',
@@ -240,19 +296,47 @@ export default class secondEchart extends Component {
                             },
                             min: function (value) {
                                 return value.min - value.min * 0.005
-                            }
+                            },
+                            type: 'value',
+                            boundaryGap: false,
+                            position: 'left',
+                            axisLine: {
+                                show: false, //是否显示轴线
+                            },
+                            axisTick: {
+                                show: false, //刻度
+                            },
+                            splitLine: {
+                                show: false, //是否显示分隔线
+                            },
+                            scale: true,
                         }
                         ],
                         series: [
                             {
+                                name: '价格',
+                                type: 'line',
+                                smooth: true,    //光滑
+                                symbol: 'none',
+                                yAxisIndex: 0,
                                 data: priceArr,
                                 yAxisIndex: 0
                             },
                             {
+                                name: '总交易量',
+                                type: 'line',
+                                smooth: true,    //光滑
+                                symbol: 'none',
+                                yAxisIndex: 0,
                                 data: marketCap,
                                 yAxisIndex: 1,
                             },
                             {
+                                name: '24小时成交量',
+                                type: 'line',
+                                smooth: true,    //光滑
+                                symbol: 'none',
+                                yAxisIndex: 0,
                                 data: volhArr,
                                 yAxisIndex: 2,
                             },
@@ -262,7 +346,7 @@ export default class secondEchart extends Component {
 
             }
         }).catch(e => {
-            console.log('大数据图2',e)
+            console.log('大数据图2', e)
         })
     }
     componentDidMount() {
@@ -278,7 +362,7 @@ export default class secondEchart extends Component {
         return (
             <>
                 <StatusBar backgroundColor='#fff' barStyle={'light-content'}></StatusBar>
-                <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center', backgroundColor: '#fff'}}>
+                <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center', backgroundColor: '#fff' }}>
                     <View style={{ width: Dimensions.get('window').height, height: Dimensions.get('window').width, transform: [{ rotateZ: '90deg' }] }}>
                         <TouchableOpacity
                             onPress={() => {
@@ -302,11 +386,11 @@ export default class secondEchart extends Component {
                         </TouchableOpacity>
                         {
                             this.state.showLoading ?
-                                <View style={{ position: 'absolute', backgroundColor: '#fff', justifyContent:'center',alignItems: 'center', zIndex: 1,width:'100%',height:'100%' }}>
+                                <View style={{ position: 'absolute', backgroundColor: '#fff', justifyContent: 'center', alignItems: 'center', zIndex: 1, width: '100%', height: '100%' }}>
                                     <Text>拼命加载中....</Text>
                                 </View> : <></>
                         }
-                        <Echarts ref={this.echartsRef} option={this.state.option} height={320}/>
+                        <Echarts ref={this.echartsRef} option={this.state.option} height={320} />
 
                     </View>
                 </View>

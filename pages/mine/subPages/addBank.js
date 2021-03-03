@@ -163,7 +163,6 @@ export default class addBank extends Component {
                             bank_id: v.bank_id,
                             show: false
                           })
-
                         }}>
                         <ImageBackground
                           activeOpacity={1}

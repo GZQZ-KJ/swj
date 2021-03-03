@@ -47,7 +47,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',
-        marginLeft: pxToPt(6)
+        marginBottom:pxToPt(12)
     },
     headImg: {
         width: pxToPt(52),

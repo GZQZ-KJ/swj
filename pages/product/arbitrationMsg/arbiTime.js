@@ -57,8 +57,8 @@ const styles = StyleSheet.create({
         elevation: 2,
         shadowRadius: pxToPt(2),
         borderRadius:pxToPt(8),
-        marginTop: pxToPt(12),
-        marginLeft: pxToPt(8),
+        // marginTop: pxToPt(12),
+        // marginLeft: pxToPt(8),
         paddingBottom:pxToPt(20),
         marginBottom:pxToPt(12)
     },

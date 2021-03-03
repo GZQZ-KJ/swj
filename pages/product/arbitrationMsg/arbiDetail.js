@@ -60,7 +60,7 @@ const styles = StyleSheet.create({
     msgDetail: {
         width: pxToPt(343),
         height: pxToPt(220),
-        marginTop: pxToPt(12),
+        // marginTop: pxToPt(12),
         backgroundColor: '#fff',
         shadowOffset: { width: pxToPt(0), height:pxToPt(1) },
         shadowColor: '#565A66',
@@ -70,7 +70,7 @@ const styles = StyleSheet.create({
         borderRadius: pxToPt(8),
         overflow: 'hidden',
         alignItems: 'center',
-        marginLeft: pxToPt(8),
+        // marginLeft: pxToPt(8),
         marginBottom: pxToPt(12)
     },
     msgHead: {

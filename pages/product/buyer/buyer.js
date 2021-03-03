@@ -612,7 +612,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',
-        marginTop: pxToPt(360),
+        marginTop: pxToPt(365),
         paddingLeft: pxToPt(6),
     },
     cancelClo: {

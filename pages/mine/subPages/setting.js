@@ -9,13 +9,14 @@ import {
     Platform,
     SafeAreaView
 } from 'react-native'
-// import Toast from '../../../utils/api/Toast'
+import Toast from '../../../utils/api/Toast'
 import { pxToPt } from "../../../utils/styleKits";
 import { inject, observer } from 'mobx-react'
 
 @inject('rootStore')
 @observer
 export default class setting extends Component {
+    
     constructor(props) {
         super(props)
         this.state = {
@@ -23,23 +24,22 @@ export default class setting extends Component {
         }
     }
     clearInfo = () => {
-        this.props.rootStore.clearArr()
-        Toast.showLoading('清理缓存中...')
+        Toast.showLoading('清理缓存中')
+        setTimeout(() => {
+            Toast.hideLoading()
+            Toast.success()
+        }, 1000);
     }
     chooseCDN = (choose) => {
-        if(choose === this.state.active) return
-        console.log('切换线路',choose)
+        if (choose === this.state.active) return
+        Toast.message('已切换线路' + choose, 2000, 'center')
         //仓库存线路
         this.props.rootStore.setActiveCDN(choose)
-        
         //发送请求,切换路线
-
-
-
         this.setState({
             active: choose
         })
-        
+
     }
     componentDidMount() {
         this.setState({
@@ -49,15 +49,15 @@ export default class setting extends Component {
     render() {
         let { active } = this.state
         return (
-            <SafeAreaView style={{flex:1}}>
-               <StatusBar backgroundColor="#fff" barStyle={'dark-content'}></StatusBar>
+            <SafeAreaView style={{ flex: 1 }}>
+                <StatusBar backgroundColor="#fff" barStyle={'dark-content'}></StatusBar>
                 <View style={styles.arroWrap}>
-                    <TouchableOpacity 
-          style={{ width: pxToPt(60),  height: pxToPt(44),paddingLeft:pxToPt(16), justifyContent: 'center' }} 
-                    onPress={() => {
-                        this.props.navigation.navigate('Tabbar')
+                    <TouchableOpacity
+                        style={{ width: pxToPt(60), height: pxToPt(44), paddingLeft: pxToPt(16), justifyContent: 'center' }}
+                        onPress={() => {
+                            this.props.navigation.navigate('Tabbar')
 
-                    }}>
+                        }}>
                         <Image style={styles.arrow} source={require('../../../assets/icons/backx.png')}></Image>
                     </TouchableOpacity>
                     <Text style={styles.title}>清除缓存</Text>
@@ -98,9 +98,9 @@ export default class setting extends Component {
                             </Text>
                         </View>
                     </TouchableOpacity>
-                    {/* <TouchableOpacity onPress={this.clearInfo} style={{ width: pxToPt(343), height: pxToPt(44), backgroundColor: '#3D72E4', borderRadius: pxToPt(8), marginTop: pxToPt(434), justifyContent: 'center', alignItems: 'center' }}>
+                    <TouchableOpacity onPress={this.clearInfo} style={{ width: pxToPt(343), height: pxToPt(44), backgroundColor: '#3D72E4', borderRadius: pxToPt(8), marginTop: pxToPt(434), justifyContent: 'center', alignItems: 'center' }}>
                         <Text style={{ color: '#fff', fontSize: pxToPt(15), fontWeight: '500' }}>清除缓存</Text>
-                    </TouchableOpacity> */}
+                    </TouchableOpacity>
                 </View>
             </SafeAreaView>
         )
@@ -122,6 +122,6 @@ const styles = StyleSheet.create({
         fontSize: pxToPt(18),
         fontWeight: "500",
         fontFamily: 'PingFang SC',
-        marginLeft:pxToPt(92)
+        marginLeft: pxToPt(92)
     },
 })

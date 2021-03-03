@@ -15,7 +15,7 @@
 	<key>NSPhotoLibraryAddUsageDescription</key>
     <string>需要相册添加权限</string>
 	<key>CFBundleDisplayName</key>
-	<string>mynsapp</string>
+	<string>NSS</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
