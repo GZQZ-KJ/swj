@@ -15,8 +15,7 @@ import axios from '../../../utils/api/request'
 import { pxToPt } from '../../../utils/styleKits'
 import AsyncStorage from '@react-native-community/async-storage'
 import { NavigationContext } from '@react-navigation/native'
-
-
+import { isIphoneX } from "../../../utils/isIphoneX";
 import { ACCOUNT_CHANGEPASSWORD, ACCOUNT_SENDCODE } from '../../../utils/api/pathMap'
 import { inject, observer } from 'mobx-react'
 @inject('rootStore')
@@ -290,7 +289,8 @@ export default class forgetPass extends Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#3D72E4'
+        backgroundColor: '#3D72E4',
+        paddingTop:isIphoneX() ? pxToPt(44) : null,
     },
 
     arroWrap: {

@@ -8,8 +8,10 @@ import {
     TouchableHighlight,
     StatusBar,
     TouchableOpacity,
-    Platform
+    Platform,
+    BackHandler
 } from 'react-native'
+import { isIphoneX } from "../../../utils/isIphoneX";
 import Toast from '../../../utils/api/Toast'
 import DeviceInfo from 'react-native-device-info';
 import LoginToast from '../../../utils/LoginToast'
@@ -139,6 +141,7 @@ export default class login extends Component {
 
     }
     async componentDidMount() {
+    BackHandler.addEventListener('hardwareBackPress', this.onBackAndroid)
         let brand = await DeviceInfo.getBrand()
         let deviceId = await DeviceInfo.getDeviceId()
         let systemName = await DeviceInfo.getSystemName()
@@ -157,8 +160,14 @@ export default class login extends Component {
                 systemName,
             })
         }
+    }
+    onBackAndroid = () => {
+        BackHandler.exitApp();
+        return;
+      }
 
-
+    componentWillUnmount() {
+    BackHandler.removeEventListener('hardwareBackPress', this.onBackAndroid)
 
     }
 
@@ -169,8 +178,7 @@ export default class login extends Component {
         var re = /^[a-zA-Z\d]+([-_\.][a-zA-Z\d]+)*@[a-zA-Z\d]+\.[a-zA-Z\d]{2,4}$/
         return (
             <>
-            <StatusBar backgroundColor="#3D72E4" barStyle={'light-content'}></StatusBar>
-                
+            <StatusBar backgroundColor="#3D72E4" barStyle={'light-content'}></StatusBar>               
             <View style={styles.container}>
                 <TouchableOpacity style={styles.arroWrap} >
                     {/* <Image style={styles.arrow} source={require('../../../assets/icons/backo.png')}></Image> */}
@@ -180,7 +188,9 @@ export default class login extends Component {
                 </View>
                 <View style={styles.regWrap}>
                     <Text style={styles.reg}>还没有账号，</Text>
+                    <View style={{borderBottomWidth:pxToPt(1),borderBottomColor:'#fff'}}>
                     <Text style={styles.regGo} onPress={this.regiest}>立即注册</Text>
+                    </View>
                 </View>
                 <View style={styles.inpWrap}>
                     <View style={{ ...styles.inp, marginBottom: pxToPt(16) }}>
@@ -276,6 +286,8 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: '#3D72E4',
+        paddingTop:isIphoneX() ? pxToPt(44) : null,
+
     },
     arroWrap: {
         height: pxToPt(44),
@@ -312,10 +324,10 @@ const styles = StyleSheet.create({
     },
     regGo: {
         color: '#FFF5FA',
-        height:pxToPt(26),
-        paddingBottom:pxToPt(4),
-        borderBottomWidth: pxToPt(1),
-        borderBottomColor: '#FFF5FA',
+        // height:pxToPt(30),
+        // paddingBottom:pxToPt(4),
+        // borderBottomWidth: pxToPt(1),
+        // borderBottomColor: '#fff',
         fontSize: pxToPt(16),
     },
     inpWrap: {
@@ -377,7 +389,8 @@ const styles = StyleSheet.create({
     },
     lastCir: {
         flexDirection: 'row',
-        alignItems: 'center'
+        alignItems: 'center',
+        justifyContent:'center',
     },
     cirImg: {
         width: pxToPt(12),
@@ -386,14 +399,14 @@ const styles = StyleSheet.create({
     },
     cirTex: {
         width: pxToPt(148),
-        height: pxToPt(16),
         fontSize: pxToPt(11),
         color: '#fff',
         marginRight: pxToPt(67)
     },
     lastpro: {
         flexDirection: 'row',
-        alignItems: 'center'
+        alignItems: 'center',
+        justifyContent:'center'
     },
     proImg: {
         width: pxToPt(12),
@@ -402,7 +415,6 @@ const styles = StyleSheet.create({
     },
     proTex: {
         width: pxToPt(46),
-        height: pxToPt(16),
         color: '#fff',
         fontSize: pxToPt(11)
     },

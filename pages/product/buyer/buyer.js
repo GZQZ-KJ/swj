@@ -17,9 +17,9 @@ import ToastTwo from '../../../components/ToastTwo'
 import { pxToPt } from "../../../utils/styleKits";
 import Clipboard from '@react-native-community/clipboard'
 import axios from '../../../utils/api/request'
-import {NavigationContext} from '@react-navigation/native'
+import { NavigationContext } from '@react-navigation/native'
 import { PRODUCT_INFO, PRODUCT_LOCKING, ORDERS_PAY, ORDERS_CANCEL, ORDERS_INFO } from '../../../utils/api/pathMap'
-import { inject,observer } from 'mobx-react'
+import { inject, observer } from 'mobx-react'
 import Toast from '../../../utils/api/Toast'
 @inject('rootStore')
 @observer
@@ -27,15 +27,12 @@ import Toast from '../../../utils/api/Toast'
  * 这是产品详情页
  */
 export default class home extends Component {
-    static contextType  = NavigationContext
+    static contextType = NavigationContext
     constructor(props) {
         super(props)
         this.state = {
             token: this.props.rootStore.token,
             showModal: true,  //控制锁定成功弹窗
-            changeDetail: true,  //控制锁定后弹出的模块
-            changeHeadO: true,   //控制 锁定后的 头部信息
-            showBtn: true, // 是否隐藏btn
             data: [],
             remain: 0,  //定时器返回的数字
             dataLock: {},
@@ -46,32 +43,6 @@ export default class home extends Component {
         }
         this.time = null
     }
-
-    copyBankNum = () => {
-        //复制银行卡号 Clipboard   this.state.bankNum
-        Toast.message('Copy Success', 2000, 'bottom')
-        Clipboard.setString(bankNum)
-    }
-    //获取锁定后的订单详情
-    getUserInfo = async () => {
-        var url = PRODUCT_LOCKING.replace('{sp_id}', this.props.route.params.id)
-        await axios.put(url, {}, {
-            headers: {
-                "token": this.state.token
-            }
-        }).then(r => {
-            if (r.data.code === 1) {
-                console.log('[产品订单详情]',r.data)
-                this.setState({
-                    dataLock: r.data.result
-                })
-            }
-            else {
-                Toast.message(r.data.message, 2000, 'center')
-                return
-            }
-        }).catch(e => console.log(e))
-    }
     //打勾 锁定弹窗
     showMo = async () => {
         var url = PRODUCT_LOCKING.replace('{sp_id}', this.props.route.params.id)
@@ -81,7 +52,6 @@ export default class home extends Component {
             }
         }).then(r => {
             if (r.data.code === 1) {
-                console.log('[锁定后的数据]', r.data)
                 this.props.rootStore.deleteProduct(this.props.route.params.id)
                 this.props.rootStore.productStorage(this.props.route.params.id)
                 clearInterval(this.time)
@@ -91,15 +61,9 @@ export default class home extends Component {
                 })
                 setTimeout(() => {
                     this.setState({
-                        dataLock: r.data.result,
                         showModal: true,
-                        changeDetail: false,
-                        changeHeadO: false,
-                        num: 2,
-                        soId: r.data.result.so_id,
                     })
-                    this.context.navigate("OrderDetail",{id:r.data.result.so_id,activeTop:1})
-                    this.onFn()
+                    this.context.navigate("OrderDetail", { id: r.data.result.so_id, activeTop: 1 })
                 }, 2000);
             }
             else {
@@ -108,76 +72,7 @@ export default class home extends Component {
             }
         }).catch(e => console.log(e))
     }
-    //确认付款 发送请求
-    _Enter = async () => {
-        var url = ORDERS_PAY.replace('{so_id}', this.state.soId)
-        await axios.put(url, {}, {
-            headers: {
-                "token": this.state.token
-            }
-        }).then(r => {
-            console.log('[产品付款成功]', r.data.result)
-            if (r.data.code === 1) {
-                this.props.rootStore.deleteProduct(this.props.route.params.id)
-                this.props.rootStore.axiosNss()
-                this.setState({
-                    dataPay: r.data.result,
-                    showBtn: false,
-                    num: 5
-                })
-            } else {
-                Toast.message(r.data.message, 2000, 'center')
-                return
-            }
-        })
-            .catch(e => console.log(e))
-    }
-    //获取订单详情
-    getOrderInfo = async () => {
-        clearInterval(this.time)
-        var url = ORDERS_INFO.replace('{so_id}', this.state.soId)
-        await axios.get(url, {
-            headers: {
-                token: this.state.token
-            }
-        }).then(r => {
-            if (r.data.code === 1) {
-                this.setState({
-                    data: r.data.result
-                })
-            } else {
-                Toast.message(r.data.message, 2000, 'center')
-            }
-        }).catch(e => console.log(e))
-    }
-    //取消锁定 发送请求
-    _Cancel = async () => {
-        //调用取消锁定API
-        var url = ORDERS_CANCEL.replace('{so_id}', this.state.soId)
-        await axios.put(url, {}, {
-            headers: {
-                "token": this.state.token
-            }
-        }).then(r => {
-            if (r.data.code === 1) {
-                //取消锁定后，把缓存的给列表
-                this.props.rootStore.pStorage2productList()
-                clearInterval(this.time)
-                this.getOrderInfo()
-                this.setState({
-                    dataCancel: r.data.result,
-                    showBtn: false,
-                    num: 4
-                })
-            }
-            else {
-                //取消锁定失败
-                Toast.message(r.data.message, 2000, 'center')
-                return
-            }
-        }).catch(e => console.log(e))
-
-    }
+  
     //获取订单详情
     getProductInfo = async () => {
         clearInterval(this.time)
@@ -202,7 +97,7 @@ export default class home extends Component {
     //下架倒计时
     onFn = () => {
         this.time ? clearInterval(this.time) : null
-        let { data, dataLock, dataPay } = this.state
+        let { data} = this.state
 
         let countTime = data.sale_expire_time
         this.time = setInterval(() => {
@@ -238,228 +133,87 @@ export default class home extends Component {
     componentWillUnmount() {
         clearInterval(this.time)
     }
-    //锁定时间戳 转北京时间 
-    dataLock = (dataLock) => {
-        let timestamp = dataLock.lock_time * 1000
-        var date = new Date(timestamp);
-        var y = date.getFullYear();
-        var m = date.getMonth() + 1;
-        m = m < 10 ? ('0' + m) : m;
-        var d = date.getDate();
-        d = d < 10 ? ('0' + d) : d;
-        var h = date.getHours();
-        h = h < 10 ? ('0' + h) : h;
-        var minute = date.getMinutes();
-        var second = date.getSeconds();
-        minute = minute < 10 ? ('0' + minute) : minute;
-        second = second < 10 ? ('0' + second) : second;
-
-        return y + '-' + m + '-' + d + ' ' + h + ':' + minute + ':' + second
-    }
-    //控制头部信息
-    controlHeadMsg = (num) => {
-        let { remain } = this.state
-        switch (num) {
-            case 1:
-                return ''
-                break;
-            case 2:
-                return `订单已锁定,请在${remain}小时内进行付款`
-                break
-            case 3:
-                return `您未在规定时间内付款，订单已取消`
-                break
-            case 4:
-                return `您已取消锁定该订单`
-                break
-            case 5:
-                return `您已付款，等待卖家确认收款`
-                break
-        }
-    }
     render() {
-        const { data, dataLock, num, dataPay,changeDetail,showBtn,changeHeadO } = this.state
-        const result = this.controlHeadMsg(num)
+        const { data, dataLock, num, } = this.state
         return (
             <>
-              <StatusBar backgroundColor="#fff" barStyle={'dark-content'}></StatusBar>
+                <StatusBar backgroundColor="#fff" barStyle={'dark-content'}></StatusBar>
 
-            <SafeAreaView style={{ flex: 1,backgroundColor:'#fff' }}>
-                <View style={{ flex: 1,backgroundColor:'#f8f9fa' }}>
-                <View style={styles.arroWrap}>
-                    <TouchableOpacity
-                        style={{ width: pxToPt(60), height: pxToPt(44), paddingLeft: pxToPt(16), justifyContent: 'center' }}
-                        onPress={() => {
-                            this.props.navigation.goBack()
-                        }}>
-                        <Image style={styles.arrow} source={require('../../../assets/icons/backx.png')}></Image>
-                    </TouchableOpacity>
-                    <Text style={styles.title}>产品详情</Text>
-                </View>
-                {this.state.showModal ? <></> : <MyToast ></MyToast>}
-
-                {
-                    changeHeadO ?
-                        <></> :
-                        <View style={styles.changeMk}>
-                            <View style={styles.showMk}>
-                                <Text style={styles.showTex}>{result}</Text>
-                            </View>
+                <SafeAreaView style={{ flex: 1, backgroundColor: '#fff' }}>
+                    <View style={{ flex: 1, backgroundColor: '#f8f9fa' }}>
+                        <View style={styles.arroWrap}>
+                            <TouchableOpacity
+                                style={{ width: pxToPt(60), height: pxToPt(44), paddingLeft: pxToPt(16), justifyContent: 'center' }}
+                                onPress={() => {
+                                    this.props.navigation.goBack()
+                                }}>
+                                <Image style={styles.arrow} source={require('../../../assets/icons/backx.png')}></Image>
+                            </TouchableOpacity>
+                            <Text style={styles.title}>产品详情</Text>
                         </View>
-                }
-                <ScrollView style={styles.wrap}>
-                    <View style={styles.wrapper}>
-                        <View style={styles.head}>
-                            <View style={styles.myHead}>
-                                {
-                                    !!data.sale_avater_url ? <Image style={styles.headImg} source={{ uri: data.sale_avater_url }}></Image> :
-                                        data.avater_url ?
-                                            <Image style={styles.headImg} source={{ uri: data.avater_url }}></Image> :
-                                            <Image style={styles.headImg} source={require('../../../assets/icons/tou1.png')}></Image>
-                                }
-                            </View>
-                            <View>
-                                {
-                                    num === 4 ? <Text style={styles.headName}>{data.sale_user_name}</Text> :
-                                        <Text style={styles.headName}>{data.user_name}</Text>
-                                }
-                                {
-                                    !!dataLock.order_no && num !== 4 ? <Text style={styles.orderNum}>订单编号：{dataLock.order_no}</Text> : <></>
-                                }
-                            </View>
-                        </View>
-                        <View style={styles.orderDetailWrap}>
-                            <View>
-                                <Text style={styles.oNum}>NSS: {data.value}</Text>
-                                {
-                                    num === 5 ? <Text style={styles.unTime}>卖家确认倒计时:{this.state.remain}</Text> :
-                                        num === 4 ? <></> :
-                                            dataLock.pay_expire_time !== undefined ?
-                                                <Text style={styles.unTime}>付款倒计时:{this.state.remain}</Text> :
-                                                <Text style={styles.unTime}>下架倒计时:{this.state.remain}</Text>
-                                }
-                            </View>
-                            <View style={styles.allMoney}>
-                                <Text style={styles.youMoney}>￥:{data.price}</Text>
-                                <Text style={styles.money}>总价:{data.sum_count}</Text>
-                            </View>
-                        </View>
-                        {
-                           changeDetail ?
-                                <></> :
-                                <View style={styles.msgDetail}>
-                                    <View style={styles.msgHead}>
-                                        <Text style={styles.msgTitle}>收款信息</Text>
-                                    </View>
-                                    <View style={styles.msgBody}>
-                                        <Text style={styles.msgContent}>收款人姓名</Text>
+                        {this.state.showModal ? <></> : <MyToast ></MyToast>}
+                        <ScrollView style={styles.wrap}>
+                            <View style={styles.wrapper}>
+                                <View style={styles.head}>
+                                    <View style={styles.myHead}>
                                         {
-                                            num === 4 ? <Text style={styles.msgTex}>{data.bank_account_name}</Text> : <Text style={styles.msgTex}>{data.account_name}</Text>
+                                            !!data.sale_avater_url ? <Image style={styles.headImg} source={{ uri: data.sale_avater_url }}></Image> :
+                                                data.avater_url ?
+                                                    <Image style={styles.headImg} source={{ uri: data.avater_url }}></Image> :
+                                                    <Image style={styles.headImg} source={require('../../../assets/icons/tou1.png')}></Image>
                                         }
                                     </View>
-                                    <View style={styles.msgBody}>
-                                        <Text style={styles.msgContent}>卡号</Text>
-
-                                        <View style={{ flexDirection: 'row' }}>
-                                            {
-                                                num === 4 ?
-                                                    <Text style={{ color: '#3D72E4', paddingRight: pxToPt(8) }}>{data.bank_account_no}</Text> :
-                                                    <Text style={{ color: '#3D72E4', paddingRight: pxToPt(8) }}>{data.account_no}</Text>
-                                            }
-                                            <TouchableOpacity style={styles.copyWrap} 
-                                            onPress={() => {
-                                                Clipboard.setString(data.bank_account_no);
-                                            }}>
-                                                <Text style={styles.copyTex}>复制</Text>
-                                            </TouchableOpacity>
-                                        </View>
-                                    </View>
-                                    <View style={styles.msgBody}>
-                                        <Text style={styles.msgContent}>银行</Text>
+                                    <View>
                                         {
-                                            num === 4 ?
-                                                <Text style={styles.msgTex}>{data.bank_full_name}</Text>
-                                                :
-                                                <Text style={styles.msgTex}>{data.full_name}</Text>
+                                            num === 4 ? <Text style={styles.headName}>{data.sale_user_name}</Text> :
+                                                <Text style={styles.headName}>{data.user_name}</Text>
                                         }
-                                    </View>
-                                    <View style={styles.msgFoot}>
-                                        <Text style={styles.msgContent}>金额</Text>
-                                        <Text style={styles.msgMoney}>{data.sum_count}</Text>
+                                        {
+                                            !!dataLock.order_no && num !== 4 ? <Text style={styles.orderNum}>订单编号：{dataLock.order_no}</Text> : <></>
+                                        }
                                     </View>
                                 </View>
-                        }
-                        <View>
-                            <View style={styles.showTime}>
-                                {
-                                    num === 5 ?
-                                        <Text style={styles.fbT}>确认付款时间：{dataPay.pay_time}</Text> :
-                                        <></>
-                                }
-                                {
-                                    num === 3 ?
-                                        <Text style={styles.fbT}>订单取消时间：X-X-X x:x:x</Text> :
-                                        <></>
-                                }
-                                {
-                                    data.time_list !== undefined && num === 4 ?
-                                        <Text style={styles.fbT}>取消锁定时间：{data.time_list.cancel_time}</Text> :
-                                        <></>
-                                }
-                                {
-                                    dataLock.lock_time === undefined ? <></> :
-                                        <Text style={styles.fbT}>锁定时间：{this.dataLock(dataLock)}</Text>
-                                }
-                                {
-                                    data.time_list !== undefined && num === 4 ?
-                                        <Text style={styles.fbT}>发布时间：{data.time_list.created_time}</Text>
-                                        :
-                                        <Text style={styles.fbT}>发布时间：{data.created_time}</Text>
-                                }
+                                <View style={styles.orderDetailWrap}>
+                                    <View>
+                                        <Text style={styles.oNum}>NSS: {data.value}</Text>
+                                        {
+                                            num === 5 ? <Text style={styles.unTime}>卖家确认倒计时:{this.state.remain}</Text> :
+                                                num === 4 ? <></> :
+                                                    dataLock.pay_expire_time !== undefined ?
+                                                        <Text style={styles.unTime}>付款倒计时:{this.state.remain}</Text> :
+                                                        <Text style={styles.unTime}>下架倒计时:{this.state.remain}</Text>
+                                        }
+                                    </View>
+                                    <View style={styles.allMoney}>
+                                        <Text style={styles.youMoney}>￥:{data.price}</Text>
+                                        <Text style={styles.money}>总价:{data.sum_count}</Text>
+                                    </View>
+                                </View>
+                            
+                                <View>
+                                    <View style={styles.showTime}>
 
+                                        {
+                                            data.time_list !== undefined && num === 4 ?
+                                                <Text style={styles.fbT}>发布时间：{data.time_list.created_time}</Text>
+                                                :
+                                                <Text style={styles.fbT}>发布时间：{data.created_time}</Text>
+                                        }
+
+                                    </View>
+                                </View>
                             </View>
-                        </View>
-                    </View>
-                    {
-                       changeDetail ?
                             <TouchableHighlight
                                 underlayColor="#abcdef"
                                 style={styles.touchHig}
                                 onPress={this.showMo}>
                                 <TouchLingth touchTex={'立即锁定'}></TouchLingth>
                             </TouchableHighlight>
-                            : showBtn ?
-                                <View style={styles.touchbot}>
-                                    <View style={styles.cancelClo}>
-                                        <ToastTwo
-                                            onCancel={this._Cancel}
-                                            showTex={'请确定是否取消锁定'}
-                                            zbtnBC={'#fff'}
-                                            zbtnF={'取消锁定'}
-                                            zbtnFC={'#3D72E4'}
-                                            zbtnBoC={'#3D72E4'}
-                                            qbtnBC={'#fff'}
-                                            qbtnF={'否'}
-                                            qbtnFC={'#3D72E4'}
-                                            ebtnF={'是'}
-                                        ></ToastTwo>
-                                    </View>
-                                    <View style={styles.enterPay}>
-                                        <ToastTwo
-                                            onEnter={this._Enter}
-                                            showTex={'请确认您已打款，并保留截图，否则卖家会提出仲裁，情况属实，将永久冻结账号。'}
-                                            zbtnFC={'#fff'}
-                                            zbtnF={'确认付款'}
-                                            ebtnFC={'#3D72E4'}
-                                            ebtnBC={'#fff'}
-                                        ></ToastTwo>
-                                    </View>
-                                </View> : <></>
-                    }
 
-                </ScrollView>
-                </View>
-            </SafeAreaView>
+
+                        </ScrollView>
+                    </View>
+                </SafeAreaView>
             </>
         )
     }
@@ -483,9 +237,9 @@ const styles = StyleSheet.create({
         fontWeight: "500",
     },
     wrap: {
-        paddingLeft:pxToPt(16),
-        zIndex:1,
-        paddingBottom:pxToPt(16)
+        paddingLeft: pxToPt(16),
+        zIndex: 1,
+        paddingBottom: pxToPt(16)
     },
     wrapper: {
         width: pxToPt(343),

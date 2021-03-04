@@ -278,7 +278,7 @@ export default class productPage extends Component {
                           min_sum_count: val
                         })}
                       ></TextInput>
-                      <View style={styles.line}></View>
+                      {/* <View style={styles.line}></View> */}
                       <TextInput
                         style={styles.floorInput}
                         allowFontScaling={true}
@@ -298,7 +298,7 @@ export default class productPage extends Component {
                           min_price: val
                         })}
                       ></TextInput>
-                      <View style={styles.line}></View>
+                      {/* <View style={styles.line}></View> */}
                       <TextInput
                         style={styles.floorInput}
                         allowFontScaling={true}
@@ -340,7 +340,7 @@ export default class productPage extends Component {
                       </View>
                     </View>
                     <View style={styles.box}>
-                      <View style={styles.sortBox}>
+                      <View style={[styles.sortBox,styles.sortBoxLine]}>
                         <Text style={styles.lftxt}>产品总价价格</Text>
                         <TouchableOpacity style={styles.rt}
                           onPress={() => {
@@ -363,7 +363,7 @@ export default class productPage extends Component {
                       </View>
                     </View>
                     <View style={styles.box}>
-                      <View style={styles.sortBox}>
+                      <View style={[styles.sortBox,styles.sortBoxLine]}>
                         <Text style={styles.lftxt}>产品单价价格</Text>
                         <TouchableOpacity style={styles.rt}
                           onPress={() => {
@@ -484,8 +484,8 @@ const styles = StyleSheet.create({
   },
   line: {
     width: pxToPt(64),
-    height: pxToPt(2),
-    backgroundColor: '#EBECED'
+    // height: pxToPt(2),
+    // backgroundColor: '#EBECED'
   },
   choose: {
     justifyContent: 'space-around',
@@ -493,15 +493,15 @@ const styles = StyleSheet.create({
     borderTopColor: '#EBECEDFF',
     paddingTop: pxToPt(9),
     paddingBottom: pxToPt(8),
-    backgroundColor: '#FFFFFF',
+    backgroundColor: '#fff',
     height: pxToPt(48),
     alignItems: 'center',
-    borderBottomWidth:pxToPt(1),
-    borderBottomColor:'#EBECEDFF',
+    // borderBottomWidth:pxToPt(1),
+    // borderBottomColor:'#EBECEDFF',
   },
   modalBox: {
     flex: 1,
-    // backgroundColor: 'rgba(0, 0, 0, .6)'
+    backgroundColor: 'rgba(0, 0, 0, .6)'  //蒙层
   },
   cancel: {
     height: pxToPt(30),
@@ -513,15 +513,17 @@ const styles = StyleSheet.create({
   },
 
   box: {
-    backgroundColor: '#FFFFFF',
+    backgroundColor: '#fff',
   },
   sortBox: {
     justifyContent: 'space-between',
     flexDirection: 'row',
     marginLeft: pxToPt(16),
-    marginRight: pxToPt(13),
-    borderBottomWidth: pxToPt(1),
-    borderBottomColor: '#F5F5F7'
+    marginRight: pxToPt(16),
+  },
+  sortBoxLine:{
+    borderTopWidth: pxToPt(1),
+    borderTopColor: '#EBECEDFF'
   },
   lftxt: {
     height: pxToPt(22),

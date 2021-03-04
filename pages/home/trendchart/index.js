@@ -369,13 +369,14 @@ export default class chart extends Component {
 
   }
   componentDidMount() {
-    // BackHandler.addEventListener('hardwareBackPress', this.onBackAndroid)
+    BackHandler.addEventListener('hardwareBackPress', this.onBackAndroid)
     this.getHomeDataList();
     this.requestTime = setInterval(() => {
     this.getHomeDataList();
     }, 120000)
 
   }
+  
   _dbclick = () => {
     let { active } = this.state
     const clickTime = new Date().getTime();
@@ -395,11 +396,11 @@ export default class chart extends Component {
 
   componentWillUnmount() {
     clearInterval(this.requestTime)
-    // BackHandler.removeEventListener('hardwareBackPress', this.onBackAndroid)
+    BackHandler.removeEventListener('hardwareBackPress', this.onBackAndroid)
   }
 
   onBackAndroid = () => {
-    // BackHandler.exitApp();
+    BackHandler.exitApp();
     return;
   }
   render() {
