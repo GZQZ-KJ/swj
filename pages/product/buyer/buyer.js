@@ -8,6 +8,7 @@ import {
     TouchableHighlight,
     TouchableOpacity,
     Platform,
+    ScrollView,
     SafeAreaView
 } from 'react-native'
 import MyToast from '../../../utils/MyToast'
@@ -17,9 +18,10 @@ import { pxToPt } from "../../../utils/styleKits";
 import Clipboard from '@react-native-community/clipboard'
 import axios from '../../../utils/api/request'
 import { PRODUCT_INFO, PRODUCT_LOCKING, ORDERS_PAY, ORDERS_CANCEL, ORDERS_INFO } from '../../../utils/api/pathMap'
-import { inject } from 'mobx-react'
+import { inject, observer } from 'mobx-react'
 import Toast from '../../../utils/api/Toast'
 @inject('rootStore')
+@observer
 /**
  * 这是产品详情页
  */
@@ -281,7 +283,7 @@ export default class home extends Component {
         }
     }
     render() {
-        const { data, dataLock, num, dataPay } = this.state
+        const { data, dataLock, num, dataPay,changeDetail,showBtn,changeHeadO } = this.state
         const result = this.controlHeadMsg(num)
         return (
             <SafeAreaView style={{ flex: 1 }}>
@@ -297,7 +299,7 @@ export default class home extends Component {
                     <Text style={styles.title}>产品详情</Text>
                 </View>
                 {
-                    this.state.changeHeadO ?
+                    changeHeadO ?
                         <></> :
                         <View style={styles.changeMk}>
                             <View style={styles.showMk}>
@@ -305,7 +307,7 @@ export default class home extends Component {
                             </View>
                         </View>
                 }
-                <View style={styles.wrap}>
+                <ScrollView style={styles.wrap}>
                     <View style={styles.wrapper}>
                         <View style={styles.head}>
                             <View style={styles.myHead}>
@@ -343,7 +345,7 @@ export default class home extends Component {
                             </View>
                         </View>
                         {
-                            this.state.changeDetail ?
+                           changeDetail ?
                                 <></> :
                                 <View style={styles.msgDetail}>
                                     <View style={styles.msgHead}>
@@ -354,23 +356,23 @@ export default class home extends Component {
                                         {
                                             num === 4 ? <Text style={styles.msgTex}>{data.bank_account_name}</Text> : <Text style={styles.msgTex}>{data.account_name}</Text>
                                         }
-
                                     </View>
                                     <View style={styles.msgBody}>
                                         <Text style={styles.msgContent}>卡号</Text>
 
-                                        <TouchableOpacity style={{ flexDirection: 'row' }} onPress={() => {
-                                            alert(123)
-                                        }}>
+                                        <View style={{ flexDirection: 'row' }}>
                                             {
                                                 num === 4 ?
                                                     <Text style={{ color: '#3D72E4', paddingRight: pxToPt(8) }}>{data.bank_account_no}</Text> :
                                                     <Text style={{ color: '#3D72E4', paddingRight: pxToPt(8) }}>{data.account_no}</Text>
                                             }
-                                            <View style={styles.copyWrap}>
+                                            <TouchableOpacity style={styles.copyWrap} 
+                                            onPress={() => {
+                                                Clipboard.setString(data.bank_account_no);
+                                            }}>
                                                 <Text style={styles.copyTex}>复制</Text>
-                                            </View>
-                                        </TouchableOpacity>
+                                            </TouchableOpacity>
+                                        </View>
                                     </View>
                                     <View style={styles.msgBody}>
                                         <Text style={styles.msgContent}>银行</Text>
@@ -420,14 +422,14 @@ export default class home extends Component {
                     </View>
                     {this.state.showModal ? <></> : <MyToast ></MyToast>}
                     {
-                        this.state.changeDetail ?
+                       changeDetail ?
                             <TouchableHighlight
                                 underlayColor="#abcdef"
                                 style={styles.touchHig}
                                 onPress={this.showMo}>
                                 <TouchLingth touchTex={'立即锁定'}></TouchLingth>
                             </TouchableHighlight>
-                            : this.state.showBtn ?
+                            : showBtn ?
                                 <View style={styles.touchbot}>
                                     <View style={styles.cancelClo}>
                                         <ToastTwo
@@ -456,7 +458,7 @@ export default class home extends Component {
                                 </View> : <></>
                     }
 
-                </View>
+                </ScrollView>
             </SafeAreaView>
         )
     }
@@ -480,7 +482,8 @@ const styles = StyleSheet.create({
         fontWeight: "500",
     },
     wrap: {
-        alignItems: 'center'
+        alignItems: 'center',
+        paddingBottom:pxToPt(16)
     },
     wrapper: {
         width: pxToPt(343),
@@ -612,7 +615,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',
-        marginTop: pxToPt(365),
+        marginTop: pxToPt(348),
         paddingLeft: pxToPt(6),
     },
     cancelClo: {

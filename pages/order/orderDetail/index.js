@@ -43,7 +43,7 @@ export default class orderDetail extends Component {
     getOrderDetail = async () => {
         let { id, token } = this.state
         let url = ORDERS_INFO.replace('{so_id}', id)
-        console.log('[详情Url]',url)
+        console.log('[详情Url]', url)
         await axios.get(url, {
             headers: {
                 "token": token
@@ -174,9 +174,9 @@ export default class orderDetail extends Component {
                     return `${time_list.remark}`
                     break;
                 case 4:
-                    if(time_list.remark === '您已确认到账，订单已完成') return `卖家已确认收款，恭喜你获得${value}NSS币`
-                    if(time_list.remark === '您未在规定时间内确认到账，订单已自动完成') return `订单自动完成，恭喜你获得${value}NSS币`
-                    if(time_list.remark === '后台审判，交易完成') return `审判完成，恭喜你获得${value}NSS币`
+                    if (time_list.remark === '您已确认到账，订单已完成') return `卖家已确认收款，恭喜你获得${value}NSS币`
+                    if (time_list.remark === '您未在规定时间内确认到账，订单已自动完成') return `订单自动完成，恭喜你获得${value}NSS币`
+                    if (time_list.remark === '后台审判，交易完成') return `审判完成，恭喜你获得${value}NSS币`
                     break;
                 case 5:
                     return `${time_list.remark}`
@@ -268,101 +268,101 @@ export default class orderDetail extends Component {
         if (time_list === undefined) return (<></>)
         return (
             <>
-            
-            <StatusBar barStyle={'light-content'}></StatusBar>
-            <SafeAreaView style={{flex:1,backgroundColor:'#fff'}}>
-                <View style={styles.arroWrap}>
-                    <TouchableOpacity
-                        style={{ width: pxToPt(60),  height: pxToPt(44),paddingLeft:pxToPt(16), justifyContent: 'center' }}
-                        onPress={() => {
-                            this.props.navigation.navigate('Tabbar')
-                        }}>
-                        <Image style={styles.arrow} source={require('../../../assets/icons/backx.png')}></Image>
-                    </TouchableOpacity>
-                    <Text style={styles.title}>产品详情</Text>
-                </View>
-                {/* 头部提示信息 */}
-                {
-                    <OrderHeader msg={this.showMsg} />
-                }
-                <SafeAreaView style={styles.container}>
-                    <ScrollView
-                        showsVerticalScrollIndicator={false}
-                        style={styles.scrollView}>
-                        <View style={styles.wrap}>
-                            {/* 订单信息 */}
-                            {
-                                this.state.activeTop === 1 ?
-                                    <>
-                                        <OrderPerson
-                                            avaterUrl={sale_avater_url}
-                                            soOrder={so_order}
-                                            myuserName={sale_user_name}
-                                            statusStr={status_str}
-                                            value={value}
-                                            sumCount={sum_count}
-                                            timeList={time_list}
-                                            price={price}
-                                            status={status}
-                                            activeTop={this.state.activeTop}
-                                        />
 
-                                        {/* 买方信息 */}
-                                        {
-                                            status === 3 || status === 2 || status === 4 && this.state.activeTop === 0 ?
-                                                <OrderBuyer
-                                                    avaterUrl={buy_avater_url}
-                                                    userName={buy_user_name}
-                                                /> : <></>
-                                        }
-                                        {/* 收款人信息 */}
-                                        <OrderDetail
-                                            bankAccountName={bank_account_name}
-                                            bankAccountNo={bank_account_no}
-                                            bankFullName={bank_full_name}
-                                            sumCount={sum_count}
-                                        />
-                                        {/* 时间 */}
-                                        <OrderTime timeList={time_list} />
-                                    </>
-                                    :
-                                    // 卖方
-                                    <>
-                                        <OrderPerson
-                                            avaterUrl={sale_avater_url}
-                                            soOrder={so_order}
-                                            myuserName={sale_user_name}
-                                            statusStr={status_str}
-                                            value={value}
-                                            sumCount={sum_count}
-                                            timeList={time_list}
-                                            price={price}
-                                            status={status}
-                                            activeTop={this.state.activeTop}
-                                        />
+                <StatusBar barStyle={'light-content'}></StatusBar>
+                <SafeAreaView style={{ flex: 1, backgroundColor: '#fff' }}>
+                    <View style={styles.arroWrap}>
+                        <TouchableOpacity
+                            style={{ width: pxToPt(60), height: pxToPt(44), paddingLeft: pxToPt(16), justifyContent: 'center' }}
+                            onPress={() => {
+                                this.props.navigation.navigate('Tabbar')
+                            }}>
+                            <Image style={styles.arrow} source={require('../../../assets/icons/backx.png')}></Image>
+                        </TouchableOpacity>
+                        <Text style={styles.title}>产品详情</Text>
+                    </View>
+                    {/* 头部提示信息 */}
+                    {
+                        <OrderHeader msg={this.showMsg} />
+                    }
+                    <SafeAreaView style={styles.container}>
+                        <ScrollView
+                            showsVerticalScrollIndicator={false}
+                            style={styles.scrollView}>
+                            <View style={styles.wrap}>
+                                {/* 订单信息 */}
+                                {
+                                    this.state.activeTop === 1 ?
+                                        <>
+                                            <OrderPerson
+                                                avaterUrl={sale_avater_url}
+                                                soOrder={so_order}
+                                                myuserName={sale_user_name}
+                                                statusStr={status_str}
+                                                value={value}
+                                                sumCount={sum_count}
+                                                timeList={time_list}
+                                                price={price}
+                                                status={status}
+                                                activeTop={this.state.activeTop}
+                                            />
 
-                                        {/* 买方信息 */}
-                                        {
-                                            status === 3 || status === 2 || status === 4 ?
-                                                <OrderBuyer
-                                                    avaterUrl={buy_avater_url}
-                                                    userName={buy_user_name}
-                                                /> : <></>
-                                        }
+                                            {/* 买方信息 */}
+                                            {
+                                                status === 3 || status === 2 || status === 4 && this.state.activeTop === 0 ?
+                                                    <OrderBuyer
+                                                        avaterUrl={buy_avater_url}
+                                                        userName={buy_user_name}
+                                                    /> : <></>
+                                            }
+                                            {/* 收款人信息 */}
+                                            <OrderDetail
+                                                bankAccountName={bank_account_name}
+                                                bankAccountNo={bank_account_no}
+                                                bankFullName={bank_full_name}
+                                                sumCount={sum_count}
+                                            />
+                                            {/* 时间 */}
+                                            <OrderTime timeList={time_list} />
+                                        </>
+                                        :
+                                        // 卖方
+                                        <>
+                                            <OrderPerson
+                                                avaterUrl={sale_avater_url}
+                                                soOrder={so_order}
+                                                myuserName={sale_user_name}
+                                                statusStr={status_str}
+                                                value={value}
+                                                sumCount={sum_count}
+                                                timeList={time_list}
+                                                price={price}
+                                                status={status}
+                                                activeTop={this.state.activeTop}
+                                            />
+
+                                            {/* 买方信息 */}
+                                            {
+                                                status === 3 || status === 2 || status === 4 ?
+                                                    <OrderBuyer
+                                                        avaterUrl={buy_avater_url}
+                                                        userName={buy_user_name}
+                                                    /> : <></>
+                                            }
 
 
-                                        {/* 收款人信息 */}
-                                        <OrderDetail
-                                            bankAccountName={bank_account_name}
-                                            bankAccountNo={bank_account_no}
-                                            bankFullName={bank_full_name}
-                                            sumCount={sum_count}
-                                        />
-                                        {/* 时间 */}
-                                        <OrderTime timeList={time_list} />
-                                    </>
-                            }
-                            <View style={styles.touchbot}>
+                                            {/* 收款人信息 */}
+                                            <OrderDetail
+                                                bankAccountName={bank_account_name}
+                                                bankAccountNo={bank_account_no}
+                                                bankFullName={bank_full_name}
+                                                sumCount={sum_count}
+                                            />
+                                            {/* 时间 */}
+                                            <OrderTime timeList={time_list} />
+                                        </>
+                                }
+                                {/* <View style={styles.touchbot}>
                                 {
                                     status === 1 && this.state.activeTop === 1 ?
                                         <>
@@ -391,60 +391,89 @@ export default class orderDetail extends Component {
                                                 ></ToastTwo>
                                             </View>
                                         </>
-                                        : null
+                                        : <></>
+                                }
+                            </View> */}
+                                {/* 取消发布 */}
+                                {
+                                    this.state.activeTop === 0 && status === 1 ?
+                                        <>
+                                            <TouchableHighlight
+                                                underlayColor="#abcdef"
+                                                style={styles.touchHig}>
+                                                <ToastTwo
+                                                    zbtnF={'取消挂卖'}
+                                                    showTex={'请确认是否取消挂卖'}
+                                                    zbtnBC={'#fff'}
+                                                    zbtnBoC={'#3D72E4'}
+                                                    qbtnBC={'#fff'}
+                                                    qbtnF={'否'}
+                                                    qbtnFC={'#3D72E4'}
+                                                    ebtnF={'是'}
+                                                    onYes={this._goDetail}
+                                                ></ToastTwo>
+                                            </TouchableHighlight>
+                                        </> : <></>
                                 }
                             </View>
-                            {/* 取消发布 */}
-                            {
-                                this.state.activeTop === 0 && status === 1 ?
-                                    <>
-                                        <TouchableHighlight
-                                            underlayColor="#abcdef"
-                                            style={styles.touchHig}>
-                                            <ToastTwo
-                                                zbtnF={'取消挂卖'}
-                                                showTex={'请确认是否取消挂卖'}
-                                                zbtnBC={'#fff'}
-                                                zbtnBoC={'#3D72E4'}
-                                                qbtnBC={'#fff'}
-                                                qbtnF={'否'}
-                                                qbtnFC={'#3D72E4'}
-                                                ebtnF={'是'}
-                                                onYes={this._goDetail}
-                                            ></ToastTwo>
-                                        </TouchableHighlight>
-                                    </> : <></>
-                            }
-                        </View>
-                    </ScrollView>
-                </SafeAreaView>
-                {/* 按钮 */}
-                <View style={styles.fiexbot}>
-                    {
-                        this.state.activeTop === 0 && status === 3 && this.state.cancelTime === '' ?
-                            <>
-                                <TouchableHighlight
-                                    underlayColor="#A6B8E0"
-                                    style={{ ...styles.cancelClo, borderColor: '#FE5564', }}
-                                    onPress={this.arbitration}>
-                                    <Text style={{ color: '#FE5564' }}>
-                                        未到账
+                        </ScrollView>
+                    </SafeAreaView>
+                    {/* 按钮 */}
+                    <View style={styles.fiexbot}>
+                        {
+                            status === 1 && this.state.activeTop === 1 ?
+                                <>
+                                <View style={styles.cancelClo}>
+                                                <ToastTwo
+                                                    onCancel={this._Cancel}
+                                                    showTex={'请确定是否取消锁定'}
+                                                    zbtnBC={'#fff'}
+                                                    zbtnF={'取消锁定'}
+                                                    zbtnFC={'#3D72E4'}
+                                                    zbtnBoC={'#3D72E4'}
+                                                    qbtnBC={'#fff'}
+                                                    qbtnF={'否'}
+                                                    qbtnFC={'#3D72E4'}
+                                                    ebtnF={'是'}
+                                                ></ToastTwo>
+                                            </View>
+                                            <View style={styles.enterPay}>
+                                                <ToastTwo
+                                                    onEnter={this._Enter}
+                                                    showTex={'请确认您已打款，并保留截图，否则卖家会提出仲裁，情况属实，将永久冻结账号。'}
+                                                    zbtnFC={'#fff'}
+                                                    zbtnF={'确认付款'}
+                                                    ebtnFC={'#3D72E4'}
+                                                    ebtnBC={'#fff'}
+                                                ></ToastTwo>
+                                            </View>
+                                </> : <></>
+                        }
+                        {
+                            this.state.activeTop === 0 && status === 3 && this.state.cancelTime === '' ?
+                                <>
+                                    <TouchableHighlight
+                                        underlayColor="#A6B8E0"
+                                        style={{ ...styles.cancelClo, borderColor: '#FE5564', }}
+                                        onPress={this.arbitration}>
+                                        <Text style={{ color: '#FE5564' }}>
+                                            未到账
                                      </Text>
-                                </TouchableHighlight>
-                                <TouchableHighlight
-                                    underlayColor="#A6B8E0"
-                                    style={styles.enterPay}
-                                    onPress={this.enterPay}>
-                                    <Text style={{ color: '#fff' }}>
-                                        确认收款
+                                    </TouchableHighlight>
+                                    <TouchableHighlight
+                                        underlayColor="#A6B8E0"
+                                        style={styles.enterPay}
+                                        onPress={this.enterPay}>
+                                        <Text style={{ color: '#fff' }}>
+                                            确认收款
                                      </Text>
 
-                                </TouchableHighlight>
-                            </> : <></>
-                    }
-                </View>
-            </SafeAreaView>
-       </>
+                                    </TouchableHighlight>
+                                </> : <></>
+                        }
+                    </View>
+                </SafeAreaView>
+            </>
         )
     }
 }
@@ -457,7 +486,7 @@ const styles = StyleSheet.create({
     },
     scrollView: {
         backgroundColor: '#F8F9FA',
-        paddingBottom: pxToPt(60)
+        paddingBottom: pxToPt(60),
     },
     arroWrap: {
         height: pxToPt(44),
@@ -487,7 +516,8 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',
-        marginLeft: pxToPt(8)
+        marginLeft: pxToPt(8),
+        marginTop: pxToPt(82)
     },
     fiexbot: {
         flexDirection: 'row',
@@ -522,7 +552,7 @@ const styles = StyleSheet.create({
         overflow: 'hidden'
     },
     touchHig: {
-        width:pxToPt(343),
+        width: pxToPt(343),
         height: pxToPt(44),
         borderRadius: pxToPt(8),
         borderColor: '#3D72E4',
@@ -542,7 +572,7 @@ const styles = StyleSheet.create({
         borderRadius: 8,
         marginLeft: pxToPt(8),
         paddingBottom: pxToPt(20),
-        marginBottom:pxToPt(12)
+        marginBottom: pxToPt(12)
     },
     fbT: {
         paddingTop: pxToPt(16),

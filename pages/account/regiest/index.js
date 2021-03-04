@@ -389,6 +389,8 @@ const styles = StyleSheet.create({
         height: pxToPt(32),
         borderRadius: pxToPt(8),
         paddingLeft: pxToPt(14),
+        alignItems:'center',
+        justifyContent:'center'
         // marginLeft: 10
     },
     btnTex: {
@@ -396,7 +398,7 @@ const styles = StyleSheet.create({
         width: '100%',
         color: '#0066C8',
         fontSize: pxToPt(12),
-        lineHeight: pxToPt(32),
+        lineHeight: pxToPt(36),
 
     },
     inpImgLast: {
