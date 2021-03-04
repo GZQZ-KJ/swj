@@ -43,7 +43,7 @@ export default class orderDetail extends Component {
     getOrderDetail = async () => {
         let { id, token } = this.state
         let url = ORDERS_INFO.replace('{so_id}', id)
-        console.log('[详情Url]',url)
+        console.log('[跳过来详情了]',)
         await axios.get(url, {
             headers: {
                 "token": token
@@ -142,13 +142,14 @@ export default class orderDetail extends Component {
     _Cancel = async () => {
         let { id, token } = this.state
         let url = ORDERS_CANCEL.replace('{so_id}', id)
+        console.log('[订单详情取消锁定]',id,url)
         await axios.put(url, {}, {
             headers: {
                 "token": token
             }
         }).then(r => {
             if (r.data.code === 1) {
-                this.props.rootStore.deleteOrder(id)
+                this.props.rootStore.delete2Order(id)
                 this.props.rootStore.axiosProductList()
                 Toast.message(r.data.message, 2000, 'center')
                 this.getOrderDetail()
@@ -210,7 +211,6 @@ export default class orderDetail extends Component {
         }
 
     }
-
 
     //取消发布
     _goDetail = async () => {
@@ -309,7 +309,7 @@ export default class orderDetail extends Component {
 
                                         {/* 买方信息 */}
                                         {
-                                            status === 3 || status === 2 || status === 4 && this.state.activeTop === 0 ?
+                                            status === 3 && this.state.activeTop === 0 || status === 2 && this.state.activeTop === 0 || status === 4 && this.state.activeTop === 0 ?
                                                 <OrderBuyer
                                                     avaterUrl={buy_avater_url}
                                                     userName={buy_user_name}

@@ -6,7 +6,7 @@ import {
 export default class TouchLinght extends Component {
     render() {
         return (
-            <View>
+            <View style={{zIndex:100}}>
                 <Text style={{color:'#fff',fontWeight:'500',fontSize:15}}>{this.props.touchTex}</Text>
             </View>
         )

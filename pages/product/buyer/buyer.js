@@ -16,15 +16,17 @@ import ToastTwo from '../../../components/ToastTwo'
 import { pxToPt } from "../../../utils/styleKits";
 import Clipboard from '@react-native-community/clipboard'
 import axios from '../../../utils/api/request'
+import {NavigationContext} from '@react-navigation/native'
 import { PRODUCT_INFO, PRODUCT_LOCKING, ORDERS_PAY, ORDERS_CANCEL, ORDERS_INFO } from '../../../utils/api/pathMap'
-import { inject } from 'mobx-react'
+import { inject,observer } from 'mobx-react'
 import Toast from '../../../utils/api/Toast'
 @inject('rootStore')
+@observer
 /**
  * 这是产品详情页
  */
 export default class home extends Component {
-
+    static contextType  = NavigationContext
     constructor(props) {
         super(props)
         this.state = {
@@ -58,6 +60,7 @@ export default class home extends Component {
             }
         }).then(r => {
             if (r.data.code === 1) {
+                console.log('[产品订单详情]',r.data)
                 this.setState({
                     dataLock: r.data.result
                 })
@@ -77,7 +80,7 @@ export default class home extends Component {
             }
         }).then(r => {
             if (r.data.code === 1) {
-                console.log('[锁定后的数据]', r.data.result)
+                console.log('[锁定后的数据]', r.data)
                 this.props.rootStore.deleteProduct(this.props.route.params.id)
                 this.props.rootStore.productStorage(this.props.route.params.id)
                 clearInterval(this.time)
@@ -94,6 +97,7 @@ export default class home extends Component {
                         num: 2,
                         soId: r.data.result.so_id,
                     })
+                    this.context.navigate("OrderDetail",{id:r.data.result.so_id,activeTop:1})
                     this.onFn()
                 }, 0);
             }
@@ -171,10 +175,6 @@ export default class home extends Component {
                 return
             }
         }).catch(e => console.log(e))
-
-        // setTimeout(() => {
-        // this.props.navigation.navigate('Tabbar')
-        // }, 1000)
 
     }
     //获取订单详情
@@ -285,6 +285,7 @@ export default class home extends Component {
         const result = this.controlHeadMsg(num)
         return (
             <SafeAreaView style={{ flex: 1 }}>
+                
               <StatusBar backgroundColor="#fff" barStyle={'dark-content'}></StatusBar>
                 <View style={styles.arroWrap}>
                     <TouchableOpacity
@@ -296,6 +297,8 @@ export default class home extends Component {
                     </TouchableOpacity>
                     <Text style={styles.title}>产品详情</Text>
                 </View>
+                {this.state.showModal ? <></> : <MyToast ></MyToast>}
+
                 {
                     this.state.changeHeadO ?
                         <></> :
@@ -418,7 +421,6 @@ export default class home extends Component {
                             </View>
                         </View>
                     </View>
-                    {this.state.showModal ? <></> : <MyToast ></MyToast>}
                     {
                         this.state.changeDetail ?
                             <TouchableHighlight
@@ -480,7 +482,8 @@ const styles = StyleSheet.create({
         fontWeight: "500",
     },
     wrap: {
-        alignItems: 'center'
+        alignItems: 'center',
+        zIndex:1
     },
     wrapper: {
         width: pxToPt(343),
