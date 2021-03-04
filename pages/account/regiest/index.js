@@ -139,13 +139,7 @@ export default class regiest extends Component {
                 return
             }, 1000)
         } else {
-            clearInterval(this.timeId)
             Toast.message(res.data.message, 2000, 'center')
-            this.setState({
-                password: '',
-                email: '',
-                code: ''
-            })
             return
         }
 
