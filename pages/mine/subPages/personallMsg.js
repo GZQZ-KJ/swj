@@ -240,137 +240,137 @@ export default class setting extends Component {
                     onPress={this.upLoadHead}
                   >
                     {
-                      rootStore.avaUrl === true ?
-                        <Image style={{ width: pxToPt(40), height: pxToPt(40) }} source={require('../../../assets/icons/avatar/tou2.png')}></Image>
-                        :
+                      !!rootStore.avaUrl === true ?
                         <Image style={{ width: pxToPt(40), height: pxToPt(40) }} source={{ uri: rootStore.avaUrl }}></Image>
+                        :
+                        <Image style={{ width: pxToPt(40), height: pxToPt(40) }} source={require('../../../assets/icons/avatar/tou2.png')}></Image>
                     }
                   </TouchableHighlight>
                   :
                   <View style={{ width: pxToPt(40), height: pxToPt(40), borderRadius: pxToPt(20), overflow: 'hidden' }}>
-              {
-                rootStore.avaUrl === true ?
-                  <TouchableOpacity
-                    activeOpacity={1}
-                    onPress={() => {
-                      this.context.navigate('LightBox', { url: '../../../assets/icons/avatar/tou2.png' })
-                    }}
-                  >
-                    <Image style={{ width: pxToPt(40), height: pxToPt(40) }} source={require('../../../assets/icons/avatar/tou2.png')}></Image>
-                  </TouchableOpacity>
-                  :
-                  <TouchableOpacity
-                    activeOpacity={1}
-                    onPress={() => {
-                      this.context.navigate('LightBox', { url: rootStore.avaUrl })
-                    }}
-                  >
-                    <Image style={{ width: pxToPt(40), height: pxToPt(40) }} source={{ uri: rootStore.avaUrl }}></Image>
-                  </TouchableOpacity>
-              }
-            </View>
+                    {
+                      !!rootStore.avaUrl === true ?
+                        <TouchableOpacity
+                          activeOpacity={1}
+                          onPress={() => {
+                            this.context.navigate('LightBox', { url: rootStore.avaUrl })
+                          }}
+                        >
+                          <Image style={{ width: pxToPt(40), height: pxToPt(40) }} source={{uri: rootStore.avaUrl }}></Image>
+                        </TouchableOpacity>
+                        :
+                        <TouchableOpacity
+                          activeOpacity={1}
+                          onPress={() => {
+                            this.context.navigate('LightBox', { url: '../../../assets/icons/avatar/tou2.png'})
+                          }}
+                        >
+                          <Image style={{ width: pxToPt(40), height: pxToPt(40) }} source={require('../../../assets/icons/avatar/tou2.png')}></Image>
+                        </TouchableOpacity>
+                    }
+                  </View>
               }
 
             </View>
-          <View style={styles.list}>
+            <View style={styles.list}>
+              {
+                this.state.canChange ?
+                  <>
+                    <></>
+                    <View style={styles.rowItem}>
+                      <Text style={styles.itTxt}>用户名</Text>
+                      <TextInput
+                        style={styles.inpt}
+                        placeholder={'请输入用户名'}
+                        onChangeText={(user_name) => {
+                          this.setState({ user_name })
+                        }}
+
+                      ></TextInput>
+                    </View>
+                    <View style={styles.rowItem}>
+                      <Text style={styles.itTxt}>手机号</Text>
+                      <TextInput
+                        keyboardType={'numeric'}
+                        style={styles.inpt}
+                        placeholder={'请输入手机号'}
+                        onChangeText={(phoneNum) => this.setState({ phoneNum })}
+
+                      ></TextInput>
+                    </View>
+                  </> :
+                  <>
+                    <View style={styles.rowItem}>
+                      <Text style={styles.itTxt}>用户名</Text>
+                      <Text
+                        style={styles.inpt}
+                      >{rootStore.name}</Text>
+                    </View>
+                    <View style={styles.rowItem}>
+                      <Text style={styles.itTxt}>手机号</Text>
+                      <Text
+                        style={styles.inpt}
+                      >{this.state.phoneNum === '' ? '请输入手机号' : rootStore.phoneNum}</Text>
+                    </View>
+                  </>
+              }
+              <View style={styles.rowItem}>
+                <Text style={styles.itTxt}>邮箱</Text>
+                <Text
+                  style={styles.inpt}
+                >{rootStore.email}</Text>
+              </View>
+            </View>
+            <Modal
+              animationType={'slide'}
+              visible={this.state.showModal}
+              transparent={true}
+            >
+              <View style={{ flex: 1, alignItems: 'center', marginTop: pxToPt(193) }}>
+                <View style={{ width: pxToPt(319), height: pxToPt(166), borderRadius: pxToPt(32), backgroundColor: '#2B2D33', paddingLeft: pxToPt(20), paddingRight: pxToPt(20), paddingTop: pxToPt(32), paddingBottom: pxToPt(32) }}>
+                  <Text style={{ color: '#FFFFFF', fontWeight: '500', fontSize: pxToPt(14), height: pxToPt(44) }}>
+                    请确认是否保存修改内容。
+                </Text>
+                  <View style={{ width: '100%', flexDirection: 'row', justifyContent: 'space-around', marginTop: pxToPt(28) }}>
+                    <TouchableHighlight
+                      onPress={
+                        this.cancelSumb
+                      }
+
+                      style={{ width: pxToPt(88), height: pxToPt(30), borderRadius: pxToPt(14), justifyContent: 'center', alignItems: 'center', borderWidth: pxToPt(1), borderColor: '#fff' }}>
+                      <Text style={{ color: '#fff', fontSize: pxToPt(14) }}>取消</Text>
+                    </TouchableHighlight>
+                    <TouchableHighlight
+                      onPress={this.onsumbit}
+                      style={{ width: 88, height: 30, borderRadius: 14, justifyContent: 'center', alignItems: 'center', backgroundColor: "#fff" }}>
+                      <Text style={{ color: '#3D72E4', fontSize: 14 }}>确认</Text>
+                    </TouchableHighlight>
+                  </View>
+                </View>
+              </View>
+            </Modal>
             {
               this.state.canChange ?
+                <></> :
                 <>
-                  <></>
-                  <View style={styles.rowItem}>
-                    <Text style={styles.itTxt}>用户名</Text>
-                    <TextInput
-                      style={styles.inpt}
-                      placeholder={'请输入用户名'}
-                      onChangeText={(user_name) => {
-                        this.setState({ user_name })
-                      }}
-
-                    ></TextInput>
-                  </View>
-                  <View style={styles.rowItem}>
-                    <Text style={styles.itTxt}>手机号</Text>
-                    <TextInput
-                      keyboardType={'numeric'}
-                      style={styles.inpt}
-                      placeholder={'请输入手机号'}
-                      onChangeText={(phoneNum) => this.setState({ phoneNum })}
-
-                    ></TextInput>
-                  </View>
-                </> :
-                <>
-                  <View style={styles.rowItem}>
-                    <Text style={styles.itTxt}>用户名</Text>
-                    <Text
-                      style={styles.inpt}
-                    >{rootStore.name}</Text>
-                  </View>
-                  <View style={styles.rowItem}>
-                    <Text style={styles.itTxt}>手机号</Text>
-                    <Text
-                      style={styles.inpt}
-                    >{this.state.phoneNum === '' ? '请输入手机号' : rootStore.phoneNum}</Text>
+                  <View
+                    style={{ height: pxToPt(44), width: pxToPt(343), marginLeft: pxToPt(16), marginTop: pxToPt(286), borderRadius: pxToPt(8), overflow: 'hidden' }}
+                  >
+                    <ToastTwo
+                      loginOut={this.loginOut}
+                      zbtnBC={"#3D72E4"}
+                      zbtnFC={'#fff'}
+                      zbtnF={'退出登录'}
+                      qbtnBoC={"#3D72E4"}
+                      qbtnBC={"#3D72E4"}
+                      showTex={'退出账号不会删除数据，下次依旧可以使用本账号'}
+                    ></ToastTwo>
                   </View>
                 </>
             }
-            <View style={styles.rowItem}>
-              <Text style={styles.itTxt}>邮箱</Text>
-              <Text
-                style={styles.inpt}
-              >{rootStore.email}</Text>
-            </View>
-          </View>
-          <Modal
-            animationType={'slide'}
-            visible={this.state.showModal}
-            transparent={true}
-          >
-            <View style={{ flex: 1, alignItems: 'center', marginTop: pxToPt(193) }}>
-              <View style={{ width: pxToPt(319), height: pxToPt(166), borderRadius: pxToPt(32), backgroundColor: '#2B2D33', paddingLeft: pxToPt(20), paddingRight: pxToPt(20), paddingTop: pxToPt(32), paddingBottom: pxToPt(32) }}>
-                <Text style={{ color: '#FFFFFF', fontWeight: '500', fontSize: pxToPt(14), height: pxToPt(44) }}>
-                  请确认是否保存修改内容。
-                </Text>
-                <View style={{ width: '100%', flexDirection: 'row', justifyContent: 'space-around', marginTop: pxToPt(28) }}>
-                  <TouchableHighlight
-                    onPress={
-                      this.cancelSumb
-                    }
-
-                    style={{ width: pxToPt(88), height: pxToPt(30), borderRadius: pxToPt(14), justifyContent: 'center', alignItems: 'center', borderWidth: pxToPt(1), borderColor: '#fff' }}>
-                    <Text style={{ color: '#fff', fontSize: pxToPt(14) }}>取消</Text>
-                  </TouchableHighlight>
-                  <TouchableHighlight
-                    onPress={this.onsumbit}
-                    style={{ width: 88, height: 30, borderRadius: 14, justifyContent: 'center', alignItems: 'center', backgroundColor: "#fff" }}>
-                    <Text style={{ color: '#3D72E4', fontSize: 14 }}>确认</Text>
-                  </TouchableHighlight>
-                </View>
-              </View>
-            </View>
-          </Modal>
-          {
-            this.state.canChange ?
-              <></> :
-              <>
-                <View
-                  style={{ height: pxToPt(44), width: pxToPt(343), marginLeft: pxToPt(16), marginTop: pxToPt(286), borderRadius: pxToPt(8), overflow: 'hidden' }}
-                >
-                  <ToastTwo
-                    loginOut={this.loginOut}
-                    zbtnBC={"#3D72E4"}
-                    zbtnFC={'#fff'}
-                    zbtnF={'退出登录'}
-                    qbtnBoC={"#3D72E4"}
-                    qbtnBC={"#3D72E4"}
-                    showTex={'退出账号不会删除数据，下次依旧可以使用本账号'}
-                  ></ToastTwo>
-                </View>
-              </>
-          }
           </View>
 
-      </SafeAreaView>
+        </SafeAreaView>
       </>
     )
   }

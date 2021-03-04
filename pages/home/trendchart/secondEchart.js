@@ -7,8 +7,10 @@ import {
     Dimensions
 } from 'react-native'
 import { Echarts } from 'native-echarts';
+
 import axios from '../../../utils/api/request'
 import { HOME_DATALIST } from '../../../utils/api/pathMap'
+
 import { inject, observer } from 'mobx-react'
 import Toast from '../../../utils/api/Toast'
 @inject('rootStore')
@@ -45,6 +47,16 @@ export default class secondEchart extends Component {
                 },
                 tooltip: {
                     trigger: 'axis',
+                    // formatter: function (params) {
+                    //     var htmlStr = '';
+                    //     htmlStr += '<div><span style="color:#fff;">' + params[0].name + '</span><br/> ';
+                    //     for (var i = 0; i < params.length; i++) {
+                    //         htmlStr += '<span style="width: 8px;height: 8px;display:inline-block;border-radius: 50%;background-color:' + params[i].color + '"></span><span style="color:#fff;">' + params[i].seriesName + ':</span>' +
+                    //             '<span style="color:#fff;">' + params[i].value + '</span><br/>';
+                    //     }
+                    //     htmlStr += '</div>';
+                    //     return htmlStr;
+                    // },
                 },
                 xAxis: { //x轴
                     boundaryGap: false,
@@ -71,8 +83,15 @@ export default class secondEchart extends Component {
                 },
                 yAxis: [
                     {
+                        position: 'left',
+                        max: function (value) {
+                            return value.max + value.max * 0.8
+                        },
+                        min: function (value) {
+                            return value.min - value.min * 0.5
+                        },
                         type: 'value',
-                        boundaryGap: false,
+                        boundaryGap: [0, '100%'],
                         position: 'left',
                         axisLine: {
                             show: false, //是否显示轴线
@@ -84,11 +103,16 @@ export default class secondEchart extends Component {
                             show: false, //是否显示分隔线
                         },
                         scale: true,
-                        // max: function (value) {
-                        //     return value.max + value.max * 0.4
-                        // }
+                        // splitNumber:
                     },
                     {
+                        position: 'left',
+                        max: function (value) {
+                            return value.max + value.max * 0.008
+                        },
+                        min: function (value) {
+                            return value.min - value.min * 0.005
+                        },
                         type: 'value',
                         boundaryGap: [0, '50%'],
                         position: 'left',
@@ -104,6 +128,13 @@ export default class secondEchart extends Component {
                         scale: true
                     },
                     {
+                        position: 'left',
+                        max: function (value) {
+                            return value.max + value.max * 0.008
+                        },
+                        min: function (value) {
+                            return value.min - value.min * 0.005
+                        },
                         type: 'value',
                         boundaryGap: [0, '50%'],
                         position: 'left',
@@ -220,6 +251,16 @@ export default class secondEchart extends Component {
                         },
                         tooltip: {
                             trigger: 'axis',
+                            // formatter: function (params) {
+                            //     var htmlStr = '';
+                            //     htmlStr += '<div><span style="color:#fff;">' + params[0].name + '</span><br/> ';
+                            //     for (var i = 0; i < params.length; i++) {
+                            //         htmlStr += '<span style="width: 8px;height: 8px;display:inline-block;border-radius: 50%;background-color:' + params[i].color + '"></span><span style="color:#fff;">' + params[i].seriesName + ':</span>' +
+                            //             '<span style="color:#fff;">' + params[i].value + '</span><br/>';
+                            //     }
+                            //     htmlStr += '</div>';
+                            //     return htmlStr;
+                            // },
                         },
                         xAxis: { //x轴
                             boundaryGap: false,
@@ -244,100 +285,98 @@ export default class secondEchart extends Component {
                                 lineHeight: 14,
                             },
                         },
-                        yAxis: [{
-                            position: 'left',
-                            max: function (value) {
-                                return value.max + value.max * 0.008
-                            },
-                            min: function (value) {
-                                return value.min - value.min * 0.005
-                            },
-                            type: 'value',
-                            boundaryGap: false,
-                            position: 'left',
-                            axisLine: {
-                                show: false, //是否显示轴线
-                            },
-                            axisTick: {
-                                show: false, //刻度
-                            },
-                            splitLine: {
-                                show: false, //是否显示分隔线
-                            },
-                            scale: true,
+                        yAxis: [
+                            {
+                                position: 'left',
+                                max: function (value) {
+                                    return value.max + value.max * 0.008
+                                },
+                                min: function (value) {
+                                    return value.min - value.min * 0.005
+                                },
+                                type: 'value',
+                                boundaryGap: [0, '100%'],
+                                position: 'left',
+                                axisLine: {
+                                    show: false, //是否显示轴线
+                                },
+                                axisTick: {
+                                    show: false, //刻度
+                                },
+                                splitLine: {
+                                    show: false, //是否显示分隔线
+                                },
+                                scale: true,
 
-                        },
-                        {
-                            position: 'left',
-                            max: function (value) {
-                                return value.max + value.max * 0.008
                             },
-                            min: function (value) {
-                                return value.min - value.min * 0.005
+                            {
+                                position: 'left',
+                                max: function (value) {
+                                    return value.max + value.max * 0.008
+                                },
+                                min: function (value) {
+                                    return value.min - value.min * 0.005
+                                },
+                                type: 'value',
+                                boundaryGap: [0, '50%'],
+                                position: 'left',
+                                axisLine: {
+                                    show: false, //是否显示轴线
+                                },
+                                axisTick: {
+                                    show: false, //刻度
+                                },
+                                splitLine: {
+                                    show: false, //是否显示分隔线
+                                },
+                                scale: true
                             },
-                            type: 'value',
-                            boundaryGap: false,
-                            position: 'left',
-                            axisLine: {
-                                show: false, //是否显示轴线
-                            },
-                            axisTick: {
-                                show: false, //刻度
-                            },
-                            splitLine: {
-                                show: false, //是否显示分隔线
-                            },
-                            scale: true,
-                        },
-                        {
-                            position: 'left',
-                            max: function (value) {
-                                return value.max + value.max * 0.008
-                            },
-                            min: function (value) {
-                                return value.min - value.min * 0.005
-                            },
-                            type: 'value',
-                            boundaryGap: false,
-                            position: 'left',
-                            axisLine: {
-                                show: false, //是否显示轴线
-                            },
-                            axisTick: {
-                                show: false, //刻度
-                            },
-                            splitLine: {
-                                show: false, //是否显示分隔线
-                            },
-                            scale: true,
-                        }
+                            {
+                                position: 'left',
+                                max: function (value) {
+                                    return value.max + value.max * 0.008
+                                },
+                                min: function (value) {
+                                    return value.min - value.min * 0.005
+                                },
+                                type: 'value',
+                                boundaryGap: [0, '50%'],
+                                position: 'left',
+                                axisLine: {
+                                    show: false, //是否显示轴线
+                                },
+                                axisTick: {
+                                    show: false, //刻度
+                                },
+                                splitLine: {
+                                    show: false, //是否显示分隔线
+                                },
+                                scale: true
+                            }
                         ],
                         series: [
                             {
+                                data: priceArr,
                                 name: '价格',
                                 type: 'line',
                                 smooth: true,    //光滑
                                 symbol: 'none',
-                                yAxisIndex: 0,
-                                data: priceArr,
                                 yAxisIndex: 0
                             },
                             {
+                                data: marketCap,
                                 name: '总交易量',
                                 type: 'line',
                                 smooth: true,    //光滑
                                 symbol: 'none',
-                                yAxisIndex: 0,
-                                data: marketCap,
                                 yAxisIndex: 1,
                             },
                             {
-                                name: '24小时成交量',
+                                data: volhArr,
+                                name: '成交量',
                                 type: 'line',
                                 smooth: true,    //光滑
                                 symbol: 'none',
-                                yAxisIndex: 0,
-                                data: volhArr,
                                 yAxisIndex: 2,
                             },
                         ]
@@ -390,7 +429,7 @@ export default class secondEchart extends Component {
                                     <Text>拼命加载中....</Text>
                                 </View> : <></>
                         }
-                        <Echarts ref={this.echartsRef} option={this.state.option} height={320} />
+                        <Echarts option={this.state.option} height={320} />
 
                     </View>
                 </View>
