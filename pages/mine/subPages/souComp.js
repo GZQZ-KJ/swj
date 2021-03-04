@@ -87,7 +87,10 @@ let item = [
 export default class souComp extends Component {
     render() {
         return (
-            <SafeAreaView style={{ flex: 1, backgroundColor: '#F8F9FA' }}>
+            <>
+                <StatusBar barStyle={'dark-content'}></StatusBar>
+                <SafeAreaView style={{ flex: 1,backgroundColor:'#fff'}}>
+                    <View style={{ flex: 1,backgroundColor:'#f8f9fa' }}>
                 <StatusBar backgroundColor="#fff" barStyle={'dark-content'}></StatusBar>
                 <View style={styles.arroWrap}>
                     <TouchableOpacity
@@ -112,7 +115,9 @@ export default class souComp extends Component {
                     }
 
                 </ScrollView>
+                </View>
             </SafeAreaView>
+            </>
         )
     }
 }

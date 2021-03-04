@@ -75,7 +75,8 @@ export default class bank extends Component {
     return (
       <>
         <StatusBar backgroundColor="#fff" barStyle={'dark-content'}></StatusBar>
-        <SafeAreaView style={{ flex: 1 }}>
+        <SafeAreaView style={{ flex: 1,backgroundColor:'#fff' }}>
+          <View style={{backgroundColor:'#f8f9fa'}}>
           <View style={styles.arroWrap}>
             <TouchableOpacity
               style={{ width: pxToPt(60), height: pxToPt(44), paddingLeft: pxToPt(16), justifyContent: 'center' }}
@@ -136,6 +137,7 @@ export default class bank extends Component {
               </View>
             </ScrollView>
           </SafeAreaView>
+          </View>
         </SafeAreaView>
       </>
     )

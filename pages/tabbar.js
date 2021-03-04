@@ -7,7 +7,8 @@ import {
   Image,
   Text,
   StyleSheet,
-  Platform
+  Platform,
+  StatusBar
 } from 'react-native';
 
 import { pxToPt } from "../utils/styleKits";
@@ -81,7 +82,6 @@ export default class tabbar extends Component {
     });
     return (
       <View style={styles.container}>
-
         <TabNavigator hidesTabTouch={true} tabBarStyle={{ backgroundColor: '#FFFFFF' }}>
           {tabViews}
         </TabNavigator>
@@ -95,6 +95,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
+    zIndex:20,
     paddingBottom:Platform.OS === 'ios' ? pxToPt(34) : 0
   },
 

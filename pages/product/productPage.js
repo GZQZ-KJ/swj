@@ -17,7 +17,7 @@ import {
   Platform
 } from 'react-native';
 
-
+import { isIphoneX } from '../../utils/isIphoneX'
 import { pxToPt } from "../../utils/styleKits";
 import TopComp from './topComp/index'
 import ProItem from '../../components/product/proItem'
@@ -119,7 +119,6 @@ export default class productPage extends Component {
     var priceSort = price_Sort ? 'price_desc' : 'prrice_asc'
     var url = PRODUCT_INDEX + `?min_sum_count=${min_sum_count}&max_sum_count=${max_sum_count}&min_price=${min_price}&max_price=${max_price}&page=${current_page}&page_size=${pageSize}&sort_code=${timeSort, sumCountSort, priceSort}`
     //发送请求
-    console.log('[价格筛选 请求前]', '最小总价', min_sum_count, '最大总价', max_sum_count, '最小单价', min_price, '最大单价', max_price)
     await axios.get(url, {
       headers: {
         "token": token
@@ -251,20 +250,20 @@ export default class productPage extends Component {
   render() {
     let { rootStore } = this.props
     return (
-      <SafeAreaView style={{ flex: 1 }}>
-        {
-          Platform.OS === 'ios' ? <StatusBar></StatusBar> :
-            <StatusBar backgroundColor="#fff" barStyle={'dark-content'}></StatusBar>
-        }
-        <View style={styles.topBox}>
-          <TopComp showState={this._onShow} show={this.state.show}></TopComp>
-          <Modal
-            animationType={'fade'}
-            transparent={true}
-            visible={this.state.modalVisible}
-          >
-            <View style={styles.modalBox}>
-              <TopComp modalState={this._onchange} flag={this.state.flag} onPress={() => { this._cancal() }}></TopComp>
+      <>
+        <SafeAreaView style={{ flex: 1 }}>
+          {
+            Platform.OS === 'ios' ? <StatusBar></StatusBar> :
+              <StatusBar backgroundColor="#fff" barStyle={'dark-content'}></StatusBar>
+          }
+          <View style={styles.topBox}>
+            <TopComp showState={this._onShow} show={this.state.show}></TopComp>
+            <Modal
+              animationType={'fade'}
+              visible={this.state.modalVisible}
+            >
+              <View style={{...styles.modalBox, marginTop: !this.state.flag && isIphoneX() || this.state.flag && isIphoneX()? pxToPt(44) : null}}>
+                <TopComp modalState={this._onchange} flag={this.state.flag} onPress={() => { this._cancal() }}></TopComp>
               {/* 价格筛选头部弹窗 */}
               {
                 this.state.flag ? (
@@ -398,10 +397,11 @@ export default class productPage extends Component {
                   <Image style={styles.check} source={require('../../assets/icons/pro/pro-s.png')}></Image>
                 </TouchableNativeFeedback>
               </View>
-            </View>
-          </Modal>
-          <SafeAreaView style={{ paddingBottom: pxToPt(90) }}>
+              </View>
+            </Modal>
+          <SafeAreaView >
             <ScrollView
+              style={{ marginBottom: isIphoneX() ? pxToPt(48) : 0 }}
               refreshControl={
                 <RefreshControl
                   refreshing={this.state.isRefreshing}
@@ -441,8 +441,9 @@ export default class productPage extends Component {
           </SafeAreaView>
           {/* } */}
 
-        </View>
+          </View>
       </SafeAreaView>
+      </>
     )
   }
 }
@@ -450,6 +451,10 @@ export default class productPage extends Component {
 const styles = StyleSheet.create({
   drawer: {
     backgroundColor: '#FFFFFF'
+  },
+  topBox:{
+    backgroundColor:'#f8f9fa',
+    flex:1
   },
   priceTxt: {
     marginTop: pxToPt(11),
@@ -485,16 +490,18 @@ const styles = StyleSheet.create({
   choose: {
     justifyContent: 'space-around',
     borderTopWidth: pxToPt(1),
-    borderTopColor: '#EBECED',
+    borderTopColor: '#EBECEDFF',
     paddingTop: pxToPt(9),
     paddingBottom: pxToPt(8),
     backgroundColor: '#FFFFFF',
     height: pxToPt(48),
-    alignItems: 'center'
+    alignItems: 'center',
+    borderBottomWidth:pxToPt(1),
+    borderBottomColor:'#EBECEDFF',
   },
   modalBox: {
     flex: 1,
-    backgroundColor: 'rgba(0, 0, 0, .6)'
+    // backgroundColor: 'rgba(0, 0, 0, .6)'
   },
   cancel: {
     height: pxToPt(30),

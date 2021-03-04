@@ -5,10 +5,9 @@ import {
   Image,
   TouchableNativeFeedback,
   StyleSheet,
-  Platform
 } from 'react-native'
 import { pxToPt } from "../../../utils/styleKits";
-
+import{isIphoneX} from '../../../utils/isIphoneX'
 export default class top extends Component {
   constructor(props) {
     super(props)
@@ -33,7 +32,7 @@ export default class top extends Component {
   }
   render() {
     return (
-      <View style={[styles.header,Platform.OS === 'ios' && this.props.flag? styles.headerTwo : null]}>
+      <View style={styles.header}>
         <TouchableNativeFeedback onPress={() => this._isFiltrate()}>
           <View style={styles.item}>
             <Text style={styles.title, [this.props.flag ? { color: '#3D72E4',fontSize:15,fontWeight:'700' } : { color: '#2B2D33' }]}>价格筛选</Text>
@@ -56,10 +55,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'center',
     height: pxToPt(44),
-    backgroundColor: '#FFFFFF',
-  },
-  headerTwo:{
-    marginTop:pxToPt(44)
+    backgroundColor: '#fff',
   },
   item: {
     flex: 1,

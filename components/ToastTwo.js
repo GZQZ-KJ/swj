@@ -9,6 +9,7 @@ import {
     Platform
 } from "react-native";
 import { pxToPt } from "../utils/styleKits";
+import {isIphoneX} from "../utils/isIphoneX"
 class Toast extends Component {
     /**
      * showTex 显示的文本
@@ -231,7 +232,7 @@ const styles = StyleSheet.create({
         letterSpacing: -1,
         height:pxToPt(44),
         marginBottom:pxToPt(28),
-        lineHeight:Platform.OS === 'ios' ? pxToPt(22) :pxToPt(22),
+        lineHeight:isIphoneX ? pxToPt(20) :pxToPt(22),
         height:pxToPt(44)
       },
     dobut: {

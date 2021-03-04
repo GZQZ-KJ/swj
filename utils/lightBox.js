@@ -37,7 +37,8 @@ const styles = StyleSheet.create({
         height: pxToPt(44),
         alignItems: 'center',
         flexDirection: 'row',
-        backgroundColor: '#000'
+        backgroundColor: '#000',
+    
     },
     arrow: {
         width: pxToPt(11.82),

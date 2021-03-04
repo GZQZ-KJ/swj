@@ -97,7 +97,10 @@ export default class minePage extends Component {
   render() {
     let { rootStore } = this.props
     return (
-      <SafeAreaView style={{flex:1,backgroundColor:'#F8F9FA'}}>
+      <>
+      <SafeAreaView style={{flex:1,backgroundColor:'#fff'}}>
+        <View style={{flex:1,backgroundColor:'#F8F9FA'}}>
+          
        <StatusBar backgroundColor="#fff" barStyle={'dark-content'}></StatusBar>
         <View style={styles.top}>
           <Text style={styles.mineTxt}>我的</Text>
@@ -209,7 +212,6 @@ export default class minePage extends Component {
             <ListItem list={this.state.listData[4]}></ListItem>
           </TouchableOpacity>
         </View>
-
         <View style={{ marginBottom: pxToPt(8) }}>
           <TouchableOpacity
             activeOpacity={1}
@@ -240,7 +242,9 @@ export default class minePage extends Component {
           </TouchableOpacity>
 
         </View>
+        </View>
       </SafeAreaView >
+      </>
     )
   }
 }

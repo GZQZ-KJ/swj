@@ -49,7 +49,10 @@ export default class setting extends Component {
     render() {
         let { active } = this.state
         return (
-            <SafeAreaView style={{ flex: 1 }}>
+            <>
+            <StatusBar barStyle={'dark-content'}></StatusBar>
+            <SafeAreaView style={{ flex: 1,backgroundColor:'#fff'}}>
+                <View style={{ flex: 1 }}>
                 <StatusBar backgroundColor="#fff" barStyle={'dark-content'}></StatusBar>
                 <View style={styles.arroWrap}>
                     <TouchableOpacity
@@ -102,7 +105,9 @@ export default class setting extends Component {
                         <Text style={{ color: '#fff', fontSize: pxToPt(15), fontWeight: '500' }}>清除缓存</Text>
                     </TouchableOpacity>
                 </View>
+                </View>
             </SafeAreaView>
+            </>
         )
     }
 }

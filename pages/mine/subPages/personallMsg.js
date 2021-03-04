@@ -194,11 +194,9 @@ export default class setting extends Component {
     let { rootStore } = this.props
     return (
       <>
-        {
-          Platform.OS === 'ios' ? <View style={{ marginTop: pxToPt(44) }}></View> :
-            <StatusBar backgroundColor="#fff" barStyle={'dark-content'}></StatusBar>
-        }
-        <SafeAreaView style={{ flex: 1 }}>
+            <StatusBar backgroundColor="#fff" barStyle={'dark-content'}></StatusBar> 
+        <SafeAreaView style={{ flex: 1 ,backgroundColor:'#fff'}}>
+          <View style={{ flex: 1 ,backgroundColor:'#f8f9fa'}}>
           <StatusBar backgroundColor="#fff" barStyle={'dark-content'}></StatusBar>
 
           <View style={styles.arroWrap}>
@@ -369,7 +367,7 @@ export default class setting extends Component {
                 </>
             }
           </View>
-
+          </View>
         </SafeAreaView>
       </>
     )

@@ -35,42 +35,47 @@ export default class about extends Component {
 
     render() {
         return (
-            <SafeAreaView style={{flex:1}}>
-            <StatusBar backgroundColor="#fff" barStyle={'dark-content'}></StatusBar>
-                <View style={styles.arroWrap}>
-                    <TouchableOpacity
-                        style={{ width: pxToPt(60), height: pxToPt(44), paddingLeft: pxToPt(16), justifyContent: 'center' }}
-                        onPress={() => {
-                            this.props.navigation.navigate('Tabbar')
-                        }}>
-                        <Image style={styles.arrow} source={require('../../../assets/icons/backx.png')}></Image>
-                    </TouchableOpacity>
-                    <Text style={styles.title}>关于</Text>
-                </View>
-                <View style={styles.container}>
-                    <View style={styles.wrapper}>
-                        <Text style={{ marginBottom: pxToPt(8) }}>
-                            目前版本：
-                            <Text style={styles.ver}>V{this.state.version}</Text>
-                        </Text>
-                        <Text style={{ marginBottom: pxToPt(8) }}>
-                            最新版本：
-                            <Text style={styles.ver}>V{this.props.rootStore.appVersion}</Text>
-                        </Text>
-                        <Text style={styles.int}>{this.state.introduction}</Text>
-                        <Text style={styles.msg}>{this.state.msg}</Text>
-                    </View>
-                    {
-                        !!this.state.isUpdate ? <View style={{ top: pxToPt(286), width: '100%', justifyContent: 'center', alignItems: 'center' }}>
+            <>
+                <StatusBar barStyle={'dark-content'}></StatusBar>
+                <SafeAreaView style={{ flex: 1,backgroundColor:'#fff'}}>
+                    <View style={{ flex: 1 }}>
+                        <StatusBar backgroundColor="#fff" barStyle={'dark-content'}></StatusBar>
+                        <View style={styles.arroWrap}>
                             <TouchableOpacity
-                                onPress={this.upDate}
-                                style={{ height: pxToPt(44), width: pxToPt(343), backgroundColor: '#3D72E4', borderRadius: 8, justifyContent: 'center', alignItems: 'center' }}>
-                                <Text style={{ color: '#fff' }}>更新App</Text>
+                                style={{ width: pxToPt(60), height: pxToPt(44), paddingLeft: pxToPt(16), justifyContent: 'center' }}
+                                onPress={() => {
+                                    this.props.navigation.navigate('Tabbar')
+                                }}>
+                                <Image style={styles.arrow} source={require('../../../assets/icons/backx.png')}></Image>
                             </TouchableOpacity>
-                        </View> : <></>
-                    }
-                </View>
-            </SafeAreaView>
+                            <Text style={styles.title}>关于</Text>
+                        </View>
+                        <View style={styles.container}>
+                            <View style={styles.wrapper}>
+                                <Text style={{ marginBottom: pxToPt(8) }}>
+                                    目前版本：
+                            <Text style={styles.ver}>V{this.state.version}</Text>
+                                </Text>
+                                <Text style={{ marginBottom: pxToPt(8) }}>
+                                    最新版本：
+                            <Text style={styles.ver}>V{this.props.rootStore.appVersion}</Text>
+                                </Text>
+                                <Text style={styles.int}>{this.state.introduction}</Text>
+                                <Text style={styles.msg}>{this.state.msg}</Text>
+                            </View>
+                            {
+                                !!this.state.isUpdate ? <View style={{ top: pxToPt(286), width: '100%', justifyContent: 'center', alignItems: 'center' }}>
+                                    <TouchableOpacity
+                                        onPress={this.upDate}
+                                        style={{ height: pxToPt(44), width: pxToPt(343), backgroundColor: '#3D72E4', borderRadius: 8, justifyContent: 'center', alignItems: 'center' }}>
+                                        <Text style={{ color: '#fff' }}>更新App</Text>
+                                    </TouchableOpacity>
+                                </View> : <></>
+                            }
+                        </View>
+                    </View>
+                </SafeAreaView>
+            </>
         )
     }
 }

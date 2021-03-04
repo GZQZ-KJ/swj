@@ -13,6 +13,7 @@ import {
     ImageBackground,
     Platform
 } from 'react-native'
+import {isIphoneX} from '../../../utils/isIphoneX'
 import Toast from '../../../utils/api/Toast'
 import axios from '../../../utils/api/request'
 import { pxToPt } from "../../../utils/styleKits";
@@ -128,9 +129,9 @@ export default class sellProduct extends Component {
         let { rootStore } = this.props
         return (
 
-            <SafeAreaView style={{flex:1}}>
+            <SafeAreaView style={{flex:1,backgroundColor:'#fff'}}>
               <StatusBar backgroundColor="#fff" barStyle={'dark-content'}></StatusBar>
-                
+                <View style={{flex:1,backgroundColor:'#f8f9fa'}}>
                 <View style={styles.arroWrap}>
                     <TouchableOpacity style={{ width: pxToPt(60), height: pxToPt(44), paddingLeft: pxToPt(16), justifyContent: 'center' }} onPress={() => {
                         this.props.navigation.navigate("Tabbar")
@@ -207,7 +208,7 @@ export default class sellProduct extends Component {
 
                 </View>
                 <Modal visible={this.state.showMyBanks} animationType={'slide'} >
-                    <View style={styles.arroWrap}>
+                    <View style={{...styles.arroWrap,marginTop:isIphoneX() ? pxToPt(44):0 }}>
                         <TouchableOpacity
                             style={{ width: pxToPt(60), height: pxToPt(44), alignItems: 'center', justifyContent: 'center' }}
                             onPress={() => {
@@ -260,6 +261,7 @@ export default class sellProduct extends Component {
                         </ScrollView>
                     </SafeAreaView>
                 </Modal>
+                </View>
             </SafeAreaView>
         )
     }
@@ -270,7 +272,6 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         flexDirection: 'row',
         backgroundColor: '#fff',
-        marginTop:Platform.OS === 'ios' ? pxToPt(44) : 0
     },
     arrow: {
         width: pxToPt(11.82),

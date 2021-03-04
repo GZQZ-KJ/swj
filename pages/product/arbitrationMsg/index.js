@@ -98,8 +98,10 @@ export default class arbitration extends Component {
         } = this.state.data
         if (time_list === undefined) return (<></>)
         return (
-            <SafeAreaView style={{flex:1}}>
-                 <StatusBar backgroundColor="#fff" barStyle={'dark-content'}></StatusBar>
+            <>
+            <StatusBar backgroundColor="#fff" barStyle={'dark-content'}></StatusBar>
+            <SafeAreaView style={{flex:1,backgroundColor:'#fff'}}>
+                 <View  style={{flex:1,backgroundColor:'#f8f9fa'}}>
                 <View style={styles.arroWrap}>
                     <TouchableOpacity
           style={{ width: pxToPt(60),  height: pxToPt(44),paddingLeft:pxToPt(16), justifyContent: 'center' }} 
@@ -173,7 +175,9 @@ export default class arbitration extends Component {
                         </View>
                     </ScrollView>
                 </SafeAreaView>
+                </View>
             </SafeAreaView>
+            </>
         )
     }
 }

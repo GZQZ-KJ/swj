@@ -119,8 +119,10 @@ export default class home extends Component {
         const { data } = this.state
         var finish = this.props.route.params.finish || ''
         return (
-            <SafeAreaView style={{flex:1}}>
-               <StatusBar backgroundColor="#fff" barStyle={'dark-content'}></StatusBar>
+            <>
+            <StatusBar backgroundColor="#fff" barStyle={'dark-content'}></StatusBar>
+            <SafeAreaView style={{flex:1,backgroundColor:'#fff'}}>
+                <View style={{flex:1,backgroundColor:'#f8f9fa'}}>
                 <View style={styles.arroWrap}>
                     {
                         !!finish ? <></> :
@@ -246,7 +248,9 @@ export default class home extends Component {
                     }
 
                 </View>
+                </View>
             </SafeAreaView>
+       </>
         )
     }
 }

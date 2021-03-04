@@ -26,11 +26,13 @@ export default class homePage extends Component {
           Platform.OS === 'ios' ? <StatusBar></StatusBar>
             : <StatusBar backgroundColor="#fff" barStyle={'dark-content'}></StatusBar>
         }
-        <SafeAreaView style={{ flex: 1 }}>
+        <SafeAreaView style={{ flex: 1,backgroundColor:'#fff'}}>
+          <View style={{ flex: 1,backgroundColor:'#f8f9fa'}}>
           <TopShow navigation={this.props.navigation}></TopShow>
           <Chart></Chart>
           {/* <MySwiper></MySwiper> */}
           <DealMsg></DealMsg>
+          </View>
         </SafeAreaView>
       </>
     )

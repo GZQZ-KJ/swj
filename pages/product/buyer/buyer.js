@@ -100,7 +100,7 @@ export default class home extends Component {
                     })
                     this.context.navigate("OrderDetail",{id:r.data.result.so_id,activeTop:1})
                     this.onFn()
-                }, 0);
+                }, 2000);
             }
             else {
                 Toast.message(r.data.message, 2000, 'center')
@@ -281,9 +281,11 @@ export default class home extends Component {
         const { data, dataLock, num, dataPay,changeDetail,showBtn,changeHeadO } = this.state
         const result = this.controlHeadMsg(num)
         return (
-            <SafeAreaView style={{ flex: 1 }}>
-                
+            <>
               <StatusBar backgroundColor="#fff" barStyle={'dark-content'}></StatusBar>
+
+            <SafeAreaView style={{ flex: 1,backgroundColor:'#fff' }}>
+                <View style={{ flex: 1,backgroundColor:'#f8f9fa' }}>
                 <View style={styles.arroWrap}>
                     <TouchableOpacity
                         style={{ width: pxToPt(60), height: pxToPt(44), paddingLeft: pxToPt(16), justifyContent: 'center' }}
@@ -456,7 +458,9 @@ export default class home extends Component {
                     }
 
                 </ScrollView>
+                </View>
             </SafeAreaView>
+            </>
         )
     }
 }

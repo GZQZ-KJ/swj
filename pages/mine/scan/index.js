@@ -84,7 +84,8 @@ export default class scan extends Component {
         let { userId, userName, avaterUrl, email, showModal, showNextModal, resultName, resultmessage, code, message } = this.state
  
         return (
-            <SafeAreaView style={{ flex: 1 }}>
+            <SafeAreaView style={{ flex: 1,backgroundColor:'#fff' }}>
+                <View  style={{ flex: 1,backgroundColor:'#f8f9fa' }}>
                <StatusBar backgroundColor="#fff" barStyle={'dark-content'}></StatusBar>
                 
                 <View style={styles.arroWrap}>
@@ -202,6 +203,7 @@ export default class scan extends Component {
                         </View>
                     </View>
                 </Modal>
+                </View>
             </SafeAreaView>
         )
     }

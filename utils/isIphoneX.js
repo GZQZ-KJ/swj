@@ -17,8 +17,8 @@ const X_HEIGHT = 812;
 export function isIphoneX() {
     return (
         Platform.OS === 'ios' &&
-        ((screenH === X_HEIGHT && screenW === X_WIDTH) ||
-            (screenH === X_WIDTH && screenW === X_HEIGHT))
+        ((screenH >= X_HEIGHT && screenW >= X_WIDTH) ||
+            (screenH >= X_WIDTH && screenW >= X_HEIGHT))
     )
 }
 

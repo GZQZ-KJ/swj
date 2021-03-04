@@ -42,7 +42,10 @@ export default class service extends Component {
     }
     render() {
         return (
-            <SafeAreaView style={{flex:1}}>
+            <>
+            <StatusBar barStyle={'dark-content'}></StatusBar>
+            <SafeAreaView style={{ flex: 1,backgroundColor:'#fff'}}>
+                <View style={{ flex: 1,backgroundColor:'#f8f9fa' }}>
               <StatusBar backgroundColor="#fff" barStyle={'dark-content'}></StatusBar>
                 <View style={styles.arroWrap}>
                     <TouchableOpacity
@@ -62,7 +65,9 @@ export default class service extends Component {
                     setAllowFileAccessFromFileURLs={true}
                     setAllowUniversalAccessFromFileURLs={true}
                 />
+                </View>
             </SafeAreaView>
+            </>
         )
     }
 }

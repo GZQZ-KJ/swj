@@ -14,6 +14,7 @@ import {
   StatusBar
 } from 'react-native'
 
+import {isIphoneX} from '../../utils/isIphoneX'
 import basicStyle from '../../components/styles/basic/index'
 import ListItem from './ListItem/listitem'
 import { ORDERS_TAG, PRODUCT_TAG, ORDERS_LIST, PRODUCT_SALELIST, PRODUCT_RECEIVE, ORDERS_PAY } from '../../utils/api/pathMap'
@@ -329,8 +330,9 @@ export default class orderPage extends Component {
               <Text style={{ color: '#8D9099', marginTop: pxToPt(58), alignSelf: 'center', fontWeight: '400', fontSize: pxToPt(15) }}>暂无订单</Text>
             </>
             :
-            <SafeAreaView style={{flex:1 }}>
+            <SafeAreaView style={{flex:1,backgroundColor:"#f8f9fa"}}>
               <ScrollView
+              style={{marginTop:pxToPt(8)}}
                 refreshControl={
                   <RefreshControl
                     refreshing={this.state.isRefreshing}
@@ -413,6 +415,8 @@ const styles = StyleSheet.create({
     width: pxToPt(229),
     borderRadius: pxToPt(9),
     backgroundColor: '#7676801F',
+    paddingTop:isIphoneX() ? pxToPt(5) : null,
+
   },
   ctrlf: {
     flex: 1,
@@ -443,8 +447,9 @@ const styles = StyleSheet.create({
     height: pxToPt(28),
     width: pxToPt(117),
     borderRadius: pxToPt(7),
+    paddingTop:isIphoneX() ? pxToPt(5) : null,
     backgroundColor: '#3D72E4FF',
-    elevation: pxToPt(8),
+    elevation: 2,
     shadowColor: '#1f000000',
     shadowOffset: { width:pxToPt(0), height: pxToPt(3) },
     shadowOpacity: pxToPt(1)
@@ -472,6 +477,7 @@ const styles = StyleSheet.create({
     marginBottom: pxToPt(11),
     height:pxToPt(21),
     fontSize: pxToPt(15),
+    fontWeight:'400',
     color: '#8D9099'
   },
   itemO: {
@@ -479,6 +485,7 @@ const styles = StyleSheet.create({
     marginBottom:pxToPt(11),
     height: pxToPt(21),
     fontSize: pxToPt(15),
+    fontWeight:'500',
     color: '#3D72E4'
   },
   underscore: {

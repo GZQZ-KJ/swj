@@ -87,8 +87,9 @@ export default class addBank extends Component {
   }
   render() {
     return (
-      <SafeAreaView style={{ flex: 1 }}>
+      <SafeAreaView style={{ flex: 1,backgroundColor:'#fff' }}>
         <StatusBar backgroundColor="#fff" barStyle={'dark-content'}></StatusBar>
+        <View style={{ flex: 1,backgroundColor:'#f8f9fa' }}>
         <View style={styles.arroWrap}>
           <TouchableOpacity
             style={{ width: pxToPt(60), height: pxToPt(60), alignItems: 'center', justifyContent: 'center' }}
@@ -189,6 +190,7 @@ export default class addBank extends Component {
         <TouchableOpacity style={styles.btn} activeOpacity={.7} onPress={this._confirm}>
           <Text style={styles.txt}>确认</Text>
         </TouchableOpacity>
+        </View>
       </SafeAreaView>
     )
   }
@@ -211,7 +213,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     flexDirection: 'row',
     backgroundColor: '#fff',
-    marginTop: Platform.OS === 'ios' ? pxToPt(44) : 0
   },
   arrow: {
     width: pxToPt(11.82),
