@@ -36,7 +36,7 @@ export default class arbiPerson extends Component {
                 <View style={styles.head}>
                     <View style={styles.myHead}>
                         {
-                            avaterUrl ?
+                            !!avaterUrl ?
                                 (<Image style={styles.headImg} source={{ uri: avaterUrl }}></Image>) :
                                 (<Image style={styles.headImg} source={require('../../../assets/icons/tou1.png')}></Image>)
                         }

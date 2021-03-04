@@ -205,17 +205,13 @@ export default class home extends Component {
         let { data, dataLock, dataPay } = this.state
 
         let countTime = data.sale_expire_time
-        !!dataPay && !!dataPay.collection_expire_time ?
-            countTime = dataPay.collection_expire_time :
-            !!dataLock.pay_expire_time && dataLock.pay_expire_time !== undefined ?
-                countTime = dataLock.pay_expire_time :
-                countTime
         this.time = setInterval(() => {
             let targetTime = countTime
             const now = Math.round(new Date())
             targetTime = targetTime.substring(0, 19)
             targetTime = targetTime.replace(/-/g, '/')
-            const Target = new Date(targetTime).getTime()
+            const Target = Date.parse(new Date(targetTime))
+
             let reduces = Target - now
             if (reduces <= 0) {
                 clearInterval(this.time)

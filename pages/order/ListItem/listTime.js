@@ -15,13 +15,13 @@ export default class listTime extends Component {
     }
     onFn = () => {
         let { countTime } = this.props
-        console.log(countTime,'countTime')
         this.time = setInterval(() => {
             let targetTime = countTime
             const now = Math.round(new Date())
             targetTime = targetTime.substring(0, 19)
             targetTime = targetTime.replace(/-/g, '/')
-            const Target = new Date(targetTime).getTime()
+            const Target = Date.parse(new Date(targetTime))
+
             let reduces = Target - now
             if (reduces <= 0) {
                 clearInterval(this.time)

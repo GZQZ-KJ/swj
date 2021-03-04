@@ -88,7 +88,8 @@ export default class home extends Component {
             const now = Math.round(new Date())
             targetTime = targetTime.substring(0, 19)
             targetTime = targetTime.replace(/-/g, '/')
-            const Target = new Date(targetTime).getTime()
+            const Target = Date.parse(new Date(targetTime))
+
             let reduces = Target - now
             if (reduces <= 0) {
                 clearInterval(this.time)
