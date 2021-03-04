@@ -29,7 +29,8 @@ export default class proItem extends Component {
       const now = Math.round(new Date())
       targetTime = targetTime.substring(0, 19)
       targetTime = targetTime.replace(/-/g, '/')
-      const Target = new Date(targetTime).getTime()
+      const Target = Date.parse(new Date(targetTime))
+
       let reduces = Target - now
       if (reduces <= 0) {
         clearInterval(this.time)
@@ -74,7 +75,7 @@ export default class proItem extends Component {
 
             <View style={[styles.info, basicStyle.flexRow]}>
               {
-                v.avater_url !== '' ?
+                !!v.avater_url ?
                   <Image style={{width:pxToPt(40),height:pxToPt(40),borderRadius:pxToPt(20)}} source={{ uri: v.avater_url }}></Image>
                   : <Image source={require('../../assets/icons/avatar/tou2.png')}></Image>
               }

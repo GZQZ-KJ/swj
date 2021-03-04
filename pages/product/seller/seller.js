@@ -123,7 +123,7 @@ export default class home extends Component {
                <StatusBar backgroundColor="#fff" barStyle={'dark-content'}></StatusBar>
                 <View style={styles.arroWrap}>
                     {
-                        finish !== '' ? <></> :
+                        !!finish ? <></> :
                             <>
                                 <TouchableOpacity
                                     style={{ width: pxToPt(60), height: pxToPt(44), paddingLeft: pxToPt(16), justifyContent: 'center' }}
@@ -135,7 +135,7 @@ export default class home extends Component {
                             </>
                     }
                     {
-                        finish !== '' ?
+                        !!finish ?
                             <View style={styles.finishst}>
                                 <Text style={styles.titlest}>产品详情</Text>
                                 <TouchableOpacity
@@ -165,7 +165,7 @@ export default class home extends Component {
                                 this.props.navigation.navigate("Tabbar")
                             }}>
                                 {
-                                    data.avater_url !== '' ?
+                                    !!data.avater_url  ?
                                         <Image style={styles.headImg} source={{ uri: data.avater_url }}></Image> :
                                         <Image style={styles.headImg} source={require('../../../assets/icons/tou1.png')}></Image>
                                 }
