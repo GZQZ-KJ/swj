@@ -67,7 +67,6 @@ export default class order extends Component {
     }
     _selected = (i) => {
         if (this.state.active === i) return
-        console.log('[仲裁订单IIIIIIIIII]', i)
         this.setState({
             active: i
         })
@@ -107,7 +106,7 @@ export default class order extends Component {
                         <StatusBar backgroundColor="#fff" barStyle={'dark-content'}></StatusBar>
                 }
                 <SafeAreaView style={{flex:1,backgroundColor:'#fff'}}>
-                   <View style={{flex:1}}>
+                    <View style={{flex:1,backgroundColor:'#f8f9fa'}}>
                     <View style={styles.arroWrap}>
                         <TouchableOpacity
                             style={{ width: pxToPt(60), height: pxToPt(44), paddingLeft: pxToPt(16), justifyContent: 'center' }}
@@ -207,12 +206,16 @@ const styles = StyleSheet.create({
         justifyContent: 'space-around',
         paddingTop: pxToPt(12),
         flexDirection: 'row',
+
     },
     chooseTex: {
-        color: '#5A5D66'
+        color: '#5A5D66',
+        // fontSize:'400'
     },
     activeTex: {
         color: '#3D72E4',
+        // fontSize:'500'
+
     },
     underscore: {
         marginTop: pxToPt(4),

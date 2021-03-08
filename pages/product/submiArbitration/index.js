@@ -94,6 +94,7 @@ export default class arbitration extends Component {
             }).then(r => {
                 if (r.data.code === 1) {
                     // Toast.message('提交证据成功', 1000, 'center')
+                    this.props.rootStore.delete1Order(id)
                     this.setState({
                         modalVisible: true,
                     })
@@ -134,136 +135,141 @@ export default class arbitration extends Component {
         const { modalVisible, id, status, token, orderNum, arbitrationImages, arbitrationFont, activeTop } = this.state;
         console.log(status)
         return (
-            <SafeAreaView style={{flex:1}}>
-
-              <StatusBar backgroundColor="#fff" barStyle={'dark-content'}></StatusBar>
-              
-                <View style={styles.arroWrap}>
-                    <TouchableOpacity
-                        style={{ width: pxToPt(60), height: pxToPt(44), paddingLeft: pxToPt(16), justifyContent: 'center' }}
-                        onPress={() => {
-                            this.props.navigation.goBack()
-                        }}>
-                        <Image style={styles.arrow} source={require('../../../assets/icons/backx.png')}></Image>
-                    </TouchableOpacity>
-                    {
-                        activeTop === 0 ?
-                            //卖家
-                            <Text style={{ ...styles.title, marginLeft: pxToPt(57) }}>未到账，提出仲裁</Text> :
-
-                            //买
-                            <Text style={{ ...styles.title, marginLeft: pxToPt(92) }}>仲裁反馈</Text>
-                    }
-                </View>
-                <View style={styles.wrapper}>
-                    <View styles={{ justifyContent: 'center' }}>
-                        {/* <View style={styles.wrap}> */}
+            <>
+                {
+                    Platform.OS === 'ios' ? <StatusBar></StatusBar>
+                        : <StatusBar backgroundColor="#fff" barStyle={'dark-content'}></StatusBar>
+                }
+                <SafeAreaView style={{ flex: 1, backgroundColor: '#fff' }}>
+                    <View style={{ flex: 1, backgroundColor: '#f8f9fa' }}>
+                    <View style={styles.arroWrap}>
+                        <TouchableOpacity
+                            style={{ width: pxToPt(60), height: pxToPt(44), paddingLeft: pxToPt(16), justifyContent: 'center' }}
+                            onPress={() => {
+                                this.props.navigation.goBack()
+                            }}>
+                            <Image style={styles.arrow} source={require('../../../assets/icons/backx.png')}></Image>
+                        </TouchableOpacity>
                         {
                             activeTop === 0 ?
-                                // 卖家
-                                <Text style={{ ...styles.ft, marginTop: pxToPt(32) }}>您正在对订单{orderNum}提出仲裁，请简要阐述缘由</Text> :
+                                //卖家
+                                <Text style={{ ...styles.title, marginLeft: pxToPt(57) }}>未到账，提出仲裁</Text> :
 
-                                // 买家
-                                <Text style={{ ...styles.ft, marginTop: pxToPt(32) }}>请简要阐述缘由</Text>
-                        }
-                        {/* </View> */}
-
-                        <View style={styles.inpText}>
-                            <TextInput
-                                style={{ padding: pxToPt(32), height: pxToPt(140) }}
-                                maxLength={50}
-                                numberOfLines={2}
-                                placeholder='请输入缘由，字数控制在15~50个汉字'
-                                onChangeText={(arbitrationFont) => {
-                                    this.setState({
-                                        arbitrationFont: arbitrationFont
-                                    })
-                                }
-                                }
-                            />
-                        </View>
-
-                        <View style={styles.nowrap}>
-                            <Text style={styles.ft}>请上传截图证明</Text>
-                            <Text style={styles.fxt}>图片限制3张，格式JPG/JPEG</Text>
-                        </View>
-                        {
-                            arbitrationImages.length > 0 ?
-                                <View style={styles.showMyimg}>
-                                    <Image style={{ width: pxToPt(110), height: pxToPt(70) }} source={{ uri: arbitrationImages[0] }}></Image>
-                                    <Image style={{ width: pxToPt(110), height: pxToPt(70) }} source={{ uri: arbitrationImages[1] }}></Image>
-                                    <Image style={{ width: pxToPt(110), height: pxToPt(70) }} source={{ uri: arbitrationImages[2] }}></Image>
-                                </View>
-                                : <></>
-                        }
-                        {
-                            arbitrationImages && arbitrationImages.length < 3 ?
-                                <TouchableOpacity style={styles.upLoadImg} onPress={this.upLoadImg}>
-                                    <Text style={{ color: '#A6B8E0' }}>上传图片</Text>
-                                </TouchableOpacity> : <></>
-                        }
-
-                        <Modal
-                            animationType="slide"
-                            transparent={true}
-                            visible={modalVisible}
-                        >
-                            <View style={styles.centeredView}>
-                                <View style={styles.modalView}>
-                                    {
-                                        activeTop === 0 ?
-                                            <Text style={styles.modalText}>您的仲裁申请已提交，请等待买家提交证据，管理员会做出验证反馈。</Text>
-                                            : <Text style={styles.modalText}>您的仲裁申请已提交,管理员会做出结果反馈。</Text>
-                                    }
-
-                                    <TouchableHighlight
-                                        underlayColor="#a6b8e0"
-                                        style={styles.enterButton}
-                                        onPress={() => {
-                                            this.setState({
-                                                modalVisible: false,
-                                            })
-                                            setTimeout(() => {
-                                                this.props.navigation.navigate("Tabbar")
-                                            }, 1000)
-                                        }}
-                                    >
-                                        <Text style={styles.entertext}>确认</Text>
-                                    </TouchableHighlight>
-                                </View>
-                            </View>
-                        </Modal>
-                        {
-                            activeTop === 1 ? arbitrationFont === '' ? <TouchableHighlight
-                                underlayColor="#A6B8E0"
-                                style={{ ...styles.openButton, backgroundColor: '#A6B8E0' }}
-                            >
-                                <Text style={styles.textStyle}>提交证据</Text>
-                            </TouchableHighlight> : <TouchableHighlight
-                                underlayColor="#A6B8E0"
-                                style={{ ...styles.openButton, backgroundColor: '#3D72E4' }}
-                                onPress={this.enterSubmit}
-                            >
-                                    <Text style={styles.textStyle}>提交证据</Text>
-                                </TouchableHighlight> : arbitrationFont === '' || arbitrationImages.length < 1 ?
-                                    <TouchableHighlight
-                                        underlayColor="#A6B8E0"
-                                        style={{ ...styles.openButton, backgroundColor: '#A6B8E0' }}
-                                    >
-                                        <Text style={styles.textStyle}>提交证据</Text>
-                                    </TouchableHighlight>
-                                    :
-                                    <TouchableHighlight
-                                        underlayColor="#A6B8E0"
-                                        style={{ ...styles.openButton, backgroundColor: '#3D72E4' }}
-                                        onPress={this.enterSubmit}
-                                    >
-                                        <Text style={styles.textStyle}>提交证据</Text>
-                                    </TouchableHighlight>
+                                //买
+                                <Text style={{ ...styles.title, marginLeft: pxToPt(92) }}>仲裁反馈</Text>
                         }
                     </View>
-                </View>
-            </SafeAreaView>
+                    <View style={styles.wrapper}>
+                        <View styles={{ justifyContent: 'center' }}>
+                            {/* <View style={styles.wrap}> */}
+                            {
+                                activeTop === 0 ?
+                                    // 卖家
+                                    <Text style={{ ...styles.ft, marginTop: pxToPt(32) }}>您正在对订单{orderNum}提出仲裁，请简要阐述缘由</Text> :
+
+                                    // 买家
+                                    <Text style={{ ...styles.ft, marginTop: pxToPt(32) }}>请简要阐述缘由</Text>
+                            }
+                            {/* </View> */}
+
+                            <View style={styles.inpText}>
+                                <TextInput
+                                    style={{ padding: pxToPt(32), height: pxToPt(140),fontSize:pxToPt(14) }}
+                                    maxLength={50}
+                                    numberOfLines={2}
+                                    placeholder='请输入缘由，字数控制在15~50个汉字'
+                                    onChangeText={(arbitrationFont) => {
+                                        this.setState({
+                                            arbitrationFont: arbitrationFont
+                                        })
+                                    }
+                                    }
+                                />
+                            </View>
+
+                            <View style={styles.nowrap}>
+                                <Text style={styles.ft}>请上传截图证明</Text>
+                                <Text style={styles.fxt}>图片限制3张，格式JPG/JPEG</Text>
+                            </View>
+                            {
+                                arbitrationImages.length > 0 ?
+                                    <View style={styles.showMyimg}>
+                                        <Image style={{ width: pxToPt(110), height: pxToPt(70) }} source={{ uri: arbitrationImages[0] }}></Image>
+                                        <Image style={{ width: pxToPt(110), height: pxToPt(70) }} source={{ uri: arbitrationImages[1] }}></Image>
+                                        <Image style={{ width: pxToPt(110), height: pxToPt(70) }} source={{ uri: arbitrationImages[2] }}></Image>
+                                    </View>
+                                    : <></>
+                            }
+                            {
+                                arbitrationImages && arbitrationImages.length < 3 ?
+                                    <TouchableOpacity style={styles.upLoadImg} onPress={this.upLoadImg}>
+                                        <Text style={{ color: '#A6B8E0',fontSize:pxToPt(14),fontWeight:'500' }}>上传图片</Text>
+                                    </TouchableOpacity> : <></>
+                            }
+
+                            <Modal
+                                animationType="slide"
+                                transparent={true}
+                                visible={modalVisible}
+                            >
+                                <View style={styles.centeredView}>
+                                    <View style={styles.modalView}>
+                                        {
+                                            activeTop === 0 ?
+                                                <Text style={styles.modalText}>您的仲裁申请已提交，请等待买家提交证据，管理员会做出验证反馈。</Text>
+                                                : <Text style={styles.modalText}>您的仲裁申请已提交,管理员会做出结果反馈。</Text>
+                                        }
+
+                                        <TouchableHighlight
+                                            underlayColor="#a6b8e0"
+                                            style={styles.enterButton}
+                                            onPress={() => {
+                                                this.setState({
+                                                    modalVisible: false,
+                                                })
+                                                setTimeout(() => {
+                                                    this.props.navigation.navigate("Tabbar")
+                                                }, 1000)
+                                            }}
+                                        >
+                                            <Text style={styles.entertext}>确认</Text>
+                                        </TouchableHighlight>
+                                    </View>
+                                </View>
+                            </Modal>
+                            {
+                                activeTop === 1 ? arbitrationFont === '' ? <TouchableHighlight
+                                    underlayColor="#A6B8E0"
+                                    style={{ ...styles.openButton, backgroundColor: '#A6B8E0' }}
+                                >
+                                    <Text style={styles.textStyle}>提交证据</Text>
+                                </TouchableHighlight> : <TouchableHighlight
+                                    underlayColor="#A6B8E0"
+                                    style={{ ...styles.openButton, backgroundColor: '#3D72E4' }}
+                                    onPress={this.enterSubmit}
+                                >
+                                        <Text style={styles.textStyle}>提交证据</Text>
+                                    </TouchableHighlight> : arbitrationFont === '' || arbitrationImages.length < 1 ?
+                                        <TouchableHighlight
+                                            underlayColor="#A6B8E0"
+                                            style={{ ...styles.openButton, backgroundColor: '#A6B8E0' }}
+                                        >
+                                            <Text style={styles.textStyle}>提交证据</Text>
+                                        </TouchableHighlight>
+                                        :
+                                        <TouchableHighlight
+                                            underlayColor="#A6B8E0"
+                                            style={{ ...styles.openButton, backgroundColor: '#3D72E4' }}
+                                            onPress={this.enterSubmit}
+                                        >
+                                            <Text style={styles.textStyle}>提交证据</Text>
+                                        </TouchableHighlight>
+                            }
+                        </View>
+                    </View>
+                    </View>
+                </SafeAreaView>
+            </>
         )
     }
 }
@@ -384,18 +390,20 @@ const styles = StyleSheet.create({
         width: pxToPt(343),
         borderRadius: pxToPt(8),
         padding: pxToPt(10),
-        alignItems: 'center'
+        alignItems: 'center',
+        justifyContent:'center'
     },
     textStyle: {
         color: "white",
-        fontWeight: "bold",
-        textAlign: "center"
+        fontWeight: "500",
+        fontSize:pxToPt(15)
     },
     modalText: {
         marginBottom: pxToPt(28),
         fontSize: pxToPt(15),
         color: '#fff',
-        fontWeight: '500'
+        fontWeight: '500',
+        lineHeight:pxToPt(22)
     },
     enterButton: {
         width: pxToPt(88),

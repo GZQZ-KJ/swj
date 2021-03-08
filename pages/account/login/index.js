@@ -74,7 +74,7 @@ export default class login extends Component {
                 this.setState({
                     password: ''
                 })
-                this.props.navigation.navigate('Tabbar')
+                this.props.navigation.replace('Tabbar')
             } else {
                 if (data.code === -1) {
                     this.setState({ //如果账号被冻结
@@ -141,7 +141,7 @@ export default class login extends Component {
 
     }
     async componentDidMount() {
-    BackHandler.addEventListener('hardwareBackPress', this.onBackAndroid)
+        BackHandler.addEventListener('hardwareBackPress', this.onBackAndroid)
         let brand = await DeviceInfo.getBrand()
         let deviceId = await DeviceInfo.getDeviceId()
         let systemName = await DeviceInfo.getSystemName()
@@ -164,10 +164,10 @@ export default class login extends Component {
     onBackAndroid = () => {
         BackHandler.exitApp();
         return;
-      }
+    }
 
     componentWillUnmount() {
-    BackHandler.removeEventListener('hardwareBackPress', this.onBackAndroid)
+        BackHandler.removeEventListener('hardwareBackPress', this.onBackAndroid)
 
     }
 
@@ -178,105 +178,105 @@ export default class login extends Component {
         var re = /^[a-zA-Z\d]+([-_\.][a-zA-Z\d]+)*@[a-zA-Z\d]+\.[a-zA-Z\d]{2,4}$/
         return (
             <>
-            <StatusBar backgroundColor="#3D72E4" barStyle={'light-content'}></StatusBar>               
-            <View style={styles.container}>
-                <TouchableOpacity style={styles.arroWrap} >
-                    {/* <Image style={styles.arrow} source={require('../../../assets/icons/backo.png')}></Image> */}
-                </TouchableOpacity>
-                <View style={styles.texWrap}>
-                    <Text style={styles.tex}>欢迎登陆</Text>
-                </View>
-                <View style={styles.regWrap}>
-                    <Text style={styles.reg}>还没有账号，</Text>
-                    <View style={{borderBottomWidth:pxToPt(1),borderBottomColor:'#fff'}}>
-                    <Text style={styles.regGo} onPress={this.regiest}>立即注册</Text>
+                <StatusBar backgroundColor="#3D72E4" barStyle={'light-content'}></StatusBar>
+                <View style={styles.container}>
+                    <TouchableOpacity style={styles.arroWrap} >
+                        {/* <Image style={styles.arrow} source={require('../../../assets/icons/backo.png')}></Image> */}
+                    </TouchableOpacity>
+                    <View style={styles.texWrap}>
+                        <Text style={styles.tex}>欢迎登陆</Text>
                     </View>
-                </View>
-                <View style={styles.inpWrap}>
-                    <View style={{ ...styles.inp, marginBottom: pxToPt(16) }}>
-                        <View style={styles.inpImgWrap}>
-                            <Image style={styles.inpImg} source={require('../../../assets/icons/loginjujh.png')}></Image>
+                    <View style={styles.regWrap}>
+                        <Text style={styles.reg}>还没有账号，</Text>
+                        <View style={{ borderBottomWidth: pxToPt(1), borderBottomColor: '#fff' }}>
+                            <Text style={styles.regGo} onPress={this.regiest}>立即注册</Text>
                         </View>
-                        <View style={styles.inpTexWrap}>
-                        </View>
-                        <TextInput
-                            selectionColor="white"
-                            style={styles.inpEmail}
-                            placeholder='请输入邮箱'
-                            placeholderTextColor='#ccc'
-                            onChangeText={(myemail) => {
-                                !!myemail ? myemail : myemail = email
-                                this.setState({ email: myemail })
-                            }}
-                            value={this.state.email}
-                        />
-
                     </View>
-                    <View style={{ ...styles.inp, justifyContent: 'space-between' }}>
-                        <>
+                    <View style={styles.inpWrap}>
+                        <View style={{ ...styles.inp, marginBottom: pxToPt(16) }}>
                             <View style={styles.inpImgWrap}>
-                                <Image style={styles.inpImg} source={require('../../../assets/icons/loginp.png')}></Image>
+                                <Image style={styles.inpImg} source={require('../../../assets/icons/loginjujh.png')}></Image>
                             </View>
                             <View style={styles.inpTexWrap}>
                             </View>
-                            <TextInput style={styles.inpTex}
-                                selectionColor="#fff"
-                                placeholder='请输入密码'
+                            <TextInput
+                                selectionColor="white"
+                                style={styles.inpEmail}
+                                placeholder='请输入邮箱'
                                 placeholderTextColor='#ccc'
-                                secureTextEntry={this.state.showPassword} //隐藏输入内容
-                                onChangeText={(password) => this.setState({ password })}
-                                value={this.state.password}
-
+                                onChangeText={(myemail) => {
+                                    !!myemail ? myemail : myemail = email
+                                    this.setState({ email: myemail })
+                                }}
+                                value={this.state.email}
                             />
-                        </>
-                        <View style={styles.inpIcon}>
-                            <TouchableOpacity onPress={this.changeShowPass} style={{ height: '100%', width: pxToPt(20), justifyContent: 'center' }}>
+
+                        </View>
+                        <View style={{ ...styles.inp, justifyContent: 'space-between' }}>
+                            <>
+                                <View style={styles.inpImgWrap}>
+                                    <Image style={styles.inpImg} source={require('../../../assets/icons/loginp.png')}></Image>
+                                </View>
+                                <View style={styles.inpTexWrap}>
+                                </View>
+                                <TextInput style={styles.inpTex}
+                                    selectionColor="#fff"
+                                    placeholder='请输入密码'
+                                    placeholderTextColor='#ccc'
+                                    secureTextEntry={this.state.showPassword} //隐藏输入内容
+                                    onChangeText={(password) => this.setState({ password })}
+                                    value={this.state.password}
+
+                                />
+                            </>
+                            <View style={styles.inpIcon}>
+                                <TouchableOpacity onPress={this.changeShowPass} style={{ height: '100%', width: pxToPt(20), justifyContent: 'center' }}>
+                                    {
+                                        this.state.showPassword ? <Image style={styles.inpImgLast} source={require('../../../assets/icons/eyer1.png')}></Image> : <Image style={styles.inpImgLast} source={require('../../../assets/icons/eyee4.png')}></Image>
+                                    }
+                                </TouchableOpacity>
+                            </View>
+                        </View>
+                    </View>
+                    <View style={styles.lastWrap}>
+                        <View style={styles.lastCir}>
+                            <TouchableOpacity onPress={this.changeCircle} style={{ height: pxToPt(25), width: pxToPt(25), alignItems: 'flex-end', justifyContent: 'center' }} >
                                 {
-                                    this.state.showPassword ? <Image style={styles.inpImgLast} source={require('../../../assets/icons/eyer1.png')}></Image> : <Image style={styles.inpImgLast} source={require('../../../assets/icons/eyee4.png')}></Image>
+                                    this.state.rootControl ?
+                                        <Image style={styles.cirImg} source={require('../../../assets/icons/agree2.png')}></Image> :
+                                        <Image style={styles.cirImg} source={require('../../../assets/icons/agree1.png')} />
                                 }
                             </TouchableOpacity>
+                            <Text style={styles.cirTex} onPress={this.rootAgree}>我已阅读并同意《用户协议》</Text>
+                        </View>
+                        <View style={styles.lastpro} >
+                            <Image style={styles.proImg} source={require('../../../assets/icons/loginjhih.png')}></Image>
+                            <Text style={styles.proTex} onPress={this.forgetPass}>忘记密码</Text>
                         </View>
                     </View>
+                    {
+                        this.state.email !== '' && this.state.password !== '' && this.state.password.length >= 6 && this.state.rootControl === true && re.test(this.state.email) ?
+                            <TouchableHighlight onPress={this.loginGo} style={{ ...styles.loginGo, backgroundColor: '#fff' }}
+                                underlayColor="rgba(255,255,255,1)">
+                                <Text style={styles.loginTex}>登录</Text>
+                            </TouchableHighlight> : <View style={{ ...styles.loginGo, backgroundColor: 'rgba(255,255,255,.7)' }}
+                                underlayColor="rgba(255,255,255,.7)">
+                                <Text style={styles.loginTex}>登录</Text>
+                            </View>
+                    }
+                    {
+                        this.state.dangeingToast ? <>
+                            <LoginToast
+                                onClose={this._closeToast}
+                                texOne={`${result.result.text}`}
+                                texTwo={`电话: ${result.result.phone}`}
+                                texThree={`微信: ${result.result.wechat} `}
+                                texfour={`邮箱: ${result.result.email}`}
+                            ></LoginToast>
+                        </> : <></>
+                    }
                 </View>
-                <View style={styles.lastWrap}>
-                    <View style={styles.lastCir}>
-                        <TouchableOpacity onPress={this.changeCircle} style={{ height: pxToPt(25), width: pxToPt(25), alignItems: 'flex-end', justifyContent: 'center' }} >
-                            {
-                                this.state.rootControl ?
-                                    <Image style={styles.cirImg} source={require('../../../assets/icons/agree2.png')}></Image> :
-                                    <Image style={styles.cirImg} source={require('../../../assets/icons/agree1.png')} />
-                            }
-                        </TouchableOpacity>
-                        <Text style={styles.cirTex} onPress={this.rootAgree}>我已阅读并同意《用户协议》</Text>
-                    </View>
-                    <View style={styles.lastpro} >
-                        <Image style={styles.proImg} source={require('../../../assets/icons/loginjhih.png')}></Image>
-                        <Text style={styles.proTex} onPress={this.forgetPass}>忘记密码</Text>
-                    </View>
-                </View>
-                {
-                    this.state.email !== '' && this.state.password !== '' && this.state.password.length >= 6 && this.state.rootControl === true && re.test(this.state.email) ?
-                        <TouchableHighlight onPress={this.loginGo} style={{ ...styles.loginGo, backgroundColor: '#fff' }}
-                            underlayColor="rgba(255,255,255,1)">
-                            <Text style={styles.loginTex}>登录</Text>
-                        </TouchableHighlight> : <View style={{ ...styles.loginGo, backgroundColor: 'rgba(255,255,255,.7)' }}
-                            underlayColor="rgba(255,255,255,.7)">
-                            <Text style={styles.loginTex}>登录</Text>
-                        </View>
-                }
-                {
-                    this.state.dangeingToast ? <>
-                        <LoginToast
-                            onClose={this._closeToast}
-                            texOne={`${result.result.text}`}
-                            texTwo={`电话: ${result.result.phone}`}
-                            texThree={`微信: ${result.result.wechat} `}
-                            texfour={`邮箱: ${result.result.email}`}
-                        ></LoginToast>
-                    </> : <></>
-                }
-            </View>
-      </>
+            </>
         )
     }
 }
@@ -286,7 +286,7 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: '#3D72E4',
-        paddingTop:isIphoneX() ? pxToPt(44) : null,
+        paddingTop: isIphoneX() ? pxToPt(44) : null,
 
     },
     arroWrap: {
@@ -390,7 +390,7 @@ const styles = StyleSheet.create({
     lastCir: {
         flexDirection: 'row',
         alignItems: 'center',
-        justifyContent:'center',
+        justifyContent: 'center',
     },
     cirImg: {
         width: pxToPt(12),
@@ -406,7 +406,7 @@ const styles = StyleSheet.create({
     lastpro: {
         flexDirection: 'row',
         alignItems: 'center',
-        justifyContent:'center'
+        justifyContent: 'center'
     },
     proImg: {
         width: pxToPt(12),

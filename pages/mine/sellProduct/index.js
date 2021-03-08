@@ -13,7 +13,7 @@ import {
     ImageBackground,
     Platform
 } from 'react-native'
-import {isIphoneX} from '../../../utils/isIphoneX'
+import { isIphoneX } from '../../../utils/isIphoneX'
 import Toast from '../../../utils/api/Toast'
 import axios from '../../../utils/api/request'
 import { pxToPt } from "../../../utils/styleKits";
@@ -128,141 +128,145 @@ export default class sellProduct extends Component {
         }
         let { rootStore } = this.props
         return (
-
-            <SafeAreaView style={{flex:1,backgroundColor:'#fff'}}>
-              <StatusBar backgroundColor="#fff" barStyle={'dark-content'}></StatusBar>
-                <View style={{flex:1,backgroundColor:'#f8f9fa'}}>
-                <View style={styles.arroWrap}>
-                    <TouchableOpacity style={{ width: pxToPt(60), height: pxToPt(44), paddingLeft: pxToPt(16), justifyContent: 'center' }} onPress={() => {
-                        this.props.navigation.navigate("Tabbar")
-                    }}>
-                        <Image style={styles.arrow} source={require('../../../assets/icons/backx.png')}></Image>
-                    </TouchableOpacity>
-                    <Text style={styles.title}>挂卖产品</Text>
-                </View>
-                <View style={styles.container}>
-                    <View style={styles.wrapper}>
-                        <Text style={styles.sellTex}>请输入卖出数量</Text>
-                        <View style={styles.sellNum}>
-                            <View>
-                                <Text style={styles.sellMoney}>￥:{this.state.price}</Text>
-                            </View>
-                            <View style={styles.sellInput}>
-                                <Text>NSS : </Text>
-                                <TextInput
-                                    placeholder="0"
-                                    keyboardType='numeric'
-                                    style={{ paddingTop: pxToPt(0), borderBottomWidth: pxToPt(1), borderBottomColor: '#0075D7', width: pxToPt(64), height: pxToPt(30) }}
-                                    onChangeText={(sellNss) => {
-                                        if (sellNss.includes('.')) {
-                                            // var subNss = sellNss.substring(0, sellNss.indexOf('.'))
-                                            this.setState({
-                                                sellNss: '0'
-                                            })
-                                            return
-                                        }
-                                        // console.log(sellNss)
-                                        this.setState({ sellNss })
-                                    }}
-                                ></TextInput>
-                            </View>
-                        </View>
-                        <View style={{ marginBottom: pxToPt(40), flexDirection: 'row', justifyContent: 'space-between' }}>
-                            <Text style={styles.sellAllMoney}>总价: {total}</Text>
-                            <Text style={styles.nowMoney}>当前可交易NSS为 {rootStore.nss}</Text>
-                        </View>
-                        {
-                            <TouchableOpacity style={styles.chooseBankCard} onPress={
-                                this.chooseBankCard
-                            }>
-                                {
-                                    !!this.state.bankName ?
-                                        <Text style={{ color: '#2B2D33', fontSize: pxToPt(16), fontWeight: '500' }}>{this.state.bankName}</Text> :
-                                        <Text style={{ color: '#2B2D33', fontSize: pxToPt(16), fontWeight: '500' }}>请选择收款银行卡</Text>
-                                }
-                                {
-                                    !!this.state.bankNum ?
-                                        <Text style={{ color: '#2B2D33', fontSize: pxToPt(16), fontWeight: '500' }}>{this.state.bankNum}</Text> :
-                                        <Image style={{ height: pxToPt(8.49), width: pxToPt(4.95) }} source={require('../../../assets/icons/xuanzeka.png')}></Image>
-                                }
-                            </TouchableOpacity>
-                        }
-                        <View>
-                            <Text style={styles.tekeNote}>注意事项</Text>
-                            <Text style={styles.illustrate}>1、挂卖产品时以该界面的单价为准。</Text>
-                            <Text style={styles.illustrate}>2、双方交易时，请认准双方的账户和用户名。</Text>
-                            <Text style={styles.illustrate}>3、如果想取消该产品订单，请在未被其他用户锁定前，取消挂卖。</Text>
-                        </View>
-                    </View>
-                    {
-                        bankId === '' || total === '0' || myNss < 0 ?
-                            <View style={{ ...styles.release, opacity: .7 }} >
-                                <Text style={{ color: '#fff', fontSize: pxToPt(15), fontWeight: '500' }}>发布</Text>
-                            </View> :
-                            <TouchableOpacity style={styles.release} onPress={
-                                this.goProSeller
-                            }>
-                                <Text style={{ color: '#fff', fontSize: pxToPt(15), fontWeight: '500' }}>发布</Text>
-                            </TouchableOpacity>
-                    }
-
-                </View>
-                <Modal visible={this.state.showMyBanks} animationType={'slide'} >
-                    <View style={{...styles.arroWrap,marginTop:isIphoneX() ? pxToPt(44):0 }}>
-                        <TouchableOpacity
-                            style={{ width: pxToPt(60), height: pxToPt(44), alignItems: 'center', justifyContent: 'center' }}
-                            onPress={() => {
-                                this.setState({
-                                    showMyBanks: false,
-                                })
+            <>
+                {
+                    Platform.OS === 'ios' ? <StatusBar></StatusBar>
+                        : <StatusBar backgroundColor="#fff" barStyle={'dark-content'}></StatusBar>
+                }
+                <SafeAreaView style={{ flex: 1, backgroundColor: '#fff' }}>
+                    <View style={{ flex: 1, backgroundColor: '#f8f9fa' }}>
+                        <View style={styles.arroWrap}>
+                            <TouchableOpacity style={{ width: pxToPt(60), height: pxToPt(44), paddingLeft: pxToPt(16), justifyContent: 'center' }} onPress={() => {
+                                this.props.navigation.navigate("Tabbar")
                             }}>
-                            <Image style={styles.arrow} source={require('../../../assets/icons/backx.png')}></Image>
-                        </TouchableOpacity>
-                        <Text style={styles.headbanktitle}>选择银行卡</Text>
-                    </View>
-                    <TouchableOpacity style={styles.btn} activeOpacity={1} onPress={this._addBank}>
-                        <Image style={{ height: pxToPt(14), width: pxToPt(14) }} source={require('../../../assets/icons/MybandCardad222d.png')}></Image>
-                        <Text style={styles.txt}>添加银行卡</Text>
-                    </TouchableOpacity>
-                    <SafeAreaView >
-                        <ScrollView style={{ height: 550, paddingLeft: pxToPt(16) }}>
-                            {
-                                this.state.myBanks.map((v, i) => {
-                                    var reg = /^(\d{4})\d+(\d{4})$/;
-                                    v.account_no = v.account_no.replace(reg, "**** $2");
-                                    return (
-                                        <>
-                                            <TouchableOpacity
-                                                activeOpacity={1}
-                                                style={styles.bankwrap} key={i} onPress={() => {
+                                <Image style={styles.arrow} source={require('../../../assets/icons/backx.png')}></Image>
+                            </TouchableOpacity>
+                            <Text style={styles.title}>挂卖产品</Text>
+                        </View>
+                        <View style={styles.container}>
+                            <View style={styles.wrapper}>
+                                <Text style={styles.sellTex}>请输入卖出数量</Text>
+                                <View style={styles.sellNum}>
+                                    <View>
+                                        <Text style={styles.sellMoney}>￥:{this.state.price}</Text>
+                                    </View>
+                                    <View style={styles.sellInput}>
+                                        <Text>NSS : </Text>
+                                        <TextInput
+                                            placeholder="0"
+                                            // keyboardType='numeric'
+                                            style={{ paddingTop: pxToPt(0), borderBottomWidth: pxToPt(1), borderBottomColor: '#0075D7', width: pxToPt(64), height: Platform.OS === 'ios' ? pxToPt(21): pxToPt(30),paddingBottom:pxToPt(4) }}
+                                            onChangeText={(sellNss) => {
+                                                if (sellNss.includes('.')) {
+                                                    // var subNss = sellNss.substring(0, sellNss.indexOf('.'))
                                                     this.setState({
-                                                        bankId: v.bank_card_id,
-                                                        bankName: v.full_name,
-                                                        bankNum: v.account_no,
-                                                        showMyBanks: false,
+                                                        sellNss: '0'
                                                     })
-                                                }} >
-                                                <ImageBackground source={{ uri: v.background_url }} style={styles.bankBC}>
-                                                    <View style={{ flexDirection: "row" }}>
-                                                        <View style={styles.bankicon}>
-                                                            <Image source={{ uri: v.icon }} style={{ width: pxToPt(28), height: pxToPt(28) }}></Image>
-                                                        </View>
-                                                        <Text style={styles.bankTitle}>{v.full_name}</Text>
-                                                    </View>
-                                                    <View>
-                                                        <Text style={styles.bankNum}>{v.account_no}</Text>
-                                                    </View>
-                                                </ImageBackground>
-                                            </TouchableOpacity>
-                                        </>
-                                    )
-                                })
+                                                    return
+                                                }
+                                                // console.log(sellNss)
+                                                this.setState({ sellNss })
+                                            }}
+                                        ></TextInput>
+                                    </View>
+                                </View>
+                                <View style={{ marginBottom: pxToPt(40), flexDirection: 'row', justifyContent: 'space-between' }}>
+                                    <Text style={styles.sellAllMoney}>总价: {total}</Text>
+                                    <Text style={styles.nowMoney}>当前可交易NSS为 {rootStore.nss}</Text>
+                                </View>
+                                {
+                                    <TouchableOpacity style={styles.chooseBankCard} onPress={
+                                        this.chooseBankCard
+                                    }>
+                                        {
+                                            !!this.state.bankName ?
+                                                <Text style={{ color: '#2B2D33', fontSize: pxToPt(16), fontWeight: '500' }}>{this.state.bankName}</Text> :
+                                                <Text style={{ color: '#2B2D33', fontSize: pxToPt(16), fontWeight: '500' }}>请选择收款银行卡</Text>
+                                        }
+                                        {
+                                            !!this.state.bankNum ?
+                                                <Text style={{ color: '#2B2D33', fontSize: pxToPt(16), fontWeight: '500' }}>{this.state.bankNum}</Text> :
+                                                <Image style={{ height: pxToPt(8.49), width: pxToPt(4.95) }} source={require('../../../assets/icons/xuanzeka.png')}></Image>
+                                        }
+                                    </TouchableOpacity>
+                                }
+                                <View>
+                                    <Text style={styles.tekeNote}>注意事项</Text>
+                                    <Text style={styles.illustrate}>1、挂卖产品时以该界面的单价为准。</Text>
+                                    <Text style={styles.illustrate}>2、双方交易时，请认准双方的账户和用户名。</Text>
+                                    <Text style={styles.illustrate}>3、如果想取消该产品订单，请在未被其他用户锁定前，取消挂卖。</Text>
+                                </View>
+                            </View>
+                            {
+                                bankId === '' || total === '0' || myNss < 0 ?
+                                    <View style={{ ...styles.release, opacity: .7 }} >
+                                        <Text style={{ color: '#fff', fontSize: pxToPt(15), fontWeight: '500' }}>发布</Text>
+                                    </View> :
+                                    <TouchableOpacity style={styles.release} onPress={
+                                        this.goProSeller
+                                    }>
+                                        <Text style={{ color: '#fff', fontSize: pxToPt(15), fontWeight: '500' }}>发布</Text>
+                                    </TouchableOpacity>
                             }
-                        </ScrollView>
-                    </SafeAreaView>
-                </Modal>
-                </View>
-            </SafeAreaView>
+
+                        </View>
+                        <Modal visible={this.state.showMyBanks} animationType={'slide'} >
+                            <View style={{ ...styles.arroWrap, marginTop: Platform.OS === 'ios' ? pxToPt(44) : 0 }}>
+                                <TouchableOpacity
+                                    style={{ width: pxToPt(60), height: pxToPt(44), alignItems: 'center', justifyContent: 'center' }}
+                                    onPress={() => {
+                                        this.setState({
+                                            showMyBanks: false,
+                                        })
+                                    }}>
+                                    <Image style={styles.arrow} source={require('../../../assets/icons/backx.png')}></Image>
+                                </TouchableOpacity>
+                                <Text style={styles.headbanktitle}>选择银行卡</Text>
+                            </View>
+                            <TouchableOpacity style={styles.btn} activeOpacity={1} onPress={this._addBank}>
+                                <Image style={{ height: pxToPt(14), width: pxToPt(14) }} source={require('../../../assets/icons/MybandCardad222d.png')}></Image>
+                                <Text style={styles.txt}>添加银行卡</Text>
+                            </TouchableOpacity>
+                            <SafeAreaView >
+                                <ScrollView style={{ height: Platform.OS === 'ios' ? isIphoneX() ? pxToPt(550) : pxToPt(500) : pxToPt(550), paddingLeft: pxToPt(16), backgroundColor: '#f8f9fa' }}>
+                                    {
+                                        this.state.myBanks.map((v, i) => {
+                                            var reg = /^(\d{4})\d+(\d{4})$/;
+                                            v.account_no = v.account_no.replace(reg, "**** $2");
+                                            return (
+                                                <>
+                                                    <TouchableOpacity
+                                                        activeOpacity={1}
+                                                        style={styles.bankwrap} key={i} onPress={() => {
+                                                            this.setState({
+                                                                bankId: v.bank_card_id,
+                                                                bankName: v.full_name,
+                                                                bankNum: v.account_no,
+                                                                showMyBanks: false,
+                                                            })
+                                                        }} >
+                                                        <ImageBackground source={{ uri: v.background_url }} style={styles.bankBC}>
+                                                            <View style={{ flexDirection: "row" }}>
+                                                                <View style={styles.bankicon}>
+                                                                    <Image source={{ uri: v.icon }} style={{ width: pxToPt(28), height: pxToPt(28) }}></Image>
+                                                                </View>
+                                                                <Text style={styles.bankTitle}>{v.full_name}</Text>
+                                                            </View>
+                                                            <View>
+                                                                <Text style={styles.bankNum}>{v.account_no}</Text>
+                                                            </View>
+                                                        </ImageBackground>
+                                                    </TouchableOpacity>
+                                                </>
+                                            )
+                                        })
+                                    }
+                                </ScrollView>
+                            </SafeAreaView>
+                        </Modal>
+                    </View>
+                </SafeAreaView>
+            </>
         )
     }
 }
@@ -313,13 +317,13 @@ const styles = StyleSheet.create({
         paddingLeft: pxToPt(12),
         paddingRight: pxToPt(12),
         backgroundColor: '#fff',
-        // elevation: pxToPt(2),
-        // shadowColor: '#565A66',
-        // shadowOpacity: pxToPt(1),
-        // shadowOffset: {
-        //     width: pxToPt(0),
-        //     height: pxToPt(1)
-        // },
+        elevation: 2,
+        shadowColor: '#565A66',
+        shadowOpacity: 0.12,
+        shadowOffset: {
+            width: pxToPt(0),
+            height: pxToPt(1)
+        },
         borderRadius: pxToPt(12),
         marginBottom: pxToPt(48)
     },
@@ -437,7 +441,7 @@ const styles = StyleSheet.create({
         borderRadius: pxToPt(8),
         backgroundColor: '#3D72E4',
         marginBottom: pxToPt(100),
-        marginTop: pxToPt(644),
+        marginTop: Platform.OS === 'ios' ? isIphoneX() ? pxToPt(644) : pxToPt(594) : pxToPt(644),
         position: 'absolute',
         marginLeft: pxToPt(16),
         zIndex: 100,

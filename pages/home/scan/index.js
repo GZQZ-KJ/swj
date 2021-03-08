@@ -9,6 +9,7 @@ import {
 
 } from 'react-native';
 import axios from '../../../utils/api/request'
+import {pxToPt} from '../../../utils/styleKits'
 import Toast from '../../../utils/api/Toast'
 import QRCodeScanner from 'react-native-qrcode-scanner';
 import { RNCamera } from 'react-native-camera';
@@ -84,8 +85,8 @@ const styles = StyleSheet.create({
     flex: 1,
     position: 'absolute',
     zIndex: 999,
-    fontSize: 18,
-    padding: 32,
+    fontSize: pxToPt(18),
+    padding: pxToPt(32),
     color: '#777'
   },
   textBold: {
@@ -93,7 +94,7 @@ const styles = StyleSheet.create({
     color: '#000'
   },
   buttonText: {
-    fontSize: 21,
+    fontSize: pxToPt(21),
     color: 'rgb(0,122,255)'
   },
   buttonTouchable: {
@@ -103,23 +104,23 @@ const styles = StyleSheet.create({
     // alignItems:'center',
     position: 'absolute',
     // backgroundColor: '#008c8c',
-    padding: 16
+    padding: pxToPt(16)
   },
   arroWrap: {
-    height: 44,
+    height: pxToPt(44),
     alignItems: 'center',
     flexDirection: 'row',
     // backgroundColor: '#008c8c',
     
   },
   arrow: {
-    width: 11.82,
-    height: 22,
-    marginRight: 138
+    width: pxToPt(11.82),
+    height: pxToPt(22),
+    marginRight: pxToPt(138)
   },
   title: {
     color: '#2B2D33',
-    fontSize: 18,
+    fontSize: pxToPt(18),
     fontWeight: "500",
     fontFamily: 'PingFang SC',
     // backgroundColor: '#008c8c',

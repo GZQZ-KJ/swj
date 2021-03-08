@@ -11,6 +11,7 @@ import {
     SafeAreaView
 } from 'react-native'
 import Toast from '../../../utils/api/Toast'
+import { isIphoneX } from '../../../utils/isIphoneX'
 import ToastTwo from '../../../components/ToastTwo'
 import { pxToPt } from "../../../utils/styleKits";
 import axios from '../../../utils/api/request'
@@ -120,137 +121,140 @@ export default class home extends Component {
         var finish = this.props.route.params.finish || ''
         return (
             <>
-            <StatusBar backgroundColor="#fff" barStyle={'dark-content'}></StatusBar>
-            <SafeAreaView style={{flex:1,backgroundColor:'#fff'}}>
-                <View style={{flex:1,backgroundColor:'#f8f9fa'}}>
-                <View style={styles.arroWrap}>
-                    {
-                        !!finish ? <></> :
-                            <>
-                                <TouchableOpacity
-                                    style={{ width: pxToPt(60), height: pxToPt(44), paddingLeft: pxToPt(16), justifyContent: 'center' }}
-                                    onPress={() => {
-                                        this.props.navigation.navigate("Tabbar")
-                                    }}> <Image style={styles.arrow} source={require('../../../assets/icons/backx.png')}></Image>
-                                </TouchableOpacity>
-                                <Text style={styles.title}>产品详情</Text>
-                            </>
-                    }
-                    {
-                        !!finish ?
-                            <View style={styles.finishst}>
-                                <Text style={styles.titlest}>产品详情</Text>
-                                <TouchableOpacity
-                                    style={{ width: pxToPt(60), height: pxToPt(60), alignItems: 'center', justifyContent: 'center' }}
-                                    onPress={() => {
+                {
+          Platform.OS === 'ios' ? <StatusBar></StatusBar>
+            : <StatusBar backgroundColor="#fff" barStyle={'dark-content'}></StatusBar>
+        }
+                <SafeAreaView style={{ flex: 1, backgroundColor: '#fff' }}>
+                    <View style={{ flex: 1, backgroundColor: '#f8f9fa' }}>
+                        <View style={styles.arroWrap}>
+                            {
+                                !!finish ? <></> :
+                                    <>
+                                        <TouchableOpacity
+                                            style={{ width: pxToPt(60), height: pxToPt(44), paddingLeft: pxToPt(16), justifyContent: 'center' }}
+                                            onPress={() => {
+                                                this.props.navigation.navigate("Tabbar")
+                                            }}> <Image style={styles.arrow} source={require('../../../assets/icons/backx.png')}></Image>
+                                        </TouchableOpacity>
+                                        <Text style={styles.title}>产品详情</Text>
+                                    </>
+                            }
+                            {
+                                !!finish ?
+                                    <View style={styles.finishst}>
+                                        <Text style={styles.titlest}>产品详情</Text>
+                                        <TouchableOpacity
+                                            style={{ width: pxToPt(60), height: pxToPt(60), alignItems: 'center', justifyContent: 'center' }}
+                                            onPress={() => {
+                                                this.props.navigation.navigate("Tabbar")
+                                            }}>
+                                            <Text style={{color:'#3D72E4'}}>完成</Text>
+                                        </TouchableOpacity>
+                                    </View>
+                                    : <></>
+                            }
+                        </View>
+                        {
+                            this.state.changeDetail ?
+                                <></> :
+                                <View style={styles.changeMk}>
+                                    <View style={styles.showMk}>
+                                        <Text style={styles.showTex}>您已取消挂卖</Text>
+                                    </View>
+                                </View>
+                        }
+                        <View style={styles.wrap}>
+                            <View style={styles.wrapper}>
+                                <View style={styles.head}>
+                                    <TouchableOpacity style={styles.myHead} onPress={() => {
                                         this.props.navigation.navigate("Tabbar")
                                     }}>
-                                    <Text>完成</Text>
-                                </TouchableOpacity>
-                            </View>
-                            : <></>
-                    }
-                </View>
-                {
-                    this.state.changeDetail ?
-                        <></> :
-                        <View style={styles.changeMk}>
-                            <View style={styles.showMk}>
-                                <Text style={styles.showTex}>您已取消挂卖</Text>
-                            </View>
-                        </View>
-                }
-                <View style={styles.wrap}>
-                    <View style={styles.wrapper}>
-                        <View style={styles.head}>
-                            <TouchableOpacity style={styles.myHead} onPress={() => {
-                                this.props.navigation.navigate("Tabbar")
-                            }}>
-                                {
-                                    !!data.avater_url  ?
-                                        <Image style={styles.headImg} source={{ uri: data.avater_url }}></Image> :
-                                        <Image style={styles.headImg} source={require('../../../assets/icons/tou1.png')}></Image>
-                                }
-                            </TouchableOpacity>
-                            <View>
-                                <Text style={styles.headName}>{data.user_name}</Text>
-                                {/* <Text style={styles.orderNum}>订单编号：1782563716</Text> */}
-                            </View>
-                        </View>
-                        <View style={styles.orderDetailWrap}>
-                            <View>
-                                <Text style={styles.oNum}>NSS: {data.value}</Text>
-                                {
-                                    this.state.changeDetail ?
-                                        <Text style={styles.unTime}>下架倒计时:{this.state.remain}</Text>
-                                        : <></>
-                                }
-                            </View>
-                            <View style={styles.allMoney}>
-                                <Text style={styles.youMoney}>￥:{data.price}</Text>
-                                <Text style={styles.money}>总价:{data.sum_count}</Text>
-                            </View>
-                        </View>
+                                        {
+                                            !!data.avater_url ?
+                                                <Image style={styles.headImg} source={{ uri: data.avater_url }}></Image> :
+                                                <Image style={styles.headImg} source={require('../../../assets/icons/tou1.png')}></Image>
+                                        }
+                                    </TouchableOpacity>
+                                    <View>
+                                        <Text style={styles.headName}>{data.user_name}</Text>
+                                        {/* <Text style={styles.orderNum}>订单编号：1782563716</Text> */}
+                                    </View>
+                                </View>
+                                <View style={styles.orderDetailWrap}>
+                                    <View>
+                                        <Text style={styles.oNum}>NSS: {data.value}</Text>
+                                        {
+                                            this.state.changeDetail ?
+                                                <Text style={styles.unTime}>下架倒计时:{this.state.remain}</Text>
+                                                : <></>
+                                        }
+                                    </View>
+                                    <View style={styles.allMoney}>
+                                        <Text style={styles.youMoney}>￥:{data.price}</Text>
+                                        <Text style={styles.money}>总价:{data.sum_count}</Text>
+                                    </View>
+                                </View>
 
-                        <View style={styles.msgDetail}>
-                            <View style={styles.msgHead}>
-                                <Text style={styles.msgTitle}>收款信息</Text>
-                            </View>
-                            <View style={styles.msgBody}>
-                                <Text style={styles.msgContent}>收款人姓名</Text>
-                                <Text style={styles.msgTex}>{data.account_name}</Text>
-                            </View>
-                            <View style={styles.msgBody}>
-                                <Text style={styles.msgContent}>卡号</Text>
-                                <View style={{ flexDirection: 'row' }}>
-                                    <Text style={{ color: '#5A5D66' }}>{data.account_no}</Text>
+                                <View style={styles.msgDetail}>
+                                    <View style={styles.msgHead}>
+                                        <Text style={styles.msgTitle}>收款信息</Text>
+                                    </View>
+                                    <View style={styles.msgBody}>
+                                        <Text style={styles.msgContent}>收款人姓名</Text>
+                                        <Text style={styles.msgTex}>{data.account_name}</Text>
+                                    </View>
+                                    <View style={styles.msgBody}>
+                                        <Text style={styles.msgContent}>卡号</Text>
+                                        <View style={{ flexDirection: 'row' }}>
+                                            <Text style={{ color: '#5A5D66' }}>{data.account_no}</Text>
+
+                                        </View>
+                                    </View>
+                                    <View style={styles.msgBody}>
+                                        <Text style={styles.msgContent}>银行</Text>
+                                        <Text style={styles.msgTex}>{data.full_name}</Text>
+                                    </View>
+                                    <View style={styles.msgFoot}>
+                                        <Text style={styles.msgContent}>金额</Text>
+                                        <Text style={styles.msgMoney}>{data.sum_count}</Text>
+                                    </View>
+                                </View>
+
+                                <View>
+                                    <View style={styles.showTime}>
+                                        {
+                                            !!this.state.cancelTime ? <Text style={styles.fbT}>取消挂卖时间：{data.created_time}</Text> : <></>
+                                        }
+                                        <Text style={styles.fbT}>发布时间：{data.created_time}</Text>
+                                    </View>
 
                                 </View>
                             </View>
-                            <View style={styles.msgBody}>
-                                <Text style={styles.msgContent}>银行</Text>
-                                <Text style={styles.msgTex}>{data.full_name}</Text>
-                            </View>
-                            <View style={styles.msgFoot}>
-                                <Text style={styles.msgContent}>金额</Text>
-                                <Text style={styles.msgMoney}>{data.sum_count}</Text>
-                            </View>
-                        </View>
-
-                        <View>
-                            <View style={styles.showTime}>
-                                {
-                                    !!this.state.cancelTime ? <Text style={styles.fbT}>取消挂卖时间：{data.created_time}</Text> : <></>
-                                }
-                                <Text style={styles.fbT}>发布时间：{data.created_time}</Text>
-                            </View>
+                            {
+                                this.state.changeDetail ?
+                                    <TouchableHighlight
+                                        underlayColor="#abcdef"
+                                        style={styles.touchHig}>
+                                        <ToastTwo
+                                            zbtnF={'取消挂卖'}
+                                            showTex={'请确认是否取消挂卖 。'}
+                                            zbtnBC={'rgba()'}
+                                            zbtnBoC={'#3D72E4'}
+                                            qbtnBC={'#fff'}
+                                            qbtnF={'否'}
+                                            qbtnFC={'#3D72E4'}
+                                            ebtnF={'是'}
+                                            onYes={this._goDetail}
+                                        ></ToastTwo>
+                                    </TouchableHighlight> :
+                                    <></>
+                            }
 
                         </View>
                     </View>
-                    {
-                        this.state.changeDetail ?
-                            <TouchableHighlight
-                                underlayColor="#abcdef"
-                                style={styles.touchHig}>
-                                <ToastTwo
-                                    zbtnF={'取消挂卖'}
-                                    showTex={'请确认是否取消挂卖 。'}
-                                    zbtnBC={'rgba()'}
-                                    zbtnBoC={'#3D72E4'}
-                                    qbtnBC={'#fff'}
-                                    qbtnF={'否'}
-                                    qbtnFC={'#3D72E4'}
-                                    ebtnF={'是'}
-                                    onYes={this._goDetail}
-                                ></ToastTwo>
-                            </TouchableHighlight> :
-                            <></>
-                    }
-
-                </View>
-                </View>
-            </SafeAreaView>
-       </>
+                </SafeAreaView>
+            </>
         )
     }
 }
@@ -416,8 +420,7 @@ const styles = StyleSheet.create({
         borderColor: '#3D72E4',
         borderWidth: pxToPt(1),
         overflow: 'hidden',
-        marginTop: pxToPt(386),
-        marginLeft: pxToPt(8),
+        marginTop: Platform.OS === 'ios' ? isIphoneX() ? pxToPt(386) : pxToPt(300) : pxToPt(386),
     },
     showTime: {
         width: pxToPt(343),
@@ -430,7 +433,7 @@ const styles = StyleSheet.create({
         borderRadius: pxToPt(8),
         elevation: 2,
         justifyContent: 'center',
-        paddingBottom: pxToPt(20),
+        paddingBottom: pxToPt(12),
     },
     msgDetail: {
         width: pxToPt(343),
@@ -443,7 +446,7 @@ const styles = StyleSheet.create({
         shadowRadius: pxToPt(2),
         elevation: 2,
         borderRadius: pxToPt(8),
-        overflow: 'hidden',
+        // overflow: 'hidden',
         alignItems: 'center'
     },
     msgHead: {

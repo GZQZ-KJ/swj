@@ -84,12 +84,17 @@ export default class scan extends Component {
         let { userId, userName, avaterUrl, email, showModal, showNextModal, resultName, resultmessage, code, message } = this.state
  
         return (
+            <>
+            {
+          Platform.OS === 'ios' ? <StatusBar></StatusBar>
+            : <StatusBar backgroundColor="#fff" barStyle={'dark-content'}></StatusBar>
+        }
             <SafeAreaView style={{ flex: 1,backgroundColor:'#fff' }}>
                 <View  style={{ flex: 1,backgroundColor:'#f8f9fa' }}>
-               <StatusBar backgroundColor="#fff" barStyle={'dark-content'}></StatusBar>
-                
                 <View style={styles.arroWrap}>
-                    <TouchableOpacity >
+                    <TouchableOpacity activeOpacity={1} onPress={() => {
+                        this.props.navigation.navigate("Tabbar")
+                    }}>
                         <Image style={styles.arrow} source={require('../../../assets/icons/backx.png')}></Image>
                     </TouchableOpacity>
                     <Text style={styles.title}>扫描结果</Text>
@@ -205,6 +210,7 @@ export default class scan extends Component {
                 </Modal>
                 </View>
             </SafeAreaView>
+        </>
         )
     }
 }
@@ -240,9 +246,9 @@ const styles = StyleSheet.create({
         height: pxToPt(84),
         backgroundColor: '#fff',
         borderRadius: pxToPt(20),
-        elevation: pxToPt(2),
+        elevation: 2,
         shadowColor: '#565A66',
-        shadowOpacity: 1,
+        shadowOpacity: 0.12,
         shadowOffset: {
             width: pxToPt(0),
             height: pxToPt(1)
@@ -312,22 +318,22 @@ const styles = StyleSheet.create({
         height: '100%',
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: '#fff'
+        backgroundColor: '#3D72E4'
     },
     btnBFriend: {
         width: pxToPt(143),
         borderWidth: pxToPt(1),
-        borderColor: '#FE5564',
+        borderColor: '#3D72E4',
         borderRadius: pxToPt(8),
         height: '100%',
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: '#fff'
+        backgroundColor: 'rgba(255,255,255,0)'
     },
     btnBTex: {
-        color: '#FE5564'
+        color: '#3D72E4'
     },
     btnBeTex: {
-        color: '#3D72E4'
+        color: '#fff'
     }
 })

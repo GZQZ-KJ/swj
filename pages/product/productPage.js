@@ -262,7 +262,7 @@ export default class productPage extends Component {
               animationType={'fade'}
               visible={this.state.modalVisible}
             >
-              <View style={{...styles.modalBox, marginTop: !this.state.flag && isIphoneX() || this.state.flag && isIphoneX()? pxToPt(44) : null}}>
+              <View style={{...styles.modalBox, marginTop: !this.state.flag && Platform.OS === 'ios' || this.state.flag && Platform.OS === 'ios'? pxToPt(44) : null}}>
                 <TopComp modalState={this._onchange} flag={this.state.flag} onPress={() => { this._cancal() }}></TopComp>
               {/* 价格筛选头部弹窗 */}
               {
@@ -434,7 +434,7 @@ export default class productPage extends Component {
                   })
               }
               {
-                this.state.control ?
+                this.state.control && rootStore.productList.length > 0 ?
                   <View style={{ height: pxToPt(44), width: '100%', justifyContent: 'center', alignItems: 'center' }}><Text style={{ fontSize: pxToPt(12), color: '#000' }}>---人家是有底线的---</Text></View> : <></>
               }
             </ScrollView>

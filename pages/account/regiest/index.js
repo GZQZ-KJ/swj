@@ -321,7 +321,7 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: '#3D72E4',
-        paddingTop: isIphoneX() ? pxToPt(44) : null,
+        paddingTop: Platform.OS === 'ios' ? pxToPt(44) : null,
     },
     arroWrap: {
         height: pxToPt(44),

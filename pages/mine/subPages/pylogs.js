@@ -115,8 +115,12 @@ export default class pylogs extends Component {
   render() {
     console.log(this.state.data.length, this.state.total)
     return (
+      <>
+      {
+          Platform.OS === 'ios' ? <StatusBar></StatusBar>
+            : <StatusBar backgroundColor="#fff" barStyle={'dark-content'}></StatusBar>
+        }
       <SafeAreaView style={{flex:1,backgroundColor:'#fff'}}>
-      <StatusBar backgroundColor="#fff" barStyle={'dark-content'}></StatusBar>
         <View style={{flex:1,backgroundColor:'#f8f9fa'}}>
         <View style={styles.arroWrap}>
           <TouchableOpacity
@@ -180,6 +184,7 @@ export default class pylogs extends Component {
         }
         </View>
       </SafeAreaView>
+    </>
     )
   }
 }

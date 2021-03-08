@@ -267,7 +267,10 @@ export default class orderDetail extends Component {
         if (time_list === undefined) return (<></>)
         return (
             <>
-                <StatusBar barStyle={'light-content'}></StatusBar>
+                {
+          Platform.OS === 'ios' ? <StatusBar></StatusBar>
+            : <StatusBar backgroundColor="#fff" barStyle={'dark-content'}></StatusBar>
+        }
                 <SafeAreaView style={{ flex: 1, backgroundColor: '#fff' }}>
                     <View style={styles.arroWrap}>
                         <TouchableOpacity

@@ -7,7 +7,7 @@ import {
 } from 'react-native';
 
 import basicStyle from '../../../components/styles/basic/index'
-
+import {pxToPt} from '../../../utils/styleKits'
 
 /**
  * 首页顶部
@@ -49,7 +49,7 @@ export default class board extends Component {
 const styles = StyleSheet.create({
   box: {
     alignItems: 'center',
-    height: 44,
+    height: pxToPt(44),
     backgroundColor: '#FFFFFF',
     borderBottomColor: '#F2F3F7FF',
     borderBottomWidth: 1
@@ -58,37 +58,37 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   logo: {
-    width:28,
-    height:28,
-    marginLeft:16
+    width:pxToPt(28),
+    height:pxToPt(28),
+    marginLeft:pxToPt(16)
   },
   name: {
     position: 'absolute',
-    marginLeft: 48,
-    height: 25,
-    lineHeight: 25,
-    fontSize: 18,
+    marginLeft: pxToPt(48),
+    height: pxToPt(25),
+    lineHeight: pxToPt(25),
+    fontSize: pxToPt(18),
     color: '#3D72E4FF',
     fontWeight:'bold'
   },
   price: {
-    marginLeft: 56,
-    fontSize: 18,
+    marginLeft: pxToPt(56),
+    fontSize: pxToPt(18),
     color: '#FE5564FF',
     fontWeight:'700'
   },
   percent: {
-    marginLeft: 12,
+    marginLeft: pxToPt(12),
     // marginTop:11,
     alignItems: 'center',
   },
   addPec: {
-    marginLeft: 3,
-    fontSize: 11,
+    marginLeft: pxToPt(3),
+    fontSize: pxToPt(11),
   },
   downIcon: {
-    marginLeft: 3,
-    width:10,
-    height:10
+    marginLeft: pxToPt(3),
+    width:pxToPt(10),
+    height:pxToPt(10)
   }
 })

@@ -50,7 +50,10 @@ export default class setting extends Component {
         let { active } = this.state
         return (
             <>
-            <StatusBar barStyle={'dark-content'}></StatusBar>
+            {
+          Platform.OS === 'ios' ? <StatusBar></StatusBar>
+            : <StatusBar backgroundColor="#fff" barStyle={'dark-content'}></StatusBar>
+        }
             <SafeAreaView style={{ flex: 1,backgroundColor:'#fff'}}>
                 <View style={{ flex: 1 }}>
                 <StatusBar backgroundColor="#fff" barStyle={'dark-content'}></StatusBar>

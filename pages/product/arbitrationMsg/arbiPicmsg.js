@@ -98,12 +98,12 @@ const styles = StyleSheet.create({
         shadowRadius: pxToPt(2),
         elevation: 2,
         borderRadius: pxToPt(8),
-        overflow: 'hidden',
         // marginLeft: pxToPt(8),
         paddingLeft: pxToPt(12),
         paddingRight: pxToPt(12),
         paddingBottom: pxToPt(10),
-        marginBottom: pxToPt(24)
+        marginBottom: pxToPt(24),
+        overflow:'hidden'
     },
     msgArbHead: {
         height: pxToPt(44),
@@ -132,7 +132,7 @@ const styles = StyleSheet.create({
         height: pxToPt(80),
         flexDirection: 'row',
         paddingBottom: pxToPt(8),
-        borderBottomWidth: pxToPt(1),
-        borderBottomColor: '#F2F3F7',
+        // borderBottomWidth: pxToPt(1),
+        // borderBottomColor: '#F2F3F7',
     }
 })

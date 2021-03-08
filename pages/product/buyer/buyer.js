@@ -72,7 +72,7 @@ export default class home extends Component {
             }
         }).catch(e => console.log(e))
     }
-  
+
     //获取订单详情
     getProductInfo = async () => {
         clearInterval(this.time)
@@ -97,7 +97,7 @@ export default class home extends Component {
     //下架倒计时
     onFn = () => {
         this.time ? clearInterval(this.time) : null
-        let { data} = this.state
+        let { data } = this.state
 
         let countTime = data.sale_expire_time
         this.time = setInterval(() => {
@@ -137,8 +137,10 @@ export default class home extends Component {
         const { data, dataLock, num, } = this.state
         return (
             <>
-                <StatusBar backgroundColor="#fff" barStyle={'dark-content'}></StatusBar>
-
+                {
+                    Platform.OS === 'ios' ? <StatusBar></StatusBar>
+                        : <StatusBar backgroundColor="#fff" barStyle={'dark-content'}></StatusBar>
+                }
                 <SafeAreaView style={{ flex: 1, backgroundColor: '#fff' }}>
                     <View style={{ flex: 1, backgroundColor: '#f8f9fa' }}>
                         <View style={styles.arroWrap}>
@@ -189,7 +191,7 @@ export default class home extends Component {
                                         <Text style={styles.money}>总价:{data.sum_count}</Text>
                                     </View>
                                 </View>
-                            
+
                                 <View>
                                     <View style={styles.showTime}>
 
@@ -363,7 +365,6 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         marginTop: pxToPt(350),
-        marginLeft: pxToPt(8),
     },
     touchbot: {
         width: pxToPt(343),
@@ -420,7 +421,7 @@ const styles = StyleSheet.create({
         borderRadius: pxToPt(8),
         elevation: 2,
         justifyContent: 'center',
-        paddingBottom: pxToPt(20),
+        paddingBottom: pxToPt(12),
     },
     msgDetail: {
         width: pxToPt(343),

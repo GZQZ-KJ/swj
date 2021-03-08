@@ -14,7 +14,7 @@ target 'mynsapp' do
   pod 'Permission-MediaLibrary', :path => "#{permissions_path}/MediaLibrary"
   pod 'Permission-PhotoLibrary', :path => "#{permissions_path}/PhotoLibrary"
   pod 'Permission-PhotoLibraryAddOnly', :path => "#{permissions_path}/PhotoLibraryAddOnly"
-  pod 'OpenSSL'
+  pod 'OpenSSL-XM'
 
   target 'mynsappTests' do
     inherit! :complete

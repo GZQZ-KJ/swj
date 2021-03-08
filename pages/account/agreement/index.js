@@ -10,6 +10,7 @@ import {
     ScrollView,
     Platform
 } from 'react-native'
+import {isIphoneX} from '../../../utils/isIphoneX'
 import { pxToPt } from '../../../utils/styleKits'
 export default class agreement extends Component {
     constructor(props) {
@@ -17,9 +18,9 @@ export default class agreement extends Component {
     }
     render() {
         return (
-            <SafeAreaView style={{flex:1}}>
+            <SafeAreaView style={{flex:1,backgroundColor:'#3D72E4'}}>
                 {
-                    Platform.OS === 'ios' ? <View style={{ marginTop: pxToPt(28) }}></View> : <StatusBar backgroundColor="#3D72E4" barStyle={'light-content'}></StatusBar>
+                    Platform.OS === 'ios' ? isIphoneX() ? <StatusBar backgroundColor="#3D72E4" barStyle={'light-content'}></StatusBar> : <View style={{ marginTop: pxToPt(28) }}></View> : <StatusBar backgroundColor="#3D72E4" barStyle={'light-content'}></StatusBar>
                 }
                 <View style={styles.arroWrap}>
                     <TouchableOpacity style={{ width: pxToPt(60), height: pxToPt(60), marginRight: pxToPt(0), marginLeft: pxToPt(16), justifyContent: 'center' }} onPress={() => {
@@ -283,6 +284,7 @@ const styles = StyleSheet.create({
     },
     container: {
         flex: 1,
+        backgroundColor:'#f8f9fa'
     },
     scrollView: {
         backgroundColor: '#F8F9FA',

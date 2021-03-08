@@ -3,6 +3,7 @@ import { View, Platform, Text, Image, ImageBackground, TextInput, StyleSheet, St
 import axios from '../../../utils/api/request'
 import { BANKS_BANKLIST, BANKS_ADDBANK } from '../../../utils/api/pathMap'
 import mobx from '../../../utils/mobx'
+import {isIphoneX} from '../../../utils/isIphoneX'
 import LoginToast from '../../../utils/LoginToast'
 import { pxToPt } from "../../../utils/styleKits";
 import Toast from "../../../utils/api/Toast"
@@ -47,8 +48,8 @@ export default class addBank extends Component {
   }
   _confirm = async () => {
     var { account_no, account_name, openbank, bank_id, account_address } = this.state
-    if (account_no === '') {
-      Toast.message('银行卡号未填写', 2000, 'center')
+    if (account_no === ''|| account_no.length > 20) {
+      Toast.message('银行卡号填写不正确', 2000, 'center')
       return
     }
     if (account_name === '') {
@@ -87,8 +88,12 @@ export default class addBank extends Component {
   }
   render() {
     return (
+      <>
+      {
+          Platform.OS === 'ios' ? <StatusBar></StatusBar>
+            : <StatusBar backgroundColor="#fff" barStyle={'dark-content'}></StatusBar>
+        }
       <SafeAreaView style={{ flex: 1,backgroundColor:'#fff' }}>
-        <StatusBar backgroundColor="#fff" barStyle={'dark-content'}></StatusBar>
         <View style={{ flex: 1,backgroundColor:'#f8f9fa' }}>
         <View style={styles.arroWrap}>
           <TouchableOpacity
@@ -139,7 +144,7 @@ export default class addBank extends Component {
         </View>
         {
           <Modal visible={this.state.show} >
-            <View style={styles.arroWrap}>
+            <View style={styles.arroWrap1}>
               <TouchableOpacity
                 style={{ width: pxToPt(60), height: pxToPt(44), paddingLeft: pxToPt(16), justifyContent: 'center' }}
                 onPress={() => {
@@ -192,6 +197,7 @@ export default class addBank extends Component {
         </TouchableOpacity>
         </View>
       </SafeAreaView>
+    </>
     )
   }
 }
@@ -213,6 +219,13 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     flexDirection: 'row',
     backgroundColor: '#fff',
+  },
+  arroWrap1:{
+    height: pxToPt(44),
+    alignItems: 'center',
+    flexDirection: 'row',
+    backgroundColor: '#fff',
+    marginTop:Platform.OS === 'ios' ? isIphoneX() ? pxToPt(44) : pxToPt(24) : null
   },
   arrow: {
     width: pxToPt(11.82),

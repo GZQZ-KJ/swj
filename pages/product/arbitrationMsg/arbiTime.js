@@ -59,7 +59,7 @@ const styles = StyleSheet.create({
         borderRadius:pxToPt(8),
         // marginTop: pxToPt(12),
         // marginLeft: pxToPt(8),
-        paddingBottom:pxToPt(20),
+        paddingBottom:pxToPt(12),
         marginBottom:pxToPt(12)
     },
     fbT: {

@@ -43,7 +43,10 @@ export default class service extends Component {
     render() {
         return (
             <>
-            <StatusBar barStyle={'dark-content'}></StatusBar>
+            {
+          Platform.OS === 'ios' ? <StatusBar></StatusBar>
+            : <StatusBar backgroundColor="#fff" barStyle={'dark-content'}></StatusBar>
+        }
             <SafeAreaView style={{ flex: 1,backgroundColor:'#fff'}}>
                 <View style={{ flex: 1,backgroundColor:'#f8f9fa' }}>
               <StatusBar backgroundColor="#fff" barStyle={'dark-content'}></StatusBar>
@@ -74,108 +77,20 @@ export default class service extends Component {
 
 const styles = StyleSheet.create({
     arroWrap: {
-        height: 44,
+        height: pxToPt(44),
         alignItems: 'center',
         flexDirection: 'row',
         backgroundColor: '#fff'
     },
     arrow: {
-        width: 11.82,
-        height: 22,
+        width: pxToPt(11.82),
+        height: pxToPt(22),
     },
     title: {
         color: '#2B2D33',
-        fontSize: 18,
+        fontSize: pxToPt(18),
         fontWeight: "500",
         fontFamily: 'PingFang SC',
-        marginLeft: 92
+        marginLeft: pxToPt(92)
     },
-    container: {
-        justifyContent: 'space-between',
-        flex: 1
-    },
-    content: {
-        paddingLeft: 16,
-        paddingRight: 16
-    },
-    time: {
-        marginTop: 20,
-        marginBottom: 12,
-        textAlign: 'center',
-        height: 16,
-        lineHeight: 16,
-        fontSize: 11,
-        color: '#8D9099'
-    },
-    box: {
-        flexDirection: 'row',
-        marginBottom: 28
-    },
-    img: {
-        height: 52,
-        width: 52
-    },
-    dialogBox: {
-        marginLeft: 14,
-        marginTop: 6,
-        width: 230,
-    },
-    msg: {
-        paddingTop: 10,
-        paddingBottom: 10,
-        paddingLeft: 20,
-        paddingRight: 20,
-        fontSize: 14,
-        borderRadius: 30,
-        color: '#2B2D33',
-        backgroundColor: '#FFFFFF',
-        shadowColor: "#565A66",
-        shadowOffset: {
-            width: 0,
-            height: 1,
-        },
-        shadowOpacity: 0.2,
-        elevation: 10,
-    },
-    client: {
-        justifyContent: 'flex-end'
-    },
-    avatar: {
-        height: 52,
-        width: 52
-    },
-    clientBox: {
-        marginTop: 6,
-        marginRight: 14,
-        justifyContent: 'center',
-        alignContent: 'center'
-    },
-    clientMsg: {
-        backgroundColor: '#3D72E4',
-        color: '#FFFFFF',
-    },
-    voimg: {
-        height: 20,
-        width: 16,
-        borderWidth: 1,
-        backgroundColor: 'red',
-        marginLeft: 10
-    },
-    footer: {
-        paddingTop: 7,
-        paddingBottom: 40,
-        justifyContent: 'flex-end',
-        backgroundColor: '#FFFFFF'
-    },
-    wrap: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        justifyContent: 'space-around'
-    },
-    btn: {
-        width: 227,
-        height: 36,
-        borderRadius: 18,
-        backgroundColor: '#F5F5F7'
-    }
 })

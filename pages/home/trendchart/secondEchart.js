@@ -10,7 +10,7 @@ import { Echarts } from 'native-echarts';
 
 import axios from '../../../utils/api/request'
 import { HOME_DATALIST } from '../../../utils/api/pathMap'
-
+import {pxToPt} from '../../../utils/styleKits'
 import { inject, observer } from 'mobx-react'
 import Toast from '../../../utils/api/Toast'
 @inject('rootStore')
@@ -408,18 +408,18 @@ export default class secondEchart extends Component {
                                 this.props.navigation.goBack()
                             }}
                             style={{
-                                marginLeft: 60,
-                                marginTop: 26,
-                                width: 60,
-                                height: 23,
+                                marginLeft: pxToPt(60),
+                                marginTop:pxToPt(26),
+                                width: pxToPt(60),
+                                height: pxToPt(23),
                                 backgroundColor: '#3D72E4',
                                 alignItems: 'center',
-                                borderRadius: 4,
+                                borderRadius: pxToPt(4),
                                 elevation: 1.5,
                                 shadowColor: '#3D72E4',
-                                shadowOffset: { width: 0, height: 1 },
+                                shadowOffset: { width: 0, height: pxToPt(1)},
                                 shadowOpacity: .6,
-                                shadowRadius: 1,
+                                shadowRadius: pxToPt(1),
                             }}>
                             <Text style={{ color: '#fff' }}>Back</Text>
                         </TouchableOpacity>
@@ -429,7 +429,7 @@ export default class secondEchart extends Component {
                                     <Text>拼命加载中....</Text>
                                 </View> : <></>
                         }
-                        <Echarts option={this.state.option} height={320} />
+                        <Echarts option={this.state.option} height={pxToPt(320)} />
 
                     </View>
                 </View>

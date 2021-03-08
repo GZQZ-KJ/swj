@@ -10,6 +10,7 @@ import axios from '../../../utils/api/request'
 import { pxToPt } from '../../../utils/styleKits'
 import { HOME_GETBROADCAST } from '../../../utils/api/pathMap'
 import { inject, observer } from 'mobx-react'
+import { ScrollView } from 'react-native-gesture-handler';
 @inject('rootStore')
 @observer
 
@@ -62,21 +63,22 @@ export default class dealMsg extends Component {
       <View style={styles.box}>
         <Text style={styles.title}>交易播报</Text>
         <View style={styles.line}></View>
-        {
-          this.state.data.length < 1 ?
-            <View style={styles.nonlist}>
-              <Text style={{ color: '#E4E6E8', fontSize: pxToPt(16) }}>暂无交易</Text>
-            </View> :
-            <View style={styles.list}>
-              {this.state.data.map((v, i) => {
-                return (
-                  <Item data={v} key={i}></Item>
-                )
-              })
-              }
-            </View>
-        }
-
+        <ScrollView>
+          {
+            this.state.data.length < 1 ?
+              <View style={styles.nonlist}>
+                <Text style={{ color: '#E4E6E8', fontSize: pxToPt(16) }}>暂无交易</Text>
+              </View> :
+              <View style={styles.list}>
+                {this.state.data.map((v, i) => {
+                  return (
+                    <Item data={v} key={i}></Item>
+                  )
+                })
+                }
+              </View>
+          }
+        </ScrollView>
       </View>
     )
   }
@@ -117,8 +119,8 @@ const styles = StyleSheet.create({
     backgroundColor: '#FFFFFF',
     elevation: 2,
     shadowOffset: {
-        width: 0,
-        height: 1
+      width: 0,
+      height: 1
     },
     shadowColor: '#565A66',
     shadowOpacity: 0.12,

@@ -33,10 +33,15 @@ export default class arbitrationIng extends Component {
     }
     render() {
         let { item } = this.props
+        console.log('仲裁item时间',item)
         return (
-            <SafeAreaView style={{ width: '100%', justifyContent: 'center', alignItems: 'center' }}>
-               <StatusBar backgroundColor="#fff" barStyle={'dark-content'}></StatusBar>
-                
+            <>
+            {
+          Platform.OS === 'ios' ? <StatusBar></StatusBar>
+            : <StatusBar backgroundColor="#fff" barStyle={'dark-content'}></StatusBar>
+        }
+            <SafeAreaView style={{flex:1,backgroundColor:'#f8f9fa'}}>
+                <View style={{backgroundColor:'#f8f9fa',flex:1, justifyContent: 'center', alignItems: 'center'}}>
                 <TouchableOpacity
                     activeOpacity={1}
                     style={styles.arbing} onPress={this.goArbitrationMsg}>
@@ -100,7 +105,9 @@ export default class arbitrationIng extends Component {
                     <></>
 
                 </TouchableOpacity>
+                </View>
             </SafeAreaView >
+       </>
         )
     }
 }
@@ -116,7 +123,8 @@ const styles = StyleSheet.create({
         borderRadius: pxToPt(8),
         shadowOffset: { width: pxToPt(0), height: pxToPt(1) },
         shadowColor: '#565A66',
-        elevation: pxToPt(2),
+        elevation: 2,
+        shadowOpacity:0.12,
         shadowRadius: pxToPt(2),
         marginBottom: pxToPt(12),
         marginTop: pxToPt(8)
@@ -159,5 +167,6 @@ const styles = StyleSheet.create({
         color: '#5A5D66',
         fontWeight: '400',
         fontSize: pxToPt(12),
+        lineHeight:pxToPt(21)
     }
 })

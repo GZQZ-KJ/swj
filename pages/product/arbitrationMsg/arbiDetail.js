@@ -68,7 +68,6 @@ const styles = StyleSheet.create({
         shadowRadius: pxToPt(2),
         elevation: 2,
         borderRadius: pxToPt(8),
-        overflow: 'hidden',
         alignItems: 'center',
         // marginLeft: pxToPt(8),
         marginBottom: pxToPt(12)

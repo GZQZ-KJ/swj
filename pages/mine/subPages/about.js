@@ -36,7 +36,10 @@ export default class about extends Component {
     render() {
         return (
             <>
-                <StatusBar barStyle={'dark-content'}></StatusBar>
+                {
+          Platform.OS === 'ios' ? <StatusBar></StatusBar>
+            : <StatusBar backgroundColor="#fff" barStyle={'dark-content'}></StatusBar>
+        }
                 <SafeAreaView style={{ flex: 1,backgroundColor:'#fff'}}>
                     <View style={{ flex: 1 }}>
                         <StatusBar backgroundColor="#fff" barStyle={'dark-content'}></StatusBar>

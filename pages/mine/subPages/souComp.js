@@ -88,35 +88,38 @@ export default class souComp extends Component {
     render() {
         return (
             <>
-                <StatusBar barStyle={'dark-content'}></StatusBar>
-                <SafeAreaView style={{ flex: 1,backgroundColor:'#fff'}}>
-                    <View style={{ flex: 1,backgroundColor:'#f8f9fa' }}>
-                <StatusBar backgroundColor="#fff" barStyle={'dark-content'}></StatusBar>
-                <View style={styles.arroWrap}>
-                    <TouchableOpacity
-                        style={{ width: pxToPt(60), height: pxToPt(44), paddingLeft: pxToPt(16), justifyContent: 'center' }}
-                        onPress={() => {
-                            this.props.navigation.navigate('Tabbar')
-                        }}>
-                        <Image style={styles.arrow} source={require('../../../assets/icons/backx.png')}></Image>
-                    </TouchableOpacity>
-                    <Text style={styles.title}>开源组件</Text>
-                </View>
-                <ScrollView>
-                    {
-                        item.map((v, i) => {
-                            return (
-                                <View key={i} style={styles.souCompWrap}>
-                                    <Text style={styles.tex1}>{v.name}<Text>:</Text></Text>
-                                    <Text style={styles.tex2}>{v.address}</Text>
-                                </View>
-                            )
-                        })
-                    }
+                {
+                    Platform.OS === 'ios' ? <StatusBar></StatusBar>
+                        : <StatusBar backgroundColor="#fff" barStyle={'dark-content'}></StatusBar>
+                }
+                <SafeAreaView style={{ flex: 1, backgroundColor: '#fff' }}>
+                    <View style={{ flex: 1, backgroundColor: '#f8f9fa' }}>
+                        <StatusBar backgroundColor="#fff" barStyle={'dark-content'}></StatusBar>
+                        <View style={styles.arroWrap}>
+                            <TouchableOpacity
+                                style={{ width: pxToPt(60), height: pxToPt(44), paddingLeft: pxToPt(16), justifyContent: 'center' }}
+                                onPress={() => {
+                                    this.props.navigation.navigate('Tabbar')
+                                }}>
+                                <Image style={styles.arrow} source={require('../../../assets/icons/backx.png')}></Image>
+                            </TouchableOpacity>
+                            <Text style={styles.title}>开源组件</Text>
+                        </View>
+                        <ScrollView>
+                            {
+                                item.map((v, i) => {
+                                    return (
+                                        <View key={i} style={styles.souCompWrap}>
+                                            <Text style={styles.tex1}>{v.name}<Text>:</Text></Text>
+                                            <Text style={styles.tex2}>{v.address}</Text>
+                                        </View>
+                                    )
+                                })
+                            }
 
-                </ScrollView>
-                </View>
-            </SafeAreaView>
+                        </ScrollView>
+                    </View>
+                </SafeAreaView>
             </>
         )
     }

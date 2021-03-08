@@ -462,7 +462,7 @@ const styles = StyleSheet.create({
   navBar: {
     justifyContent:'space-between',
     backgroundColor: '#fff',
-    marginBottom:pxToPt(8)
+    // marginBottom:pxToPt(8)
   },
   box: {
     alignItems: 'center',

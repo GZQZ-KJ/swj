@@ -83,7 +83,7 @@ export default class setting extends Component {
         avater_url: ''
       })
       //跳转到登录页面
-      this.props.navigation.navigate("Login")
+      this.props.navigation.push("Login")
     }).catch(e =>
       console.log('[清理缓存]', e)
     )
@@ -180,6 +180,9 @@ export default class setting extends Component {
 
   }
   async componentDidMount() {
+    if(this.props.rootStore.token === '') {
+      this.props.navigation.navigate("Login")
+    }
     let avater = this.props.rootStore.avaUrl
     let userName = await AsyncStorage.getItem('userName') || ''
     let avaUrl = this.props.rootStore.avaUrl
@@ -194,7 +197,10 @@ export default class setting extends Component {
     let { rootStore } = this.props
     return (
       <>
-            <StatusBar backgroundColor="#fff" barStyle={'dark-content'}></StatusBar> 
+          {
+          Platform.OS === 'ios' ? <StatusBar></StatusBar>
+            : <StatusBar backgroundColor="#fff" barStyle={'dark-content'}></StatusBar>
+        }
         <SafeAreaView style={{ flex: 1 ,backgroundColor:'#fff'}}>
           <View style={{ flex: 1 ,backgroundColor:'#f8f9fa'}}>
           <StatusBar backgroundColor="#fff" barStyle={'dark-content'}></StatusBar>

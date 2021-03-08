@@ -16,6 +16,7 @@ import axios from '../../../utils/api/request'
 import { pxToPt } from "../../../utils/styleKits";
 import { inject, observer } from 'mobx-react'
 import Toast from "../../../utils/api/Toast"
+import { isIphoneX } from "../../../utils/isIphoneX";
 @inject('rootStore')
 
 /**
@@ -74,7 +75,10 @@ export default class bank extends Component {
   render() {
     return (
       <>
-        <StatusBar backgroundColor="#fff" barStyle={'dark-content'}></StatusBar>
+        {
+          Platform.OS === 'ios' ? <StatusBar></StatusBar>
+            : <StatusBar backgroundColor="#fff" barStyle={'dark-content'}></StatusBar>
+        }
         <SafeAreaView style={{ flex: 1,backgroundColor:'#fff' }}>
           <View style={{backgroundColor:'#f8f9fa'}}>
           <View style={styles.arroWrap}>
@@ -96,7 +100,7 @@ export default class bank extends Component {
               </TouchableOpacity>
           }
           <SafeAreaView>
-            <ScrollView style={{ height: 548 }}>
+            <ScrollView style={{ height: Platform.OS === 'ios' ? isIphoneX() ? pxToPt(548) :pxToPt(500) : pxToPt(548) }}>
               <View style={styles.container}>
                 {
                   this.state.myBanks.map((v, i) => {
@@ -237,7 +241,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     flexDirection: 'row',
     alignItems: 'center',
-    marginTop: pxToPt(620),
+    marginTop: Platform.OS ==='ios' ? isIphoneX() ? pxToPt(620) : pxToPt(580) : pxToPt(620),
     width: pxToPt(343),
     height: pxToPt(44),
     borderRadius: pxToPt(8),

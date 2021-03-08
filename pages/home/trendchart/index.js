@@ -3,6 +3,7 @@ import { View, StyleSheet, Text, TouchableOpacity, BackHandler } from 'react-nat
 import { Echarts } from 'native-echarts';
 import PriceShow from '../billboard/index'
 import Toast from '../../../utils/api/Toast'
+import {pxToPt} from '../../../utils/styleKits'
 import axios from '../../../utils/api/request'
 import { HOME_DATALIST } from '../../../utils/api/pathMap'
 import { NavigationContext } from '@react-navigation/native'
@@ -409,14 +410,14 @@ export default class chart extends Component {
       <>
         <PriceShow price={avaPrice} percent={percent}></PriceShow>
         <View style={styles.box} >
-          <View style={{ flexDirection: 'row', backgroundColor: '#fff', justifyContent: 'space-around', height: 40, alignItems: 'center' }}>
+          <View style={{ flexDirection: 'row', backgroundColor: '#fff', justifyContent: 'space-around', height: pxToPt(40), alignItems: 'center' }}>
             <TouchableOpacity style={{ ...styles.boxon }} onPress={() => {
               Toast.message('加载中', 1200, 'top')
               this.getHomeDataList('day')
             }}>
               <Text style={[active === 'day' ? styles.active : styles.fon]}>1天</Text>
               {
-                active === 'day' ? <Text style={{ backgroundColor: '#008c', height: 1, marginTop: 2 }}>--</Text> : <></>
+                active === 'day' ? <Text style={{ backgroundColor: '#008c', height: pxToPt(1), marginTop: pxToPt(2) }}>--</Text> : <></>
               }
             </TouchableOpacity>
             <TouchableOpacity style={styles.boxon} onPress={() => {
@@ -425,7 +426,7 @@ export default class chart extends Component {
             }}>
               <Text style={[active === 'week' ? styles.active : styles.fon]}>1周</Text>
               {
-                active === 'week' ? <Text style={{ backgroundColor: '#008c', height: 1, marginTop: 2 }}>--</Text> : <></>
+                active === 'week' ? <Text style={{ backgroundColor: '#008c', height: pxToPt(1), marginTop: pxToPt(2) }}>--</Text> : <></>
               }
             </TouchableOpacity>
             <TouchableOpacity style={styles.boxon} onPress={() => {
@@ -434,7 +435,7 @@ export default class chart extends Component {
             }}>
               <Text style={[active === 'month' ? styles.active : styles.fon]}>1月</Text>
               {
-                active === 'month' ? <Text style={{ backgroundColor: '#008c', height: 1, marginTop: 2 }}>--</Text> : <></>
+                active === 'month' ? <Text style={{ backgroundColor: '#008c', height: pxToPt(1), marginTop: pxToPt(2) }}>--</Text> : <></>
               }
             </TouchableOpacity>
             <TouchableOpacity style={styles.boxon} onPress={() => {
@@ -443,7 +444,7 @@ export default class chart extends Component {
             }}>
               <Text style={[active === 'quarter' ? styles.active : styles.fon]}>季度</Text>
               {
-                active === 'quarter' ? <Text style={{ backgroundColor: '#008c', height: 1, marginTop: 2 }}>--</Text> : <></>
+                active === 'quarter' ? <Text style={{ backgroundColor: '#008c', height: pxToPt(1), marginTop: pxToPt(2) }}>--</Text> : <></>
               }
             </TouchableOpacity>
             <TouchableOpacity style={styles.boxon} onPress={() => {
@@ -461,15 +462,15 @@ export default class chart extends Component {
             }}>
               <Text style={[active === 'year' ? styles.active : styles.fon]}>1年</Text>
               {
-                active === 'year' ? <Text style={{ backgroundColor: '#008c', height: 1, marginTop: 2 }}>--</Text> : <></>
+                active === 'year' ? <Text style={{ backgroundColor: '#008c', height: pxToPt(1), marginTop: pxToPt(2) }}>--</Text> : <></>
               }
             </TouchableOpacity>
           </View>
           <TouchableOpacity
             onPress={this._dbclick}
-            style={{ backgroundColor: 'rgba(255,255,255,0)', width: '100%', height: 120, position: 'absolute', top: 60, zIndex: 2 }}></TouchableOpacity>
+            style={{ backgroundColor: 'rgba(255,255,255,0)', width: '100%', height: pxToPt(120), position: 'absolute', top: pxToPt(60), zIndex: 2 }}></TouchableOpacity>
           <Echarts
-            option={option1} height={288} width={'100%'} />
+            option={option1} height={pxToPt(288)} width={'100%'} />
         </View >
       </>
     );
@@ -479,24 +480,24 @@ export default class chart extends Component {
 
 const styles = StyleSheet.create({
   box: {
-    height: 300,
+    height: pxToPt(300),
     backgroundColor: '#fff',
   },
   boxon: {
     height: '100%',
     justifyContent: 'center',
     alignItems: 'center',
-    width: 75,
+    width: pxToPt(75),
 
   },
   fon: {
     color: '#8D9099',
-    fontSize: 11,
+    fontSize: pxToPt(11),
     fontWeight: '400'
   },
   active: {
     color: '#3D72E4',
     fontWeight: '500',
-    fontSize: 11,
+    fontSize: pxToPt(11),
   }
 });

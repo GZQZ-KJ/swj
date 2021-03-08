@@ -16,6 +16,7 @@ import { pxToPt } from "../../utils/styleKits";
 import { inject, observer } from 'mobx-react'
 import Toast from '../../utils/api/Toast';
 import AsyncStorage from '@react-native-community/async-storage'
+import { ScrollView } from 'react-native-gesture-handler';
 @inject('rootStore')
 @observer
 /**
@@ -98,152 +99,153 @@ export default class minePage extends Component {
     let { rootStore } = this.props
     return (
       <>
-      <SafeAreaView style={{flex:1,backgroundColor:'#fff'}}>
-        <View style={{flex:1,backgroundColor:'#F8F9FA'}}>
-          
-       <StatusBar backgroundColor="#fff" barStyle={'dark-content'}></StatusBar>
-        <View style={styles.top}>
-          <Text style={styles.mineTxt}>我的</Text>
-          <TouchableOpacity
-            activeOpacity={1}
-            style={[styles.wrap, basicStyle.flexRow]}
-            onPress={this.goPresonallMSg}>
-            <View style={[styles.userInfo, basicStyle.flexRow]}>
-              <View style={{ width: pxToPt(60), height: pxToPt(60), borderRadius: pxToPt(30) }}>
-                {
-                  rootStore.avaUrl !== null && rootStore.avaUrl.length > 0 ?
-                    <Image style={styles.avatar} source={{ uri: rootStore.avaUrl }}></Image>
-                    :
-                    <Image style={styles.avatar} source={require('../../assets/icons/avatar/tou1.png')}></Image>
-                }
-              </View>
-              <View style={styles.details}>
-                <Text style={styles.name}>{rootStore.name}</Text>
-                <Text style={styles.email}>{rootStore.email}</Text>
-              </View>
-            </View>
-            <View
-              style={{ height: '100%', width: pxToPt(30), justifyContent: 'center', alignItems: 'flex-end' }}
-            >
-              <Image style={styles.arrow} source={require('../../assets/icons/arrows/ck.png')}></Image>
-            </View>
-          </TouchableOpacity>
-        </View>
-        <View style={[styles.sellWrap, basicStyle.flexRow]}>
-          <View style={[styles.wraplf, basicStyle.flexRow]}>
-            <View style={{ flexDirection: 'row',alignItems:'center' }}>
-                <Image style={styles.logo} source={require('../../assets/icons/logo/nssLOGO323x.png')}></Image>
-              <View >
-                <Text style={styles.num}>可交易余额：{rootStore.nss}</Text>
-                <Text style={styles.lockNum}>锁定余额：{rootStore.lockNss}</Text>
-              </View>
-            </View>
+        <SafeAreaView style={{ flex: 1, backgroundColor: '#fff' }}>
+          <View style={{ flex: 1, backgroundColor: '#F8F9FA' }}>
 
-            <TouchableOpacity
-              activeOpacity={1}
-              style={{
-                width: pxToPt(32),
-                height: pxToPt(32),
-                marginRight: pxToPt(12),
-                borderRadius: 8,
-                backgroundColor: '#3D72E4',
-                alignItems: 'center',
-                justifyContent: 'center',
-              }}
-              onPress={()=>{
-                this.userIndex()
-                Toast.message('刷新成功')
-              }}
-            >
-              <Image style={{ width: pxToPt(12), height: pxToPt(12) }} source={require('../../assets/icons/mine/shuaxin3x.png')}></Image>
-            </TouchableOpacity>
+            <StatusBar backgroundColor="#fff" barStyle={'dark-content'}></StatusBar>
+            <View style={styles.top}>
+              <Text style={styles.mineTxt}>我的</Text>
+              <TouchableOpacity
+                activeOpacity={1}
+                style={[styles.wrap, basicStyle.flexRow]}
+                onPress={this.goPresonallMSg}>
+                <View style={[styles.userInfo, basicStyle.flexRow]}>
+                  <View style={{ width: pxToPt(60), height: pxToPt(60), borderRadius: pxToPt(30) }}>
+                    {
+                      rootStore.avaUrl !== null && rootStore.avaUrl.length > 0 ?
+                        <Image style={styles.avatar} source={{ uri: rootStore.avaUrl }}></Image>
+                        :
+                        <Image style={styles.avatar} source={require('../../assets/icons/avatar/tou1.png')}></Image>
+                    }
+                  </View>
+                  <View style={styles.details}>
+                    <Text style={styles.name}>{rootStore.name}</Text>
+                    <Text style={styles.email}>{rootStore.email}</Text>
+                  </View>
+                </View>
+                <View
+                  style={{ height: '100%', width: pxToPt(30), justifyContent: 'center', alignItems: 'flex-end' }}
+                >
+                  <Image style={styles.arrow} source={require('../../assets/icons/arrows/ck.png')}></Image>
+                </View>
+              </TouchableOpacity>
+            </View>
+            <View style={[styles.sellWrap, basicStyle.flexRow]}>
+              <View style={[styles.wraplf, basicStyle.flexRow]}>
+                <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+                  <Image style={styles.logo} source={require('../../assets/icons/logo/nssLOGO323x.png')}></Image>
+                  <View >
+                    <Text style={styles.num}>可交易余额：{rootStore.nss}</Text>
+                    <Text style={styles.lockNum}>锁定余额：{rootStore.lockNss}</Text>
+                  </View>
+                </View>
+
+                <TouchableOpacity
+                  activeOpacity={1}
+                  style={{
+                    width: pxToPt(32),
+                    height: pxToPt(32),
+                    marginRight: pxToPt(12),
+                    borderRadius: 8,
+                    backgroundColor: '#3D72E4',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                  }}
+                  onPress={() => {
+                    this.userIndex()
+                    Toast.message('刷新成功')
+                  }}
+                >
+                  <Image style={{ width: pxToPt(12), height: pxToPt(12) }} source={require('../../assets/icons/mine/shuaxin3x.png')}></Image>
+                </TouchableOpacity>
+              </View>
+              <TouchableOpacity
+                activeOpacity={1}
+                style={styles.btn} onPress={() => {
+                  this.props.navigation.navigate("SellProduct")
+                }}>
+                <Text style={{ color: '#fff', fontSize: pxToPt(12) }}>挂卖产品</Text>
+              </TouchableOpacity>
+            </View>
+              <View style={{ marginBottom: pxToPt(8) }}>
+                <TouchableOpacity
+                  activeOpacity={1}
+                  onPress={() => {
+                    this.props.navigation.navigate("Banks")
+                  }}>
+                  <ListItem list={this.state.listData[0]}></ListItem>
+                </TouchableOpacity>
+                <View style={{ height: pxToPt(1), backgroundColor: '#F2F3F7', marginLeft: pxToPt(16), marginRight: pxToPt(16) }}></View>
+                <TouchableOpacity
+                  activeOpacity={1}
+                  onPress={() => {
+                    this.props.navigation.navigate("Share")
+                  }}>
+                  <ListItem list={this.state.listData[1]}></ListItem>
+                </TouchableOpacity>
+              </View>
+              <View style={{ marginBottom: pxToPt(8) }}>
+                <TouchableOpacity
+                  activeOpacity={1}
+                  onPress={() => {
+                    this.props.navigation.navigate("Paylogs")
+                  }}>
+                  <ListItem list={this.state.listData[2]}></ListItem>
+                </TouchableOpacity>
+                <View style={{ height: pxToPt(1), backgroundColor: '#F2F3F7', marginLeft: pxToPt(16), marginRight: pxToPt(16) }}></View>
+                <TouchableOpacity
+                  activeOpacity={1}
+                  onPress={() => {
+                    this.props.rootStore.setVersion('','','')
+                    this.props.navigation.navigate("Order")
+                  }}>
+                  {
+                    !!this.props.rootStore.newArb ? <View style={{ width: pxToPt(6), height: pxToPt(6), borderRadius: pxToPt(3), backgroundColor: '#FE5564', zIndex: 222, position: 'absolute', right: pxToPt(30), top: pxToPt(19) }}></View> : <></>
+                  }
+                  <ListItem list={this.state.listData[3]}></ListItem>
+                </TouchableOpacity>
+              </View>
+              <View style={{ marginBottom: pxToPt(8) }}>
+                <TouchableOpacity
+                  activeOpacity={1}
+                  onPress={() => {
+                    this.props.navigation.navigate("Service")
+                  }}>
+                  <ListItem list={this.state.listData[4]}></ListItem>
+                </TouchableOpacity>
+              </View>
+              <View style={{ marginBottom: pxToPt(8) }}>
+                <TouchableOpacity
+                  activeOpacity={1}
+                  onPress={() => {
+                    // Toast.message('组件功能尚未开放')
+                    this.props.navigation.navigate("SouComp")
+                  }}>
+                  <ListItem list={this.state.listData[5]}></ListItem>
+                </TouchableOpacity>
+                <View style={{ height: pxToPt(1), backgroundColor: '#F2F3F7', marginLeft: pxToPt(16), marginRight: pxToPt(16) }}></View>
+                <TouchableOpacity
+                  activeOpacity={1}
+                  onPress={() => {
+                    this.props.navigation.navigate("About")
+                  }}>
+                  {
+                    !!this.props.isUpdate ? <View style={{ width: pxToPt(6), height: pxToPt(6), borderRadius: pxToPt(3), backgroundColor: '#FE5564', zIndex: 222, position: 'absolute', right: pxToPt(30), top: pxToPt(15) }}></View> : <></>
+                  }
+                  <ListItem list={this.state.listData[6]} isUpdate={this.state.isUpdate}></ListItem>
+                </TouchableOpacity>
+                <View style={{ height: pxToPt(1), backgroundColor: '#F2F3F7', marginLeft: pxToPt(16), marginRight: pxToPt(16) }}></View>
+                <TouchableOpacity
+                  activeOpacity={1}
+                  onPress={() => {
+                    this.props.navigation.navigate("Setting")
+                  }}>
+                  <ListItem list={this.state.listData[7]}></ListItem>
+                </TouchableOpacity>
+
+              </View>
           </View>
-          <TouchableOpacity
-            activeOpacity={1}
-            style={styles.btn} onPress={() => {
-              this.props.navigation.navigate("SellProduct")
-            }}>
-            <Text style={{ color: '#fff', fontSize: pxToPt(12) }}>挂卖产品</Text>
-          </TouchableOpacity>
-        </View>
-        <View style={{ marginBottom: pxToPt(8) }}>
-          <TouchableOpacity
-            activeOpacity={1}
-            onPress={() => {
-              this.props.navigation.navigate("Banks")
-            }}>
-            <ListItem list={this.state.listData[0]}></ListItem>
-          </TouchableOpacity>
-          <View style={{ height: pxToPt(1), backgroundColor: '#F2F3F7', marginLeft: pxToPt(16), marginRight: pxToPt(16) }}></View>
-          <TouchableOpacity
-            activeOpacity={1}
-            onPress={() => {
-              this.props.navigation.navigate("Share")
-            }}>
-            <ListItem list={this.state.listData[1]}></ListItem>
-          </TouchableOpacity>
-        </View>
-        <View style={{ marginBottom: pxToPt(8) }}>
-          <TouchableOpacity
-            activeOpacity={1}
-            onPress={() => {
-              this.props.navigation.navigate("Paylogs")
-            }}>
-            <ListItem list={this.state.listData[2]}></ListItem>
-          </TouchableOpacity>
-          <View style={{ height: pxToPt(1), backgroundColor: '#F2F3F7', marginLeft: pxToPt(16), marginRight: pxToPt(16) }}></View>
-          <TouchableOpacity
-            activeOpacity={1}
-            onPress={() => {
-              this.props.navigation.navigate("Order")
-            }}>
-            {
-              !!this.props.rootStore.newArb ? <View style={{ width: pxToPt(6), height: pxToPt(6), borderRadius: pxToPt(3), backgroundColor: '#FE5564', zIndex: 222, position: 'absolute', right: pxToPt(30), top: pxToPt(15) }}></View> : <></>
-            }
-            <ListItem list={this.state.listData[3]}></ListItem>
-          </TouchableOpacity>
-        </View>
-        <View style={{ marginBottom: pxToPt(8) }}>
-          <TouchableOpacity
-            activeOpacity={1}
-            onPress={() => {
-              this.props.navigation.navigate("Service")
-            }}>
-            <ListItem list={this.state.listData[4]}></ListItem>
-          </TouchableOpacity>
-        </View>
-        <View style={{ marginBottom: pxToPt(8) }}>
-          <TouchableOpacity
-            activeOpacity={1}
-            onPress={() => {
-              // Toast.message('组件功能尚未开放')
-              this.props.navigation.navigate("SouComp")
-            }}>
-            <ListItem list={this.state.listData[5]}></ListItem>
-          </TouchableOpacity>
-          <View style={{ height: pxToPt(1), backgroundColor: '#F2F3F7', marginLeft: pxToPt(16), marginRight: pxToPt(16) }}></View>
-          <TouchableOpacity
-            activeOpacity={1}
-            onPress={() => {
-              this.props.navigation.navigate("About")
-            }}>
-            {
-              !!this.props.isUpdate ? <View style={{ width: pxToPt(6), height: pxToPt(6), borderRadius: pxToPt(3), backgroundColor: '#FE5564', zIndex: 222, position: 'absolute', right: pxToPt(30), top: pxToPt(15) }}></View> : <></>
-            }
-            <ListItem list={this.state.listData[6]} isUpdate={this.state.isUpdate}></ListItem>
-          </TouchableOpacity>
-          <View style={{ height: pxToPt(1), backgroundColor: '#F2F3F7', marginLeft: pxToPt(16), marginRight: pxToPt(16) }}></View>
-          <TouchableOpacity
-            activeOpacity={1}
-            onPress={() => {
-              this.props.navigation.navigate("Setting")
-            }}>
-            <ListItem list={this.state.listData[7]}></ListItem>
-          </TouchableOpacity>
-
-        </View>
-        </View>
-      </SafeAreaView >
+        </SafeAreaView >
       </>
     )
   }
@@ -288,7 +290,7 @@ const styles = StyleSheet.create({
     height: pxToPt(25),
     color: '#2B2D33',
     fontSize: pxToPt(18),
-    fontWeight:'500'
+    fontWeight: '500'
   },
   wrap: {
     justifyContent: 'space-between',
@@ -299,10 +301,10 @@ const styles = StyleSheet.create({
     marginTop: pxToPt(21),
   },
   logo: {
-    width:pxToPt(32),
-    height:pxToPt(32),
-    marginLeft:pxToPt(16),
-    marginRight:pxToPt(8)
+    width: pxToPt(32),
+    height: pxToPt(32),
+    marginLeft: pxToPt(16),
+    marginRight: pxToPt(8)
   },
   avatar: {
     height: pxToPt(60),
@@ -317,7 +319,7 @@ const styles = StyleSheet.create({
     height: pxToPt(25),
     fontSize: pxToPt(18),
     color: '#2B2D33',
-    fontWeight:'500'
+    fontWeight: '500'
   },
   email: {
     height: pxToPt(16),
@@ -332,14 +334,14 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
     backgroundColor: '#FFFFFF',
-    overflow:'hidden',
-    height:pxToPt(60),
+    overflow: 'hidden',
+    height: pxToPt(60),
   },
   wraplf: {
     alignItems: 'center',
     width: pxToPt(279),
     justifyContent: 'space-between',
-    overflow:'hidden'
+    overflow: 'hidden'
   },
   num: {
     height: pxToPt(25),

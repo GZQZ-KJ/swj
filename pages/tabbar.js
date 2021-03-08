@@ -12,6 +12,7 @@ import {
 } from 'react-native';
 
 import { pxToPt } from "../utils/styleKits";
+import {isIphoneX} from '../utils/isIphoneX'
 import TabNavigator from 'react-native-tab-navigator';
 import HomePage from './home/homePage';
 import ProductPage from './product/productPage';
@@ -68,7 +69,7 @@ export default class tabbar extends Component {
           selected={this.state.selectedTab === item.tabPage}
           titleStyle={{ color: '#B0B2B8',fontWeight:'400'}}
           selectedTitleStyle={{ color: '#3D72E4',fontWeight:'500' }}
-          renderBadge={()=> i === 3 ? this.props.rootStore.isUpdate || this.props.rootStore.newArb ? <View style={styles.badgeView}></View> :<></> : <></>}
+          renderBadge={()=> i === 3 ? !!this.props.rootStore.isUpdate || !!this.props.rootStore.newArb ? <View style={styles.badgeView}></View> :<></> : <></>}
           renderIcon={() => <Image style={styles.tabIcon} source={item.icon} />}
           renderSelectedIcon={() => <Image style={styles.tabIcon} source={item.selectedIcon} />}
           tabStyle={{ alignSelf: 'center'}}
@@ -96,7 +97,7 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#fff',
     zIndex:20,
-    paddingBottom:Platform.OS === 'ios' ? pxToPt(34) : 0
+    paddingBottom:isIphoneX() ? pxToPt(34) : 0
   },
 
   tabIcon: {
@@ -104,11 +105,12 @@ const styles = StyleSheet.create({
     height: pxToPt(23),
   },
   badgeView:{
-    width:pxToPt(12),
-    height:pxToPt(12) ,
+    width:pxToPt(10),
+    height:pxToPt(10) ,
     backgroundColor:'#f85959',
     borderWidth:pxToPt(1),
-    marginTop:pxToPt(3),
+    marginTop:pxToPt(6),
+    marginLeft:pxToPt(-5),
     borderColor:'#FFF',
     borderRadius:pxToPt(8),
   },

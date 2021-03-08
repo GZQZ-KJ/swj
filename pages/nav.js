@@ -44,9 +44,9 @@ export default class nav extends Component {
         const { initialRouteName } = this.state;
         return (
             <NavigationContainer>
-                <Stack.Navigator headerMode="none" initialRouteName={initialRouteName}>
-                    <Stack.Screen name="Tabbar" component={Tabbar} />
-                    <Stack.Screen name="Login" component={Login} />
+                <Stack.Navigator headerMode="none" initialRouteName={initialRouteName} >
+                    <Stack.Screen name="Tabbar" component={Tabbar} options={{gestureEnabled: false}}/>
+                    <Stack.Screen name="Login" component={Login} options={{gestureEnabled: false}} />
                     <Stack.Screen name="OrderDetail" component={OrderDetail} />
                     <Stack.Screen name="Regiest" component={Regiest} />
                     <Stack.Screen name="ForgetPass" component={ForgetPass} />
