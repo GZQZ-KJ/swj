@@ -68,7 +68,13 @@ export default class arbiPicmsg extends Component {
                             <View style={{ width: pxToPt(101), height: pxToPt(70), flexDirection: 'row' }}>
                                 {
                                     buyImages.map((v, i) => {
-                                        return (<Image style={styles.showImg} key={i} source={{ uri: v }}></Image>)
+                                        return (<TouchableOpacity
+                                            activeOpacity={1}
+                                            key={i}
+                                            onPress={() => {
+                                                this.context.navigate("LightBox", { url: v })
+                                            }}
+                                        ><Image style={styles.showImg} key={i} source={{ uri: v }}></Image></TouchableOpacity>)
                                     })
                                 }
                             </View>
