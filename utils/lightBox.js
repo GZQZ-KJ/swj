@@ -16,7 +16,7 @@ export default class lightBox extends Component {
     render() {
         return (
             <>
-                <SafeAreaView style={{backgroundColor:'#000'}}>
+                <SafeAreaView style={{flex:1,backgroundColor:'#000'}}>
                     <StatusBar backgroundColor={"#000"} barStyle={'light-content'}></StatusBar>
                     <View style={styles.arroWrap}>
                         <TouchableOpacity

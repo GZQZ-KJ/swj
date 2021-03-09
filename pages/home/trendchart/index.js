@@ -470,7 +470,7 @@ export default class chart extends Component {
             onPress={this._dbclick}
             style={{ backgroundColor: 'rgba(255,255,255,0)', width: '100%', height: pxToPt(120), position: 'absolute', top: pxToPt(60), zIndex: 2 }}></TouchableOpacity>
           <Echarts
-            option={option1} height={pxToPt(288)} width={'100%'} />
+            option={option1} height={288} width={'100%'} />
         </View >
       </>
     );

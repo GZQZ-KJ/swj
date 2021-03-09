@@ -126,7 +126,7 @@ export default class addBank extends Component {
             <Text style={styles.title}>银行卡号</Text>
             <TextInput style={styles.ipt}
               textAlign={'right'}
-              keyboardType='numeric'
+              maxLength={20}
               placeholder="请输入银行卡号"
               placeholderTextColor="#5A5D66"
               onChangeText={(account_no) => this.setState({ account_no })}
