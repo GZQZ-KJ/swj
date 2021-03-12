@@ -156,7 +156,9 @@ export default class addBank extends Component {
               </TouchableOpacity>
               <Text style={styles.headtitle}>选择银行卡</Text>
             </View>
-            <ScrollView>
+            <ScrollView
+            
+            >
               <View style={{ paddingLeft: pxToPt(16), paddingRight: pxToPt(20), paddingTop: pxToPt(10), paddingBottom: pxToPt(10), backgroundColor: '#fff', overflow: 'hidden', borderWidth: pxToPt(1), borderColor: '#fff' }}>
                 {
                   this.state.chooseBank.map((v, i) => {

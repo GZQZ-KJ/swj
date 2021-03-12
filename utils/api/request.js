@@ -2,33 +2,15 @@ import axios from 'axios'
 import { BASE_URI } from './pathMap'
 import Toast from './Toast'
 import rootStore from '../mobx'
-import { logger, consoleTransport} from "react-native-logs";
-import { cleanSingle } from 'react-native-image-crop-picker';
+import { logger} from "react-native-logs";
 const instance = axios.create({
   baseURL: BASE_URI,
   timeout: 10000,
 })
-const defaultConfig = {
-  severity: "debug",
-  transport: consoleTransport,
-  transportOptions: {
-    color: "ansi", // custom option that color consoleTransport logs
-  },
-  levels: {
-    debug: 0,
-    info: 1,
-    warn: 2,
-    error: 3,
-  },
-  async: true,
-  dateFormat: "time",
-  printLevel: true,
-  printDate: true,
-  enabled: true,
-};
 // 添加请求拦截器
 instance.interceptors.request.use(function (config) {
   // 在发送请求之前做些什么
+  console.log('请求拦截器',config)
   let reg = "/index/index"
   let re = '/index/getBroadcast'
   if (config.url.match(reg) || config.url.match(re)) {
@@ -38,10 +20,6 @@ instance.interceptors.request.use(function (config) {
   return config
   // 对请求错误做些什么
 }, function (error) {
-  console.log(error)
-  Toast.message('网络失去连接')
-  var log = logger.createLogger(defaultConfig);
-  log.debug(error);
   log.error(error);
   return Promise.reject(error);
 });

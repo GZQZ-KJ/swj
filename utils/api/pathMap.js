@@ -1,7 +1,8 @@
+
 /**
  * 接口基地址
  */
-export const BASE_URI = "http://192.168.68.221:30006";
+export const BASE_URI = "http://iplc.gg.uovz.com:64247";
 
 /**
  *  登录 获取验证码  
@@ -48,7 +49,7 @@ export const HOME_DATALIST = '/index/index'; // 数据列表
 /**
  * 播报
  */
-export const HOME_GETBROADCAST= '/index/getBroadcast'; // 播报
+export const HOME_GETBROADCAST = '/index/getBroadcast'; // 播报
 /**
  * 实时刷新
  */

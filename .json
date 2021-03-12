@@ -1,81 +1,45 @@
-// 产品详情
-[
-    {
-        "avater_url": "http://picfix.gzqz.work/display/resize/300x399/16147603968089.jpeg",
-        "created_time": "2021-03-04 09:25:04",
-        "price": "2.827556",
-        "sale_expire_time": "2021-03-04 10:25:04",
-        "sale_user_id": 7,
-        "sp_id": 368,
-        "status": 1,
-        "sum_count": "2.827556",
-        "user_name": "miles",
-        "value": 1
-    },
-    {
-        "avater_url": "http://picfix.gzqz.work/display/resize/300x399/16147603968089.jpeg",
-        "created_time": "2021-03-04 09:24:15",
-        "price": "2.827556",
-        "sale_expire_time": "2021-03-04 10:24:15",
-        "sale_user_id": 7,
-        "sp_id": 365,
-        "status": 1,
-        "sum_count": "2.827556",
-        "user_name": "miles",
-        "value": 1
-    },
-    {
-        "avater_url": "http://picfix.gzqz.work/display/resize/300x399/16147603968089.jpeg",
-        "created_time": "2021-03-04 09:24:43",
-        "price": "2.827556",
-        "sale_expire_time": "2021-03-04 10:24:43",
-        "sale_user_id": 7,
-        "sp_id": 367,
-        "status": 1,
-        "sum_count": "2.827556",
-        "user_name": "miles",
-        "value": 1
-    },
-    {
-        "avater_url": "http://picfix.gzqz.work/display/resize/300x399/16147603968089.jpeg",
-        "created_time": "2021-03-04 09:24:28",
-        "price": "2.827556",
-        "sale_expire_time": "2021-03-04 10:24:28",
-        "sale_user_id": 7,
-        "sp_id": 366,
-        "status": 1,
-        "sum_count": "2.827556",
-        "user_name": "miles",
-        "value": 1
-    }
-]
-//未锁定
 {
-    "account_name": "不知道",
-    "account_no": "123456789987654",
-    "avater_url": "http://picfix.gzqz.work/display/resize/300x399/16147603968089.jpeg",
-    "button": {
-        "locking": 1
+    "Header": {
+        "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8"
     },
-    "created_time": "2021-03-04 09:25:04",
-    "full_name": "中国银行",
-    "price": "2.827556",
-    "sale_expire_time": "2021-03-04 10:25:04",
-    "sale_user_id": 7,
-    "sp_id": 368,
-    "status": 1,
-    "sum_count": "2.827556",
-    "user_name": "miles",
-    "value": 1
-}
-//锁定后
-{
-    "code": 1,
-    "message": "锁定成功",
-    "result": {
-        "lock_time": 1614821185,
-        "order_no": "celyD16148FNUY621185",
-        "pay_expire_time": "2021-03-04 09:56:25",
-        "so_id": "306"
-    }
+    "adapter": [Function xhrAdapter
+    ],
+    "baseURL": "http://iplc.gg.uovz.com:64247",
+    "data": {
+        "account": "728978391@qq.com"
+    },
+    "headers": {
+        "common": {
+            "Accept": "application/json, text/plain, */*"
+        },
+        "delete": {},
+        "get": {},
+        "head": {},
+        "patch": {
+            "Content-Type": "application/x-www-form-urlencoded"
+        },
+        "post": {
+            "Content-Type": "application/x-www-form-urlencoded"
+        },
+        "put": {
+            "Content-Type": "application/x-www-form-urlencoded"
+        }
+    },
+    "maxBodyLength": -1,
+    "maxContentLength": -1,
+    "method": "post",
+    "timeout": 10000,
+    "transformRequest": [
+        [Function transformRequest
+        ]
+    ],
+    "transformResponse": [
+        [Function transformResponse
+        ]
+    ],
+    "url": "/login/sendCode",
+    "validateStatus": [Function validateStatus
+    ],
+    "xsrfCookieName": "XSRF-TOKEN",
+    "xsrfHeaderName": "X-XSRF-TOKEN"
 }

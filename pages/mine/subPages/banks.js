@@ -9,6 +9,7 @@ import {
   SafeAreaView,
   ScrollView,
   ImageBackground,
+  RefreshControl,
   Platform
 } from 'react-native'
 import { BANKS_GETMYBANKS } from '../../../utils/api/pathMap'
@@ -30,6 +31,7 @@ export default class bank extends Component {
       showAdd: 2,
       showDelete: false,
       myBanks: [],
+      isRefreshing: false,
       token: this.props.rootStore.token,
       Imgs: {
         add: require('../../../assets/icons/MybandCardad222d.png'),
@@ -46,8 +48,10 @@ export default class bank extends Component {
     })
       .then(r => {
         if (r.data.code === 1) {
+          console.log('[执行完了·~~~~~!111``]')
           this.setState({
-            myBanks: r.data.result
+            myBanks: r.data.result,
+            isRefreshing: false
           })
         }
         else {
@@ -60,7 +64,13 @@ export default class bank extends Component {
   componentDidMount() {
     this.getMyBanks()
   }
+  async onRefreshHandle() {
+    this.setState({
+      isRefreshing: true
+    })
+    this.getMyBanks()
 
+  }
   _addBank = () => {
     this.props.navigation.navigate("AddBank")
   }
@@ -79,68 +89,75 @@ export default class bank extends Component {
           Platform.OS === 'ios' ? <StatusBar></StatusBar>
             : <StatusBar backgroundColor="#fff" barStyle={'dark-content'}></StatusBar>
         }
-        <SafeAreaView style={{ flex: 1,backgroundColor:'#fff' }}>
-          <View style={{backgroundColor:'#f8f9fa'}}>
-          <View style={styles.arroWrap}>
-            <TouchableOpacity
-              style={{ width: pxToPt(60), height: pxToPt(44), paddingLeft: pxToPt(16), justifyContent: 'center' }}
-              onPress={() => {
-                this.props.navigation.navigate('Tabbar')
+        <SafeAreaView style={{ flex: 1, backgroundColor: '#fff' }}>
+          <View style={{ backgroundColor: '#f8f9fa' }}>
+            <View style={styles.arroWrap}>
+              <TouchableOpacity
+                style={{ width: pxToPt(60), height: pxToPt(44), paddingLeft: pxToPt(16), justifyContent: 'center' }}
+                onPress={() => {
+                  this.props.navigation.navigate('Tabbar')
 
-              }}>
-              <Image style={styles.arrow} source={require('../../../assets/icons/backx.png')}></Image>
-            </TouchableOpacity>
-            <Text style={styles.title}>我的银行卡</Text>
-          </View>
-          {
-            this.state.myBanks.length < 1 ? <></> :
-              <TouchableOpacity style={styles.btn} activeOpacity={1} onPress={this._addBank}>
-                <Image style={{ height: pxToPt(14), width: pxToPt(14) }} source={this.state.Imgs.add}></Image>
-                <Text style={styles.txt}>添加银行卡</Text>
+                }}>
+                <Image style={styles.arrow} source={require('../../../assets/icons/backx.png')}></Image>
               </TouchableOpacity>
-          }
-          <SafeAreaView>
-            <ScrollView style={{ height: Platform.OS === 'ios' ? isIphoneX() ? pxToPt(548) :pxToPt(500) : pxToPt(548) }}>
-              <View style={styles.container}>
-                {
-                  this.state.myBanks.map((v, i) => {
-                    var reg = /^(\d{4})\d+(\d{4})$/;
-                    v.account_no = v.account_no.replace(reg, "**** $2");
-                    return (
-                      <View key={i}>
-                        <View style={styles.wrapper} key={i}>
-                          <ImageBackground source={{ uri: v.background_url }} style={styles.wrapperBc}>
-                            <View style={{ flexDirection: "row" }}>
-                              <View style={styles.icon}>
-                                <Image source={{ uri: v.icon }} style={{ width: pxToPt(28), height: pxToPt(28) }}></Image>
+              <Text style={styles.title}>我的银行卡</Text>
+            </View>
+            {
+              this.state.myBanks.length < 1 ? <></> :
+                <TouchableOpacity style={styles.btn} activeOpacity={1} onPress={this._addBank}>
+                  <Image style={{ height: pxToPt(14), width: pxToPt(14) }} source={this.state.Imgs.add}></Image>
+                  <Text style={styles.txt}>添加银行卡</Text>
+                </TouchableOpacity>
+            }
+            <SafeAreaView>
+              <ScrollView
+                refreshControl={
+                  <RefreshControl
+                    refreshing={this.state.isRefreshing}
+                    onRefresh={() => this.onRefreshHandle()}
+                  />
+                }
+                style={{ height: Platform.OS === 'ios' ? isIphoneX() ? pxToPt(548) : pxToPt(500) : pxToPt(548) }}>
+                <View style={styles.container}>
+                  {
+                    this.state.myBanks.map((v, i) => {
+                      var reg = /^(\d{4})\d+(\d{4})$/;
+                      v.account_no = v.account_no.replace(reg, "**** $2");
+                      return (
+                        <View key={i}>
+                          <View style={styles.wrapper} key={i}>
+                            <ImageBackground source={{ uri: v.background_url }} style={styles.wrapperBc}>
+                              <View style={{ flexDirection: "row" }}>
+                                <View style={styles.icon}>
+                                  <Image source={{ uri: v.icon }} style={{ width: pxToPt(28), height: pxToPt(28) }}></Image>
+                                </View>
+                                <Text style={styles.bankTitle}>{v.full_name}</Text>
                               </View>
-                              <Text style={styles.bankTitle}>{v.full_name}</Text>
-                            </View>
-                            <View>
-                              <Text style={styles.bankNum}>{v.account_no}</Text>
-                            </View>
-                          </ImageBackground>
+                              <View>
+                                <Text style={styles.bankNum}>{v.account_no}</Text>
+                              </View>
+                            </ImageBackground>
+                          </View>
                         </View>
-                      </View>
-                    )
-                  })
-                }
-                {
-                  this.state.myBanks.length < 1 ?
-                    <>
-                      <Image style={{ width: pxToPt(206.22), height: pxToPt(217.11), alignSelf: 'center', top: pxToPt(53) }} source={require('../../../assets/icons/default/Nobindingbankcard.png')}></Image>
-                      <Text style={{ color: '#8D9099', marginTop: pxToPt(78), alignSelf: 'center', fontWeight: '400', fontSize: pxToPt(15) }}>暂无绑定银行卡</Text>
-                      <TouchableOpacity
-                        style={styles.nobtn} activeOpacity={1} onPress={this._addBank}>
-                        <Image style={{ height: pxToPt(14), width: pxToPt(14) }} source={this.state.Imgs.add}></Image>
-                        <Text style={styles.notxt}>添加银行卡</Text>
-                      </TouchableOpacity>
-                    </> :
-                    <></>
-                }
-              </View>
-            </ScrollView>
-          </SafeAreaView>
+                      )
+                    })
+                  }
+                  {
+                    this.state.myBanks.length < 1 ?
+                      <>
+                        <Image style={{ width: pxToPt(206.22), height: pxToPt(217.11), alignSelf: 'center', top: pxToPt(53) }} source={require('../../../assets/icons/default/Nobindingbankcard.png')}></Image>
+                        <Text style={{ color: '#8D9099', marginTop: pxToPt(78), alignSelf: 'center', fontWeight: '400', fontSize: pxToPt(15) }}>暂无绑定银行卡</Text>
+                        <TouchableOpacity
+                          style={styles.nobtn} activeOpacity={1} onPress={this._addBank}>
+                          <Image style={{ height: pxToPt(14), width: pxToPt(14) }} source={this.state.Imgs.add}></Image>
+                          <Text style={styles.notxt}>添加银行卡</Text>
+                        </TouchableOpacity>
+                      </> :
+                      <></>
+                  }
+                </View>
+              </ScrollView>
+            </SafeAreaView>
           </View>
         </SafeAreaView>
       </>
@@ -241,7 +258,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     flexDirection: 'row',
     alignItems: 'center',
-    marginTop: Platform.OS ==='ios' ? isIphoneX() ? pxToPt(620) : pxToPt(580) : pxToPt(620),
+    marginTop: Platform.OS === 'ios' ? isIphoneX() ? pxToPt(620) : pxToPt(580) : pxToPt(620),
     width: pxToPt(343),
     height: pxToPt(44),
     borderRadius: pxToPt(8),

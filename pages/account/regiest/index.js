@@ -67,8 +67,9 @@ export default class regiest extends Component {
                 "Content-Type": 'application/x-www-form-urlencoded;charset=UTF-8'
             }
         }).then(r => {
+            console.log('[注册验证码]',r.data)
             if (r.data.code === 1) {
-
+               Toast.message(r.data.message,1000,'center')
                 this.setState({
                     isCountDowning: true
                 })

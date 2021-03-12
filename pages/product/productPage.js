@@ -239,8 +239,10 @@ export default class productPage extends Component {
           return
         }
         else {
+          this.setState({
+            isRefreshing: false
+          })
           Toast.message(r.data.message, 2000, 'center')
-
           return
         }
       })
