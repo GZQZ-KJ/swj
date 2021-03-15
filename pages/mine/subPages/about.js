@@ -11,6 +11,7 @@ import {
 } from 'react-native'
 import AsyncStorage from '@react-native-community/async-storage'
 import { pxToPt } from "../../../utils/styleKits"
+import { XUpdate } from 'react-native-xupdate-new';
 import { inject, observer } from 'mobx-react'
 @inject('rootStore')
 @observer
@@ -22,25 +23,62 @@ export default class about extends Component {
         appVersion: this.props.rootStore.appVersion,
         isUpdate: this.props.rootStore.isUpdate,
     }
+
     goBack = () => {
         this.props.navigation.goBack()
     }
+
     upDate = () => {
         //调用更新接口
         //然后将appVersion 赋给 version
     }
-    componentDidMount() {
 
+    ///初始化
+    // initXUpdate() {
+    //     ///设置初始化参数
+    //     let args = new InitArgs();
+    //     ///是否输出日志
+    //     args.debug = true;
+    //     ///post请求是否是上传json
+    //     args.isPostJson = false;
+    //     ///是否只在wifi下才能进行更新
+    //     args.isWifiOnly = false;
+    //     ///是否开启自动模式
+    //     args.isAutoMode = false;
+    //     ///是否支持静默安装，这个需要设备有root权限
+    //     args.supportSilentInstall = false;
+    //     ///在下载过程中，如果点击了取消的话，是否弹出切换下载方式的重试提示弹窗
+    //     args.enableRetry = false;
+
+    //     ///初始化SDK
+    //     XUpdate.init(args).then(result => {
+    //         this.setState({
+    //             _message: '初始化成功:' + JSON.stringify(result),
+    //         });
+    //     }).catch(error => {
+    //         console.log(error);
+    //         this.setState({
+    //             _message: '初始化失败:' + error,
+    //         });
+    //     });
+
+    //     //设置自定义解析
+    //     XUpdate.setCustomParser({ parseJson: this.customParser });
+    //     //设置错误监听
+    //     XUpdate.addErrorListener(this.errorListener);
+    //     console.log('监听完毕')
+    // }
+    componentDidMount() {
     }
 
     render() {
         return (
             <>
                 {
-          Platform.OS === 'ios' ? <StatusBar></StatusBar>
-            : <StatusBar backgroundColor="#fff" barStyle={'dark-content'}></StatusBar>
-        }
-                <SafeAreaView style={{ flex: 1,backgroundColor:'#fff'}}>
+                    Platform.OS === 'ios' ? <StatusBar></StatusBar>
+                        : <StatusBar backgroundColor="#fff" barStyle={'dark-content'}></StatusBar>
+                }
+                <SafeAreaView style={{ flex: 1, backgroundColor: '#fff' }}>
                     <View style={{ flex: 1 }}>
                         <StatusBar backgroundColor="#fff" barStyle={'dark-content'}></StatusBar>
                         <View style={styles.arroWrap}>

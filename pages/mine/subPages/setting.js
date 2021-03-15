@@ -10,6 +10,7 @@ import {
     SafeAreaView
 } from 'react-native'
 import Toast from '../../../utils/api/Toast'
+// import ApiHost from '../../../utils/apiHost'
 import { pxToPt } from "../../../utils/styleKits";
 import { inject, observer } from 'mobx-react'
 @inject('rootStore')

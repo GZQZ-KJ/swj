@@ -10,7 +10,6 @@ const instance = axios.create({
 // 添加请求拦截器
 instance.interceptors.request.use(function (config) {
   // 在发送请求之前做些什么
-  console.log('请求拦截器',config)
   let reg = "/index/index"
   let re = '/index/getBroadcast'
   if (config.url.match(reg) || config.url.match(re)) {
