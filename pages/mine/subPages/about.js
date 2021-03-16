@@ -9,9 +9,7 @@ import {
     Platform,
     SafeAreaView
 } from 'react-native'
-import AsyncStorage from '@react-native-community/async-storage'
 import { pxToPt } from "../../../utils/styleKits"
-import { XUpdate } from 'react-native-xupdate-new';
 import { inject, observer } from 'mobx-react'
 @inject('rootStore')
 @observer

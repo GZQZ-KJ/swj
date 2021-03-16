@@ -266,7 +266,7 @@ export default class setting extends Component {
                         <TouchableOpacity
                           activeOpacity={1}
                           onPress={() => {
-                            this.context.navigate('LightBox', { url: '../../../assets/icons/avatar/tou2.png'})
+                            Toast.message('点击编辑可上传头像噢~~',2500,'center')
                           }}
                         >
                           <Image style={{ width: pxToPt(40), height: pxToPt(40) }} source={require('../../../assets/icons/avatar/tou2.png')}></Image>
