@@ -251,7 +251,6 @@ export default class login extends Component {
                   secureTextEntry={this.state.showPassword} //隐藏输入内容
                   onChangeText={(password) => this.setState({ password })}
                   value={this.state.password}
-
                 />
               </>
               <View style={styles.inpIcon}>
