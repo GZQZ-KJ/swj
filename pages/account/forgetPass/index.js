@@ -159,10 +159,10 @@ export default class forgetPass extends Component {
     Keyboard.addListener('keyboardDidShow', (event) => {
       this.setState({
         keyposition: {
-          texWrap: pxToPt(12),
-          regWrap: pxToPt(4),
-          inpWrap: pxToPt(36),
-          loginGo: pxToPt(34),
+          texWrap: pxToPt(5),
+          regWrap: pxToPt(5),
+          inpWrap: pxToPt(10),
+          loginGo: pxToPt(10),
         }
       })
     })

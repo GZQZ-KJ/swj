@@ -198,9 +198,9 @@ export default class regiest extends Component {
         keyposition: {
           texWrap: pxToPt(12),
           regWrap: pxToPt(4),
-          inpWrap: pxToPt(44),
-          lastCir: pxToPt(12),
-          loginGo: pxToPt(41)
+          inpWrap: pxToPt(15),
+          lastCir: pxToPt(10),
+          loginGo: pxToPt(10)
         }
       })
     })
@@ -262,7 +262,6 @@ export default class regiest extends Component {
                 selectionColor="#fff"
                 style={{ ...styles.inpTex, width: pxToPt(180) }}
                 placeholder='请输入邮箱'
-
                 placeholderTextColor='#ccc'
                 onChangeText={(email) => this.setState({ email })}
               />

@@ -152,10 +152,10 @@ export default class login extends Component {
     Keyboard.addListener('keyboardDidShow', (event) => {
       this.setState({
         keyposition: {
-          regWrap: pxToPt(4),
-          inpWrap: pxToPt(61),
-          lastWrap: pxToPt(20),
-          loginGo: pxToPt(63),
+          regWrap: pxToPt(1),
+          inpWrap: pxToPt(15),
+          lastWrap: pxToPt(10),
+          loginGo: pxToPt(10),
         }
       })
     })
