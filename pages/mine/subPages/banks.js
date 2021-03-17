@@ -90,7 +90,7 @@ export default class bank extends Component {
             : <StatusBar backgroundColor="#fff" barStyle={'dark-content'}></StatusBar>
         }
         <SafeAreaView style={{ flex: 1, backgroundColor: '#fff' }}>
-          <View style={{ backgroundColor: '#f8f9fa' }}>
+          <View style={{ backgroundColor: '#f8f9fa',position:'relative' }}>
             <View style={styles.arroWrap}>
               <TouchableOpacity
                 style={{ width: pxToPt(60), height: pxToPt(44), paddingLeft: pxToPt(16), justifyContent: 'center' }}
@@ -102,14 +102,6 @@ export default class bank extends Component {
               </TouchableOpacity>
               <Text style={styles.title}>我的银行卡</Text>
             </View>
-            {
-              this.state.myBanks.length < 1 ? <></> :
-                <TouchableOpacity style={styles.btn} activeOpacity={1} onPress={this._addBank}>
-                  <Image style={{ height: pxToPt(14), width: pxToPt(14) }} source={this.state.Imgs.add}></Image>
-                  <Text style={styles.txt}>添加银行卡</Text>
-                </TouchableOpacity>
-            }
-            <SafeAreaView>
               <ScrollView
                 refreshControl={
                   <RefreshControl
@@ -117,7 +109,7 @@ export default class bank extends Component {
                     onRefresh={() => this.onRefreshHandle()}
                   />
                 }
-                style={{ height: Platform.OS === 'ios' ? isIphoneX() ? pxToPt(548) : pxToPt(500) : pxToPt(548) }}>
+                style={{ height: Platform.OS === 'ios' ? isIphoneX() ? pxToPt(548) : pxToPt(500) : pxToPt(548),}}>
                 <View style={styles.container}>
                   {
                     this.state.myBanks.map((v, i) => {
@@ -157,7 +149,13 @@ export default class bank extends Component {
                   }
                 </View>
               </ScrollView>
-            </SafeAreaView>
+                {
+              this.state.myBanks.length < 1 ? <></> :
+                <TouchableOpacity style={styles.btn} activeOpacity={1} onPress={this._addBank}>
+                  <Image style={{ height: pxToPt(14), width: pxToPt(14) }} source={this.state.Imgs.add}></Image>
+                  <Text style={styles.txt}>添加银行卡</Text>
+                </TouchableOpacity>
+            }
           </View>
         </SafeAreaView>
       </>
@@ -258,15 +256,15 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     flexDirection: 'row',
     alignItems: 'center',
-    marginTop: Platform.OS === 'ios' ? isIphoneX() ? pxToPt(620) : pxToPt(580) : pxToPt(620),
+    // marginTop: Platform.OS === 'ios' ? isIphoneX() ? pxToPt(620) : pxToPt(580) : pxToPt(580),
     width: pxToPt(343),
     height: pxToPt(44),
     borderRadius: pxToPt(8),
     backgroundColor: '#3D72E4',
-    marginBottom: pxToPt(100),
-    position: 'absolute',
+    marginBottom: pxToPt(44),
+    // position: 'absolute',
     marginLeft: pxToPt(16),
-    zIndex: 100,
+    zIndex: 22,
   },
   nobtn: {
     justifyContent: 'center',

@@ -7,6 +7,7 @@ import {
   StatusBar,
 } from 'react-native'
 import rootStore from "./utils/mobx";
+import SplashScreen from 'react-native-splash-screen';
 import { Provider } from "mobx-react";
 
 import Nav from './pages/nav'
@@ -26,7 +27,9 @@ Text.render = function (...args) {
 };
 
 export default class App extends Component {
-  
+  componentDidMount() {
+    SplashScreen.hide();
+  }
   render() {
     return (
       <>

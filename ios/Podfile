@@ -18,6 +18,8 @@ target 'mynsapp' do
 
   # pod 'RNXUpdate', :path => '../node_modules/react-native-xupdate-new'
 
+  pod 'react-native-splash-screen', :path => '../node_modules/react-native-splash-screen'
+
   target 'mynsappTests' do
     inherit! :complete
     # Pods for testing
